@@ -1,0 +1,133 @@
+*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 May 11
+
+Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance
+your coding experience. It offers a clean and minimalist design with multiple
+flavors to match your coding style. Nightfall.nvim also focuses on reducing
+eye strain and integrates seamlessly with major plugins.
+
+Features ~
+- Improved code readability with a clean and minimalist design
+- Match your coding style with multiple flavors
+- Reduced eye strain for extended coding sessions
+- Extensive customization options to personalize your experience
+- Seamless integration with major plugins
+
+Flavors ~
+- Nightfall: A dark and vibrant variation inspired by the Dracula theme.
+- Deeper Night: A more intense dark theme for those who prefer a starker
+  contrast.
+- Maron: A warm brown-tinged dark theme, offering a softer feel for extended
+  coding sessions.
+
+------------------------------------------------------------------------------
+                                                          *nightfall.nvim_setup*
+Nightfall.nvim provides a comprehensive configuration system to personalize
+your colorscheme experience. You can control various aspects like color
+overrides, highlight group styling, integrations, and more. To configure
+Nightfall.nvim, use the `require("nightfall").setup` function.
+
+Parameters ~
+{opts} `(optional)` `(table:)` Your desired Nightfall.nvim configuration options
+
+Example:
+>
+  require("nightfall").setup({
+    transparent = true,
+    dim_inactive = true,
+    integrations = {
+      telescope = { enabled = true, style = "bordered" },
+      flash = { enabled = true },
+    },
+  })
+<
+
+------------------------------------------------------------------------------
+                                                          *nightfall.nvim_usage*
+Nightfall.nvim provides two methods for dynamically loading specific color scheme
+flavors, enabling you to switch between different styles based on your
+preference.
+
+Note: It is crucial to configure Nightfall.nvim before loading the
+color scheme to ensure proper integration and customization. Refer to
+|nightfall.nvim_setup| for setup instructions.
+
+1. Using `require("nightfall").load` function:
+
+The `require("nightfall").load` function offers a convenient way to load the
+Nightfall.nvim color scheme within your Neovim configuration.
+
+Usage ~
+`require("nightfall").load("nightfall")`
+
+2. Using `vim.cmd.colorscheme` function:
+
+Neovim's built-in `vim.cmd.colorscheme` function provides a generic method for
+loading any color scheme. It's a simple and versatile approach.
+
+Usage ~
+`vim.cmd.colorscheme("nightfall")`
+
+------------------------------------------------------------------------------
+                                                *nightfall.nvim_compile_command*
+This command compiles all themes provided by Nightfall.nvim into binary files,
+potentially improving performance by reducing runtime overhead. It iterates
+over each supported flavor, recompiles the theme, and notifies the user upon
+successful compilation.
+
+Usage ~
+`:NightfallCompile`
+
+------------------------------------------------------------------------------
+                                                          *nightfall.nvim_debug*
+This built-in Nightfall feature provides a real-time debugging experience for
+your themes. When activated, it automatically recompiles and applies the
+current Nightfall theme whenever you save a file within the `nightfall`
+directory. This allows you to see the impact of your modifications instantly,
+significantly improving your development workflow.
+
+Note: Ensure `vim.g.nightfall_debug` is set to true for this functionality to
+activate.
+
+------------------------------------------------------------------------------
+                                                       *nightfall.nvim_defaults*
+Nightfall.nvim provides a set of default configuration values that can be
+overridden to customize your colorscheme experience. Refer to the
+|nightfall.nvim_setup| function documentation for details on how to override
+these defaults.
+
+>
+  local defaults = {
+    compile_path = vim.fn.stdpath("cache") .. "/nightfall",
+    transparent = false,
+    terminal_colors = true,
+    dim_inactive = false,
+    styles = {
+      comments = { italic = true },
+      keywords = { italic = true },
+      functions = {},
+      variables = {},
+      numbers = {},
+      conditionals = {},
+      constants = {},
+      operators = {},
+      strings = {},
+      types = {},
+      booleans = {},
+      loops = {},
+    },
+    default_integrations = true,
+    integrations = {
+      lazy = { enabled = true },
+      telescope = { enabled = true, style = "borderless" },
+      illuminate = { enabled = true },
+      treesitter = { enabled = true, context = true },
+      lspconfig = { enabled = true },
+      flash = { enabled = false },
+    },
+    color_overrides = {},
+    highlight_overrides = {},
+  }
+
+<
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
