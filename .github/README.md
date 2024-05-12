@@ -57,7 +57,7 @@ vim.cmd.colorscheme("nightfall") -- Choose from variants like `deeper-night` or 
 
 Select from the available variants, such as `deeper-night` or `maron`, to tailor your coding experience to your liking. For comprehensive details and advanced usage options, consult `:h nightfall.nvim_usage` within Neovim.
 
-### ⚙️ Configuration
+## ⚙️ Configuration
 
 Before loading the colorscheme, ensure your configuration aligns with your preferences. Review the setup below to adjust settings as needed. Detailed information can be found in the `:h nightfall.nvim_setup` command.
 
