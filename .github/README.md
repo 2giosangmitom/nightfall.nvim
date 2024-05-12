@@ -31,7 +31,7 @@ Nightfall.nvim offers multiple flavors to suit your coding style:
 
 ## 🚀 Installation
 
-You can install Nightfall.nvim using your preferred Neovim plugin manager.
+Install Nightfall.nvim effortlessly using your preferred Neovim plugin manager.
 
 [💤 lazy.nvim](https://github.com/folke/lazy.nvim)
 
@@ -44,6 +44,8 @@ You can install Nightfall.nvim using your preferred Neovim plugin manager.
   opts = {},
 }
 ```
+
+For comprehensive documentation on the plugin, refer to `:h nightfall.nvim` within Neovim.
 
 ## 🖋️ Usage
 
