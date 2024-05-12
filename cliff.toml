@@ -43,7 +43,7 @@ filter_unconventional = true
 split_commits = false
 commit_preprocessors = [{ pattern = '\((\w+\s)?#([0-9]+)\)', replace = "" }]
 commit_parsers = [
-  { message = "^feat", group = "<!-- 0 -->🚀 New Features" },
+  { message = "^feat", group = "<!-- 0 -->🌺 New Features" },
   { message = "^fix", group = "<!-- 1 -->🐛 Bug Fixes" },
   { message = "^docs", group = "<!-- 3 -->📚 Documentation" },
   { message = "^perf", group = "<!-- 4 -->⚡ Performance" },
