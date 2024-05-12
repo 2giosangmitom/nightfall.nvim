@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.1] - 2024-05-12
+
+### 📚 Documentation
+
+- Update README ([cee689f](https://github.com/2giosangmitom/nightfall.nvim/commit/cee689f229770656bccbfea6460ac3a1a2655c84)) by @2giosangmitom
+- Update README.md ([e1e3f4f](https://github.com/2giosangmitom/nightfall.nvim/commit/e1e3f4f6e2b884282092ff934900d9150228e1ca)) by @2giosangmitom
+- Improve contributing guides ([86574f4](https://github.com/2giosangmitom/nightfall.nvim/commit/86574f43718c38b21e33a77ba1b57c6a38afa9b6)) by @2giosangmitom
+
+### ⚙️ Miscellaneous Tasks
+
+- **releaseplease**: Simplify workflow config ([a2520ea](https://github.com/2giosangmitom/nightfall.nvim/commit/a2520ea2c253d1bb46f0f5535587df8b9c6ba50b)) by @2giosangmitom
+- Update README.md ([3019b12](https://github.com/2giosangmitom/nightfall.nvim/commit/3019b128b38aa5a63d5e9cff06b86a8335c085c7)) by @2giosangmitom
+- Update export changelog script ([b418c94](https://github.com/2giosangmitom/nightfall.nvim/commit/b418c94fc575580587843ee3a98c95f1e8e486d3)) by @2giosangmitom
+- **release**: Print exported release notes in terminal by default ([a3de7e4](https://github.com/2giosangmitom/nightfall.nvim/commit/a3de7e49d069dfb3d8011487c9c8d05accbbd2b6)) by @2giosangmitom
+
 ## [0.1.0] - 2024-05-12
 
 ### 🌺 New Features
