@@ -49,6 +49,7 @@ jobs:
           body-path: UNRELEASED.md
           branch: ${{ steps.bump.outputs.version }}
           delete-branch: true
+          title: "chore(release): release ${{ steps.bump.outputs.version }}"
 
   release:
     runs-on: ubuntu-latest
