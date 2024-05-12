@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-CURRENT_TAG=$(git describe --tags --abbrev=0)
-version="${CURRENT_TAG#v}"
+version="${1#v}"
 
 awk -v version="[$version]" '
 BEGIN {
