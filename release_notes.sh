@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-version="${1#v}"
+version="$1"
 
 awk -v version="[$version]" '
 BEGIN {
