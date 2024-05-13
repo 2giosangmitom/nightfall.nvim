@@ -5,14 +5,20 @@ function M.get(colors)
   local Options = require("nightfall").Options
   local utils = require("nightfall.utils")
 
+  -- Initialize the syntax highlighting settings
   local result = {
+    -- Variables
     ["@variable"] = { link = "Identifier" },
     ["@variable.builtin"] = { fg = colors.peach, style = Options.styles.properties or {} },
     ["@variable.parameter"] = { fg = colors.foreground, style = Options.styles.variables or {} },
     ["@variable.member"] = { fg = colors.lavender, style = Options.styles.variables or {} },
+
+    -- Constants
     ["@constant"] = { link = "Constant" },
     ["@constant.builtin"] = { fg = colors.foreground, style = Options.styles.constants },
     ["@constant.macro"] = { fg = colors.lavender, style = Options.styles.constants },
+
+    -- Strings
     ["@string"] = { link = "String" },
     ["@string.regex"] = { fg = colors.peach },
     ["@string.special.path"] = { link = "Special" },
@@ -20,27 +26,50 @@ function M.get(colors)
     ["@string.special.symbol"] = { fg = colors.light_cyan },
     ["@string.special.url"] = { fg = colors.lavender, style = { italic = true, underline = true } },
     ["@string.escape"] = { fg = colors.light_cyan },
-    ["@character"] = { fg = colors.lavender },
+
+    -- Functions
     ["@function"] = { link = "Function" },
     ["@function.builtin"] = { link = "Function" },
     ["@function.macro"] = { fg = colors.turquoise },
     ["@function.call"] = { fg = colors.turquoise },
     ["@function.method"] = { link = "Function" },
     ["@function.method.call"] = { fg = colors.turquoise },
+
+    -- Constructors
     ["@constructor"] = { fg = colors.light_cyan },
+
+    -- Punctuation
     ["@punctuation.bracket"] = { fg = colors.lavender },
     ["@punctuation.delimiter"] = { fg = colors.lavender },
+
+    -- Modules
     ["@module"] = { fg = colors.lavender },
+
+    -- Labels
     ["@label"] = { link = "Label" },
+
+    -- Booleans
     ["@boolean"] = { link = "Boolean" },
+
+    -- Numbers
     ["@number"] = { link = "Number" },
-    ["@operator"] = { link = "Operator" },
     ["@number.float"] = { link = "Float" },
+
+    -- Operators
+    ["@operator"] = { link = "Operator" },
+
+    -- Types
     ["@type"] = { link = "Type" },
     ["@type.builtin"] = { fg = colors.light_cyan, style = Options.styles.properties or {} },
     ["@type.definition"] = { link = "Typedef" },
+
+    -- Attributes
     ["@attribute"] = { link = "Constant" },
+
+    -- Properties
     ["@property"] = { fg = colors.lavender, style = Options.styles.properties or {} },
+
+    -- Keywords
     ["@keyword"] = { link = "Keyword" },
     ["@keyword.modifier"] = { link = "Keyword" },
     ["@keyword.type"] = { link = "Keyword" },
@@ -55,7 +84,11 @@ function M.get(colors)
     ["@keyword.directive"] = { link = "PreProc" },
     ["@keyword.directive.define"] = { link = "Define" },
     ["@keyword.export"] = { fg = colors.sky, style = Options.styles.keywords },
+
+    -- Special Punctuation
     ["@punctuation.special"] = { link = "Special" },
+
+    -- Comments
     ["@comment"] = { link = "Comment" },
     ["@comment.documentation"] = { link = "Comment" },
     ["@comment.error"] = { fg = colors.red, bg = utils.darken(colors.dark_navy, 0.95, colors.red) },
@@ -63,9 +96,13 @@ function M.get(colors)
     ["@comment.hint"] = { fg = colors.violet, bg = utils.darken(colors.dark_navy, 0.95, colors.violet) },
     ["@comment.todo"] = { fg = colors.black, bg = colors.turquoise },
     ["@comment.note"] = { fg = colors.black, bg = colors.violet },
+
+    -- Diff
     ["@diff.plus"] = { fg = colors.green },
     ["@diff.minus"] = { fg = colors.red },
     ["@diff.delta"] = { fg = colors.light_grey },
+
+    -- Markup
     ["@markup"] = { fg = colors.foreground },
     ["@markup.strong"] = { fg = colors.light_cyan, style = { bold = true } },
     ["@markup.italic"] = { fg = colors.peach, style = { italic = true } },
@@ -83,12 +120,17 @@ function M.get(colors)
     ["@markup.list"] = { link = "Special" },
     ["@markup.list.checked"] = { fg = colors.green },
     ["@markup.list.unchecked"] = { fg = colors.light_grey },
+
+    -- Tags
     ["@tag"] = { fg = colors.light_cyan },
     ["@tag.attribute"] = { fg = colors.turquoise, style = { italic = true } },
     ["@tag.delimiter"] = { fg = colors.turquoise },
+
+    -- Errors
     ["@error"] = { link = "Error" },
   }
 
+  -- Override default settings with custom settings if Treesitter integration is enabled
   if Options.integrations.treesitter.context then
     local treesitter_context_theme = require("nightfall.themes.integrations.treesitter.context").get(colors)
     result = vim.tbl_deep_extend("force", result, treesitter_context_theme)
