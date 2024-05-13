@@ -119,6 +119,7 @@ refer to the documentation of the |nightfall.nvim_setup| function.
       types = {},
       booleans = {},
       loops = {},
+      properties = {},
     },
     default_integrations = true,
     integrations = {
