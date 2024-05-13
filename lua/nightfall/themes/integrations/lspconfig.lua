@@ -5,6 +5,7 @@ function M.get(colors)
   local utils = require("nightfall.utils")
 
   return {
+    -- LSP types
     ["@lsp.type.boolean"] = { link = "@boolean" },
     ["@lsp.type.builtinType"] = { link = "@type.builtin" },
     ["@lsp.type.comment"] = { link = "@comment" },
@@ -35,10 +36,13 @@ function M.get(colors)
     ["@lsp.typemod.type.defaultLibrary"] = { link = "@type.builtin" },
     ["@lsp.typemod.variable.defaultLibrary"] = { link = "@variable.builtin" },
     ["@lsp.typemod.variable.injected"] = { link = "@variable" },
+
+    -- Events and Modifiers
     ["@event"] = { fg = colors.light_cyan },
     ["@modifier"] = { fg = colors.lavender },
     ["@regexp"] = { fg = colors.pale_yellow },
 
+    -- Diagnostic Colors
     DiagnosticHint = {
       fg = colors.violet,
       bg = utils.darken(colors.dark_navy, 0.95, colors.violet),
@@ -60,16 +64,19 @@ function M.get(colors)
       style = { italic = true },
     },
 
-    DiagnosticFloatingError = { fg = colors.red }, -- Used to color "Error" diagnostic messages in diagnostics float
-    DiagnosticFloatingWarn = { fg = colors.pale_yellow }, -- Used to color "Warn" diagnostic messages in diagnostics float
-    DiagnosticFloatingInfo = { fg = colors.light_cyan }, -- Used to color "Info" diagnostic messages in diagnostics float
-    DiagnosticFloatingHint = { fg = colors.violet }, -- Used to color "Hint" diagnostic messages in diagnostics float
+    -- Floating Diagnostic Colors
+    DiagnosticFloatingError = { fg = colors.red },
+    DiagnosticFloatingWarn = { fg = colors.pale_yellow },
+    DiagnosticFloatingInfo = { fg = colors.light_cyan },
+    DiagnosticFloatingHint = { fg = colors.violet },
 
-    DiagnosticSignError = { fg = colors.red }, -- Used for "Error" signs in sign column
-    DiagnosticSignWarn = { fg = colors.pale_yellow }, -- Used for "Warn" signs in sign column
-    DiagnosticSignInfo = { fg = colors.light_cyan }, -- Used for "Info" signs in sign column
-    DiagnosticSignHint = { fg = colors.violet }, -- Used for "Hint" signs in sign column
+    -- Diagnostic Sign Colors
+    DiagnosticSignError = { fg = colors.red },
+    DiagnosticSignWarn = { fg = colors.pale_yellow },
+    DiagnosticSignInfo = { fg = colors.light_cyan },
+    DiagnosticSignHint = { fg = colors.violet },
 
+    -- LSP Reference Colors
     LspReferenceText = { fg = colors.dark_navy, bg = colors.ghost_white },
     LspReferenceRead = { fg = colors.dark_navy, bg = colors.ghost_white },
     LspReferenceWrite = { fg = colors.dark_navy, bg = colors.ghost_white },
