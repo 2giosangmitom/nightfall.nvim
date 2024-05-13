@@ -26,6 +26,7 @@ local defaults = {
     types = {},
     booleans = {},
     loops = {},
+    properties = {},
   },
   default_integrations = true,
   integrations = {
