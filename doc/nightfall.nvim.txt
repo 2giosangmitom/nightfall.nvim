@@ -30,7 +30,7 @@ Parameters ~
 {opts} `(optional)` `(table:)` Your desired Nightfall.nvim configuration options
 
 Example:
->
+>lua
   require("nightfall").setup({
     transparent = true,
     dim_inactive = true,
@@ -57,7 +57,9 @@ The `require("nightfall").load` function offers a convenient way to load the
 Nightfall.nvim color scheme within your Neovim configuration.
 
 Usage ~
-`require("nightfall").load("nightfall")`
+>lua
+  require("nightfall").load("nightfall")
+<
 
 2. Using `vim.cmd.colorscheme` function:
 
@@ -65,7 +67,9 @@ Neovim's built-in `vim.cmd.colorscheme` function provides a generic method for
 loading any color scheme. It's a simple and versatile approach.
 
 Usage ~
-`vim.cmd.colorscheme("nightfall")`
+>lua
+  vim.cmd.colorscheme("nightfall")
+<
 
 ------------------------------------------------------------------------------
                                                 *nightfall.nvim_compile_command*
@@ -90,12 +94,13 @@ activate.
 
 ------------------------------------------------------------------------------
                                                        *nightfall.nvim_defaults*
-Nightfall.nvim provides a set of default configuration values that can be
-overridden to customize your colorscheme experience. Refer to the
-|nightfall.nvim_setup| function documentation for details on how to override
-these defaults.
+Nightfall.nvim provides a comprehensive set of default configuration values
+that define the appearance and behavior of the colorscheme. These defaults
+can be overridden to tailor the colorscheme to your preferences and coding
+workflow. For detailed instructions on overriding these defaults, please
+refer to the documentation of the |nightfall.nvim_setup| function.
 
->
+>lua
   local defaults = {
     compile_path = vim.fn.stdpath("cache") .. "/nightfall",
     transparent = false,
@@ -142,7 +147,7 @@ It's important to note that flavor-specific overrides always have the highest
 priority.
 
 Example:
->
+>lua
   require("nightfall").setup({
     color_overrides = {
       all = {
