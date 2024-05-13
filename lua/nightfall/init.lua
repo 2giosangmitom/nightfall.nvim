@@ -33,7 +33,7 @@ M.path_sep = vim.fn.has("win32") == 1 and "\\" or "/"
 ---@param opts? table: Your desired Nightfall.nvim configuration options
 ---
 --- Example:
---- >
+--- >lua
 ---   require("nightfall").setup({
 ---     transparent = true,
 ---     dim_inactive = true,
@@ -81,14 +81,20 @@ end
 --- The `require("nightfall").load` function offers a convenient way to load the
 --- Nightfall.nvim color scheme within your Neovim configuration.
 ---
----@usage `require("nightfall").load("nightfall")`
+--- Usage ~
+--- >lua
+---   require("nightfall").load("nightfall")
+--- <
 ---
 --- 2. Using `vim.cmd.colorscheme` function:
 ---
 --- Neovim's built-in `vim.cmd.colorscheme` function provides a generic method for
 --- loading any color scheme. It's a simple and versatile approach.
 ---
----@usage `vim.cmd.colorscheme("nightfall")`
+--- Usage ~
+--- >lua
+---   vim.cmd.colorscheme("nightfall")
+--- <
 ---@tag nightfall.nvim_usage
 
 ---@param flavor string: The name of the colorscheme flavor to load
