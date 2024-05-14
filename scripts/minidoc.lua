@@ -30,7 +30,7 @@ hooks.write_pre = function(lines)
 
   table.remove(lines, 1)
 
-  local vimdoc_dir = vim.fn.stdpath("config") .. "/doc"
+  local vimdoc_dir = vim.uv.cwd() .. "/doc"
   local vimdoc_file = vimdoc_dir .. "/nightfall.nvim.txt"
   local old_vimdoc_file = vim.fn.filereadable(vimdoc_file) == 1 and vim.fn.readfile(vimdoc_file)
 
