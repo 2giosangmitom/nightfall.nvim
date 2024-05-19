@@ -32,10 +32,10 @@ local defaults = {
   integrations = {
     lazy = { enabled = true },
     telescope = { enabled = true, style = "borderless" },
-    illuminate = { enabled = true },
+    illuminate = { enabled = false },
     treesitter = { enabled = true, context = true },
     lspconfig = { enabled = true },
-    flash = { enabled = false },
+    flash = { enabled = true },
     trouble = { enabled = true },
   },
   color_overrides = {},
