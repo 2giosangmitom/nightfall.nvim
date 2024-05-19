@@ -38,15 +38,15 @@ jobs:
         run: |
           wget -q https://github.com/neovim/neovim/releases/download/v${{ matrix.version }}/nvim-linux64.tar.gz
           tar -xf nvim-linux64.tar.gz
-          sudo ln -sf $(pwd)/nvim-linux64/bin/nvim /usr/local/bin
+          ln -sf $(pwd)/nvim-linux64/bin/nvim /usr/local/bin
 
       - name: Install Neovim for MacOS
         if: ${{ matrix.os == 'macos-latest' }}
         run: |
-          curl -LO https://github.com/neovim/neovim/releases/download/v${{ matrix.version }}/nvim-macos-x86_64.tar.gz
+          wget -q https://github.com/neovim/neovim/releases/download/v${{ matrix.version }}/nvim-macos-x86_64.tar.gz
           xattr -c ./nvim-macos-x86_64.tar.gz
-          tar xzf nvim-macos-x86_64.tar.gz
-          sudo ln -sf $(pwd)/nvim-macos-x86_64/bin/nvim /usr/local/bin
+          tar -xvf nvim-macos-x86_64.tar.gz
+          ln -sf $(pwd)/nvim-macos-x86_64/bin/nvim /usr/local/bin
 
       - name: Run tests
         run: make test
