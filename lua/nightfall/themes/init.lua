@@ -82,6 +82,7 @@ M.supported_plugins = {
   treesitter = "https://github.com/nvim-treesitter/nvim-treesitter",
   telescope = "https://github.com/nvim-telescope/telescope.nvim",
   flash = "https://github.com/folke/flash.nvim",
+  trouble = "https://github.com/folke/trouble.nvim"
 }
 
 return M
