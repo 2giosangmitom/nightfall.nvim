@@ -40,10 +40,10 @@ body:
       label: Nightfall.nvim Health Check
       description: Output of `:checkhealth nightfall`
       placeholder: |
-        ## Nightfall.nvim
-        - Nightfall.nvim Version: 0.1.0
-        - Neovim Version: v0.9.5
-        - OK: Using stable Neovim >= 0.9.5
+        Nightfall.nvim ~
+        - Nightfall.nvim version: 0.3.1
+        - Neovim version: v0.10.0
+        - OK Using stable Neovim >= 0.9.5.
 
   - type: textarea
     id: description
