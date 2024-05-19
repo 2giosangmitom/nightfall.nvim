@@ -8,11 +8,10 @@ function M.get(colors)
     TreesitterContext = { bg = utils.darken(colors.dark_blue, 0.9, colors.background) },
     TreesitterContextBottom = {
       sp = colors.dark_navy,
-      style = { underline = true },
     },
     TreesitterContextLineNumber = {
       fg = colors.light_grey,
-      bg = colors.black,
+      bg = colors.dark_blue,
     },
   }
 end
