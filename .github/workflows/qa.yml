@@ -42,11 +42,7 @@ jobs:
 
       - name: Install Neovim for MacOS
         if: ${{ matrix.os == 'macos-latest' }}
-        run: |
-          wget -q https://github.com/neovim/neovim/releases/download/${{ matrix.version }}/nvim-macos-x86_64.tar.gz
-          xattr -c ./nvim-macos-x86_64.tar.gz
-          tar xzvf nvim-macos-x86_64.tar.gz
-          ln -s $(pwd)/nvim-macos-x86_64/bin/nvim /usr/local/bin/nvim
+        run: brew install neovim ${{ matrix.version }}
 
       - name: Run tests
         run: make test
