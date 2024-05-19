@@ -128,7 +128,7 @@ require("nightfall").setup({
 
 ## 🛠️ Integrations
 
-Nightfall.nvim supports integration with other Neovim plugins. Configure them in your setup. For detailed information, see `:h nightfall.nvim_integrations`.
+Nightfall.nvim supports integration with other Neovim plugins. Example:
 
 ```lua
 require("nightfall").setup({
@@ -143,18 +143,70 @@ require("nightfall").setup({
 })
 ```
 
+Some integrations are enabled by default, you can control this behaviour with `default_integrations` option.
+
+```lua
+require("nightfall").setup({
+  default_integrations = false,
+})
+```
+
 ## 🪼 Supported Plugins
 
-Nightfall.nvim integrates with popular plugins to enhance your Neovim experience:
+Nightfall.nvim integrates seamlessly with various plugins, enhancing your Neovim experience:
 
-- [lazy.nvim](https://github.com/folke/lazy.nvim)
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)
-- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-- [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
-- [vim-illuminate](https://github.com/RRethy/vim-illuminate)
-- [flash.nvim](https://github.com/folke/flash.nvim)
-- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
+- **[lazy.nvim](https://github.com/folke/lazy.nvim)**: 💤 A modern plugin manager for Neovim.
+
+  ```lua
+  lazy = { enabled = true }
+  ```
+
+- **[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)**: Enjoy powerful syntax highlighting and editing capabilities.
+
+  ```lua
+  treesitter = { enabled = true }
+  ```
+
+- **[nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)**: Show code context.
+
+  ```lua
+  treesitter = { enabled = true, context = true }
+  ```
+
+- **[nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)**: Seamless integration with Language Server Protocol (LSP) for intelligent code completion and more.
+
+  ```lua
+  lspconfig = { enabled = true }
+  ```
+
+- **[telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)**: Find and navigate your code effortlessly with Telescope.
+
+  ```lua
+  telescope = { enabled = true, style = "borderless" } -- or style = "bordered"
+  ```
+
+- **[vim-illuminate](https://github.com/RRethy/vim-illuminate)**: Automatically highlighting other uses of the word under the cursor using either LSP, Tree-sitter, or regex matching.
+
+  ```lua
+  illuminate = { enabled = true }
+  ```
+
+- **[flash.nvim](https://github.com/folke/flash.nvim)**: Navigate your code with search labels, enhanced character motions and Treesitter integration.
+
+  ```lua
+  flash = { enabled = true }
+  ```
+
+- **[lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)**: A blazing fast and easy to configure neovim statusline plugin written in pure lua.
+
+  ```lua
+  require('lualine').setup {
+    options = {
+      theme = "nightfall"
+      -- ... additional configurations
+    }
+  }
+  ```
 
 ## 🤝 Contributing
 
