@@ -42,7 +42,7 @@ jobs:
 
       - name: Install Neovim for MacOS
         if: ${{ matrix.os == 'macos-latest' }}
-        run: brew install neovim ${{ matrix.version }}
+        run: brew install neovim/${{ matrix.version#v }}
 
       - name: Run tests
         run: make test
