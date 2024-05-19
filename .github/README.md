@@ -16,8 +16,8 @@ Ready to **unleash your coding potential**? Nightfall.nvim is a meticulously cra
 ## 🌟 Key Features
 
 - 📩 Automatic caching ensures faster load times.
-- 🌲 Full [Tree-sitter](https://github.com/nvim-treesitter/nvim-treesitter) support with custom queries tailored to your needs.
-- 🎟️ Seamlessly integrates with LSP semantic tokens for enhanced code understanding (require Neovim 0.9 or later).
+- 🌲 Full [Tree-sitter](https://github.com/nvim-treesitter/nvim-treesitter) support.
+- 🎟️ Seamlessly integrates with LSP semantic tokens (require Neovim 0.9 or later).
 - 🔌 Extensive support for many [popular plugins](#-supported-plugins), enhancing your Neovim experience.
 - 🖌️ Customize default colors and highlights to match your preferences and workflow seamlessly.
 
