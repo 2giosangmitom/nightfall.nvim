@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2024-05-19
+
+### 🌺 New Features
+
+- Update LspReference bg color ([463f587](https://github.com/2giosangmitom/nightfall.nvim/commit/463f587716568d63aa4404ae8dfea58e538aefa4))
+- Update nightfall theme ([a87228b](https://github.com/2giosangmitom/nightfall.nvim/commit/a87228b26861a8d27e92f77383e29320ce5d9390))
+- **integrations**: Add trouble.nvim (v3) support ([c2c0752](https://github.com/2giosangmitom/nightfall.nvim/commit/c2c0752fc241b0b254a167d66eed1ea4b3b6e94c))
+- **telescope**: Update prefix bg color ([33019b8](https://github.com/2giosangmitom/nightfall.nvim/commit/33019b8eac01da7658ef76e44a80a5d677906332))
+- **palettes**: Update nightfall palette ([db89fb8](https://github.com/2giosangmitom/nightfall.nvim/commit/db89fb84ba959df9d9cbdc05b1695bed6928603e))
+- Update theme ([a85f336](https://github.com/2giosangmitom/nightfall.nvim/commit/a85f336e4777d854a3cbcb90d2242642b38e87f0))
+- Update default config ([6d31321](https://github.com/2giosangmitom/nightfall.nvim/commit/6d31321651ed86453fbf64e229305d5544cefe61))
+
+### 📚 Documentation
+
+- Update CONTRIBUTING.md ([8a53886](https://github.com/2giosangmitom/nightfall.nvim/commit/8a53886c0ad4b5165d77dc388aa831322575ccd2))
+- Update CONTRIBUTING.md ([2270260](https://github.com/2giosangmitom/nightfall.nvim/commit/2270260da579258ef604e2def25a4fc47490d63d))
+- Update README.md ([ef699bb](https://github.com/2giosangmitom/nightfall.nvim/commit/ef699bb8af8bfd9149dee0ebd88d88eca23cc31e))
+- Update README.md ([3c9a567](https://github.com/2giosangmitom/nightfall.nvim/commit/3c9a567916a8710f47507ce9620f7130f2233fc9))
+- Update README ([ade3f80](https://github.com/2giosangmitom/nightfall.nvim/commit/ade3f8072fe856fc111f5e113d708d987b75765b))
+- Update README ([3f23ccf](https://github.com/2giosangmitom/nightfall.nvim/commit/3f23ccf5881f1b0ece3a436be24781566f394bdf))
+- Update README.md ([814b89a](https://github.com/2giosangmitom/nightfall.nvim/commit/814b89abb7399fd6dacabf63427593d18873ed67))
+
 ## [0.2.1] - 2024-05-14
 
 ### 🎨 Styling
