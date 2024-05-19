@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.0] - 2024-05-19
+
+### 🌺 New Features
+
+- Add healthcheck command ([0ef5bb2](https://github.com/2giosangmitom/nightfall.nvim/commit/0ef5bb26f4a64cd73968b8c5ce00a699a694c2fc))
+
+### 🧪 Testing
+
+- Add unit tests for nightfall.nvim ([725ddab](https://github.com/2giosangmitom/nightfall.nvim/commit/725ddab26713546162a4ea70d11aca63ab8ae41c))
+
+### ⚙️ Miscellaneous Tasks
+
+- Update issue templates ([c40dd57](https://github.com/2giosangmitom/nightfall.nvim/commit/c40dd57a509de7d33766f70629a711d086057f60))
+- Update and rename bug_report.md to bug_report.yml ([e9ecce4](https://github.com/2giosangmitom/nightfall.nvim/commit/e9ecce48520aa8bb925b179a25623248e00feb92))
+- Update bug_report.yml ([4c0c4e7](https://github.com/2giosangmitom/nightfall.nvim/commit/4c0c4e7a0ccf211b96187a83f68f77d2a65f76d3))
+- Update and rename feature_request.md to feature_request.yml ([c3945ef](https://github.com/2giosangmitom/nightfall.nvim/commit/c3945ef76fbce78de423a3e87251efe6bdffbf66))
+- Update bug report template ([c5fd35f](https://github.com/2giosangmitom/nightfall.nvim/commit/c5fd35f61539054f3895c5062e96d9069094d31e))
+- **qa**: Add test job ([db1097f](https://github.com/2giosangmitom/nightfall.nvim/commit/db1097f36f16a6097ebae669ba7a58952922a253))
+- Fix install neovim job ([1781a17](https://github.com/2giosangmitom/nightfall.nvim/commit/1781a172a0a35c3aef9d10322d3cf52955b9eb6e))
+- Fix install neovim step ([6882e3a](https://github.com/2giosangmitom/nightfall.nvim/commit/6882e3a7abfae69c7a23b6acc70cec88d5467244))
+- **qa**: Fix install neovim step ([b4cd5ff](https://github.com/2giosangmitom/nightfall.nvim/commit/b4cd5ffe10a700e58c5eb75c85296d1b0f4d4b51))
+- **qa**: Add macos-latest to test job ([a761a2c](https://github.com/2giosangmitom/nightfall.nvim/commit/a761a2c9eb6cf113abbf3d15f5d3b9a966ec783b))
+- **qa**: Fix install neovim step on macos ([e3aa190](https://github.com/2giosangmitom/nightfall.nvim/commit/e3aa1909c737fdf9d3ca286648fc80ca143d2d0d))
+- **qa**: Fix install neovim step ([0d4c4da](https://github.com/2giosangmitom/nightfall.nvim/commit/0d4c4da11a68182573fe35691b3de431535ef1d2))
+- Try fix install neovim on macos ([0be29f3](https://github.com/2giosangmitom/nightfall.nvim/commit/0be29f36d6599bac7f1672b41b124f8bb5517bb6))
+- **qa**: Try fix install neovim on macos ([753c4d3](https://github.com/2giosangmitom/nightfall.nvim/commit/753c4d334407ce48523dd2af92a2ecca7af3f94b))
+- Try fix install neovim on macos ([8e6e24e](https://github.com/2giosangmitom/nightfall.nvim/commit/8e6e24e7f2f3f4622b9a084a855526c147da2d1f))
+- Try fix install neovim on macos ([086b325](https://github.com/2giosangmitom/nightfall.nvim/commit/086b325efb62456f9f928394749cb6d10804eed4))
+- Try fix install neovim on macos ([ace40ad](https://github.com/2giosangmitom/nightfall.nvim/commit/ace40ad1835d43fdf022ed816c58cd705f8b17ab))
+- Fix neovim install ([de38af2](https://github.com/2giosangmitom/nightfall.nvim/commit/de38af23be6e6e8ac49fc7a3d4748a0079759239))
+
 ## [0.3.1] - 2024-05-19
 
 ### 📚 Documentation
