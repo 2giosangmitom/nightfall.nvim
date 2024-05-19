@@ -77,9 +77,9 @@ function M.get(colors)
     DiagnosticSignHint = { fg = colors.violet },
 
     -- LSP Reference Colors
-    LspReferenceText = { fg = colors.dark_navy, bg = colors.ghost_white },
-    LspReferenceRead = { fg = colors.dark_navy, bg = colors.ghost_white },
-    LspReferenceWrite = { fg = colors.dark_navy, bg = colors.ghost_white },
+    LspReferenceText = { bg = colors.deep_navy },
+    LspReferenceRead = { bg = colors.deep_navy },
+    LspReferenceWrite = { bg = colors.deep_navy },
   }
 end
 
