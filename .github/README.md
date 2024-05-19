@@ -11,22 +11,15 @@ Ready to **unleash your coding potential**? Nightfall.nvim is a meticulously cra
 ![LICENSE](https://img.shields.io/github/license/2giosangmitom/nightfall.nvim?style=for-the-badge&logo=alpinedotjs&color=ee999f&logoColor=D9E0EE&labelColor=302D41)
 
 > [!NOTE]
-> Nightfall.nvim is actively under development, continuously evolving with enhancements and refinements.
+> Nightfall.nvim is currently in active development, with ongoing enhancements and refinements being made to continuously improve the experience.
 
 ## 🌟 Key Features
 
 - 📩 Automatic caching ensures faster load times.
 - 🌲 Full [Tree-sitter](https://github.com/nvim-treesitter/nvim-treesitter) support with custom queries tailored to your needs.
-- 🎟️ Seamlessly integrates with LSP semantic tokens for enhanced code understanding.
+- 🎟️ Seamlessly integrates with LSP semantic tokens for enhanced code understanding (require Neovim 0.9 or later).
 - 🔌 Extensive support for many [popular plugins](#-supported-plugins), enhancing your Neovim experience.
 - 🖌️ Customize default colors and highlights to match your preferences and workflow seamlessly.
-
-## 🦊 Prerequisites
-
-Before installing Nightfall.nvim, ensure you have the following:
-
-- **Neovim 0.9 or later**: Required for semantic tokens support.
-- **A Neovim plugin manager**: Such as [lazy.nvim](https://github.com/folke/lazy.nvim).
 
 ## 🎨 Flavors
 
