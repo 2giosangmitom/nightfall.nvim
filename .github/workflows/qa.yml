@@ -45,7 +45,7 @@ jobs:
         env:
           VER: v${{ matrix.version }}
         run: |
-          wget -q https://github.com/neovim/neovim/releases/download/$VER/nvim-macos-x86_64.tar.gz
+          wget -q https://github.com/neovim/neovim/releases/download/v${{ matrix.version }}/nvim-macos-x86_64.tar.gz
           xattr -c ./nvim-macos-x86_64.tar.gz
           tar xzvf nvim-macos-x86_64.tar.gz &> /dev/null
           ln -s $(pwd)/nvim-macos-x86_64/bin/nvim /usr/local/bin/nvim
