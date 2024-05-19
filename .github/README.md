@@ -153,7 +153,7 @@ require("nightfall").setup({
 
 ## 🪼 Supported Plugins
 
-Nightfall.nvim integrates seamlessly with various plugins, enhancing your Neovim experience:
+Enhance your Neovim experience with Nightfall.nvim's seamless integration with various plugins:
 
 - **[lazy.nvim](https://github.com/folke/lazy.nvim)**: 💤 A modern plugin manager for Neovim.
 
@@ -161,44 +161,43 @@ Nightfall.nvim integrates seamlessly with various plugins, enhancing your Neovim
   lazy = { enabled = true }
   ```
 
-- **[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)**: Enjoy powerful syntax highlighting and editing capabilities.
+- **[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)**: Experience powerful syntax highlighting and editing capabilities.
 
   ```lua
   treesitter = { enabled = true }
   ```
 
-- **[nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)**: Show code context.
+- **[nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)**: Display code context seamlessly.
 
   ```lua
   treesitter = { enabled = true, context = true }
   ```
 
-- **[nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)**: Seamless integration with Language Server Protocol (LSP) for intelligent code completion and more.
+- **[nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)**: Integrate seamlessly with Language Server Protocol (LSP) for intelligent code completion and more.
 
   ```lua
   lspconfig = { enabled = true }
   ```
 
-- **[telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)**: Find and navigate your code effortlessly with Telescope.
+- **[telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)**: Effortlessly find and navigate your code with Telescope.
 
   ```lua
   telescope = { enabled = true, style = "borderless" } -- or style = "bordered"
   ```
 
-- **[vim-illuminate](https://github.com/RRethy/vim-illuminate)**: Automatically highlighting other uses of the word under the cursor using either LSP, Tree-sitter, or regex matching.
+- **[vim-illuminate](https://github.com/RRethy/vim-illuminate)**: Automatically highlight other uses of the word under the cursor using LSP, Tree-sitter, or regex matching.
 
   ```lua
   illuminate = { enabled = true }
   ```
 
-- **[flash.nvim](https://github.com/folke/flash.nvim)**: Navigate your code with search labels, enhanced character motions and Treesitter integration.
+- **[flash.nvim](https://github.com/folke/flash.nvim)**: Navigate your code with search labels, enhanced character motions, and Treesitter integration.
 
   ```lua
   flash = { enabled = true }
   ```
 
-- **[lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)**: A blazing fast and easy to configure neovim statusline plugin written in pure lua.
-
+- **[lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)**: Configure a blazing-fast statusline plugin in pure Lua.
   ```lua
   require('lualine').setup {
     options = {
