@@ -27,12 +27,11 @@ jobs:
     name: Test
     strategy:
       matrix:
-        version: [0.10.0, 0.9.5]
+        version: [0.10.0]
         os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-
       - name: Install Neovim for Linux
         if: ${{ matrix.os == 'ubuntu-latest' }}
         run: |
@@ -42,8 +41,6 @@ jobs:
 
       - name: Install Neovim for MacOS
         if: ${{ matrix.os == 'macos-latest' }}
-        env:
-          VER: v${{ matrix.version }}
         run: |
           wget -q https://github.com/neovim/neovim/releases/download/v${{ matrix.version }}/nvim-macos-x86_64.tar.gz
           xattr -c ./nvim-macos-x86_64.tar.gz
