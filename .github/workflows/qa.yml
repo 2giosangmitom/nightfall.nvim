@@ -44,7 +44,7 @@ jobs:
         if: ${{ matrix.os == 'macos-latest' }}
         run: |
           curl -LO https://github.com/neovim/neovim/releases/download/v${{ matrix.version }}/nvim-macos-x86_64.tar.gz
-          xattr -c ./nvim-macos-arm64.tar.gz
+          xattr -c ./nvim-macos-x86_64.tar.gz
           tar xzf nvim-macos-x86_64.tar.gz
           export nvim=./nvim-macos-x86_64/bin/nvim
 
