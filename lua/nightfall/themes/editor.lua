@@ -19,7 +19,7 @@ function M.get(colors)
     PmenuSbar = { bg = colors.dark_blue }, -- Popup menu scrollbar background
     PmenuSel = { bg = colors.lavender, fg = colors.black }, -- Selected popup menu item background
     PmenuThumb = { bg = colors.grey }, -- Popup menu thumb background
-    FloatBorder = { fg = colors.grey, bg = colors.background }, -- Floating window border colors
+    FloatBorder = { fg = colors.dark_slate_blue, bg = colors.background }, -- Floating window border colors
     NormalFloat = { bg = utils.darken(colors.background, 0.8) }, -- Floating window text background
     FloatTitle = { fg = colors.foreground, bg = colors.background }, -- Floating window title colors
     TabLine = { bg = colors.statusline_bg, fg = colors.foreground }, -- Tabline colors
@@ -30,24 +30,26 @@ function M.get(colors)
 
     -- Syntax Highlighting
     MatchWord = { bg = colors.grey, fg = colors.ghost_white }, -- Background and foreground color for matching words
-    MatchParen = { fg = colors.lavender, bg = colors.nord_blue, style = { bold = true } }, -- Color for matching parentheses
-    Directory = { fg = colors.turquoise }, -- Color for directory names
-    ModeMsg = { fg = colors.sand }, -- Color for mode messages
+    MatchParen = { fg = colors.lavender, style = { bold = true } }, -- Color for matching parentheses
+    Directory = { fg = colors.pink }, -- Color for directory names
+    ModeMsg = { fg = colors.black }, -- Color for mode messages
     SpecialKey = { fg = colors.dark_slate_blue }, -- Color for special keys
-    Visual = { bg = colors.dark_navy, style = { bold = true } }, -- Color for visual selection
+    Visual = { bg = colors.deep_navy, style = { bold = true } }, -- Color for visual selection
     VisualNOS = { link = "Visual" }, -- Linked to Visual
     WarningMsg = { fg = colors.violet }, -- Color for warning messages
     WildMenu = { fg = colors.violet, bg = colors.sky }, -- Color for wild menu
-    Whitespace = { fg = colors.grey }, -- Color for whitespace characters
+    Whitespace = { fg = colors.dark_slate_blue }, -- Color for whitespace characters
     Conceal = { fg = colors.grey }, -- Color for concealed characters
     NonText = { fg = colors.dark_slate_blue }, -- Color for non-text characters
     SignColumn = { fg = colors.dark_slate_blue }, -- Color for sign column
     WinSeparator = { fg = colors.dark_slate_blue }, -- Color for window separator
     VertSplit = { fg = Options.transparent and colors.dark_navy or colors.dark_slate_blue }, -- Color for vertical split line
     EndOfBuffer = { fg = colors.grey }, -- Color for end of buffer
+    Folded = { fg = colors.lavender, bg = colors.deep_navy },
+    FoldColumn = { bg = Options.transparent and colors.none or colors.background, fg = colors.grey },
 
     -- Cursor and Line Numbers
-    CursorLineNr = { fg = colors.ghost_white }, -- Color for line numbers in the cursor line
+    CursorLineNr = { fg = colors.lavender }, -- Color for line numbers in the cursor line
     LineNr = { fg = colors.grey }, -- Color for line numbers
     Cursor = { fg = colors.black, bg = colors.ghost_white }, -- Color for cursor
     lCursor = { link = "Cursor" }, -- Linked to Cursor
@@ -57,10 +59,10 @@ function M.get(colors)
     QuickFixLine = { bg = colors.dark_navy, sp = "none" }, -- Color for quickfix line
 
     -- Search and Spell
-    IncSearch = { fg = colors.dark_blue, bg = colors.violet }, -- Color for incremental search
-    CurSearch = { bg = colors.violet, fg = colors.dark_blue }, -- Color for current search
-    Substitute = { fg = colors.dark_blue, bg = colors.violet }, -- Color for substitution
-    Search = { fg = colors.dark_blue, bg = colors.peach }, -- Color for search matches
+    Search = { bg = colors.violet, fg = colors.black }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+    IncSearch = { bg = colors.peach, fg = colors.black }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+    CurSearch = { link = "IncSearch" },
+    Substitute = { fg = colors.black, bg = colors.violet }, -- Color for substitution
     SpellBad = { sp = colors.violet, style = { undercurl = true } }, -- Color for bad spelling
     SpellLocal = { sp = colors.light_cyan, style = { undercurl = true } }, -- Color for local spelling
     SpellCap = { sp = colors.turquoise, style = { undercurl = true } }, -- Color for capitalization in spelling
