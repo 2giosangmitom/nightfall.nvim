@@ -7,7 +7,7 @@ function M.get(colors)
   local bg = utils.darken(colors.background, 0.8)
 
   local result = {
-    TelescopePromptPrefix = { fg = colors.red, bg = colors.black },
+    TelescopePromptPrefix = { fg = colors.red, bg = bg },
     TelescopeNormal = { bg = bg },
     TelescopePromptTitle = { fg = colors.black, bg = colors.red },
     TelescopeSelection = { bg = colors.dark_navy, fg = colors.foreground },
