@@ -21,6 +21,13 @@ Ready to **unleash your coding potential**? Nightfall.nvim is a meticulously cra
 - **Extensive customization options** to personalize your experience
 - **Seamless integration** with major plugins
 
+## 🦊 Prerequisites
+
+Before installing Nightfall.nvim, ensure you have the following:
+
+- **Neovim 0.9 or later**: Required for semantic tokens support.
+- **A Neovim plugin manager**: Such as [lazy.nvim](https://github.com/folke/lazy.nvim).
+
 ## 🎨 Flavors
 
 Nightfall.nvim offers multiple themes to suit your coding style:
