@@ -12,5 +12,5 @@ vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup({
   { "echasnovski/mini.doc", lazy = false },
-  { "2giosangmitom/nightfall.nvim", lazy = false, dependencies = { "nvim-lua/plenary.nvim" } },
+  "nvim-lua/plenary.nvim",
 })
