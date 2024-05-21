@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.1] - 2024-05-21
+
+### ⚙️ Miscellaneous Tasks
+
+- Create FUNDING.yml ([b785eae](https://github.com/2giosangmitom/nightfall.nvim/commit/b785eae18c3dc3ffc58e60edc0a3d939daf50448))
+- Update funding.yml ([5adad78](https://github.com/2giosangmitom/nightfall.nvim/commit/5adad780eaf6da2cd7b6e5ef5148a05caad3b1e0))
+- **qa**: Run tests on windows ([18727ab](https://github.com/2giosangmitom/nightfall.nvim/commit/18727abfea194c957c37bfd919f006ca81933e47))
+
 ## [0.4.0] - 2024-05-19
 
 ### 🌺 New Features
