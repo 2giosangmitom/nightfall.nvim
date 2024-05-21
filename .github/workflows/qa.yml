@@ -28,7 +28,7 @@ jobs:
     strategy:
       matrix:
         version: [0.10.0]
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -46,6 +46,13 @@ jobs:
           xattr -c ./nvim-macos-x86_64.tar.gz
           tar xzvf nvim-macos-x86_64.tar.gz &> /dev/null
           ln -s $(pwd)/nvim-macos-x86_64/bin/nvim /usr/local/bin/nvim
+
+      - name: Install Neovim for Windows
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: |
+          Invoke-WebRequest -OutFile nvim-win64.zip https://github.com/neovim/neovim/releases/download/v${{ matrix.version }}/nvim-win64.zip
+          7z x nvim-win64.zip
+          Add-Content $env:GITHUB_PATH ".\nvim-win64\bin\"
 
       - name: Run tests
         run: make test
