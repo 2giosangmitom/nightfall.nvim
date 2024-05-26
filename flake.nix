@@ -22,7 +22,6 @@
         nil
         stylua
         nodejs_22
-        git-cliff
       ];
     };
     formatter.${system} = pkgs.alejandra;
