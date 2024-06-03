@@ -23,4 +23,4 @@ jobs:
           fetch-depth: 0
 
       - name: Release
-        uses: 2giosangmitom/release-puller-action@v1.0.1
+        uses: 2giosangmitom/release-puller-action@v2
