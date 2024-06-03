@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.2] - 2024-06-03
+
+### ⚙️ Miscellaneous Tasks
+
+- Delete `.neoconf.json` ([7e932b2](https://github.com/2giosangmitom/nightfall.nvim/commit/7e932b2f2e7dbeae5a73901d3d7a8e5107259cc1))
+
 ## [0.4.1] - 2024-05-26
 
 ### ⚙️ Miscellaneous Tasks
