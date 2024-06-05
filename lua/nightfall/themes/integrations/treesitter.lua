@@ -1,6 +1,14 @@
+--- Enable `nvim-treesitter` with context support by adding this
+--- to your Nightfall integrations config:
+--- >lua
+---   treesitter = { enabled = true, context = true }
+--- <
+---@tag nightfall.nvim_treesitter
+
 local M = {}
 
 ---@param colors NightfallPalette
+---@private
 function M.get(colors)
   local Options = require("nightfall").Options
   local utils = require("nightfall.utils")

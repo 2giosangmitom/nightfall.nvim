@@ -1,6 +1,14 @@
+--- Enable `nvim-lspconfig` support by adding the following to your Nightfall
+--- integration config:
+--- >lua
+---   lspconfig = { enabled = true }
+--- <
+---@tag nightfall.nvim_lspconfig
+
 local M = {}
 
 ---@param colors NightfallPalette
+---@private
 function M.get(colors)
   local utils = require("nightfall.utils")
 

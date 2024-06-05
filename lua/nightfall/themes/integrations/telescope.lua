@@ -1,6 +1,15 @@
+--- To enable `telescope.nvim` support, add the following to your Nightfall
+--- integrations config, choosing between two styles: 'borderless' and
+--- 'bordered'.
+--- >lua
+---   telescope = { enabled = true, style = "borderless" }
+--- <
+---@tag nightfall.nvim_telescope
+
 local M = {}
 
 ---@param colors NightfallPalette
+---@private
 function M.get(colors)
   local telescope_style = require("nightfall").Options.integrations.telescope.style
   local utils = require("nightfall.utils")
