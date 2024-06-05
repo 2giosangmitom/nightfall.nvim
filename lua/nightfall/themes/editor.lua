@@ -54,7 +54,7 @@ function M.get(colors)
     Cursor = { fg = colors.black, bg = colors.ghost_white }, -- Color for cursor
     lCursor = { link = "Cursor" }, -- Linked to Cursor
     CursorIM = { link = "Cursor" }, -- Linked to Cursor
-    CursorLine = { bg = colors.dark_navy }, -- Color for cursor line background
+    CursorLine = { bg = colors.deep_navy }, -- Color for cursor line background
     CursorColumn = { bg = colors.dark_navy }, -- Color for cursor column background
     QuickFixLine = { bg = colors.dark_navy, sp = "none" }, -- Color for quickfix line
 
