@@ -1,5 +1,5 @@
---- Enable `headlines.nvim` support by adding the following to your Nightfall integrations
---- config:
+--- Enable `headlines.nvim` support by adding the following to your Nightfall
+--- integrations config:
 --- >lua
 ---   headlines = { enabled = true }
 --- <
@@ -8,6 +8,7 @@
 local M = {}
 
 ---@param colors NightfallPalette
+---@private
 function M.get(colors)
   return {
     Dash = { fg = colors.grey, style = { bold = true } },
