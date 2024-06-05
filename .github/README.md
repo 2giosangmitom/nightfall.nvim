@@ -7,7 +7,6 @@ Ready to **unleash your coding potential**? Nightfall.nvim is a meticulously cra
 ![Forks](https://img.shields.io/github/forks/2giosangmitom/nightfall.nvim?style=for-the-badge&logo=starship&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41)
 ![Issues](https://img.shields.io/github/issues/2giosangmitom/nightfall.nvim?style=for-the-badge&logo=lightning&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41)
 ![Repo size](https://img.shields.io/github/repo-size/2giosangmitom/nightfall.nvim?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41)
-![Release](https://img.shields.io/github/v/release/2giosangmitom/nightfall.nvim?style=for-the-badge&logo=gitbook&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41)
 ![LICENSE](https://img.shields.io/github/license/2giosangmitom/nightfall.nvim?style=for-the-badge&logo=alpinedotjs&color=ee999f&logoColor=D9E0EE&labelColor=302D41)
 
 > [!NOTE]
@@ -40,7 +39,6 @@ Install Nightfall.nvim using your preferred Neovim plugin manager.
   "2giosangmitom/nightfall.nvim",
   lazy = false,
   priority = 1000,
-  version = "*",
   opts = {},
 }
 ```
