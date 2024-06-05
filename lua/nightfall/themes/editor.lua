@@ -70,17 +70,17 @@ function M.get(colors)
     healthSuccess = { bg = colors.green, fg = colors.black }, -- Color for health success
 
     -- Diff Colors
-    DiffAdd = { bg = colors.green }, -- Color for added lines in diff
-    DiffChange = { bg = colors.pale_yellow, fg = colors.black }, -- Color for changed lines in diff
-    DiffDelete = { bg = colors.red, fg = colors.black }, -- Color for deleted lines in diff
-    DiffText = { bg = colors.ghost_white }, -- Color for diff text
+    DiffAdd = { bg = utils.darken(colors.green, 0.12, colors.background) }, -- Color for added lines in diff
+    DiffChange = { bg = utils.darken(colors.pale_yellow, 0.02, colors.background) }, -- Color for changed lines in diff
+    DiffDelete = { bg = utils.darken(colors.red, 0.12, colors.background) }, -- Color for deleted lines in diff
+    DiffText = { bg = utils.darken(colors.ghost_white, 0.2, colors.background) }, -- Color for diff text
     diffAdded = { fg = colors.green }, -- Color for added lines in diff
     diffRemoved = { fg = colors.red }, -- Color for removed lines in diff
     diffChanged = { fg = colors.pale_yellow }, -- Color for changed lines in diff
     diffOldFile = { fg = colors.peach }, -- Color for old file in diff
     diffNewFile = { fg = colors.pink }, -- Color for new file in diff
     diffFile = { fg = colors.nord_blue }, -- Color for file in diff
-    diffLine = { fg = colors.light_grey }, -- Color for line in diff
+    diffLine = { fg = colors.dark_navy }, -- Color for line in diff
     diffIndexLine = { fg = colors.violet }, -- Color for index line in diff
 
     -- Error and Message Colors
