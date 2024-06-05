@@ -130,9 +130,18 @@ function M.get(colors)
     ["@error"] = { link = "Error" },
   }
 
-  -- Override default settings with custom settings if Treesitter integration is enabled
+  -- Add treesitter context if enabled
   if Options.integrations.treesitter.context then
-    local treesitter_context_theme = require("nightfall.themes.integrations.treesitter.context").get(colors)
+    local treesitter_context_theme = {
+      TreesitterContext = { bg = utils.darken(colors.dark_blue, 0.9, colors.background) },
+      TreesitterContextBottom = {
+        sp = colors.dark_navy,
+      },
+      TreesitterContextLineNumber = {
+        fg = colors.light_grey,
+        bg = colors.dark_blue,
+      },
+    }
     result = vim.tbl_deep_extend("force", result, treesitter_context_theme)
   end
 
