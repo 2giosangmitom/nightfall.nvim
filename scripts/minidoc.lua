@@ -58,6 +58,7 @@ local integrations = {
   "telescope",
   "flash",
   "trouble",
+  "headlines",
 }
 integrations = vim.tbl_map(function(v) return "lua/nightfall/themes/integrations/" .. v .. ".lua" end, integrations)
 local modules = { "lua/nightfall/init.lua", "lua/nightfall/config.lua", "lua/nightfall/themes/init.lua" }
