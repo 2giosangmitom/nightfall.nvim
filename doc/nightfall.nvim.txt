@@ -1,4 +1,4 @@
-*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 June 05
+*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 June 09
 
 Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance
 your coding experience. It offers a clean and minimalist design with multiple
@@ -103,6 +103,7 @@ refer to the documentation of the |nightfall.nvim_setup| function.
 >lua
   local defaults = {
     compile_path = vim.fn.stdpath("cache") .. "/nightfall",
+    flavor = "nightfall",
     transparent = false,
     terminal_colors = true,
     dim_inactive = false,
