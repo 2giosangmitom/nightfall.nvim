@@ -6,6 +6,10 @@ local M = {}
 function M.get(flavor)
   local colors = require("nightfall.palettes." .. flavor)
   local utils = require("nightfall.utils")
+  local color_overrides = require("nightfall").Options.color_overrides
+
+  -- Apply color overrides
+  colors = vim.tbl_deep_extend("force", colors, color_overrides.all or {}, color_overrides[flavor] or {})
 
   -- Handle the case where the specified flavor does not exist or cannot be loaded
   if not colors then error("Failed to load color palette for flavor: " .. flavor) end
