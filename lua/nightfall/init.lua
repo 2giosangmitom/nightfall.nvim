@@ -47,6 +47,7 @@ M.path_sep = vim.fn.has("win32") == 1 and "\\" or "/"
 function M.setup(opts)
   opts = opts or {}
   M.Options = require("nightfall.config").set_options(opts)
+  M.flavor = M.Options.flavor
 
   -- Adjust compile path for Windows if necessary
   if M.path_sep == "\\" then M.Options.compile_path = M.Options.compile_path:gsub("/", "\\") end
@@ -119,10 +120,8 @@ vim.api.nvim_create_user_command("NightfallCompile", function()
   end
 
   for _, flavor in ipairs(M.supported_flavors) do
-    local user_flavor = M.Options.flavor
-    M.Options.flavor = flavor
+    M.flavor = flavor
     compiler.compile(flavor)
-    M.Options.flavor = user_flavor
   end
 
   vim.schedule(function() vim.notify("Compiled successfully", vim.log.levels.INFO, { title = "Nightfall" }) end)

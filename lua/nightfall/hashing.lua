@@ -31,6 +31,8 @@ function M.hash(v)
       end
     end
     return hash
+  elseif t == "function" then
+    return hash_str(v(require("nightfall.palettes").get(require("nightfall").flavor)))
   end
   -- Convert non-table values to strings for consistency
   return tostring(v)

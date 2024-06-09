@@ -10,6 +10,7 @@ local M = {}
 ---@tag nightfall.nvim_defaults
 local defaults = {
   compile_path = vim.fn.stdpath("cache") .. "/nightfall",
+  flavor = "nightfall",
   transparent = false,
   terminal_colors = true,
   dim_inactive = false,
