@@ -29,7 +29,6 @@ function M.hash(v)
         if palette_value then return M.hash(v(palette_value)) end
       end
     end
-    return hash_str(string.dump(v))
   else
     return tostring(v)
   end
