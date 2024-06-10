@@ -10,41 +10,29 @@ local function hash_str(str)
   return hash
 end
 
-local function get_function_name_from_table(tbl, func)
-  for k, v in pairs(tbl) do
-    if v == func then return tostring(k) end
-  end
-  return nil
-end
-
 --- Computes a hash value for a given value or table.
 ---@param v any: The value or table to hash.
 ---@return string|number|nil: The computed hash value as a string for non-table values, or a number for tables.
 function M.hash(v)
-  local t = type(v)
-  if t == "table" then
+  if type(v) == "table" then
     local hash = 0
     for p, u in next, v do
-      -- Ensure p and u are serializable to strings
-      local p_str, u_str = tostring(p), M.hash(u)
-      if p_str and u_str then
-        hash = bit.bxor(hash, hash_str(p_str .. u_str))
-      else
-        -- Non-serializable values may lead to unexpected results
-        return nil
-      end
+      local combined_str = tostring(p) .. tostring(M.hash(u))
+      hash = bit.bxor(hash, hash_str(combined_str))
     end
     return hash
-  elseif t == "function" then
+  elseif type(v) == "function" then
     local nightfall = require("nightfall")
-    local flavor = get_function_name_from_table(nightfall.Options.highlight_overrides, v)
-    if flavor == nil then return nil end
-    local palette_value = require("nightfall.palettes").get(flavor)
-    if palette_value == nil then return nil end
-    return M.hash(v(palette_value))
+    for flavor, func in pairs(nightfall.Options.highlight_overrides) do
+      if func == v then
+        local palette_value = require("nightfall.palettes").get(flavor)
+        if palette_value then return M.hash(v(palette_value)) end
+      end
+    end
+    return hash_str(string.dump(v))
+  else
+    return tostring(v)
   end
-  -- Convert non-table values to strings for consistency
-  return tostring(v)
 end
 
 return M
