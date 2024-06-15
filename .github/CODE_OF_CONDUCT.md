@@ -32,4 +32,4 @@ Instances of abusive, harassing, or otherwise unacceptable behavior may be repor
 
 You can contact the maintainer via:
 
-- Email: [yeuxacucodon.dev@proton.me](mailto:yeuxacucodon.dev@proton.me)
+- Email: [voquangchien.dev@proton.me](mailto:voquangchien.dev@proton.me)
