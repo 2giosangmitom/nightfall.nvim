@@ -6,7 +6,7 @@ local M = {}
 --- workflow. For detailed instructions on overriding these defaults, please
 --- refer to the documentation of the |nightfall.nvim_setup| function.
 ---
----@eval return MiniDoc.afterlines_to_code(MiniDoc.current.eval_section):gsub(">", ">lua")
+---@eval return MiniDoc.afterlines_to_code(MiniDoc.current.eval_section)
 ---@tag nightfall.nvim_defaults
 local defaults = {
   compile_path = vim.fn.stdpath("cache") .. "/nightfall",
