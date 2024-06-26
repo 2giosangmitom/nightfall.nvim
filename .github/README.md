@@ -15,25 +15,25 @@ Ready to **unleash your coding potential**? Nightfall.nvim is a meticulously cra
 
 ## 🌟 Key Features
 
-- Improved code readability with a clean and minimalist design
-- Match your coding style with multiple flavors
-- Reduced eye strain for extended coding sessions
-- Extensive customization options to personalize your experience
-- Seamless integration with major plugins
+- **Improved code readability** with a clean and minimalist design
+- **Multiple themes** to match your coding style
+- **Reduced eye strain** for extended coding sessions
+- **Extensive customization options** to personalize your experience
+- **Seamless integration** with major plugins
 
 ## 🎨 Flavors
 
-Nightfall.nvim offers multiple flavors to suit your coding style:
+Nightfall.nvim offers multiple themes to suit your coding style:
 
-- **Nightfall**: A dark and vibrant variation inspired by the Dracula theme.
-- **Deeper Night**: A more intense dark theme for those who prefer a starker contrast.
-- **Maron**: A warm brown-tinged dark theme, offering a softer feel for extended coding sessions.
+- **Nightfall**: Dark and vibrant, inspired by Dracula.
+- **Deeper Night**: Intense dark theme for high contrast.
+- **Maron**: Warm brown-tinged dark theme for a softer feel.
 
 ## 🚀 Installation
 
-Install Nightfall.nvim effortlessly using your preferred Neovim plugin manager.
+Install Nightfall.nvim using your preferred Neovim plugin manager.
 
-[💤 lazy.nvim](https://github.com/folke/lazy.nvim)
+### With [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ```lua
 {
@@ -45,33 +45,28 @@ Install Nightfall.nvim effortlessly using your preferred Neovim plugin manager.
 }
 ```
 
-For comprehensive documentation on the plugin, refer to `:h nightfall.nvim` within Neovim.
+For detailed documentation, use `:h nightfall.nvim` in Neovim.
 
 ## 🖋️ Usage
 
-To enhance your Neovim environment with the Nightfall colorscheme, execute the following Lua command:
+Activate Nightfall.nvim with the following command:
 
 ```lua
-vim.cmd.colorscheme("nightfall") -- Choose from variants like `deeper-night` or `maron`
+vim.cmd.colorscheme("nightfall") -- Variants: `deeper-night`, `maron`
 ```
 
-Select from the available variants, such as `deeper-night` or `maron`, to tailor your coding experience to your liking. For comprehensive details and advanced usage options, consult `:h nightfall.nvim_usage` within Neovim.
+Refer to `:h nightfall.nvim_usage` in Neovim for advanced usage.
 
 ## ⚙️ Configuration
 
-Before loading the colorscheme, ensure your configuration aligns with your preferences. Review the setup below to adjust settings as needed. Detailed information can be found in the `:h nightfall.nvim_setup` command.
+Configure Nightfall.nvim to match your preferences before loading the colorscheme. Nightfall can pre-compute the results of your configuration and store them in a compiled Lua file for faster startup times. For default configuration details, see `:h nightfall.nvim_defaults`.
 
 ```lua
 require("nightfall").setup({
-  -- Path to where Nightfall will compile its color files
   compile_path = vim.fn.stdpath("cache") .. "/nightfall",
-  -- Set to true to enable transparency
   transparent = false,
-  -- Set to true to enable terminal colors
   terminal_colors = true,
-  -- Set to true to dim inactive windows
   dim_inactive = false,
-  -- Customize syntax highlighting styles
   styles = {
     comments = { italic = true },
     keywords = { italic = true },
@@ -86,9 +81,7 @@ require("nightfall").setup({
     booleans = {},
     loops = {},
   },
-  -- Enable/disable default plugin integrations
   default_integrations = true,
-  -- Specify plugin integrations and their configurations
   integrations = {
     lazy = { enabled = true },
     telescope = { enabled = true, style = "borderless" },
@@ -100,50 +93,35 @@ require("nightfall").setup({
 })
 ```
 
-Configure Nightfall's settings to match your coding environment and preferences before activating the colorscheme. Explore the provided Lua setup for customization options, adjusting features such as transparency, syntax styles, and plugin integrations according to your needs.
-
 ## 🎨 Customizing Colors & Highlight Groups
 
-Take your Nightfall experience to the next level by customizing colors and highlight groups to match your preferences. With Nightfall.nvim, you have full control over the colorscheme, allowing you to tailor it precisely to your liking. Utilize the `color_overrides` and `highlight_overrides` options in the configuration to achieve your desired look and feel. For more details, refer to `:h nightfall.nvim_overriding`.
+Customize colors and highlight groups to match your preferences using `color_overrides` and `highlight_overrides`. See `:h nightfall.nvim_overriding` for more details.
 
-### 🌈 Customizing Colors
+### Customizing Colors
 
 ```lua
 require("nightfall").setup({
   color_overrides = {
-    all = {
-      foreground = "#ffffff",
-    },
-    nightfall = {
-      background = "#ff0000",
-    },
+    all = { foreground = "#ffffff" },
+    nightfall = { background = "#ff0000" },
   },
 })
 ```
 
-### 🖌️ Customizing Highlight Groups
+### Customizing Highlight Groups
 
 ```lua
 require("nightfall").setup({
   highlight_overrides = {
-    all = {
-      Normal = { bg = "#120809" },
-    },
-    ---@param colors NightfallPalette
-    nightfall = function(colors)
-      return {
-        Normal = { bg = colors.black },
-      }
-    end,
+    all = { Normal = { bg = "#120809" } },
+    nightfall = function(colors) return { Normal = { bg = colors.black } } end,
   },
 })
 ```
 
-Dive deeper into Nightfall customization by directly modifying colors and highlight groups. Craft a unique coding environment that reflects your personal style and preferences.
-
 ## 🛠️ Integrations
 
-Nightfall.nvim provides theme support for other plugins in the Neovim ecosystem and extended Neovim functionality through integrations.
+Nightfall.nvim supports integration with other Neovim plugins. Configure them in your setup. For detailed information, see `:h nightfall.nvim_integrations`.
 
 ```lua
 require("nightfall").setup({
@@ -160,7 +138,7 @@ require("nightfall").setup({
 
 ## 🪼 Supported Plugins
 
-Nightfall.nvim seamlessly integrates with a wide range of popular plugins to enhance your Neovim experience:
+Nightfall.nvim integrates with popular plugins to enhance your Neovim experience:
 
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
@@ -173,4 +151,4 @@ Nightfall.nvim seamlessly integrates with a wide range of popular plugins to enh
 
 ## 🤝 Contributing
 
-Join the Nightfall.nvim community and contribute to this ever-evolving colorscheme! Refer to the [CONTRIBUTING](./CONTRIBUTING.md) file for details.
+Join the Nightfall.nvim community! Refer to the [CONTRIBUTING](./CONTRIBUTING.md) file for details.
