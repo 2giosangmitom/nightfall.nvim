@@ -103,7 +103,6 @@ refer to the documentation of the |nightfall.nvim_setup| function.
 >lua
   local defaults = {
     compile_path = vim.fn.stdpath("cache") .. "/nightfall",
-    flavor = "nightfall",
     transparent = false,
     terminal_colors = true,
     dim_inactive = false,
@@ -161,15 +160,18 @@ Example:
       },
     },
     highlight_overrides = {
-      all = {
+      all = { -- User can only use table for `all`, this will aplly for all flavors
         Normal = { bg = "#120809" },
       },
       -- @param colors NightfallPalette
-      nightfall = function(colors)
+      nightfall = function(colors) -- Can be a function or a table for specific flavor
         return {
           Normal = { bg = colors.black },
         }
       end,
+      maron = {
+        Normal = { fg = "#ffffff" }
+      },
     },
   })
 <
