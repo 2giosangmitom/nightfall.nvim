@@ -208,3 +208,16 @@ require("nightfall").setup({
 ## 🤝 Contributing
 
 Join the Nightfall.nvim community! Refer to the [CONTRIBUTING](./CONTRIBUTING.md) file for details.
+
+Certainly! Here's the credits section:
+
+## 🎖️ Credits
+
+Nightfall.nvim owes gratitude to the following projects for their inspiration and contributions:
+
+- [One Dark Pro](https://github.com/olimorris/onedarkpro.nvim)
+- [Neovim](https://github.com/catppuccin/nvim)
+- [Nightfox](https://github.com/EdenEast/nightfox.nvim)
+- [Tokyonight](https://github.com/folke/tokyonight.nvim)
+
+Their dedication to enhancing the Neovim ecosystem has played a significant role in shaping Nightfall.nvim's development.
