@@ -36,6 +36,7 @@ local defaults = {
     treesitter = { enabled = true, context = true },
     lspconfig = { enabled = true },
     flash = { enabled = false },
+    trouble = { enabled = true },
   },
   color_overrides = {},
   highlight_overrides = {},
