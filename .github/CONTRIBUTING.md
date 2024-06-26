@@ -78,7 +78,7 @@ Example:
 ---@param b number The second number.
 ---@return number The sum of a and b.
 local function add(a, b)
-    return a + b
+  return a + b
 end
 ```
 
@@ -89,8 +89,7 @@ end
 3. **Implement Integration**: Write the necessary code.
 4. **Update Supported Plugins**: Add the plugin to `M.supported_plugins` in `lua/nightfall/themes/init.lua`.
 5. **Update README**: Add the plugin to the supported plugins list in `README.md` with brief instructions.
-6. **Document Integration**: Document the process and configuration options.
-7. **Submit Changes**: Submit your changes as a pull request, following the contribution guidelines.
+6. **Submit Changes**: Submit your changes as a pull request, following the contribution guidelines.
 
 ## 📄 License
 
