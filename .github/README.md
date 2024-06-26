@@ -215,8 +215,8 @@ Certainly! Here's the credits section:
 
 Nightfall.nvim owes gratitude to the following projects for their inspiration and contributions:
 
-- [One Dark Pro](https://github.com/olimorris/onedarkpro.nvim)
-- [Neovim](https://github.com/catppuccin/nvim)
+- [Onedark Pro](https://github.com/olimorris/onedarkpro.nvim)
+- [Catppuccin](https://github.com/catppuccin/nvim)
 - [Nightfox](https://github.com/EdenEast/nightfox.nvim)
 - [Tokyonight](https://github.com/folke/tokyonight.nvim)
 
