@@ -1,69 +1,15 @@
 name: release
 on:
   push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
-    types:
-      - closed
+    tags:
+      - "*"
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
-  release_pr:
-    if: github.event_name == 'push'
-    runs-on: ubuntu-latest
-    outputs:
-      changelog: ${{ steps.unreleased.outputs.changelog }}
-      version: ${{ steps.bump.outputs.version }}
-    steps:
-      - name: Checkout master branch
-        uses: actions/checkout@v4
-        with:
-          ref: master
-          fetch-tags: true
-          fetch-depth: 0
-
-      - name: Install git-cliff
-        uses: taiki-e/install-action@git-cliff
-
-      - name: Calculate next version
-        id: bump
-        run: echo "version=$(git cliff --bumped-version)" >> "$GITHUB_OUTPUT"
-
-      - name: Generate changelog for bumped version
-        id: unreleased
-        env:
-          VERSION: ${{ steps.bump.outputs.version }}
-        run: |
-          git cliff --unreleased --bump -s header -o UNRELEASED.md
-          echo "changelog<<EOF" >> $GITHUB_OUTPUT
-          (echo -e "# What's Changed in $VERSION\n"; cat UNRELEASED.md) > UNRELEASED_FINAL.md
-          sed -i "/## \[/d;2d" UNRELEASED_FINAL.md
-          cat "UNRELEASED.md" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Generate full changelog
-        run: git cliff --bump -o .github/CHANGELOG.md
-
-      - name: Create Pull Request
-        if: ${{ steps.unreleased.outputs.changelog != '' }}
-        uses: peter-evans/create-pull-request@v6
-        with:
-          commit-message: "chore(release): release ${{ steps.bump.outputs.version }}"
-          body-path: UNRELEASED_FINAL.md
-          branch: ${{ steps.bump.outputs.version }}
-          delete-branch: true
-          title: "chore(release): release ${{ steps.bump.outputs.version }}"
-
   release:
     runs-on: ubuntu-latest
-    needs: release_pr
-    if: github.event.pull_request.merged == true
     steps:
       - name: Checkout master branch
         uses: actions/checkout@v4
@@ -71,18 +17,11 @@ jobs:
           ref: master
           fetch-tags: true
           fetch-depth: 0
-
-      - name: Tag version
-        env:
-          VERSION: ${{ needs.release_pr.outputs.version }}
-        run: |
-          git tag $VERSION
-          git push origin $VERSION
 
       - name: Export changelog for current version
         run: ./release_notes.sh
 
-      - name: Create release
+      - name: Release
         uses: ncipollo/release-action@v1
         with:
           bodyFile: .github/RELEASE_NOTES.md
