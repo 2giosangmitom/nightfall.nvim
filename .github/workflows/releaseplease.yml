@@ -64,7 +64,7 @@ jobs:
         run: ./release_notes.sh ${{ steps.bump.outputs.version }}
 
       - name: Release
-        if: github.event.pull_request.merged == true && startsWith(github.event.head_commit.message, 'chore(release)')
+        if: startsWith(github.event.head_commit.message, 'chore(release)')
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.bump.outputs.version }}
