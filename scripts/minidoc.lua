@@ -66,4 +66,8 @@ end
 hooks.file = function(f) return f end
 hooks.block_pre = function(b) return b end
 
-MiniDoc.generate({ "lua/nightfall/init.lua", "lua/nightfall/config.lua" }, "doc/nightfall.nvim.txt", { hooks = hooks })
+MiniDoc.generate(
+  { "lua/nightfall/init.lua", "lua/nightfall/config.lua", "lua/nightfall/themes/init.lua" },
+  "doc/nightfall.nvim.txt",
+  { hooks = hooks }
+)

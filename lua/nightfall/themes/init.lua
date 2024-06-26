@@ -1,5 +1,40 @@
 local M = {}
 
+--- Enhance the customization of Nightfall even further by overriding colors and
+--- highlight groups to suit your preferences. Nightfall.nvim offers extensive
+--- options for tailoring the colorscheme precisely to your liking. You can
+--- achieve this by utilizing `color_overrides` and `highlight_overrides` in the
+--- configuration.
+---
+--- It's important to note that flavor-specific overrides always have the highest
+--- priority.
+---
+--- Example:
+--- >
+--- require("nightfall").setup({
+---   color_overrides = {
+---     all = {
+---       foreground = "#ffffff",
+---     },
+---     nightfall = {
+---       background = "#ff0000",
+---     },
+---   },
+---   highlight_overrides = {
+---     all = {
+---       Normal = { bg = "#120809" },
+---     },
+---     ---@param colors NightfallPalette
+---     nightfall = function(colors)
+---       return {
+---         Normal = { bg = colors.black },
+---       }
+---     end,
+---   },
+--- })
+--- <
+---@tag nightfall.nvim_overriding
+
 --- Retrieves the theme for the specified flavor.
 ---@param flavor string: The flavor of the theme.
 ---@return table, table, table: The default theme, terminal theme, and integrations theme.
@@ -40,7 +75,6 @@ function M.get_theme(flavor)
   return defaults_theme, terminal_theme, integrations_theme
 end
 
---- List of supported plugins
 M.supported_plugins = {
   lazy = "https://github.com/folke/lazy.nvim",
   illuminate = "https://github.com/RRethy/vim-illuminate",
