@@ -152,7 +152,7 @@ require("nightfall").setup({
     telescope = { enabled = true, style = "borderless" },
     illuminate = { enabled = true },
     treesitter = { enabled = true, context = true },
-    lsp = { enabled = true },
+    lspconfig = { enabled = true },
     flash = { enabled = false },
   }
 })
