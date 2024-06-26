@@ -59,4 +59,6 @@ All notable changes to this project will be documented in this file.
 - **cliff**: Ignore `chore(release)` commit message ([f445cd5](https://github.com/2giosangmitom/nightfall.nvim/commit/f445cd5011d469a162f16a444efb4bb6a3a1fc81)) by @2giosangmitom
 - **release**: Fix auto release ([3089a12](https://github.com/2giosangmitom/nightfall.nvim/commit/3089a122707c3cb751c8799b8c81e4c960871c49)) by @2giosangmitom
 - Fix auto release system ([381879d](https://github.com/2giosangmitom/nightfall.nvim/commit/381879d790a6ca15351f7b5de7c8ba4339a068c7)) by @2giosangmitom
+- Fix auto release ([9490d02](https://github.com/2giosangmitom/nightfall.nvim/commit/9490d029bc286479f4cb75364f8f8caad01ea1c2)) by @2giosangmitom in [#9](https://github.com/2giosangmitom/nightfall.nvim/pull/9)
+- Fix auto release system ([0386e5e](https://github.com/2giosangmitom/nightfall.nvim/commit/0386e5e68e265fc611f7a0caea9ae48bc5cd42c0)) by @2giosangmitom
 
