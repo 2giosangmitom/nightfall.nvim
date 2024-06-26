@@ -29,17 +29,20 @@ jobs:
       - name: Install git-cliff
         uses: taiki-e/install-action@git-cliff
 
-      - name: Generate changelog
-        id: unreleased
-        run: |
-          git cliff --unreleased --bump -o UNRELEASED.md
-          echo "changelog<<EOF" >> $GITHUB_OUTPUT
-          cat "UNRELEASED.md" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
       - name: Calculate next version
         id: bump
         run: echo "version=$(git cliff --bumped-version)" >> "$GITHUB_OUTPUT"
+
+      - name: Generate changelog
+        id: unreleased
+        env:
+          VERSION: ${{ steps.bump.outputs.version }}
+        run: |
+          git cliff --unreleased --bump -s header -o UNRELEASED.md
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "# What's Changed in $VERSION" >> $GITHUB_OUTPUT
+          cat "UNRELEASED.md" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Create Pull Request
         if: ${{ steps.unreleased.outputs.changelog != '' }}
