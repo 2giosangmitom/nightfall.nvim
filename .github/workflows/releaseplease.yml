@@ -3,11 +3,6 @@ on:
   push:
     branches:
       - master
-  pull_request:
-    branches:
-      - master
-    types:
-      - closed
 
 permissions:
   contents: write
@@ -15,7 +10,6 @@ permissions:
 
 jobs:
   release_pr:
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     outputs:
       changelog: ${{ steps.unreleased.outputs.changelog }}
