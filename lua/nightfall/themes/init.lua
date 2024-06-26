@@ -21,15 +21,18 @@ local M = {}
 ---       },
 ---     },
 ---     highlight_overrides = {
----       all = {
+---       all = { -- User can only use table for `all`, this will aplly for all flavors
 ---         Normal = { bg = "#120809" },
 ---       },
 ---       -- @param colors NightfallPalette
----       nightfall = function(colors)
+---       nightfall = function(colors) -- Can be a function or a table for specific flavor
 ---         return {
 ---           Normal = { bg = colors.black },
 ---         }
 ---       end,
+---       maron = {
+---         Normal = { fg = "#ffffff" }
+---       },
 ---     },
 ---   })
 --- <
@@ -43,11 +46,7 @@ function M.get_theme(flavor)
   local Options = require("nightfall").Options
   local colors = require("nightfall.palettes").get(flavor)
 
-  local color_overrides = Options.color_overrides
   local hl_overrides = Options.highlight_overrides
-
-  -- Apply color overrides
-  colors = vim.tbl_deep_extend("force", colors, color_overrides.all or {}, color_overrides[flavor] or {})
 
   local defaults_theme = {}
   defaults_theme = vim.tbl_deep_extend(
@@ -69,7 +68,6 @@ function M.get_theme(flavor)
 
   -- Apply highlight overrides
   if type(hl_overrides[flavor]) == "function" then hl_overrides[flavor] = hl_overrides[flavor](colors) end
-  if type(hl_overrides.all) == "function" then hl_overrides.all = hl_overrides.all(colors) end
   defaults_theme = vim.tbl_deep_extend("force", defaults_theme, hl_overrides.all or {}, hl_overrides[flavor] or {})
 
   return defaults_theme, terminal_theme, integrations_theme

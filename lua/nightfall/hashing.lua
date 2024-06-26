@@ -2,15 +2,19 @@ local bit = require("bit")
 
 local M = {}
 
---- Computes a hash value for a given string.
----@param str string: The input string.
----@return number: The computed hash value.
 local function hash_str(str)
   local hash = 5381
   for i = 1, #str do
     hash = bit.bxor(bit.lshift(hash, 5), hash) + string.byte(str, i)
   end
   return hash
+end
+
+local function get_function_name_from_table(tbl, func)
+  for k, v in pairs(tbl) do
+    if v == func then return tostring(k) end
+  end
+  return nil
 end
 
 --- Computes a hash value for a given value or table.
@@ -32,7 +36,9 @@ function M.hash(v)
     end
     return hash
   elseif t == "function" then
-    return hash_str(v(require("nightfall.palettes").get(require("nightfall").flavor)))
+    local flavor = get_function_name_from_table(require("nightfall").Options.highlight_overrides, v)
+    if flavor == nil then return nil end
+    return M.hash(v(require("nightfall.palettes").get(flavor)))
   end
   -- Convert non-table values to strings for consistency
   return tostring(v)

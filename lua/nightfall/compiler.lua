@@ -23,7 +23,7 @@ end
 function M.compile(flavor)
   local Options = require("nightfall").Options
   local cache_dir = Options.compile_path
-  if not vim.loop.fs_stat(cache_dir) then vim.fn.mkdir(cache_dir, "p") end
+  if not vim.uv.fs_stat(cache_dir) then vim.fn.mkdir(cache_dir, "p") end
 
   local defaults_theme, terminal_theme, integration_themes = require("nightfall.themes").get_theme(flavor)
 
