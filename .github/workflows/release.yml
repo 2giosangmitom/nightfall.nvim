@@ -4,6 +4,8 @@ on:
     branches:
       - master
   pull_request:
+    branches:
+      - master
     types:
       - closed
 
@@ -13,7 +15,7 @@ permissions:
 
 jobs:
   release_pr:
-    if: github.event_name == 'push'
+    if: ${{ ! startsWith(github.event.head_commit.message, 'chore(release)') && github.event_name == 'push' }}
     runs-on: ubuntu-latest
     outputs:
       changelog: ${{ steps.unreleased.outputs.changelog }}
