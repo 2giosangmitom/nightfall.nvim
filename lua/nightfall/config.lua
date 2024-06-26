@@ -1,11 +1,12 @@
 local M = {}
 
---- Nightfall.nvim provides a set of default configuration values that can be
---- overridden to customize your colorscheme experience. Refer to the
---- |nightfall.nvim_setup| function documentation for details on how to override
---- these defaults.
+--- Nightfall.nvim provides a comprehensive set of default configuration values
+--- that define the appearance and behavior of the colorscheme. These defaults
+--- can be overridden to tailor the colorscheme to your preferences and coding
+--- workflow. For detailed instructions on overriding these defaults, please
+--- refer to the documentation of the |nightfall.nvim_setup| function.
 ---
----@eval return MiniDoc.afterlines_to_code(MiniDoc.current.eval_section)
+---@eval return MiniDoc.afterlines_to_code(MiniDoc.current.eval_section):gsub(">", ">lua")
 ---@tag nightfall.nvim_defaults
 local defaults = {
   compile_path = vim.fn.stdpath("cache") .. "/nightfall",

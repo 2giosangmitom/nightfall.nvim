@@ -10,7 +10,7 @@ local M = {}
 --- priority.
 ---
 --- Example:
---- >
+--- >lua
 ---   require("nightfall").setup({
 ---     color_overrides = {
 ---       all = {
