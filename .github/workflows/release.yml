@@ -1,15 +1,22 @@
 name: release
 on:
   push:
-    tags:
-      - "*"
+    branches:
+      - master
+  pull_request:
+    types:
+      - closed
 
 permissions:
   contents: write
 
 jobs:
-  release:
+  release_pr:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    outputs:
+      changelog: ${{ steps.unreleased.outputs.changelog }}
+      version: ${{ steps.bump.outputs.version }}
     steps:
       - name: Checkout master branch
         uses: actions/checkout@v4
@@ -18,26 +25,65 @@ jobs:
           fetch-tags: true
           fetch-depth: 0
 
-      - name: Generate changelog
-        uses: orhun/git-cliff-action@v3
-        with:
-          config: cliff.toml
-          args: --verbose
-        env:
-          OUTPUT: .github/CHANGELOG.md
+      - name: Install git-cliff
+        uses: taiki-e/install-action@git-cliff
 
-      - name: Commit changelog
+      - name: Generate changelog
+        id: unreleased
         run: |
+          git cliff --unreleased --bump -o UNRELEASED.md
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          cat "UNRELEASED.md" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Calculate next version
+        id: bump
+        run: echo "version=$(git cliff --bumped-version)" >> "$GITHUB_OUTPUT"
+
+      - name: Create Pull Request
+        if: ${{ steps.unreleased.outputs.changelog != '' }}
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore(release): release ${{ steps.bump.outputs.version }}"
+          body-path: UNRELEASED.md
+          branch: ${{ steps.bump.outputs.version }}
+          delete-branch: true
+
+  release:
+    runs-on: ubuntu-latest
+    needs: release_pr
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-tags: true
+          fetch-depth: 0
+
+      - name: Install git-cliff
+        uses: taiki-e/install-action@git-cliff
+
+      - name: Generate changelog
+        run: |
+          git cliff --bump -o .github/CHANGELOG.md
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .github/CHANGELOG.md
           git commit -m "chore(release): update changelog"
           git push origin master
 
+      - name: Tag version
+        env:
+          VERSION: ${{ needs.release_pr.outputs.version }}
+        run: |
+          git tag $VERSION
+          git push origin $VERSION
+
       - name: Export changelog for current version
         run: ./release_notes.sh
 
-      - name: Release
+      - name: Create release
         uses: ncipollo/release-action@v1
         with:
           bodyFile: .github/RELEASE_NOTES.md
