@@ -50,7 +50,7 @@ jobs:
         with:
           commit-message: "chore(release): release ${{ steps.bump.outputs.version }}"
           body-path: UNRELEASED_FINAL.md
-          branch: ${{ steps.bump.outputs.version }}
+          branch: releaseplease
           delete-branch: true
           title: "chore(release): release ${{ steps.bump.outputs.version }}"
 
