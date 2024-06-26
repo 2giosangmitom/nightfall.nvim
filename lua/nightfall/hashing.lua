@@ -36,9 +36,12 @@ function M.hash(v)
     end
     return hash
   elseif t == "function" then
-    local flavor = get_function_name_from_table(require("nightfall").Options.highlight_overrides, v)
+    local nightfall = require("nightfall")
+    local flavor = get_function_name_from_table(nightfall.Options.highlight_overrides, v)
     if flavor == nil then return nil end
-    return M.hash(v(require("nightfall.palettes").get(flavor)))
+    local palette_value = require("nightfall.palettes").get(flavor)
+    if palette_value == nil then return nil end
+    return M.hash(v(palette_value))
   end
   -- Convert non-table values to strings for consistency
   return tostring(v)
