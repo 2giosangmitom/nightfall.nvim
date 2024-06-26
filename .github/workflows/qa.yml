@@ -40,7 +40,7 @@ jobs:
         run: |
           wget -q https://github.com/neovim/neovim/releases/download/$VERSION/nvim-linux64.tar.gz
           tar -xf nvim-linux64.tar.gz
-          ln -sf nvim-linux64/bin/nvim /usr/local/bin/nvim
+          ln -sf nvim-linux64/bin/nvim /usr/local/bin
 
       - name: Run tests
         run: make test
