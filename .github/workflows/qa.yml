@@ -35,10 +35,8 @@ jobs:
 
       - name: Install Neovim for Linux
         if: ${{ matrix.os == 'ubuntu-latest' }}
-        env:
-          VERSION: ${{ matrix.version }}
         run: |
-          wget -q https://github.com/neovim/neovim/releases/download/$VERSION/nvim-linux64.tar.gz
+          wget -q https://github.com/neovim/neovim/releases/download/${{ matrix.version }}/nvim-linux64.tar.gz
           tar -xf nvim-linux64.tar.gz
           ln -sf nvim-linux64/bin/nvim /usr/local/bin
 
