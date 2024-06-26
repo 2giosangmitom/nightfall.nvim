@@ -1,0 +1,78 @@
+name: Bug report
+description: Create a report to help us improve
+labels: [bug]
+
+body:
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      description: Have you checked if someone has reported this issue before?
+      options:
+        - label: I have searched through the Nightfall.nvim docs
+          required: true
+        - label: I have searched through the existing issues of Nightfall.nvim
+          required: true
+        - label: I on the latest version of Nightfall.nvim
+          required: true
+  - type: input
+    id: system-version
+    validations:
+      required: true
+    attributes:
+      label: "Operating system/version"
+      placeholder: "NixOS"
+  - type: input
+    id: terminal
+    validations:
+      required: true
+    attributes:
+      label: "Terminal/GUI"
+      placeholder: "alacritty"
+  - type: textarea
+    id: health
+    validations:
+      required: true
+    attributes:
+      label: Nightfall.nvim health
+      description: Output of `:checkhealth nightfall`
+      placeholder: |
+        ## Nightfall.nvim
+        - Nightfall.nvim Version: 0.1.0
+        - Neovim Version: v0.9.5
+        - OK: Using stable Neovim >= 0.9.5
+  - type: textarea
+    id: description
+    validations:
+      required: true
+    attributes:
+      label: Describe the bug
+      placeholder: A clear and concise description of what the bug is.
+  - type: textarea
+    id: reproduce
+    validations:
+      required: true
+    attributes:
+      label: Steps to Reproduce
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+  - type: textarea
+    id: expected
+    validations:
+      required: true
+    attributes:
+      label: Expected behavior
+      placeholder: A clear and concise description of what you expected to happen
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots or recording ([Asciinema](asciinema.org)) to help explain your problem.
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      placeholder: Add any additional context about the problem here.
