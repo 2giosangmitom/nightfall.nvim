@@ -154,6 +154,7 @@ For more detailed information, refer to `:h nightfall.nvim_integrations`.
 - [vim-illuminate](https://github.com/RRethy/vim-illuminate)
 - [flash.nvim](https://github.com/folke/flash.nvim)
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
+- [headlines.nvim](https://github.com/lukas-reineke/headlines.nvim)
 
 ## 🤝 Contributing
 
