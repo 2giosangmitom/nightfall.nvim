@@ -33,6 +33,3 @@ Instances of abusive, harassing, or otherwise unacceptable behavior may be repor
 You can contact the maintainer via:
 
 - Email: [yeuxacucodon.dev@proton.me](mailto:yeuxacucodon.dev@proton.me)
-- Facebook: [2giosangmitom](https://www.facebook.com/2giosangmitom)
-- Twitter: [2giosangmitom](https://twitter.com/2giosangmitom)
-- Reddit: [yeuxacucodon](https://www.reddit.com/user/yeuxacucodon/)
