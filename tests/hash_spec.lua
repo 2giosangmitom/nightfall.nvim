@@ -1,5 +1,4 @@
 local hash_module = require("nightfall.hashing")
-local bit = require("bit")
 
 describe("hashing module", function()
   it("hashes strings correctly", function()
@@ -41,10 +40,11 @@ describe("hashing module", function()
     assert.are.equal(hash_module.hash(t1), hash_module.hash(t2))
   end)
 
-  it("correctly hashes function based on nightfall options", function()
+  it("correctly hashes functions based on nightfall options", function()
     local mock_palette = { green = "#00FF00", deep_navy = "#000080", black = "#000000" }
+
     package.loaded["nightfall.palettes"] = {
-      get = function(flavor) return mock_palette end,
+      get = function(_) return mock_palette end,
     }
 
     local nightfall = {
@@ -54,25 +54,26 @@ describe("hashing module", function()
     }
     package.loaded["nightfall"] = nightfall
 
-    local t1 = {
+    local function setup_highlight_overrides(overrides)
+      nightfall.Options.highlight_overrides = overrides
+      return hash_module.hash(nightfall.Options)
+    end
+
+    local hash1 = setup_highlight_overrides({
       nightfall = function(colors)
         return {
           example_key = { fg = colors.green, bg = colors.deep_navy },
         }
       end,
-    }
-    require("nightfall").Options.highlight_overrides = t1
-    local hash1 = hash_module.hash(require("nightfall").Options)
+    })
 
-    local t2 = {
+    local hash2 = setup_highlight_overrides({
       nightfall = function(colors)
         return {
           example_key = { fg = colors.black, bg = colors.deep_navy },
         }
       end,
-    }
-    require("nightfall").Options.highlight_overrides = t2
-    local hash2 = hash_module.hash(require("nightfall").Options)
+    })
 
     assert.is_not.equal(hash1, hash2)
   end)
