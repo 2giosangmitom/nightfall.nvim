@@ -1,6 +1,6 @@
-# 🌌 Nightfall.nvim
+# 🌆 Nightfall.nvim
 
-Ready to **unleash your coding potential**? Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to **transform** your coding experience. Dive into a world of focus and productivity with a palette that enhances code readability, reduces eye strain, and seamlessly integrates with your favorite plugins.
+Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance your coding experience. It offers a clean and minimalist design with multiple flavors to match your coding style. Nightfall.nvim also focuses on reducing eye strain and integrates seamlessly with major plugins.
 
 ![Stars](https://img.shields.io/github/stars/2giosangmitom/nightfall.nvim?style=for-the-badge&logo=apachespark&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41)
 ![Last commit](https://img.shields.io/github/last-commit/2giosangmitom/nightfall.nvim?style=for-the-badge&logo=github&color=7dc4e4&logoColor=D9E0EE&labelColor=302D41)
@@ -17,8 +17,11 @@ Ready to **unleash your coding potential**? Nightfall.nvim is a meticulously cra
 - 📩 Automatic caching ensures faster load times.
 - 🌲 Full [Tree-sitter](https://github.com/nvim-treesitter/nvim-treesitter) support.
 - 🎟️ Seamlessly integrates with LSP semantic tokens (require Neovim 0.9 or later).
-- 🔌 Extensive support for many [popular plugins](#-supported-plugins), enhancing your Neovim experience.
-- 🖌️ Customize default colors and highlights to match your preferences and workflow seamlessly.
+- 🧩 Extensive support for many [popular plugins](#-supported-plugins), enhancing your Neovim experience.
+- 🖌️ Extensive customization options to personalize your experience.
+- 🏵 Reduced eye strain for extended coding sessions.
+- 🪁 Match your coding style with multiple flavors.
+- 🍗 Improved code readability with a clean and minimalist design.
 
 ## 🎨 Flavors
 
