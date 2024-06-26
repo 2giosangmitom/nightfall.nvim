@@ -160,8 +160,6 @@ For more detailed information, refer to `:h nightfall.nvim_integrations`.
 
 Join the Nightfall.nvim community! Refer to the [CONTRIBUTING](./CONTRIBUTING.md) file for details.
 
-Certainly! Here's the credits section:
-
 ## 🎖️ Credits
 
 Nightfall.nvim owes gratitude to the following projects for their inspiration and contributions:
