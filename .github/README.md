@@ -1,4 +1,4 @@
-# 🌌 Nightfall.nvim: Embrace the Serenity of Coding in the Depths of Darkness
+# 🌌 Nightfall.nvim
 
 Ready to **unleash your coding potential**? Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to **transform** your coding experience. Dive into a world of focus and productivity with a palette that enhances code readability, reduces eye strain, and seamlessly integrates with your favorite plugins.
 
