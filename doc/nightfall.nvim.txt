@@ -1,4 +1,4 @@
-*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 May 11
+*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 May 13
 
 Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance
 your coding experience. It offers a clean and minimalist design with multiple
@@ -128,6 +128,42 @@ these defaults.
     highlight_overrides = {},
   }
 
+<
+
+------------------------------------------------------------------------------
+                                                     *nightfall.nvim_overriding*
+Enhance the customization of Nightfall even further by overriding colors and
+highlight groups to suit your preferences. Nightfall.nvim offers extensive
+options for tailoring the colorscheme precisely to your liking. You can
+achieve this by utilizing `color_overrides` and `highlight_overrides` in the
+configuration.
+
+It's important to note that flavor-specific overrides always have the highest
+priority.
+
+Example:
+>
+require("nightfall").setup({
+  color_overrides = {
+    all = {
+      foreground = "#ffffff",
+    },
+    nightfall = {
+      background = "#ff0000",
+    },
+  },
+  highlight_overrides = {
+    all = {
+      Normal = { bg = "#120809" },
+    },
+    ---@param colors NightfallPalette
+    nightfall = function(colors)
+      return {
+        Normal = { bg = colors.black },
+      }
+    end,
+  },
+})
 <
 
  vim:tw=78:ts=8:noet:ft=help:norl:
