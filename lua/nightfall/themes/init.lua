@@ -106,6 +106,7 @@ M.supported_plugins = {
   "flash",
   "trouble",
   "headlines",
+  "dashboard",
 }
 
 return M
