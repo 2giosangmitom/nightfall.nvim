@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.1] - 2024-05-19
+
+### 📚 Documentation
+
+- Update CONTRIBUTING.md ([ab3fcbb](https://github.com/2giosangmitom/nightfall.nvim/commit/ab3fcbb5946a19eb7622017fc5b514323e27da02))
+- Update README.md ([79f7bbf](https://github.com/2giosangmitom/nightfall.nvim/commit/79f7bbf342dee74168e1c6d24011583c076b2dc5))
+- Update README.md ([f1b21e1](https://github.com/2giosangmitom/nightfall.nvim/commit/f1b21e172652973b086e2ae74b76c484b8da182a))
+- Update README.md ([d14b169](https://github.com/2giosangmitom/nightfall.nvim/commit/d14b16905e3b55672140e23f77d5a28d30c12bde))
+- Update README.md ([cdde6f4](https://github.com/2giosangmitom/nightfall.nvim/commit/cdde6f44e9ac8b6f5341ac62e5f4b9ba91442f03))
+
 ## [0.3.0] - 2024-05-19
 
 ### 🌺 New Features
