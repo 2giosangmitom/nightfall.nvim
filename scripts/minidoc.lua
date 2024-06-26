@@ -1,24 +1,17 @@
 local minidoc = require("mini.doc")
-
--- Ensure that MiniDoc is set up
-if _G.MiniDoc == nil then minidoc.setup() end
+vim.cmd([[set rtp+=.]])
+minidoc.setup()
 
 -- Deep copy the default hooks
-local hooks = vim.deepcopy(MiniDoc.default_hooks)
+local hooks = vim.deepcopy(minidoc.default_hooks)
 
 -- Compare two Lua tables for equality, skipping the first element of each table
-local function equal(table1, table2)
+local function tables_equal_skip_first(table1, table2)
   if table1 == table2 then return true end
-
   if #table1 ~= #table2 then return false end
 
-  local skip_first = true
-  for k, v in pairs(table1) do
-    if not skip_first then
-      if v ~= table2[k] then return false end
-    else
-      skip_first = false
-    end
+  for i = 2, #table1 do
+    if table1[i] ~= table2[i] then return false end
   end
 
   return true
@@ -28,19 +21,18 @@ end
 hooks.write_pre = function(lines)
   os.setlocale("C", "time")
 
-  table.remove(lines, 1)
+  table.remove(lines, 1) -- Remove the first line
 
   local vimdoc_dir = vim.uv.cwd() .. "/doc"
   local vimdoc_file = vimdoc_dir .. "/nightfall.nvim.txt"
-  local old_vimdoc_file = vim.fn.filereadable(vimdoc_file) == 1 and vim.fn.readfile(vimdoc_file)
+  local old_vimdoc_file = vim.fn.filereadable(vimdoc_file) == 1 and vim.fn.readfile(vimdoc_file) or nil
 
   if not vim.loop.fs_stat(vimdoc_dir) then vim.fn.mkdir(vimdoc_dir, "p") end
 
-  if not old_vimdoc_file then
+  if not old_vimdoc_file or not tables_equal_skip_first(old_vimdoc_file, lines) then
     lines[1] = lines[1] .. string.format("   Last change: %s", os.date("%Y %B %d"))
   else
-    local are_equal = equal(old_vimdoc_file, lines)
-    lines[1] = are_equal and old_vimdoc_file[1] or lines[1] .. string.format("   Last change: %s", os.date("%Y %B %d"))
+    lines[1] = old_vimdoc_file[1]
   end
 
   return lines
@@ -50,21 +42,21 @@ end
 hooks.file = function(f) return f end
 hooks.block_pre = function(b) return b end
 
-local integrations = {
-  "lazy",
-  "illuminate",
-  "lspconfig",
-  "treesitter",
-  "telescope",
-  "flash",
-  "trouble",
-  "headlines",
-}
+-- Get list of integration modules
+local integrations = require("nightfall.themes").supported_plugins
 integrations = vim.tbl_map(function(v) return "lua/nightfall/themes/integrations/" .. v .. ".lua" end, integrations)
-local modules = { "lua/nightfall/init.lua", "lua/nightfall/config.lua", "lua/nightfall/themes/init.lua" }
+
+-- Define the list of module files
+local modules = {
+  "lua/nightfall/init.lua",
+  "lua/nightfall/config.lua",
+  "lua/nightfall/themes/init.lua",
+}
+
+-- Add integration modules to the list
 for _, v in ipairs(integrations) do
   table.insert(modules, v)
 end
 
 -- Generate Vimdoc file
-MiniDoc.generate(modules, "doc/nightfall.nvim.txt", { hooks = hooks })
+minidoc.generate(modules, "doc/nightfall.nvim.txt", { hooks = hooks })
