@@ -38,7 +38,7 @@ Enable live reload by setting `vim.g.nightfall_debug = true`. This will refresh 
 1. **First Line**: Keep it under 72 characters, use the imperative mood.
 2. **Description**: Detailed explanation, wrap lines at 72 characters.
 3. **References**: Include related issues or pull requests.
-4. **Commit Type**: Prefix with:
+4. **Commit Type**: Prefix with lowercase commit types
    - feat: New feature
    - fix: Bug fix
    - docs: Documentation changes
@@ -88,10 +88,9 @@ end
 2. **Find Integration Point**: Identify where the integration should occur in the codebase.
 3. **Implement Integration**: Write the necessary code.
 4. **Update Supported Plugins**: Add the plugin to `M.supported_plugins` in `lua/nightfall/themes/init.lua`.
-5. **Update README**: Add the plugin to the supported plugins list in README.md with brief instructions.
-6. **Test Integration**: Ensure compatibility and functionality.
-7. **Document Integration**: Document the process and configuration options.
-8. **Submit Changes**: Submit your changes as a pull request, following the contribution guidelines.
+5. **Update README**: Add the plugin to the supported plugins list in `README.md` with brief instructions.
+6. **Document Integration**: Document the process and configuration options.
+7. **Submit Changes**: Submit your changes as a pull request, following the contribution guidelines.
 
 ## 📄 License
 
