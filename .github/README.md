@@ -128,7 +128,7 @@ require("nightfall").setup({
 
 ## 🛠️ Integrations
 
-Nightfall.nvim supports integration with other Neovim plugins. Example:
+Nightfall.nvim seamlessly integrates with other Neovim plugins. Here's how you can configure it:
 
 ```lua
 require("nightfall").setup({
@@ -143,7 +143,7 @@ require("nightfall").setup({
 })
 ```
 
-Some integrations are enabled by default, you can control this behaviour with `default_integrations` option.
+Certain integrations are enabled by default, but you can customize this behavior with the `default_integrations` option:
 
 ```lua
 require("nightfall").setup({
@@ -151,9 +151,7 @@ require("nightfall").setup({
 })
 ```
 
-## 🪼 Supported Plugins
-
-Enhance your Neovim experience with Nightfall.nvim's seamless integration with various plugins:
+### 🪼 Supported Plugins
 
 - **[lazy.nvim](https://github.com/folke/lazy.nvim)**: 💤 A modern plugin manager for Neovim.
 
