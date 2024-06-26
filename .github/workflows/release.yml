@@ -46,13 +46,7 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Generate full changelog
-        run: |
-          git cliff --bump -o .github/CHANGELOG.md
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add .github/CHANGELOG.md
-          git commit -m "chore(release): update changelog"
-          git push origin master
+        run: git cliff --bump -o .github/CHANGELOG.md
 
       - name: Create Pull Request
         if: ${{ steps.unreleased.outputs.changelog != '' }}
