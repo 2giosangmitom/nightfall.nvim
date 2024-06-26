@@ -107,6 +107,7 @@ M.supported_plugins = {
   "telescope",
   "flash",
   "trouble",
+  "headlines",
 }
 
 return M
