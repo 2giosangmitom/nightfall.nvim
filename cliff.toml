@@ -10,69 +10,53 @@ All notable changes to this project will be documented in this file.\n
 
 body = """
 {% if version %}\
-    {% if previous.version %}\
-        ## [{{ version | trim_start_matches(pat="v") }}]($REPO/compare/{{ previous.version }}..{{ version }}) - {{ timestamp | date(format="%Y-%m-%d") }}
-    {% else %}\
-        ## [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="%Y-%m-%d") }}
-    {% endif %}\
+    ## [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="%Y-%m-%d") }}
 {% else %}\
     ## [unreleased]
 {% endif %}\
+
 {% for group, commits in commits | group_by(attribute="group") %}
     ### {{ group | striptags | trim | upper_first }}
-    {% for commit in commits
-    | filter(attribute="scope")
-    | sort(attribute="scope") %}
-        - **({{commit.scope}})**{% if commit.breaking %} [**breaking**]{% endif %} \
-            {{ commit.message }} ([{{ commit.id | truncate(length=7, end="") }}]($REPO/commit/{{ commit.id }}))\
-            {% if commit.github.username %} by @{{ commit.github.username }}{%- endif -%}
-            {% if commit.github.pr_number %} in \
-              [#{{ commit.github.pr_number }}]({{ self::remote_url() }}/pull/{{ commit.github.pr_number }}) \
-            {%- endif %}
-    {%- endfor -%}
-    {% raw %}\n{% endraw %}\
-    {%- for commit in commits %}
-        {%- if commit.scope -%}
-        {% else -%}
-            - {% if commit.breaking %} [**breaking**]{% endif %}\
-                {{ commit.message }} ([{{ commit.id | truncate(length=7, end="") }}]($REPO/commit/{{ commit.id }})) by @{{ commit.github.username }}
-        {% endif -%}
-    {% endfor -%}
-{% endfor %}\n
+    {% for commit in commits %}
+        - {% if commit.scope %}**{{ commit.scope }}**: {% endif %}\
+          {% if commit.breaking %}[**BREAKING**] {% endif %}\
+          {{ commit.message | upper_first | trim }} ([{{ commit.id | truncate(length=7, end="") }}](<REPO>/commit/{{ commit.id }}))\
+          {%- if commit.github.username %} by @{{ commit.github.username }}{%- endif -%}\
+          {%- if commit.github.pr_number %} in \
+            [#{{ commit.github.pr_number }}]({{ self::remote_url() }}/pull/{{ commit.github.pr_number }})\
+          {%- endif -%}
+    {% endfor %}
+{% endfor %}
+{% macro remote_url() -%}
+  https://github.com/{{ remote.github.owner }}/{{ remote.github.repo }}
+{%- endmacro -%}
 """
 
 trim = true
-postprocessors = [
-  { pattern = '\$REPO', replace = "https://github.com/2giosangmitom/nightfall.nvim" }, # replace repository URL
-]
+postprocessors = [{ pattern = '<REPO>', replace = "" }]
 
 [git]
 conventional_commits = true
 filter_unconventional = true
 split_commits = false
-commit_preprocessors = [
-  # remove issue numbers from commits
-  { pattern = '\((\w+\s)?#([0-9]+)\)', replace = "" },
-]
-
+commit_preprocessors = [{ pattern = '\((\w+\s)?#([0-9]+)\)', replace = "" }]
 commit_parsers = [
-  { message = "^feat", group = "🚀 Features" },
-  { message = "^fix", group = "🐛 Bug Fixes" },
-  { message = "^docs", group = "📚 Documentation" },
-  { message = "^perf", group = "⚡ Performance" },
-  { message = "^refactor", group = "🚜 Refactor" },
-  { message = "^style", group = "🎨 Styling" },
-  { message = "^test", group = "🧪 Testing" },
-  { message = "^build", group = "🛠️ Build" },
-  { message = "^chore\\(release\\): prepare for", skip = true },
+  { message = "^feat", group = "<!-- 0 -->🚀 New Features" },
+  { message = "^fix", group = "<!-- 1 -->🐛 Bug Fixes" },
+  { message = "^docs", group = "<!-- 3 -->📚 Documentation" },
+  { message = "^perf", group = "<!-- 4 -->⚡ Performance" },
+  { message = "^refactor", group = "<!-- 2 -->🚜 Refactor" },
+  { message = "^style", group = "<!-- 5 -->🎨 Styling" },
+  { message = "^test", group = "<!-- 6 -->🧪 Testing" },
+  { message = "^chore\\(release\\): update changelog", skip = true },
+  { message = "docs: auto generate vimdoc", skip = true },
   { message = "^chore\\(deps.*\\)", skip = true },
   { message = "^chore\\(pr\\)", skip = true },
   { message = "^chore\\(pull\\)", skip = true },
-  { message = "^chore|^ci", group = "⚙️ Miscellaneous Tasks" },
-  { body = ".*security", group = "🛡️ Security" },
-  { message = "^revert", group = "◀️ Revert" },
+  { message = "^chore|^ci", group = "<!-- 7 -->⚙️ Miscellaneous Tasks" },
+  { body = ".*security", group = "<!-- 8 -->🛡️ Security" },
+  { message = "^revert", group = "<!-- 9 -->◀️ Revert" },
 ]
-
 protect_breaking_commits = false
 filter_commits = false
 topo_order = false
