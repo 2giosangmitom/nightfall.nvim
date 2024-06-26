@@ -60,10 +60,12 @@ jobs:
           delete-branch: true
           title: "chore(release): release ${{ steps.bump.outputs.version }}"
 
-      - name: Tag version
-        if: github.event.pull_request.merged == true
-        env:
-          VERSION: ${{ steps.bump.outputs.version }}
-        run: |
-          git tag $VERSION
-          git push origin $VERSION
+      - name: Export changelog for current version
+        run: ./release_notes.sh ${{ steps.bump.outputs.version }}
+
+      - name: Release
+        if: github.event.pull_request.merged == true && startsWith(github.event.head_commit.message, 'chore(release)')
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.bump.outputs.version }}
+          bodyFile: .github/RELEASE_NOTES.md
