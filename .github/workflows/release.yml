@@ -1,0 +1,70 @@
+name: release
+on:
+  push:
+    tags:
+      - "*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-tags: true
+          fetch-depth: 0
+
+      - name: Generate changelog
+        uses: orhun/git-cliff-action@v3
+        with:
+          config: cliff.toml
+          args: --verbose
+        env:
+          OUTPUT: .github/CHANGELOG.md
+
+      - name: Commit changelog
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .github/CHANGELOG.md
+          git commit -m "chore(release): update changelog"
+          git push origin master
+
+      - name: Export changelog for current version
+        run: |
+          CURRENT_TAG=$(git describe --tags --abbrev=0)
+          version="${CURRENT_TAG#v}"
+
+          awk -v version="[$version]" '
+          BEGIN {
+              in_version = 0
+              found_version = 0
+          }
+
+          {
+              if ($1 == "##") {
+                  if ($2 == version) {
+                      in_version = 1
+                      found_version = 1
+                      print "# Changelog for version " substr(version, 2, length(version) - 2) ""
+                  } else {
+                      if (found_version) {
+                          exit
+                      }
+                      in_version = 0
+                  }
+              }
+
+              if (in_version) {
+                  print $0
+              }
+          }' .github/CHANGELOG.md > .github/RELEASE_NOTES.md
+
+      - name: Release
+        uses: ncipollo/release-action@v1
+        with:
+          bodyFile: .github/RELEASE_NOTES.md
