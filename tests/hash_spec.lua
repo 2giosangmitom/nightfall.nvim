@@ -4,7 +4,7 @@ describe("hash", function()
   it("detects differences in keys", function()
     local t1 = { custom_highlight = {} }
     local t2 = { ustom_highlight = {} }
-    assert.are_not.equals(hash(t1), hash(t2))
+    assert.not_equal(hash(t1), hash(t2))
   end)
 
   it("is consistent regardless of table order", function()
@@ -20,7 +20,7 @@ describe("hash", function()
         IncSearch = { bg = "#F5C2E7", fg = "#45475A" },
       },
     }
-    assert.equals(hash(t1), hash(t2))
+    assert.equal(hash(t1), hash(t2))
   end)
 
   it("detects differences in boolean values", function()
@@ -36,6 +36,6 @@ describe("hash", function()
         treesitter = { enabled = true, context = false },
       },
     }
-    assert.are_not.equals(hash(t1), hash(t2))
+    assert.not_equal(hash(t1), hash(t2))
   end)
 end)
