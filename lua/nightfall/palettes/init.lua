@@ -10,11 +10,8 @@ function M.get(flavor)
 
   -- Apply color overrides
   colors = vim.tbl_deep_extend("force", colors, color_overrides.all or {}, color_overrides[flavor] or {})
-
-  -- Handle the case where the specified flavor does not exist or cannot be loaded
   if not colors then error("Failed to load color palette for flavor: " .. flavor) end
 
-  -- Update the color palette with additional colors or modifications
   colors.none = "NONE"
   colors.statusline_bg = utils.darken(colors.background, 0.5)
 
