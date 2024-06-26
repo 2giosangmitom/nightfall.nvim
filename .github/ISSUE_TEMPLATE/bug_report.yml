@@ -1,5 +1,5 @@
-name: Bug report
-description: Create a report to help us improve
+name: Bug Report
+description: Report an issue to help us improve Nightfall.nvim
 labels: [bug]
 
 body:
@@ -7,72 +7,84 @@ body:
     id: terms
     attributes:
       label: Checklist
-      description: Have you checked if someone has reported this issue before?
+      description: Have you checked the following before reporting this issue?
       options:
-        - label: I have searched through the Nightfall.nvim docs
+        - label: I have searched through the Nightfall.nvim documentation.
           required: true
-        - label: I have searched through the existing issues of Nightfall.nvim
+        - label: I have searched through the existing issues of Nightfall.nvim.
           required: true
-        - label: I on the latest version of Nightfall.nvim
+        - label: I am on the latest version of Nightfall.nvim.
           required: true
+
   - type: input
     id: system-version
     validations:
       required: true
     attributes:
-      label: "Operating system/version"
-      placeholder: "NixOS"
+      label: Operating System/Version
+      placeholder: e.g., NixOS
+
   - type: input
     id: terminal
     validations:
       required: true
     attributes:
-      label: "Terminal/GUI"
-      placeholder: "alacritty"
+      label: Terminal/GUI
+      placeholder: e.g., Alacritty
+
   - type: textarea
     id: health
     validations:
       required: true
     attributes:
-      label: Nightfall.nvim health
+      label: Nightfall.nvim Health Check
       description: Output of `:checkhealth nightfall`
       placeholder: |
         ## Nightfall.nvim
         - Nightfall.nvim Version: 0.1.0
         - Neovim Version: v0.9.5
         - OK: Using stable Neovim >= 0.9.5
+
   - type: textarea
     id: description
     validations:
       required: true
     attributes:
-      label: Describe the bug
-      placeholder: A clear and concise description of what the bug is.
+      label: Bug Description
+      description: A clear and concise description of the bug.
+      placeholder: Describe the bug here.
+
   - type: textarea
     id: reproduce
     validations:
       required: true
     attributes:
       label: Steps to Reproduce
+      description: Steps to reproduce the bug.
       placeholder: |
         1. Go to '...'
-        2. Click on '....'
-        3. Scroll down to '....'
+        2. Click on '...'
+        3. Scroll down to '...'
         4. See error
+
   - type: textarea
     id: expected
     validations:
       required: true
     attributes:
-      label: Expected behavior
-      placeholder: A clear and concise description of what you expected to happen
+      label: Expected Behavior
+      description: A clear and concise description of what you expected to happen.
+      placeholder: Describe the expected behavior here.
+
   - type: textarea
     id: screenshots
     attributes:
       label: Screenshots
-      description: If applicable, add screenshots or recording ([Asciinema](asciinema.org)) to help explain your problem.
+      description: If applicable, add screenshots or recordings (e.g., via [Asciinema](https://asciinema.org)) to help explain your problem.
+
   - type: textarea
     id: additional-context
     attributes:
       label: Additional Context
-      placeholder: Add any additional context about the problem here.
+      description: Add any other context about the problem here.
+      placeholder: Additional context here.
