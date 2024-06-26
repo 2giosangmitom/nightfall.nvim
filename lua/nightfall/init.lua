@@ -16,7 +16,7 @@
 --- - Nightfall: A dark and vibrant variation inspired by the Dracula theme.
 --- - Deeper Night: A more intense dark theme for those who prefer a starker
 ---   contrast.
---- - Maron: A warm brown-tinged dark theme, offering a softer feel for extended
+--- - Maron: A warm, brown-tinged dark theme, offering a softer feel for extended
 ---   coding sessions.
 
 local M = {}
