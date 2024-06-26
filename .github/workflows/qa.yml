@@ -22,3 +22,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: crate-ci/typos@v1.21.0
+
+  test:
+    name: Test
+    strategy:
+      matrix:
+        version: [v0.10.0, v0.9.5]
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Neovim for Linux
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        env:
+          VERSION: ${{ matrix.version }}
+        run: |
+          wget -q https://github.com/neovim/neovim/releases/download/$VERSION/nvim-linux64.tar.gz
+          tar -xf nvim-linux64.tar.gz
+          ln -sf nvim-linux64/bin/nvim /usr/local/bin/nvim
+
+      - name: Run tests
+        run: make test
