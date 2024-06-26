@@ -1,6 +1,14 @@
+--- Enable `dashboard-nvim` support by adding the following to your Nightfall
+--- integrations config:
+--- >lua
+---   dashboard = { enabled = true }
+--- <
+---@tag nightfall.nvim_dashboard
+
 local M = {}
 
 ---@param colors NightfallPalette
+---@private
 function M.get(colors)
   return {
     DashboardShortCut = { fg = colors.violet },
