@@ -58,7 +58,7 @@ function M.get_theme(flavor)
   )
 
   local integrations_theme = {}
-  for integration, _ in pairs(M.supported_plugins) do
+  for _, integration in ipairs(M.supported_plugins) do
     local path = string.format("nightfall.themes.integrations.%s", integration)
     local integration_ok, v = pcall(require, path)
     assert(integration_ok, string.format("Could not load %s integration", integration))
@@ -76,13 +76,13 @@ function M.get_theme(flavor)
 end
 
 M.supported_plugins = {
-  lazy = "https://github.com/folke/lazy.nvim",
-  illuminate = "https://github.com/RRethy/vim-illuminate",
-  lspconfig = "https://github.com/neovim/nvim-lspconfig",
-  treesitter = "https://github.com/nvim-treesitter/nvim-treesitter",
-  telescope = "https://github.com/nvim-telescope/telescope.nvim",
-  flash = "https://github.com/folke/flash.nvim",
-  trouble = "https://github.com/folke/trouble.nvim"
+  "lazy",
+  "illuminate",
+  "lspconfig",
+  "treesitter",
+  "telescope",
+  "flash",
+  "trouble",
 }
 
 return M
