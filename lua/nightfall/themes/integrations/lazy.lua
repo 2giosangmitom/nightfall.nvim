@@ -1,6 +1,14 @@
+--- Enable `lazy.nvim` support by adding the following to your Nightfall integrations
+--- config:
+--- >lua
+---   lazy = { enabled = true }
+--- <
+---@tag nightfall.nvim_lazy
+
 local M = {}
 
 ---@param colors NightfallPalette
+---@private
 function M.get(colors)
   return {
     LazyH1 = { bg = colors.violet, fg = colors.black },

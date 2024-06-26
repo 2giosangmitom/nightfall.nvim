@@ -75,6 +75,30 @@ function M.get_theme(flavor)
   return defaults_theme, terminal_theme, integrations_theme
 end
 
+--- Nightfall.nvim seamlessly integrates with various Neovim plugins through
+--- its integration feature. This allows for enhanced functionality and a
+--- more cohesive user experience.
+---
+--- Example:
+--- >lua
+---   require("nightfall").setup({
+---     integrations = {
+---       lazy = { enabled = true },
+---       telescope = { enabled = true, style = "borderless" },
+---       illuminate = { enabled = true },
+---       treesitter = { enabled = true, context = true },
+---       lspconfig = { enabled = true },
+---       flash = { enabled = false },
+---     }
+---   })
+--- <
+---
+--- Certain integrations are enabled by default to provide a smooth
+--- out-of-the-box experience. If you prefer to customize which integrations
+--- are active, set `default_integrations` to `false`. For more details, see
+--- |nightfall.nvim_defaults|.
+---@tag nightfall.nvim_integrations
+
 M.supported_plugins = {
   "lazy",
   "illuminate",

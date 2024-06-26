@@ -50,9 +50,20 @@ end
 hooks.file = function(f) return f end
 hooks.block_pre = function(b) return b end
 
+local integrations = {
+  "lazy",
+  "illuminate",
+  "lspconfig",
+  "treesitter",
+  "telescope",
+  "flash",
+  "trouble",
+}
+integrations = vim.tbl_map(function(v) return "lua/nightfall/themes/integrations/" .. v .. ".lua" end, integrations)
+local modules = { "lua/nightfall/init.lua", "lua/nightfall/config.lua", "lua/nightfall/themes/init.lua" }
+for _, v in ipairs(integrations) do
+  table.insert(modules, v)
+end
+
 -- Generate Vimdoc file
-MiniDoc.generate(
-  { "lua/nightfall/init.lua", "lua/nightfall/config.lua", "lua/nightfall/themes/init.lua" },
-  "doc/nightfall.nvim.txt",
-  { hooks = hooks }
-)
+MiniDoc.generate(modules, "doc/nightfall.nvim.txt", { hooks = hooks })

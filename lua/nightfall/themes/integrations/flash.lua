@@ -1,6 +1,14 @@
+--- Enable `flash.nvim` support by adding the following to your Nightfall
+--- integrations config:
+--- >lua
+---   flash = { enabled = true }
+--- <
+---@tag nightfall.nvim_flash
+
 local M = {}
 
 ---@param colors NightfallPalette
+---@private
 function M.get(colors)
   return {
     FlashBackdrop = { fg = colors.light_grey },
