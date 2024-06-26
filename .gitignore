@@ -1,3 +1,5 @@
 doc/tags
 .repro
 .github/RELEASE_NOTES.md
+UNRELEASED.md
+UNRELEASED_FINAL.md
