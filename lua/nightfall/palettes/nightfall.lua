@@ -1,6 +1,6 @@
 return {
   background = "#141523",
-  black = "#141423",
+  black = "#000000",
   dark_blue = "#23233d",
   dark_navy = "#1c1c31",
   dark_slate_blue = "#373760",
