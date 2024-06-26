@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.0] - 2024-05-13
+
+### 🌺 New Features
+
+- **integrations**: Implement lspconfig theme ([4a412bf](https://github.com/2giosangmitom/nightfall.nvim/commit/4a412bf6bd6be884eef6bbd57c31a2fd4d6a585a)) by @2giosangmitom
+- **integrations**: Implement treesitter and treesitter context ([7830e54](https://github.com/2giosangmitom/nightfall.nvim/commit/7830e54428bf9d82baf0acfc070b2414ea0497d2)) by @2giosangmitom
+
+### 📚 Documentation
+
+- Update README ([cee689f](https://github.com/2giosangmitom/nightfall.nvim/commit/cee689f229770656bccbfea6460ac3a1a2655c84)) by @2giosangmitom
+- Update README.md ([e1e3f4f](https://github.com/2giosangmitom/nightfall.nvim/commit/e1e3f4f6e2b884282092ff934900d9150228e1ca)) by @2giosangmitom
+- Improve contributing guides ([86574f4](https://github.com/2giosangmitom/nightfall.nvim/commit/86574f43718c38b21e33a77ba1b57c6a38afa9b6)) by @2giosangmitom
+- Update README ([5fbaf60](https://github.com/2giosangmitom/nightfall.nvim/commit/5fbaf6051a5fb1916912b2ce57cc5ce8b34ec6c5)) by @2giosangmitom
+- Add vimdoc for overriding colors and highlights ([7895c7c](https://github.com/2giosangmitom/nightfall.nvim/commit/7895c7c01fcda694fd0f067f43f27f3670337ea2)) by @2giosangmitom
+- Update README ([5e058fc](https://github.com/2giosangmitom/nightfall.nvim/commit/5e058fccfad438651ffb7d5a80625d89538eab28)) by @2giosangmitom
+- Auto generate vimdoc ([243ba5f](https://github.com/2giosangmitom/nightfall.nvim/commit/243ba5f5154b75cfd49eaba1df552e6efa7ae121)) by @github-actions[bot]
+- Improve code highlighting for vimdoc ([15f6d12](https://github.com/2giosangmitom/nightfall.nvim/commit/15f6d12ed4076508d553a724906b5027ece15a82)) by @2giosangmitom
+- Auto generate vimdoc ([804b1fc](https://github.com/2giosangmitom/nightfall.nvim/commit/804b1fce55aef7ba16ff4cad4573405d58cf1029)) by @github-actions[bot]
+- Auto generate vimdoc ([d6d8dc2](https://github.com/2giosangmitom/nightfall.nvim/commit/d6d8dc26b8577a574cfb6566f17084df5bb749c0)) by @github-actions[bot]
+
+### 🎨 Styling
+
+- Reformat document comments ([b0bb386](https://github.com/2giosangmitom/nightfall.nvim/commit/b0bb386a1af10e9cdbf62766b12ae451959f1040)) by @2giosangmitom
+- Improve code readability ([1b09f4a](https://github.com/2giosangmitom/nightfall.nvim/commit/1b09f4a1941674daf9c8f47c11ce0390f7baa008)) by @2giosangmitom
+- **lspconfig**: Classify groups for better readability ([f4ed150](https://github.com/2giosangmitom/nightfall.nvim/commit/f4ed150c5aa22bbad50e4e2521950d25c6ee58a7)) by @2giosangmitom
+
+### ⚙️ Miscellaneous Tasks
+
+- **releaseplease**: Simplify workflow config ([a2520ea](https://github.com/2giosangmitom/nightfall.nvim/commit/a2520ea2c253d1bb46f0f5535587df8b9c6ba50b)) by @2giosangmitom
+- Update README.md ([3019b12](https://github.com/2giosangmitom/nightfall.nvim/commit/3019b128b38aa5a63d5e9cff06b86a8335c085c7)) by @2giosangmitom
+- Update export changelog script ([b418c94](https://github.com/2giosangmitom/nightfall.nvim/commit/b418c94fc575580587843ee3a98c95f1e8e486d3)) by @2giosangmitom
+- **release**: Print exported release notes in terminal by default ([a3de7e4](https://github.com/2giosangmitom/nightfall.nvim/commit/a3de7e49d069dfb3d8011487c9c8d05accbbd2b6)) by @2giosangmitom
+- **release**: Don't name branch dynamically ([e2aa41c](https://github.com/2giosangmitom/nightfall.nvim/commit/e2aa41cff058e979f129791cb450efd6a9c39dc0)) by @2giosangmitom
+
 ## [0.1.0] - 2024-05-12
 
 ### 🌺 New Features
