@@ -56,7 +56,7 @@ jobs:
 
       - name: Export changelog for current version
         if: startsWith(github.event.head_commit.message, 'chore(release)')
-        run: ./release_notes.sh ${{ steps.bump.outputs.version }}
+        run: ./release_notes.sh ${{ steps.bump.outputs.version }} > .github/RELEASE_NOTES.md
 
       - name: Release
         if: startsWith(github.event.head_commit.message, 'chore(release)')

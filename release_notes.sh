@@ -25,4 +25,4 @@ BEGIN {
     if (in_version && $1 != "##" && $2 != version) {
         print $0
     }
-}' .github/CHANGELOG.md >.github/RELEASE_NOTES.md
+}' .github/CHANGELOG.md
