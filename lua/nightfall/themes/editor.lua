@@ -32,7 +32,7 @@ function M.get(colors)
     MatchWord = { bg = colors.grey, fg = colors.ghost_white }, -- Background and foreground color for matching words
     MatchParen = { fg = colors.lavender, style = { bold = true } }, -- Color for matching parentheses
     Directory = { fg = colors.pink }, -- Color for directory names
-    ModeMsg = { fg = colors.black }, -- Color for mode messages
+    ModeMsg = { fg = colors.foreground }, -- Color for mode messages
     SpecialKey = { fg = colors.dark_slate_blue }, -- Color for special keys
     Visual = { bg = colors.deep_navy, style = { bold = true } }, -- Color for visual selection
     VisualNOS = { link = "Visual" }, -- Linked to Visual
