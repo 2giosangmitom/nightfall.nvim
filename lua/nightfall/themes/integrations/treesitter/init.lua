@@ -98,9 +98,9 @@ function M.get(colors)
     ["@comment.note"] = { fg = colors.black, bg = colors.violet },
 
     -- Diff
-    ["@diff.plus"] = { fg = colors.green },
-    ["@diff.minus"] = { fg = colors.red },
-    ["@diff.delta"] = { fg = colors.light_grey },
+    ["@diff.plus"] = { link = "DiffAdd" },
+    ["@diff.minus"] = { link = "DiffDelete" },
+    ["@diff.delta"] = { link = "DiffChange" },
 
     -- Markup
     ["@markup"] = { fg = colors.foreground },
