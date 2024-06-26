@@ -27,7 +27,11 @@ Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance 
 
 Nightfall.nvim offers multiple themes to suit your coding style:
 
-- **Nightfall**: A dark and vibrant variation inspired by the Dracula theme.
+<details>
+  <summary><b>Nightfall:</b> A dark and vibrant variation inspired by the Dracula theme.</summary>
+  <img src="./screenshots/nightfall.png" alt="demo nightfall flavor" />
+</details>
+
 - **Deeper Night**: A more intense dark theme for those who prefer a starker contrast.
 - **Maron**: A warm, brown-tinged dark theme, offering a softer feel for extended coding sessions.
 
