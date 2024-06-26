@@ -48,13 +48,7 @@ local defaults = {
 ---@return table: Merged options table.
 ---@private
 function M.set_options(user_config)
-  -- Validate user_config
-  vim.validate({ user_config = { user_config, "table" } })
-
-  -- Apply user configuration, overwriting default integrations if necessary
   if user_config.default_integrations == false then defaults.integrations = {} end
-
-  -- Merge user configuration with defaults
   return vim.tbl_deep_extend("keep", user_config, defaults)
 end
 
