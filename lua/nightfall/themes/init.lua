@@ -21,7 +21,7 @@ local M = {}
 ---       },
 ---     },
 ---     highlight_overrides = {
----       all = { -- User can only use table for `all`, this will aplly for all flavors
+---       all = { -- User can only use table for `all`, this will apply for all flavors
 ---         Normal = { bg = "#120809" },
 ---       },
 ---       -- @param colors NightfallPalette
