@@ -11,27 +11,27 @@ local M = {}
 ---
 --- Example:
 --- >
---- require("nightfall").setup({
----   color_overrides = {
----     all = {
----       foreground = "#ffffff",
+---   require("nightfall").setup({
+---     color_overrides = {
+---       all = {
+---         foreground = "#ffffff",
+---       },
+---       nightfall = {
+---         background = "#ff0000",
+---       },
 ---     },
----     nightfall = {
----       background = "#ff0000",
+---     highlight_overrides = {
+---       all = {
+---         Normal = { bg = "#120809" },
+---       },
+---       -- @param colors NightfallPalette
+---       nightfall = function(colors)
+---         return {
+---           Normal = { bg = colors.black },
+---         }
+---       end,
 ---     },
----   },
----   highlight_overrides = {
----     all = {
----       Normal = { bg = "#120809" },
----     },
----     ---@param colors NightfallPalette
----     nightfall = function(colors)
----       return {
----         Normal = { bg = colors.black },
----       }
----     end,
----   },
---- })
+---   })
 --- <
 ---@tag nightfall.nvim_overriding
 
