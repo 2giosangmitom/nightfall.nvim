@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.1.0] - 2024-05-12
+## [unreleased]
 
 ### 🌺 New Features
 
@@ -55,6 +55,5 @@ All notable changes to this project will be documented in this file.
 - **release**: Update pull request body ([dd21d8d](https://github.com/2giosangmitom/nightfall.nvim/commit/dd21d8d3c874e790e5e639fcfe22aea891f76c2e)) by @2giosangmitom
 - **release**: Update pr body and ignore unneeded files ([560ab51](https://github.com/2giosangmitom/nightfall.nvim/commit/560ab510d8a467f99cb00071d65358a4bbe244d1)) by @2giosangmitom
 - **release**: Don't commit CHANGELOG.md file ([8391c97](https://github.com/2giosangmitom/nightfall.nvim/commit/8391c97376ddc43e086c6904d480c1a550db4044)) by @2giosangmitom
-- **release**: Release 0.1.0 ([f4dc368](https://github.com/2giosangmitom/nightfall.nvim/commit/f4dc368addf512ad3b93627493d67fd2428e1e7f)) by @github-actions[bot] in [#4](https://github.com/2giosangmitom/nightfall.nvim/pull/4)
 - **release**: Don't create pr on merge release commit ([6bc8685](https://github.com/2giosangmitom/nightfall.nvim/commit/6bc86857c34ab13a7997ee7fb7ad5bb17bf0e762)) by @2giosangmitom
 
