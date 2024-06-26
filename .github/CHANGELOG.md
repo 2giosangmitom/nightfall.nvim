@@ -14,6 +14,8 @@ All notable changes to this project will be documented in this file.
 - Add .gitignore
 - Add neoconf.json
 - Add typos config
+- **release**: Update changelog
+- **release**: Add a script auto generate release notes
 
 ### 🎨 Styling
 
