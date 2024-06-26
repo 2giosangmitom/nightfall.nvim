@@ -1,0 +1,25 @@
+---@class NightfallPalette
+---@field background string
+---@field black string
+---@field dark_blue string
+---@field dark_navy string
+---@field dark_slate_blue string
+---@field deep_navy string
+---@field foreground string
+---@field ghost_white string
+---@field green string
+---@field grey string
+---@field lavender string
+---@field light_cyan string
+---@field light_grey string
+---@field nord_blue string
+---@field none string
+---@field pale_yellow string
+---@field peach string
+---@field pink string
+---@field red string
+---@field sand string
+---@field sky string
+---@field statusline_bg string
+---@field turquoise string
+---@field violet string
