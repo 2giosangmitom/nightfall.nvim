@@ -102,11 +102,11 @@ require("nightfall").setup({
 
 Configure Nightfall's settings to match your coding environment and preferences before activating the colorscheme. Explore the provided Lua setup for customization options, adjusting features such as transparency, syntax styles, and plugin integrations according to your needs.
 
-## 🪓 Overriding Colors & Highlight Groups
+## 🎨 Customizing Colors & Highlight Groups
 
-Enhance the customization of Nightfall even further by overriding colors and highlight groups to suit your preferences. Nightfall.nvim offers extensive options for tailoring the colorscheme precisely to your liking. You can achieve this by utilizing `color_overrides` and `highlight_overrides` in the configuration:
+Take your Nightfall experience to the next level by customizing colors and highlight groups to match your preferences. With Nightfall.nvim, you have full control over the colorscheme, allowing you to tailor it precisely to your liking. Utilize the `color_overrides` and `highlight_overrides` options in the configuration to achieve your desired look and feel. For more details, refer to `:h nightfall.nvim_overriding`.
 
-### 🎨 Overriding Colors
+### 🌈 Customizing Colors
 
 ```lua
 require("nightfall").setup({
@@ -121,7 +121,7 @@ require("nightfall").setup({
 })
 ```
 
-### 🌈 Overriding Highlight Groups
+### 🖌️ Customizing Highlight Groups
 
 ```lua
 require("nightfall").setup({
@@ -139,7 +139,7 @@ require("nightfall").setup({
 })
 ```
 
-Customize your Nightfall colorscheme further by directly modifying colors and highlight groups to create a unique coding environment that aligns perfectly with your preferences.
+Dive deeper into Nightfall customization by directly modifying colors and highlight groups. Craft a unique coding environment that reflects your personal style and preferences.
 
 ## 🛠️ Integrations
 
