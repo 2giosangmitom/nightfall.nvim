@@ -1,31 +1,58 @@
+[remote.github]
+owner = "2giosangmitom"
+repo = "nightfall.nvim"
+
 [changelog]
 header = """
 # Changelog\n
 All notable changes to this project will be documented in this file.\n
 """
+
 body = """
 {% if version %}\
-## [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="%Y-%m-%d") }}
+    {% if previous.version %}\
+        ## [{{ version | trim_start_matches(pat="v") }}]($REPO/compare/{{ previous.version }}..{{ version }}) - {{ timestamp | date(format="%Y-%m-%d") }}
+    {% else %}\
+        ## [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="%Y-%m-%d") }}
+    {% endif %}\
 {% else %}\
-## [unreleased]
+    ## [unreleased]
 {% endif %}\
 {% for group, commits in commits | group_by(attribute="group") %}
-### {{ group | striptags | trim | upper_first }}
-{% for commit in commits %}
-- {% if commit.scope %}**{{ commit.scope }}**: {% endif %}\
-{% if commit.breaking %}[**breaking**] {% endif %}\
-{{ commit.message | upper_first }}\
-{% endfor %}
+    ### {{ group | striptags | trim | upper_first }}
+    {% for commit in commits
+    | filter(attribute="scope")
+    | sort(attribute="scope") %}
+        - **({{commit.scope}})**{% if commit.breaking %} [**breaking**]{% endif %} \
+            {{ commit.message }} ([{{ commit.id | truncate(length=7, end="") }}]($REPO/commit/{{ commit.id }}))\
+            {% if commit.github.username %} by @{{ commit.github.username }}{%- endif -%}
+            {% if commit.github.pr_number %} in \
+              [#{{ commit.github.pr_number }}]({{ self::remote_url() }}/pull/{{ commit.github.pr_number }}) \
+            {%- endif %}
+    {%- endfor -%}
+    {% raw %}\n{% endraw %}\
+    {%- for commit in commits %}
+        {%- if commit.scope -%}
+        {% else -%}
+            - {% if commit.breaking %} [**breaking**]{% endif %}\
+                {{ commit.message }} ([{{ commit.id | truncate(length=7, end="") }}]($REPO/commit/{{ commit.id }})) by @{{ commit.github.username }}
+        {% endif -%}
+    {% endfor -%}
 {% endfor %}\n
 """
+
 trim = true
+postprocessors = [
+  { pattern = '\$REPO', replace = "https://github.com/2giosangmitom/nightfall.nvim" }, # replace repository URL
+]
 
 [git]
 conventional_commits = true
 filter_unconventional = true
 split_commits = false
 commit_preprocessors = [
-  { pattern = '#(\d+)', replace = '[#$1](https://github.com/2giosangmitom/nightfall.nvim/pull/$1)' },
+  # remove issue numbers from commits
+  { pattern = '\((\w+\s)?#([0-9]+)\)', replace = "" },
 ]
 
 commit_parsers = [
