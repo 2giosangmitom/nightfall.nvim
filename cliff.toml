@@ -33,7 +33,9 @@ body = """
 """
 
 trim = true
-postprocessors = [{ pattern = '<REPO>', replace = "" }]
+postprocessors = [
+  { pattern = '<REPO>', replace = "https://github.com/2giosangmitom/nightfall.nvim" },
+]
 
 [git]
 conventional_commits = true
