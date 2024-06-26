@@ -1,7 +1,3 @@
-[remote.github]
-owner = "2giosangmitom"
-repo = "nightfall.nvim"
-
 [changelog]
 header = """
 # Changelog\n
@@ -21,15 +17,8 @@ body = """
         - {% if commit.scope %}**{{ commit.scope }}**: {% endif %}\
           {% if commit.breaking %}[**BREAKING**] {% endif %}\
           {{ commit.message | upper_first | trim }} ([{{ commit.id | truncate(length=7, end="") }}](<REPO>/commit/{{ commit.id }}))\
-          {%- if commit.github.username %} by @{{ commit.github.username }}{%- endif -%}\
-          {%- if commit.github.pr_number %} in \
-            [#{{ commit.github.pr_number }}]({{ self::remote_url() }}/pull/{{ commit.github.pr_number }})\
-          {%- endif -%}
     {% endfor %}
-{% endfor %}
-{% macro remote_url() -%}
-  https://github.com/{{ remote.github.owner }}/{{ remote.github.repo }}
-{%- endmacro -%}
+{% endfor %}\n
 """
 
 trim = true
@@ -45,13 +34,13 @@ commit_preprocessors = [{ pattern = '\((\w+\s)?#([0-9]+)\)', replace = "" }]
 commit_parsers = [
   { message = "^feat", group = "<!-- 0 -->🌺 New Features" },
   { message = "^fix", group = "<!-- 1 -->🐛 Bug Fixes" },
+  { message = "^docs: auto generate vimdoc", skip = true },
   { message = "^docs", group = "<!-- 3 -->📚 Documentation" },
   { message = "^perf", group = "<!-- 4 -->⚡ Performance" },
   { message = "^refactor", group = "<!-- 2 -->🚜 Refactor" },
   { message = "^style", group = "<!-- 5 -->🎨 Styling" },
   { message = "^test", group = "<!-- 6 -->🧪 Testing" },
   { message = "^chore\\(release\\):", skip = true },
-  { message = "docs: auto generate vimdoc", skip = true },
   { message = "^chore\\(deps.*\\)", skip = true },
   { message = "^chore\\(pr\\)", skip = true },
   { message = "^chore\\(pull\\)", skip = true },
