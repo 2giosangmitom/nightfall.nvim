@@ -107,6 +107,7 @@ M.supported_plugins = {
   "trouble",
   "headlines",
   "dashboard",
+  "nvim_dap",
 }
 
 return M
