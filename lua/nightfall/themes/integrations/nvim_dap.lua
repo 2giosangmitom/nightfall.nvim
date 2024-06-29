@@ -1,12 +1,9 @@
 --- Enable `nvim-dap` support by adding the following to your Nightfall
 --- integrations config:
----
 --- >lua
 ---   nvim_dap = { enabled = true }
 --- <
----
 --- You must define sign icons to make it work. Here is a snippet for you:
----
 --- >lua
 ---   local signs = {
 ---     { name = 'DapBreakpoint', text = '', texthl = 'DapBreakpoint' },
@@ -20,7 +17,6 @@
 ---     vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.texthl })
 ---   end
 --- <
----
 ---@tag nightfall.nvim_dap
 
 local M = {}
