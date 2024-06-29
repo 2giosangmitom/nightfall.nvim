@@ -6,11 +6,14 @@
 --- eye strain and integrates seamlessly with major plugins.
 ---
 --- Features ~
---- - Improved code readability with a clean and minimalist design
---- - Match your coding style with multiple flavors
---- - Reduced eye strain for extended coding sessions
+--- - Automatic caching ensures faster load times
+--- - Comprehensive support for the `nvim-treesitter` syntax highlighting and parsing library
+--- - Seamlessly integrates with LSP semantic tokens (requires Neovim 0.9 or later)
+--- - Extensive support for many popular plugins, enhancing your Neovim experience
 --- - Extensive customization options to personalize your experience
---- - Seamless integration with major plugins
+--- - Reduced eye strain for extended coding sessions
+--- - Match your coding style with multiple flavors
+--- - Improved code readability with a clean and minimalist design
 ---
 --- Flavors ~
 --- - Nightfall: A dark and vibrant variation inspired by the Dracula theme.
