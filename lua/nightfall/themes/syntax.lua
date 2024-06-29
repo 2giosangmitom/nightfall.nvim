@@ -28,7 +28,7 @@ function M.get(colors)
     Repeat = { fg = colors.light_cyan, style = Options.styles.loops or {} }, -- Repeat statement text
     Label = { fg = colors.sky }, -- Label text
     Operator = { fg = colors.ghost_white, style = Options.styles.operators or {} }, -- Operator text
-    Keyword = { fg = colors.pink, style = Options.styles.keywords or {} }, -- Keyword text
+    Keyword = { fg = utils.vary_color({ maron = colors.red }, colors.pink), style = Options.styles.keywords or {} }, -- Keyword text
     Exception = { fg = colors.pink, style = Options.styles.keywords or {} }, -- Exception text
 
     -- Preprocessor Directives

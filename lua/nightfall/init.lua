@@ -25,7 +25,7 @@
 local M = {}
 
 M.Options = {}
-M.supported_flavors = { "nightfall" }
+M.supported_flavors = { "nightfall", "maron" }
 M.path_sep = vim.fn.has("win32") == 1 and "\\" or "/"
 
 --- Nightfall.nvim provides a comprehensive configuration system to personalize
@@ -104,6 +104,7 @@ end
 ---@private
 function M.load(flavor)
   local compiled_path = M.Options.compile_path .. M.path_sep .. flavor
+  M.flavor = flavor
   dofile(compiled_path)
 end
 
@@ -121,9 +122,12 @@ vim.api.nvim_create_user_command("NightfallCompile", function()
     if pack:match("^nightfall.") then package.loaded[pack] = nil end
   end
 
+  local user = vim.g.colors_name
   for _, flavor in ipairs(M.supported_flavors) do
+    M.flavor = flavor
     compiler.compile(flavor)
   end
+  M.flavor = user
 
   vim.schedule(function() vim.notify("Compiled successfully", vim.log.levels.INFO, { title = "Nightfall" }) end)
 end, {})
@@ -143,7 +147,7 @@ if vim.g.nightfall_debug then
     callback = function()
       vim.schedule(function()
         vim.cmd("NightfallCompile")
-        vim.cmd.colorscheme(vim.g.colors_name)
+        vim.cmd.colorscheme(M.flavor)
       end)
     end,
   })
