@@ -12,10 +12,10 @@ Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance 
 > [!NOTE]
 > Nightfall.nvim is currently in active development, with ongoing enhancements and refinements being made to continuously improve the experience.
 
-## 🌟 Key Features
+## ✨ Features
 
-- 📩 Automatic caching ensures faster load times.
-- 🌲 Full [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) support.
+- ⚡️ Automatic caching ensures faster load times.
+- 🌲 Comprehensive support for the `nvim-treesitter` syntax highlighting and parsing library.
 - 🎟️ Seamlessly integrates with LSP semantic tokens (requires Neovim 0.9 or later).
 - 🧩 Extensive support for many [popular plugins](#-supported-plugins), enhancing your Neovim experience.
 - 🖌️ Extensive customization options to personalize your experience.
@@ -32,8 +32,15 @@ Nightfall.nvim offers multiple themes to suit your coding style:
   <img src="./screenshots/nightfall.png" alt="demo nightfall flavor" />
 </details>
 
-- **Deeper Night**: A more intense dark theme for those who prefer a starker contrast.
-- **Maron**: A warm, brown-tinged dark theme, offering a softer feel for extended coding sessions.
+<details>
+  <summary><b>Deeper Night:</b> A more intense dark theme for those who prefer a starker contrast.</summary>
+  <img src="./screenshots/deeper_night.png" alt="demo deeper night flavor" />
+</details>
+
+<details>
+  <summary><b>Maron:</b> A warm, brown-tinged dark theme, offering a softer feel for extended coding sessions.</summary>
+  <img src="./screenshots/maron.png" alt="demo maron flavor" />
+</details>
 
 ## 🚀 Installation
 
