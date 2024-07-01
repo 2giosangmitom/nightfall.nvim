@@ -1,1 +1,1 @@
--- TODO: Implement maron flavor
+require("nightfall").load("maron")

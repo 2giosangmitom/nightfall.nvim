@@ -59,7 +59,7 @@ function M.lighten(hex, amount, fg) return M.blend(hex, fg or M.fg, amount) end
 ---@param default string: The default color palette to use if the flavor option is not found.
 ---@return string: The selected color palette.
 function M.vary_color(palettes, default)
-  local flavor = vim.g.colors_name
+  local flavor = require("nightfall").flavor
   return palettes[flavor] or default
 end
 
