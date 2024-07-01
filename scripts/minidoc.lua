@@ -46,6 +46,12 @@ hooks.block_pre = function(b) return b end
 local integrations = require("nightfall.themes").supported_plugins
 integrations = vim.tbl_map(function(v) return "lua/nightfall/themes/integrations/" .. v .. ".lua" end, integrations)
 
+local special_integrations = { "lualine" }
+special_integrations = vim.tbl_map(
+  function(v) return "lua/nightfall/themes/integrations/" .. v .. ".lua" end,
+  special_integrations
+)
+
 -- Define the list of module files
 local modules = {
   "lua/nightfall/init.lua",
@@ -55,6 +61,11 @@ local modules = {
 
 -- Add integration modules to the list
 for _, v in ipairs(integrations) do
+  table.insert(modules, v)
+end
+
+-- Add special integrations to the list
+for _, v in ipairs(special_integrations) do
   table.insert(modules, v)
 end
 
