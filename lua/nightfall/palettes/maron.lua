@@ -10,7 +10,7 @@ return {
   green = "#B5CEA8",
   grey = "#886F6F",
   lavender = "#EEC4C4",
-  light_cyan = "#C1A3A3",
+  light_cyan = "#BBE9FF",
   light_grey = "#716F81",
   nord_blue = "#569CD6",
   pale_yellow = "#FFE7BF",
