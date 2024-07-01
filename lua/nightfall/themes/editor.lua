@@ -59,7 +59,7 @@ function M.get(colors)
     QuickFixLine = { bg = colors.dark_navy, sp = "none" }, -- Color for quickfix line
 
     -- Search and Spell
-    Search = { bg = colors.violet, fg = colors.black }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+    Search = { bg = utils.vary_color({ maron = colors.pale_yellow }, colors.violet), fg = colors.black }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
     IncSearch = { bg = colors.peach, fg = colors.black }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
     CurSearch = { link = "IncSearch" },
     Substitute = { fg = colors.black, bg = colors.violet }, -- Color for substitution

@@ -15,20 +15,29 @@ function M.get(colors)
     -- Syntax Highlighting
     Comment = { fg = utils.lighten(colors.light_grey, 0.9), style = Options.styles.comments }, -- Comment text
     Special = { fg = colors.light_cyan }, -- Special text
-    Constant = { fg = colors.violet }, -- Constant text
-    String = { fg = colors.pale_yellow, style = Options.styles.strings or {} }, -- String text
+    Constant = { fg = utils.vary_color({ nightfall = colors.violet }, colors.red) }, -- Constant text
+    String = {
+      fg = utils.vary_color({ maron = colors.pale_yellow }, colors.pale_yellow),
+      style = Options.styles.strings or {},
+    }, -- String text
     Character = { fg = colors.violet }, -- Character text
     Number = { fg = colors.peach, style = Options.styles.numbers or {} }, -- Number text
     Float = { link = "Number" }, -- Linked to Number
     Boolean = { fg = colors.peach, style = Options.styles.booleans or {} }, -- Boolean text
-    Identifier = { fg = colors.foreground, style = Options.styles.variables or {} }, -- Identifier text
-    Function = { fg = colors.turquoise, style = Options.styles.functions or {} }, -- Function text
+    Identifier = {
+      fg = utils.vary_color({ maron = colors.ghost_white }, colors.foreground),
+      style = Options.styles.variables or {},
+    }, -- Identifier text
+    Function = {
+      fg = utils.vary_color({ maron = colors.green }, colors.turquoise),
+      style = Options.styles.functions or {},
+    }, -- Function text
     Statement = { fg = colors.violet }, -- Statement text
     Conditional = { fg = colors.pink, style = Options.styles.conditionals or {} }, -- Conditional statement text
     Repeat = { fg = colors.light_cyan, style = Options.styles.loops or {} }, -- Repeat statement text
     Label = { fg = colors.sky }, -- Label text
     Operator = { fg = colors.ghost_white, style = Options.styles.operators or {} }, -- Operator text
-    Keyword = { fg = colors.pink, style = Options.styles.keywords or {} }, -- Keyword text
+    Keyword = { fg = utils.vary_color({ maron = colors.peach }, colors.pink), style = Options.styles.keywords or {} }, -- Keyword text
     Exception = { fg = colors.pink, style = Options.styles.keywords or {} }, -- Exception text
 
     -- Preprocessor Directives

@@ -18,8 +18,14 @@ function M.get(colors)
     -- Variables
     ["@variable"] = { link = "Identifier" },
     ["@variable.builtin"] = { fg = colors.peach, style = Options.styles.properties or {} },
-    ["@variable.parameter"] = { fg = colors.foreground, style = Options.styles.variables or {} },
-    ["@variable.member"] = { fg = colors.lavender, style = Options.styles.variables or {} },
+    ["@variable.parameter"] = {
+      fg = utils.vary_color({ maron = colors.ghost_white }, colors.foreground),
+      style = Options.styles.variables or {},
+    },
+    ["@variable.member"] = {
+      fg = utils.vary_color({ maron = utils.lighten(colors.foreground, 0.625) }, colors.lavender),
+      style = Options.styles.variables or {},
+    },
 
     -- Constants
     ["@constant"] = { link = "Constant" },
