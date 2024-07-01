@@ -10,7 +10,7 @@ This project follows the [Nightfall.nvim Code of Conduct](CODE_OF_CONDUCT.md). P
 
 ### 🐛 Reporting Bugs
 
-- Check [Issues](https://github.com/2giosangmitom/nightfall.nvim/issues) to see if the bug has already been reported.
+- Check the [Issues](https://github.com/2giosangmitom/nightfall.nvim/issues) to see if the bug has already been reported.
 - If not, open a new issue with a clear title, description, and, if possible, a code sample or test case.
 
 ### ✨ Suggesting Enhancements
@@ -27,7 +27,7 @@ This project follows the [Nightfall.nvim Code of Conduct](CODE_OF_CONDUCT.md). P
 - Implement your changes, commit, and push to your fork.
 - Submit a pull request to the [2giosangmitom/nightfall.nvim](https://github.com/2giosangmitom/nightfall.nvim) repository. Clearly explain your changes and reference related issues or pull requests.
 
-## 🦈 Advanced Techniques for Nightfall.nvim
+## 📈 Enhancing Your Contributions
 
 ### 🔄 Live Reload
 
@@ -36,9 +36,9 @@ Enable live reload by setting `vim.g.nightfall_debug = true`. This will refresh 
 ### 📝 Commit Guidelines
 
 1. **First Line**: Keep it under 72 characters, use the imperative mood.
-2. **Description**: Detailed explanation, wrap lines at 72 characters.
+2. **Description**: Provide a detailed explanation, wrapping lines at 72 characters.
 3. **References**: Include related issues or pull requests.
-4. **Commit Type**: Prefix with lowercase commit types
+4. **Commit Type**: Prefix with lowercase commit types:
    - feat: New feature
    - fix: Bug fix
    - docs: Documentation changes
@@ -87,7 +87,7 @@ end
 1. **Choose Integration**: Select the plugin to integrate with Nightfall.nvim.
 2. **Find Integration Point**: Identify where the integration should occur in the codebase.
 3. **Implement Integration**: Write the necessary code.
-4. **Update Supported Plugins**: Add the plugin to `M.supported_plugins` in `lua/nightfall/themes/init.lua`.
+4. **Update Supported Plugins**: Add the plugin to `M.supported_plugins` in `lua/nightfall/themes/init.lua` if it's not a special integration.
 5. **Update README**: Add the plugin to the supported plugins list in `README.md` with brief instructions.
 6. **Submit Changes**: Submit your changes as a pull request, following the contribution guidelines.
 
