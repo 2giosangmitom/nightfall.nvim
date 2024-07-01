@@ -23,7 +23,7 @@ function M.get(colors)
       style = Options.styles.variables or {},
     },
     ["@variable.member"] = {
-      fg = utils.vary_color({ maron = utils.lighten(colors.foreground, 0.625) }, colors.lavender),
+      fg = utils.vary_color({ maron = colors.foreground }, colors.lavender),
       style = Options.styles.variables or {},
     },
 
