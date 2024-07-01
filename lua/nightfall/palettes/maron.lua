@@ -16,7 +16,7 @@ return {
   pale_yellow = "#FFE7BF",
   peach = "#FBAF38",
   pink = "#C88EA7",
-  red = "#8AAFAB",
+  red = "#FF6969",
   sand = "#FFEACA",
   sky = "#29ADB2",
   turquoise = "#A3B763",
