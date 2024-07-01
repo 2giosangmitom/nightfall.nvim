@@ -1,4 +1,4 @@
-*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 June 29
+*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 July 01
 
 Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance
 your coding experience. It offers a clean and minimalist design with multiple
@@ -43,7 +43,6 @@ Example:
     },
   })
 <
-
 ------------------------------------------------------------------------------
                                                           *nightfall.nvim_usage*
 Nightfall.nvim provides two methods for dynamically loading specific color scheme
@@ -73,7 +72,6 @@ Usage ~
 >lua
   vim.cmd.colorscheme("nightfall")
 <
-
 ------------------------------------------------------------------------------
                                                 *nightfall.nvim_compile_command*
 This command compiles all themes provided by Nightfall.nvim into binary files,
@@ -140,7 +138,6 @@ refer to the documentation of the |nightfall.nvim_setup| function.
   }
 
 <
-
 ------------------------------------------------------------------------------
                                                      *nightfall.nvim_overriding*
 Enhance the customization of Nightfall even further by overriding colors and
@@ -179,7 +176,6 @@ Example:
     },
   })
 <
-
 ------------------------------------------------------------------------------
                                                    *nightfall.nvim_integrations*
 Nightfall.nvim seamlessly integrates with various Neovim plugins through
@@ -212,7 +208,6 @@ config:
 >lua
   lazy = { enabled = true }
 <
-
 ------------------------------------------------------------------------------
                                                      *nightfall.nvim_illuminate*
 Enable `vim-illuminate` support by adding the following to your Nightfall
@@ -220,7 +215,6 @@ integrations config:
 >lua
   illuminate = { enabled = true }
 <
-
 ------------------------------------------------------------------------------
                                                       *nightfall.nvim_lspconfig*
 Enable `nvim-lspconfig` support by adding the following to your Nightfall
@@ -228,7 +222,6 @@ integration config:
 >lua
   lspconfig = { enabled = true }
 <
-
 ------------------------------------------------------------------------------
                                                      *nightfall.nvim_treesitter*
 Enable `nvim-treesitter` with context support by adding this
@@ -236,7 +229,6 @@ to your Nightfall integrations config:
 >lua
   treesitter = { enabled = true, context = true }
 <
-
 ------------------------------------------------------------------------------
                                                       *nightfall.nvim_telescope*
 To enable `telescope.nvim` support, add the following to your Nightfall
@@ -245,7 +237,6 @@ integrations config, choosing between two styles: 'borderless' and
 >lua
   telescope = { enabled = true, style = "borderless" }
 <
-
 ------------------------------------------------------------------------------
                                                           *nightfall.nvim_flash*
 Enable `flash.nvim` support by adding the following to your Nightfall
@@ -253,7 +244,6 @@ integrations config:
 >lua
   flash = { enabled = true }
 <
-
 ------------------------------------------------------------------------------
                                                         *nightfall.nvim_trouble*
 Enable `trouble.nvim` support by adding the following to your Nightfall
@@ -261,7 +251,6 @@ integration config:
 >lua
   trouble = { enabled = true }
 <
-
 ------------------------------------------------------------------------------
                                                       *nightfall.nvim_headlines*
 Enable `headlines.nvim` support by adding the following to your Nightfall
@@ -269,7 +258,6 @@ integrations config:
 >lua
   headlines = { enabled = true }
 <
-
 ------------------------------------------------------------------------------
                                                       *nightfall.nvim_dashboard*
 Enable `dashboard-nvim` support by adding the following to your Nightfall
@@ -277,7 +265,6 @@ integrations config:
 >lua
   dashboard = { enabled = true }
 <
-
 ------------------------------------------------------------------------------
                                                             *nightfall.nvim_dap*
 Enable `nvim-dap` support by adding the following to your Nightfall
@@ -299,5 +286,4 @@ You must define sign icons to make it work. Here is a snippet for you:
     vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.texthl })
   end
 <
-
  vim:tw=78:ts=8:noet:ft=help:norl:
