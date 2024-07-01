@@ -286,4 +286,16 @@ You must define sign icons to make it work. Here is a snippet for you:
     vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.texthl })
   end
 <
+------------------------------------------------------------------------------
+                                                        *nightfall.nvim_lualine*
+To enable `lualine.nvim` support, you need to configure it in your Neovim setup.
+Here's an example configuration:
+>lua
+  require("lualine").setup({
+    options = {
+      theme = "auto" -- Automatically detect and apply the right lualine theme
+    }
+    -- Add the rest of your lualine configuration here
+  })
+<
  vim:tw=78:ts=8:noet:ft=help:norl:
