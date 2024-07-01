@@ -122,7 +122,7 @@ vim.api.nvim_create_user_command("NightfallCompile", function()
     if pack:match("^nightfall.") then package.loaded[pack] = nil end
   end
 
-  local user = vim.g.colors_name
+  local user = M.flavor
   for _, flavor in ipairs(M.supported_flavors) do
     M.flavor = flavor
     compiler.compile(flavor)
