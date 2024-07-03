@@ -48,7 +48,16 @@ vim.g.colors_name = "%s"
 
   -- Include integration themes
   for integration, integration_opts in pairs(Options.integrations) do
+    if not vim.tbl_contains(require("nightfall.themes").supported_plugins, integration) then
+      vim.notify_once(
+        string.format("'%s' is not a supported integration", integration),
+        vim.log.levels.ERROR,
+        { title = "Nightfall" }
+      )
+      goto continue
+    end
     if integration_opts.enabled then table.insert(theme_lua_code, parse_style(integration_themes[integration])) end
+    ::continue::
   end
 
   table.insert(theme_lua_code, "end, true)")
