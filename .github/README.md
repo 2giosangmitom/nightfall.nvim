@@ -34,7 +34,7 @@ Nightfall.nvim offers multiple themes to suit your coding style:
 
 <details>
   <summary><b>Deeper Night:</b> A more intense dark theme for those who prefer a starker contrast.</summary>
-  <img src="./screenshots/deeper_night.png" alt="demo deeper night flavor" />
+  <img src="./screenshots/deepernight.png" alt="demo deeper night flavor" />
 </details>
 
 <details>
