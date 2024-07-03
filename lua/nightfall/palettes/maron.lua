@@ -12,7 +12,7 @@ return {
   lavender = "#EEC4C4",
   light_cyan = "#BBE9FF",
   light_grey = "#716F81",
-  nord_blue = "#569CD6",
+  nord_blue = "#3DC2EC",
   pale_yellow = "#FFE7BF",
   peach = "#FBAF38",
   pink = "#C88EA7",

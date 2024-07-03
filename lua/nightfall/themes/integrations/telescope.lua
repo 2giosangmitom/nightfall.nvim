@@ -18,7 +18,7 @@ function M.get(colors)
   local result = {
     TelescopePromptPrefix = { fg = colors.red, bg = bg },
     TelescopeNormal = { bg = bg },
-    TelescopePromptTitle = { fg = colors.black, bg = colors.red },
+    TelescopePromptTitle = { fg = colors.black, bg = utils.vary_color({ maron = colors.pale_yellow }, colors.red) },
     TelescopeSelection = { bg = colors.dark_navy, fg = colors.foreground },
     TelescopeResultsDiffAdd = { fg = colors.green },
     TelescopeResultsDiffChange = { fg = colors.pale_yellow },
@@ -31,8 +31,8 @@ function M.get(colors)
       TelescopeBorder = { fg = bg, bg = bg },
       TelescopePromptBorder = { fg = bg, bg = bg },
       TelescopePromptNormal = { fg = colors.foreground, bg = bg },
-      TelescopeResultsTitle = { fg = colors.black, bg = colors.light_cyan },
-      TelescopePreviewTitle = { fg = colors.black, bg = colors.green },
+      TelescopeResultsTitle = { fg = colors.black, bg = utils.vary_color({ maron = colors.green }, colors.light_cyan) },
+      TelescopePreviewTitle = { fg = colors.black, bg = utils.vary_color({ maron = colors.violet }, colors.green) },
     },
 
     bordered = {

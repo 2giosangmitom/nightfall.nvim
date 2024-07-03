@@ -38,7 +38,7 @@ function M.get(colors)
       style = Options.styles.conditionals or {},
     }, -- Conditional statement text
     Repeat = { fg = colors.light_cyan, style = Options.styles.loops or {} }, -- Repeat statement text
-    Label = { fg = colors.sky }, -- Label text
+    Label = { fg = utils.vary_color({ maron = colors.nord_blue }, colors.sky) }, -- Label text
     Operator = { fg = colors.ghost_white, style = Options.styles.operators or {} }, -- Operator text
     Keyword = {
       fg = utils.vary_color({ maron = colors.peach, deepernight = colors.red }, colors.pink),
