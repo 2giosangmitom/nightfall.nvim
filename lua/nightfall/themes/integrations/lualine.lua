@@ -17,15 +17,19 @@ function M.get(flavor)
 
   local lualine = {}
 
+  local normal = flavor == "nightfall" and colors.violet or flavor == "deepernight" and colors.sky or colors.pale_yellow
+  local insert = flavor == "deepernight" and colors.turquoise or colors.green
+  local command = flavor == "nightfall" and colors.pale_yellow or colors.lavender
+
   lualine.normal = {
-    a = { bg = flavor == "nightfall" and colors.violet or colors.pale_yellow, fg = colors.black },
-    b = { bg = colors.deep_navy, fg = flavor == "nightfall" and colors.violet or colors.pale_yellow },
+    a = { bg = normal, fg = colors.black },
+    b = { bg = colors.deep_navy, fg = normal },
     c = { bg = colors.statusline_bg, fg = colors.ghost_white },
   }
 
   lualine.insert = {
-    a = { bg = colors.green, fg = colors.black },
-    b = { bg = colors.deep_navy, fg = colors.green },
+    a = { bg = insert, fg = colors.black },
+    b = { bg = colors.deep_navy, fg = insert },
   }
 
   lualine.terminal = {
@@ -34,8 +38,8 @@ function M.get(flavor)
   }
 
   lualine.command = {
-    a = { bg = flavor == "nightfall" and colors.pale_yellow or colors.lavender, fg = colors.black },
-    b = { bg = colors.deep_navy, fg = flavor == "nightfall" and colors.pale_yellow or colors.lavender },
+    a = { bg = command, fg = colors.black },
+    b = { bg = colors.deep_navy, fg = command },
   }
 
   lualine.visual = {

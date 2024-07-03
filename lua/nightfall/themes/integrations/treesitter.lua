@@ -45,9 +45,9 @@ function M.get(colors)
     ["@function"] = { link = "Function" },
     ["@function.builtin"] = { link = "Function" },
     ["@function.macro"] = { fg = colors.turquoise },
-    ["@function.call"] = { fg = colors.turquoise },
+    ["@function.call"] = { fg = utils.vary_color({ deepernight = colors.light_cyan }, colors.turquoise) },
     ["@function.method"] = { link = "Function" },
-    ["@function.method.call"] = { fg = colors.turquoise },
+    ["@function.method.call"] = { fg = utils.vary_color({ deepernight = colors.light_cyan }, colors.turquoise) },
 
     -- Constructors
     ["@constructor"] = { fg = colors.light_cyan },

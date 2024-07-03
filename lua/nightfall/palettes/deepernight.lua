@@ -19,6 +19,6 @@ return {
   red = "#EB87A3",
   sand = "#E5C697",
   sky = "#7aa2f7",
-  turquoise = "#81A263",
+  turquoise = "#D6EFD8",
   violet = "#CBA6F7",
 }
