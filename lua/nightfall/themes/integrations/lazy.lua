@@ -13,7 +13,10 @@ function M.get(colors)
   local utils = require("nightfall.utils")
 
   return {
-    LazyH1 = { bg = utils.vary_color({ maron = colors.pale_yellow }, colors.violet), fg = colors.black },
+    LazyH1 = {
+      bg = utils.vary_color({ maron = colors.pale_yellow, deepernight = colors.sky }, colors.violet),
+      fg = colors.black,
+    },
     LazyButtonActive = { bg = colors.deep_navy },
     LazyButton = { bg = colors.dark_navy, fg = colors.ghost_white },
     LazyH2 = { fg = colors.ghost_white, style = { bold = true } },
