@@ -31,7 +31,7 @@ function M.get(colors)
     -- Syntax Highlighting
     MatchWord = { bg = colors.grey, fg = colors.ghost_white }, -- Background and foreground color for matching words
     MatchParen = { fg = colors.lavender, style = { bold = true } }, -- Color for matching parentheses
-    Directory = { fg = utils.vary_color({ maron = colors.green }, colors.pink) }, -- Color for directory names
+    Directory = { fg = utils.vary_color({ maron = colors.green, deepernight = colors.nord_blue }, colors.pink) }, -- Color for directory names
     ModeMsg = { fg = colors.foreground }, -- Color for mode messages
     SpecialKey = { fg = colors.dark_slate_blue }, -- Color for special keys
     Visual = { bg = colors.deep_navy, style = { bold = true } }, -- Color for visual selection

@@ -25,7 +25,7 @@
 local M = {}
 
 M.Options = {}
-M.supported_flavors = { "nightfall", "maron" }
+M.supported_flavors = { "nightfall", "maron", "deepernight" }
 M.path_sep = vim.fn.has("win32") == 1 and "\\" or "/"
 
 --- Nightfall.nvim provides a comprehensive configuration system to personalize
