@@ -39,7 +39,7 @@ function M.get(colors)
     LazyReasonCmd = { fg = colors.pale_yellow },
     LazyReasonSource = { fg = colors.light_cyan },
     LazyReasonImport = { fg = colors.pink },
-    LazyProgressDone = { fg = colors.violet },
+    LazyProgressDone = { fg = utils.vary_color({ maron = colors.turquoise }, colors.violet) },
   }
 end
 
