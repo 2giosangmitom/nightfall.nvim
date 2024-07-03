@@ -85,11 +85,10 @@ end
 ### 🛠️ Adding an Integration
 
 1. **Choose Integration**: Select the plugin to integrate with Nightfall.nvim.
-2. **Find Integration Point**: Identify where the integration should occur in the codebase.
-3. **Implement Integration**: Write the necessary code.
-4. **Update Supported Plugins**: Add the plugin to `M.supported_plugins` in `lua/nightfall/themes/init.lua` if it's not a special integration.
-5. **Update README**: Add the plugin to the supported plugins list in `README.md` with brief instructions.
-6. **Submit Changes**: Submit your changes as a pull request, following the contribution guidelines.
+2. **Implement Integration**: Write the necessary code.
+3. **Update Supported Plugins**: Add the plugin to `M.supported_plugins` in `lua/nightfall/themes/init.lua` if it's not a special integration.
+4. **Update README**: Add the plugin to the supported plugins list in `.github/README.md`.
+5. **Submit Changes**: Submit your changes as a pull request, following the contribution guidelines.
 
 ## 📄 License
 
