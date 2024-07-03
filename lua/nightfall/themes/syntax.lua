@@ -5,72 +5,71 @@ function M.get(colors)
   local Options = require("nightfall").Options
   local utils = require("nightfall.utils")
 
-  -- Define color groups with descriptions
   return {
     -- Text Styles
-    Bold = { style = { bold = true } }, -- Bold text style
-    Underlined = { style = { underline = true } }, -- Underlined text style
-    Italic = { style = { italic = true } }, -- Italic text style
+    Bold = { style = { bold = true } },
+    Underlined = { style = { underline = true } },
+    Italic = { style = { italic = true } },
 
     -- Syntax Highlighting
-    Comment = { fg = utils.lighten(colors.light_grey, 0.9), style = Options.styles.comments }, -- Comment text
-    Special = { fg = colors.light_cyan }, -- Special text
-    Constant = { fg = utils.vary_color({ nightfall = colors.violet }, colors.red) }, -- Constant text
+    Comment = { fg = utils.lighten(colors.light_grey, 0.9), style = Options.styles.comments },
+    Special = { fg = colors.light_cyan },
+    Constant = { fg = utils.vary_color({ nightfall = colors.violet }, colors.red) },
     String = {
       fg = utils.vary_color({ maron = colors.pale_yellow }, colors.pale_yellow),
       style = Options.styles.strings or {},
-    }, -- String text
-    Character = { fg = colors.violet }, -- Character text
-    Number = { fg = colors.peach, style = Options.styles.numbers or {} }, -- Number text
-    Float = { link = "Number" }, -- Linked to Number
-    Boolean = { fg = colors.peach, style = Options.styles.booleans or {} }, -- Boolean text
+    },
+    Character = { fg = colors.violet },
+    Number = { fg = colors.peach, style = Options.styles.numbers or {} },
+    Float = { link = "Number" },
+    Boolean = { fg = colors.peach, style = Options.styles.booleans or {} },
     Identifier = {
       fg = utils.vary_color({ maron = colors.ghost_white, deepernight = colors.pale_yellow }, colors.foreground),
       style = Options.styles.variables or {},
-    }, -- Identifier text
+    },
     Function = {
       fg = utils.vary_color({ maron = colors.green, deepernight = colors.sky }, colors.turquoise),
       style = Options.styles.functions or {},
-    }, -- Function text
-    Statement = { fg = colors.violet }, -- Statement text
+    },
+    Statement = { fg = colors.violet },
     Conditional = {
       fg = utils.vary_color({ deepernight = colors.violet }, colors.pink),
       style = Options.styles.conditionals or {},
-    }, -- Conditional statement text
-    Repeat = { fg = colors.light_cyan, style = Options.styles.loops or {} }, -- Repeat statement text
-    Label = { fg = utils.vary_color({ maron = colors.nord_blue }, colors.sky) }, -- Label text
-    Operator = { fg = colors.ghost_white, style = Options.styles.operators or {} }, -- Operator text
+    },
+    Repeat = { fg = colors.light_cyan, style = Options.styles.loops or {} },
+    Label = { fg = utils.vary_color({ maron = colors.nord_blue }, colors.sky) },
+    Operator = { fg = colors.ghost_white, style = Options.styles.operators or {} },
     Keyword = {
       fg = utils.vary_color({ maron = colors.peach, deepernight = colors.red }, colors.pink),
       style = Options.styles.keywords or {},
-    }, -- Keyword text
-    Exception = { fg = colors.pink, style = Options.styles.keywords or {} }, -- Exception text
+    },
+    Exception = { fg = colors.pink, style = Options.styles.keywords or {} },
 
     -- Preprocessor Directives
-    PreProc = { fg = colors.pink }, -- Preprocessor directive text
-    Include = { fg = colors.turquoise, style = Options.styles.keywords or {} }, -- Include directive text
-    Define = { link = "PreProc" }, -- Linked to PreProc
-    Macro = { fg = colors.turquoise }, -- Macro directive text
-    PreCondit = { link = "PreProc" }, -- Linked to PreProc
+    PreProc = { fg = colors.pink },
+    Include = { fg = colors.turquoise, style = Options.styles.keywords or {} },
+    Define = { link = "PreProc" },
+    Macro = { fg = colors.turquoise },
+    PreCondit = { link = "PreProc" },
 
     -- Type Definitions and Declarations
-    StorageClass = { fg = colors.pale_yellow }, -- Storage class text
-    Structure = { fg = colors.pink }, -- Structure text
+    StorageClass = { fg = colors.pale_yellow },
+    Structure = { fg = colors.pink },
     Type = {
       fg = utils.vary_color({ deepernight = colors.light_cyan }, colors.pale_yellow),
       style = Options.styles.types or {},
-    }, -- Type text
-    Typedef = { fg = colors.sky }, -- Typedef text
+    },
+    Typedef = { fg = colors.sky },
 
     -- Special Characters and Tags
-    SpecialChar = { fg = colors.lavender }, -- Special character text
-    Tag = { fg = colors.light_cyan, style = { bold = true } }, -- Tag text
-    Delimiter = { fg = colors.lavender }, -- Delimiter text
-    Debug = { link = "Special" }, -- Linked to Special (Debug text)
+    SpecialChar = { fg = colors.lavender },
+    Tag = { fg = colors.light_cyan, style = { bold = true } },
+    Delimiter = { fg = colors.lavender },
+    Debug = { link = "Special" },
 
     -- Error and Warning
-    Error = { fg = colors.red }, -- Error text
-    Todo = { bg = colors.pink, fg = colors.background, style = { bold = true } }, -- Todo text
+    Error = { fg = colors.red },
+    Todo = { bg = colors.pink, fg = colors.background, style = { bold = true } },
   }
 end
 
