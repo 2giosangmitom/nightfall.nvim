@@ -64,7 +64,7 @@ For detailed documentation, use `:h nightfall.nvim` in Neovim.
 Activate Nightfall.nvim with the following command:
 
 ```lua
-vim.cmd.colorscheme("nightfall") -- Variants: `deeper-night`, `maron`
+vim.cmd.colorscheme("nightfall") -- Variants: `deepernight`, `maron`
 ```
 
 Refer to `:h nightfall.nvim_usage` in Neovim for advanced usage.
