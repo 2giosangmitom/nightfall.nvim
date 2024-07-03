@@ -73,7 +73,7 @@ end
 
 --- Nightfall.nvim provides two methods for dynamically loading specific color scheme
 --- flavors, enabling you to switch between different styles based on your
---- preference. Supported variants: nightfall, deeper-night and maron.
+--- preference. Supported variants: nightfall, deepernight and maron.
 ---
 --- Note: It is crucial to configure Nightfall.nvim before loading the
 --- color scheme to ensure proper integration and customization. Refer to
