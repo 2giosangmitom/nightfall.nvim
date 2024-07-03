@@ -25,19 +25,25 @@ function M.get(colors)
     Float = { link = "Number" }, -- Linked to Number
     Boolean = { fg = colors.peach, style = Options.styles.booleans or {} }, -- Boolean text
     Identifier = {
-      fg = utils.vary_color({ maron = colors.ghost_white }, colors.foreground),
+      fg = utils.vary_color({ maron = colors.ghost_white, deepernight = colors.pale_yellow }, colors.foreground),
       style = Options.styles.variables or {},
     }, -- Identifier text
     Function = {
-      fg = utils.vary_color({ maron = colors.green }, colors.turquoise),
+      fg = utils.vary_color({ maron = colors.green, deepernight = colors.sky }, colors.turquoise),
       style = Options.styles.functions or {},
     }, -- Function text
     Statement = { fg = colors.violet }, -- Statement text
-    Conditional = { fg = colors.pink, style = Options.styles.conditionals or {} }, -- Conditional statement text
+    Conditional = {
+      fg = utils.vary_color({ deepernight = colors.violet }, colors.pink),
+      style = Options.styles.conditionals or {},
+    }, -- Conditional statement text
     Repeat = { fg = colors.light_cyan, style = Options.styles.loops or {} }, -- Repeat statement text
     Label = { fg = colors.sky }, -- Label text
     Operator = { fg = colors.ghost_white, style = Options.styles.operators or {} }, -- Operator text
-    Keyword = { fg = utils.vary_color({ maron = colors.peach }, colors.pink), style = Options.styles.keywords or {} }, -- Keyword text
+    Keyword = {
+      fg = utils.vary_color({ maron = colors.peach, deepernight = colors.red }, colors.pink),
+      style = Options.styles.keywords or {},
+    }, -- Keyword text
     Exception = { fg = colors.pink, style = Options.styles.keywords or {} }, -- Exception text
 
     -- Preprocessor Directives
@@ -50,7 +56,10 @@ function M.get(colors)
     -- Type Definitions and Declarations
     StorageClass = { fg = colors.pale_yellow }, -- Storage class text
     Structure = { fg = colors.pink }, -- Structure text
-    Type = { fg = colors.pale_yellow, style = Options.styles.types or {} }, -- Type text
+    Type = {
+      fg = utils.vary_color({ deepernight = colors.light_cyan }, colors.pale_yellow),
+      style = Options.styles.types or {},
+    }, -- Type text
     Typedef = { fg = colors.sky }, -- Typedef text
 
     -- Special Characters and Tags

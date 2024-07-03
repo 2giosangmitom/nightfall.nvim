@@ -1,4 +1,4 @@
-*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 July 01
+*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 July 03
 
 Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance
 your coding experience. It offers a clean and minimalist design with multiple
@@ -7,7 +7,7 @@ eye strain and integrates seamlessly with major plugins.
 
 Features ~
 - Automatic caching ensures faster load times
-- Comprehensive support for the `nvim-treesitter` syntax highlighting and parsing library
+- Comprehensive support for the `nvim-treesitter` syntax highlighting plugin
 - Seamlessly integrates with LSP semantic tokens (requires Neovim 0.9 or later)
 - Extensive support for many popular plugins, enhancing your Neovim experience
 - Extensive customization options to personalize your experience

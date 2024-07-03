@@ -7,7 +7,7 @@
 ---
 --- Features ~
 --- - Automatic caching ensures faster load times
---- - Comprehensive support for the `nvim-treesitter` syntax highlighting and parsing library
+--- - Comprehensive support for the `nvim-treesitter` syntax highlighting plugin
 --- - Seamlessly integrates with LSP semantic tokens (requires Neovim 0.9 or later)
 --- - Extensive support for many popular plugins, enhancing your Neovim experience
 --- - Extensive customization options to personalize your experience
@@ -25,7 +25,7 @@
 local M = {}
 
 M.Options = {}
-M.supported_flavors = { "nightfall", "maron" }
+M.supported_flavors = { "nightfall", "maron", "deepernight" }
 M.path_sep = vim.fn.has("win32") == 1 and "\\" or "/"
 
 --- Nightfall.nvim provides a comprehensive configuration system to personalize
