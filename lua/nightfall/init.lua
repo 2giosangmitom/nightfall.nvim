@@ -57,7 +57,7 @@ function M.setup(opts)
   local cached_hash_path = M.Options.compile_path .. M.path_sep .. "cached_hash"
   local cached_hash = vim.fn.filereadable(cached_hash_path) == 1 and vim.fn.readfile(cached_hash_path)[1]
 
-  local git_path = debug.getinfo(1).source:sub(2, -21) .. ".git"
+  local git_path = debug.getinfo(1).source:sub(2, -23) .. ".git"
   local current_hash = require("nightfall.hashing").hash(opts) .. vim.fn.getftime(git_path)
 
   if cached_hash ~= current_hash then
