@@ -23,3 +23,4 @@
 ---@field statusline_bg string
 ---@field turquoise string
 ---@field violet string
+---@field bg_float string

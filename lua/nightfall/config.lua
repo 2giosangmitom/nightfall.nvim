@@ -38,6 +38,7 @@ local defaults = {
     flash = { enabled = true },
     trouble = { enabled = true },
     dashboard = { enabled = true },
+    cmp = { enabled = true },
   },
   color_overrides = {},
   highlight_overrides = {},
