@@ -26,16 +26,18 @@ local M = {}
 ---@param colors NightfallPalette
 ---@private
 function M.get(colors)
+  local utils = require("nightfall.utils")
   return {
     -- Abbreviation and Menu
-    CmpItemAbbr = { fg = colors.ghost_white },
+    CmpItemAbbr = { fg = colors.foreground },
     CmpItemMenu = { fg = colors.light_grey, bg = colors.none },
     CmpItemAbbrMatch = { fg = colors.lavender, bold = true },
     CmpItemAbbrDeprecated = { fg = colors.light_grey, bg = colors.none, strikethrough = true },
     CmpItemAbbrMatchFuzzy = { link = "CmpItemAbbrMatch" },
-    CmpPmenu = { bg = colors.bg_float },
-    CmpSel = { bg = colors.deep_navy, bold = true },
-    CmpDoc = { bg = colors.bg_float },
+    CmpPmenu = { bg = colors.background },
+    CmpSel = { bg = colors.dark_navy, bold = true },
+    CmpDoc = { bg = colors.background },
+    CmpBorder = { fg = colors.dark_slate_blue, bg = colors.background },
 
     -- Item Kind Colors
     CmpItemKindConstant = { fg = colors.peach },
@@ -43,7 +45,7 @@ function M.get(colors)
     CmpItemKindIdentifier = { fg = colors.ghost_white },
     CmpItemKindField = { fg = colors.violet },
     CmpItemKindVariable = { fg = colors.lavender },
-    CmpItemKindSnippet = { fg = colors.light_grey },
+    CmpItemKindSnippet = { fg = utils.lighten(colors.dark_slate_blue, 0.65) },
     CmpItemKindText = { fg = colors.sand },
     CmpItemKindStructure = { fg = colors.sky },
     CmpItemKindType = { fg = colors.turquoise },
