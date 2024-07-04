@@ -1,4 +1,4 @@
-*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 July 03
+*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 July 04
 
 Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance
 your coding experience. It offers a clean and minimalist design with multiple
@@ -132,6 +132,7 @@ refer to the documentation of the |nightfall.nvim_setup| function.
       flash = { enabled = true },
       trouble = { enabled = true },
       dashboard = { enabled = true },
+      cmp = { enabled = true },
     },
     color_overrides = {},
     highlight_overrides = {},
@@ -285,6 +286,30 @@ You must define sign icons to make it work. Here is a snippet for you:
   for _, sign in ipairs(signs) do
     vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.texthl })
   end
+<
+------------------------------------------------------------------------------
+                                                            *nightfall.nvim_cmp*
+Enable `nvim-cmp` support by adding the following to your Nightfall
+integrations configuration:
+>lua
+  cmp = { enabled = true }
+<
+To enhance the appearance of `nvim-cmp`, include the following additional
+configuration in your `nvim-cmp` setup:
+>lua
+  require("cmp").setup({
+    window = {
+      completion = {
+        border = "rounded",
+        winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None",
+      },
+      documentation = {
+        border = "rounded",
+        winhighlight = "Normal:CmpDoc",
+      },
+    },
+    -- Add the rest of your nvim-cmp config here
+  })
 <
 ------------------------------------------------------------------------------
                                                         *nightfall.nvim_lualine*
