@@ -15,13 +15,13 @@ function M.get(colors)
     NormalSB = { fg = colors.foreground, bg = utils.darken(colors.background, 0.8) },
 
     -- UI Elements
-    Pmenu = { bg = colors.dark_blue },
+    Pmenu = { bg = colors.bg_float },
     PmenuSbar = { bg = colors.dark_blue },
     PmenuSel = { bg = colors.lavender, fg = colors.black },
     PmenuThumb = { bg = colors.grey },
-    FloatBorder = { fg = colors.dark_slate_blue, bg = colors.background },
-    NormalFloat = { bg = utils.darken(colors.background, 0.8) },
-    FloatTitle = { fg = colors.foreground, bg = colors.background },
+    FloatBorder = { fg = colors.dark_slate_blue, bg = colors.bg_float },
+    NormalFloat = { bg = colors.bg_float },
+    FloatTitle = { fg = colors.foreground, bg = colors.bg_float },
     TabLine = { bg = colors.statusline_bg, fg = colors.foreground },
     TabLineFill = { bg = colors.black },
     TabLineSel = { fg = colors.black, bg = colors.dark_blue },
