@@ -171,6 +171,7 @@ For more detailed information, refer to `:h nightfall.nvim_integrations`.
 - [headlines.nvim](https://github.com/lukas-reineke/headlines.nvim)
 - [dashboard-nvim](https://github.com/nvimdev/dashboard-nvim)
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
+- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 
 ## 🤝 Contributing
 
