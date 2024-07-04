@@ -143,7 +143,7 @@ end, {})
 ---@tag nightfall.nvim_debug
 if vim.g.nightfall_debug then
   vim.api.nvim_create_autocmd("BufWritePost", {
-    pattern = "*/nightfall/*",
+    pattern = "*/lua/nightfall/**.lua",
     callback = function()
       vim.schedule(function()
         vim.cmd("NightfallCompile")

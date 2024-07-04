@@ -14,6 +14,7 @@ function M.get(flavor)
 
   colors.none = "NONE"
   colors.statusline_bg = utils.darken(colors.background, 0.5)
+  colors.bg_float = utils.darken(colors.background, 0.9)
 
   return colors
 end
