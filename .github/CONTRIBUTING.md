@@ -4,7 +4,7 @@
 
 ## 📜 Code of Conduct
 
-This project follows the [Nightfall.nvim Code of Conduct](CODE_OF_CONDUCT.md). Please adhere to these standards. Report any violations to the maintainer.
+This project follows the [Nightfall.nvim Code of Conduct](CODE_OF_CONDUCT.md). Please adhere to these standards and report any violations to the maintainer.
 
 ## How Can I Contribute?
 
@@ -63,13 +63,13 @@ Closes #123, PR #456
 ### 🌿 Branch Naming
 
 Use descriptive branch names:
-- Prefix with `(feature|bugfix|hotfix)`, followed by what your PR does.
+- Prefix with `(feature|bugfix|hotfix)`, followed by a brief description of the changes.
 
 Example: `feature/implement-theme-compiler`
 
 ### 📄 Documenting with EmmyLua Comments
 
-Use EmmyLua comments for documentation. Annotate your code and run `make docs` to generate the documentation.
+Use EmmyLua comments for documentation. Annotate your code and run `make docs` to generate the documentation using [mini.doc](https://github.com/echasnovski/mini.doc).
 
 Example:
 ```lua
