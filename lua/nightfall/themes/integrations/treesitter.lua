@@ -1,5 +1,5 @@
---- Enable `nvim-treesitter` with context support by adding this
---- to your Nightfall integrations config:
+--- Enable `nvim-treesitter` with `nvim-treesitter-context` support
+--- by adding this to your Nightfall integrations config:
 --- >lua
 ---   treesitter = { enabled = true, context = true }
 --- <

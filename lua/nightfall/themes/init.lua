@@ -109,6 +109,7 @@ M.supported_plugins = {
   "dashboard",
   "nvim_dap",
   "cmp",
+  "neo_tree",
 }
 
 return M
