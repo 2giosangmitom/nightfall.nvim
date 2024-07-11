@@ -1,5 +1,5 @@
---- Enable `neo-tree.nvim` support by adding the following to your Nightfall integrations
---- config:
+--- Enable `neo-tree.nvim` support by adding the following to your NightfallCompile
+--- integrations config:
 --- >lua
 ---   neo_tree = { enabled = true }
 --- <
