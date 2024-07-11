@@ -1,4 +1,4 @@
-*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 July 04
+*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 July 11
 
 Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance
 your coding experience. It offers a clean and minimalist design with multiple
@@ -133,6 +133,7 @@ refer to the documentation of the |nightfall.nvim_setup| function.
       trouble = { enabled = true },
       dashboard = { enabled = true },
       cmp = { enabled = true },
+      neo_tree = { enabled = true },
     },
     color_overrides = {},
     highlight_overrides = {},
@@ -225,8 +226,8 @@ integration config:
 <
 ------------------------------------------------------------------------------
                                                      *nightfall.nvim_treesitter*
-Enable `nvim-treesitter` with context support by adding this
-to your Nightfall integrations config:
+Enable `nvim-treesitter` with `nvim-treesitter-context` support
+by adding this to your Nightfall integrations config:
 >lua
   treesitter = { enabled = true, context = true }
 <
@@ -310,6 +311,13 @@ configuration in your `nvim-cmp` setup:
     },
     -- Add the rest of your nvim-cmp config here
   })
+<
+------------------------------------------------------------------------------
+                                                       *nightfall.nvim_neo_tree*
+Enable `neo-tree.nvim` support by adding the following to your Nightfall integrations
+config:
+>lua
+  neo_tree = { enabled = true }
 <
 ------------------------------------------------------------------------------
                                                         *nightfall.nvim_lualine*
