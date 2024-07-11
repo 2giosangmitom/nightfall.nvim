@@ -1,3 +1,9 @@
+--- Enable `neo-tree.nvim` support by adding the following to your Nightfall integrations
+--- config:
+--- >lua
+---   neo_tree = { enabled = true }
+--- <
+---@tag nightfall.nvim_neo_tree
 local M = {}
 
 ---@param colors NightfallPalette
