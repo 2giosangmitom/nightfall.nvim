@@ -24,3 +24,5 @@
 ---@field turquoise string
 ---@field violet string
 ---@field bg_float string
+---@field added string
+---@field changed string

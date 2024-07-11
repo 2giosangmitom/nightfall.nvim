@@ -70,11 +70,11 @@ function M.get(colors)
     healthSuccess = { bg = colors.green, fg = colors.black },
 
     -- Diff Colors
-    DiffAdd = { bg = utils.darken(colors.green, 0.12, colors.background) },
-    DiffChange = { bg = utils.darken(colors.pale_yellow, 0.02, colors.background) },
+    DiffAdd = { bg = colors.added },
+    DiffChange = { bg = colors.changed },
     DiffDelete = { bg = utils.darken(colors.red, 0.12, colors.background) },
     DiffText = { bg = utils.darken(colors.ghost_white, 0.2, colors.background) },
-    diffAdded = { fg = colors.green },
+    diffAdded = { fg = colors.added },
     diffRemoved = { fg = colors.red },
     diffChanged = { fg = colors.pale_yellow },
     diffOldFile = { fg = colors.peach },
