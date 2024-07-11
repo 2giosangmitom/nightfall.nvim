@@ -4,7 +4,7 @@ local M = {}
 ---@param flavor string: The flavor of the color palette to retrieve.
 ---@return NightfallPalette: The color palette table.
 function M.get(flavor)
-  local colors = require("nightfall.palettes." .. flavor)
+  local colors = require("nightfall.palettes." .. flavor) ---@type NightfallPalette
   local utils = require("nightfall.utils")
   local color_overrides = require("nightfall").Options.color_overrides
 
@@ -15,6 +15,9 @@ function M.get(flavor)
   colors.none = "NONE"
   colors.statusline_bg = utils.darken(colors.background, 0.5)
   colors.bg_float = utils.darken(colors.background, 0.9)
+  colors.added = utils.vary_color({ nightfall = utils.lighten(colors.green, 0.95) }, colors.green)
+  colors.changed =
+    utils.vary_color({ nightfall = utils.darken(colors.pale_yellow, 0.8, colors.sand) }, colors.pale_yellow)
 
   return colors
 end
