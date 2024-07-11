@@ -39,6 +39,7 @@ local defaults = {
     trouble = { enabled = true },
     dashboard = { enabled = true },
     cmp = { enabled = true },
+    neo_tree = { enabled = true },
   },
   color_overrides = {},
   highlight_overrides = {},
