@@ -26,3 +26,4 @@
 ---@field bg_float string
 ---@field added string
 ---@field changed string
+---@field deleted string

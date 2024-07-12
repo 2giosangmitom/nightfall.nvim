@@ -72,16 +72,15 @@ function M.get(colors)
     -- Diff Colors
     DiffAdd = { bg = colors.added },
     DiffChange = { bg = colors.changed },
-    DiffDelete = { bg = utils.darken(colors.red, 0.12, colors.background) },
+    DiffDelete = { bg = colors.deleted },
     DiffText = { bg = utils.darken(colors.ghost_white, 0.2, colors.background) },
-    diffAdded = { fg = colors.added },
+    diffAdded = { fg = colors.green },
     diffRemoved = { fg = colors.red },
-    diffChanged = { fg = colors.pale_yellow },
-    diffOldFile = { fg = colors.peach },
-    diffNewFile = { fg = colors.pink },
+    diffChanged = { fg = colors.nord_blue },
+    diffOldFile = { fg = colors.sand },
+    diffNewFile = { fg = colors.peach },
     diffFile = { fg = colors.nord_blue },
-    diffLine = { fg = colors.dark_navy },
-    diffIndexLine = { fg = colors.violet },
+    diffIndexLine = { fg = colors.turquoise },
 
     -- Error and Message Colors
     ErrorMsg = { fg = colors.violet, style = { bold = true, italic = true } },

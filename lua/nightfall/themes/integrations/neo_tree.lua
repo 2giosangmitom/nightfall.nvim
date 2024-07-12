@@ -23,7 +23,6 @@ function M.get(colors)
     NeoTreeGitAdded = { fg = colors.added },
     NeoTreeGitConflict = { fg = colors.red },
     NeoTreeGitDeleted = { fg = colors.red },
-    NeoTreeGitIgnored = { fg = colors.deep_navy },
     NeoTreeGitModified = { fg = colors.changed },
     NeoTreeGitUnstaged = { fg = colors.red },
     NeoTreeGitUntracked = { fg = colors.violet },
