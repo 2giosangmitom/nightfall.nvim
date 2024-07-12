@@ -1,4 +1,4 @@
-*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 July 11
+*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 July 12
 
 Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance
 your coding experience. It offers a clean and minimalist design with multiple
@@ -74,10 +74,8 @@ Usage ~
 <
 ------------------------------------------------------------------------------
                                                 *nightfall.nvim_compile_command*
-This command compiles all themes provided by Nightfall.nvim into binary files,
-potentially improving performance by reducing runtime overhead. It iterates
-over each supported flavor, recompiles the theme, and notifies the user upon
-successful compilation.
+This command compiles all flavors provided by Nightfall.nvim into binary files,
+potentially improving performance by reducing runtime overhead.
 
 Usage ~
 `:NightfallCompile`

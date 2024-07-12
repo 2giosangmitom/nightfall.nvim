@@ -46,7 +46,7 @@ vim.g.colors_name = "%s"
     end
   end
 
-  -- Include integration groups
+  -- Include integration highlights
   for integration, integration_opts in pairs(Options.integrations) do
     if not vim.tbl_contains(require("nightfall.groups").supported_plugins, integration) then
       vim.notify_once(
