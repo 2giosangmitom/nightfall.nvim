@@ -42,7 +42,7 @@ local M = {}
 ---@param flavor string: The flavor of the theme.
 ---@return table, table, table: The default theme, terminal theme, and integrations theme.
 ---@private
-function M.get_theme(flavor)
+function M.setup(flavor)
   local Options = require("nightfall").Options
   local colors = require("nightfall.palettes").get(flavor)
 
@@ -52,19 +52,19 @@ function M.get_theme(flavor)
   defaults_theme = vim.tbl_deep_extend(
     "error",
     defaults_theme,
-    require("nightfall.themes.syntax").get(colors),
-    require("nightfall.themes.editor").get(colors)
+    require("nightfall.groups.syntax").get(colors),
+    require("nightfall.groups.editor").get(colors)
   )
 
   local integrations_theme = {}
   for _, integration in ipairs(M.supported_plugins) do
-    local path = string.format("nightfall.themes.integrations.%s", integration)
+    local path = string.format("nightfall.groups.integrations.%s", integration)
     local integration_ok, v = pcall(require, path)
     assert(integration_ok, string.format("Could not load %s integration", integration))
     integrations_theme[integration] = v.get(colors)
   end
 
-  local terminal_theme = require("nightfall.themes.terminal").get(colors)
+  local terminal_theme = require("nightfall.groups.terminal").get(colors)
 
   -- Apply highlight overrides
   if type(hl_overrides[flavor]) == "function" then hl_overrides[flavor] = hl_overrides[flavor](colors) end

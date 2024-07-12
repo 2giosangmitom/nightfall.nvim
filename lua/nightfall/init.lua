@@ -108,10 +108,8 @@ function M.load(flavor)
   dofile(compiled_path)
 end
 
---- This command compiles all themes provided by Nightfall.nvim into binary files,
---- potentially improving performance by reducing runtime overhead. It iterates
---- over each supported flavor, recompiles the theme, and notifies the user upon
---- successful compilation.
+--- This command compiles all flavors provided by Nightfall.nvim into binary files,
+--- potentially improving performance by reducing runtime overhead.
 ---
 ---@usage `:NightfallCompile`
 ---@tag nightfall.nvim_compile_command

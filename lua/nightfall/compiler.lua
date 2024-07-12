@@ -24,7 +24,7 @@ function M.compile(flavor)
 
   if not (vim.uv or vim.loop).fs_stat(cache_dir) then vim.fn.mkdir(cache_dir, "p") end
 
-  local defaults_theme, terminal_theme, integration_themes = require("nightfall.themes").get_theme(flavor)
+  local defaults_theme, terminal_theme, integration_themes = require("nightfall.groups").setup(flavor)
 
   local theme_lua_code = {
     string.format(
@@ -46,9 +46,9 @@ vim.g.colors_name = "%s"
     end
   end
 
-  -- Include integration themes
+  -- Include integration highlights
   for integration, integration_opts in pairs(Options.integrations) do
-    if not vim.tbl_contains(require("nightfall.themes").supported_plugins, integration) then
+    if not vim.tbl_contains(require("nightfall.groups").supported_plugins, integration) then
       vim.notify_once(
         string.format("'%s' is not a supported integration", integration),
         vim.log.levels.ERROR,
