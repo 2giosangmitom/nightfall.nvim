@@ -15,9 +15,9 @@ function M.get(flavor)
   colors.none = "NONE"
   colors.statusline_bg = utils.darken(colors.background, 0.5)
   colors.bg_float = utils.darken(colors.background, 0.9)
-  colors.added = utils.vary_color({ nightfall = utils.lighten(colors.green, 0.95) }, colors.green)
-  colors.changed =
-    utils.vary_color({ nightfall = utils.darken(colors.pale_yellow, 0.8, colors.sand) }, colors.pale_yellow)
+  colors.added = utils.darken(colors.green, 0.2)
+  colors.changed = utils.darken(colors.sand, 0.2)
+  colors.deleted = utils.darken(colors.red, 0.18)
 
   return colors
 end
