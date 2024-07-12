@@ -1,1 +1,1 @@
-return require("nightfall.themes.integrations.lualine").get("maron")
+return require("nightfall.groups.integrations.lualine").get("maron")

@@ -50,6 +50,7 @@ Enable live reload by setting `vim.g.nightfall_debug = true`. This will refresh 
    - ci: CI configuration changes
 
 Example:
+
 ```
 feat: Implement parse_style and compile functions
 
@@ -63,6 +64,7 @@ Closes #123, PR #456
 ### 🌿 Branch Naming
 
 Use descriptive branch names:
+
 - Prefix with `(feature|bugfix|hotfix)`, followed by a brief description of the changes.
 
 Example: `feature/implement-theme-compiler`
@@ -72,6 +74,7 @@ Example: `feature/implement-theme-compiler`
 Use EmmyLua comments for documentation. Annotate your code and run `make docs` to generate the documentation using [mini.doc](https://github.com/echasnovski/mini.doc).
 
 Example:
+
 ```lua
 --- Adds two numbers.
 ---@param a number The first number.
@@ -86,7 +89,7 @@ end
 
 1. **Choose Integration**: Select the plugin to integrate with Nightfall.nvim.
 2. **Implement Integration**: Write the necessary code.
-3. **Update Supported Plugins**: Add the plugin to `M.supported_plugins` in `lua/nightfall/themes/init.lua` if it's not a special integration.
+3. **Update Supported Plugins**: Add the plugin to `M.supported_plugins` in `lua/nightfall/groups/init.lua` if it's not a special integration.
 4. **Update README**: Add the plugin to the supported plugins list in `.github/README.md`.
 5. **Submit Changes**: Submit your changes as a pull request, following the contribution guidelines.
 
