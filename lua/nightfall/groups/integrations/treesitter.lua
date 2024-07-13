@@ -10,7 +10,8 @@ local M = {}
 ---@param colors NightfallPalette
 ---@private
 function M.get(colors)
-  local Options = require("nightfall").Options
+  local nightfall = require("nightfall")
+  local Options = nightfall.Options
   local utils = require("nightfall.utils")
 
   -- Initialize the syntax highlighting settings
@@ -143,17 +144,15 @@ function M.get(colors)
     ["@error"] = { link = "Error" },
   }
 
-  -- Add treesitter context if enabled
-  if Options.integrations.treesitter.context then
+  local treesitter = Options.integrations.treesitter or {}
+  local context = treesitter.context or false
+
+  -- Add treesitter-context
+  if context then
     local treesitter_context_theme = {
       TreesitterContext = { bg = utils.darken(colors.dark_blue, 0.9, colors.background) },
-      TreesitterContextBottom = {
-        sp = colors.dark_navy,
-      },
-      TreesitterContextLineNumber = {
-        fg = colors.light_grey,
-        bg = colors.dark_blue,
-      },
+      TreesitterContextBottom = { sp = colors.dark_navy },
+      TreesitterContextLineNumber = { fg = colors.light_grey, bg = colors.dark_blue },
     }
     result = vim.tbl_deep_extend("force", result, treesitter_context_theme)
   end

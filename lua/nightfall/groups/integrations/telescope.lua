@@ -11,7 +11,9 @@ local M = {}
 ---@param colors NightfallPalette
 ---@private
 function M.get(colors)
-  local telescope_style = require("nightfall").Options.integrations.telescope.style
+  local Options = require("nightfall").Options
+  local telescope = Options.integrations.telescope or {}
+  local telescope_style = telescope.style or "borderless"
   local utils = require("nightfall.utils")
   local bg = utils.darken(colors.background, 0.8)
 
