@@ -40,6 +40,7 @@ local defaults = {
     dashboard = { enabled = true },
     cmp = { enabled = true },
     neo_tree = { enabled = true },
+    mini = { enabled = true, icons = true },
   },
   color_overrides = {},
   highlight_overrides = {},
