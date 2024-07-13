@@ -110,6 +110,7 @@ M.supported_plugins = {
   "nvim_dap",
   "cmp",
   "neo_tree",
+  "mini",
 }
 
 return M
