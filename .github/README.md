@@ -9,6 +9,10 @@ Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance 
 ![Repo size](https://img.shields.io/github/repo-size/2giosangmitom/nightfall.nvim?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41)
 ![LICENSE](https://img.shields.io/github/license/2giosangmitom/nightfall.nvim?style=for-the-badge&logo=alpinedotjs&color=ee999f&logoColor=D9E0EE&labelColor=302D41)
 
+|  Nightfall                                     | Deeper Night                                       |  Maron                               |
+|------------------------------------------------|----------------------------------------------------|--------------------------------------|
+| ![nightfall demo](./screenshots/nightfall.png) | ![deepernight demo](./screenshots/deepernight.png) | ![maron demo](./screenshots/maron.png) |
+
 > [!NOTE]
 > Nightfall.nvim is currently in active development, with ongoing enhancements and refinements being made to continuously improve the experience.
 
@@ -27,20 +31,9 @@ Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance 
 
 Nightfall.nvim offers multiple themes to suit your coding style:
 
-<details>
-  <summary><b>Nightfall:</b> A dark and vibrant variation inspired by the Dracula theme.</summary>
-  <img src="./screenshots/nightfall.png" alt="demo nightfall flavor" />
-</details>
-
-<details>
-  <summary><b>Deeper Night:</b> A more intense dark theme for those who prefer a starker contrast.</summary>
-  <img src="./screenshots/deepernight.png" alt="demo deeper night flavor" />
-</details>
-
-<details>
-  <summary><b>Maron:</b> A warm, brown-tinged dark theme, offering a softer feel for extended coding sessions.</summary>
-  <img src="./screenshots/maron.png" alt="demo maron flavor" />
-</details>
+- **Nightfall:** A dark and vibrant variation inspired by the Dracula theme.
+- **Deeper Night:** A more intense dark theme for those who prefer a starker contrast.
+- **Maron:** A warm, brown-tinged dark theme, offering a softer feel for extended coding sessions.
 
 ## 🚀 Installation
 
