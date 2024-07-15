@@ -9,8 +9,8 @@ Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance 
 ![Repo size](https://img.shields.io/github/repo-size/2giosangmitom/nightfall.nvim?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41)
 ![LICENSE](https://img.shields.io/github/license/2giosangmitom/nightfall.nvim?style=for-the-badge&logo=alpinedotjs&color=ee999f&logoColor=D9E0EE&labelColor=302D41)
 
-|  Nightfall                                     | Deeper Night                                       |  Maron                               |
-|------------------------------------------------|----------------------------------------------------|--------------------------------------|
+| Nightfall                                      | Deeper Night                                       | Maron                                  |
+| ---------------------------------------------- | -------------------------------------------------- | -------------------------------------- |
 | ![nightfall demo](./screenshots/nightfall.png) | ![deepernight demo](./screenshots/deepernight.png) | ![maron demo](./screenshots/maron.png) |
 
 > [!NOTE]
