@@ -105,7 +105,12 @@ end
 function M.load(flavor)
   local compiled_path = M.Options.compile_path .. M.path_sep .. flavor
   M.flavor = flavor
-  dofile(compiled_path)
+  local f = loadfile(compiled_path)
+  if not f then
+    vim.cmd("NightfallCompile")
+    f = assert(loadfile(compiled_path), "could not load cache")
+  end
+  f()
 end
 
 --- This command compiles all flavors provided by Nightfall.nvim into binary files,
