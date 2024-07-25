@@ -25,7 +25,7 @@ function M.get(colors)
       style = { bold = true },
     },
     NeoTreeSymbolicLinkTarget = { fg = colors.pink },
-    NeoTreeGitAdded = { fg = colors.added },
+    NeoTreeGitAdded = { fg = colors.green },
     NeoTreeGitConflict = { fg = colors.red },
     NeoTreeGitDeleted = { fg = colors.red },
     NeoTreeGitModified = { fg = colors.pale_yellow },
