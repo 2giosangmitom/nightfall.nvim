@@ -1,6 +1,6 @@
-local minidoc = require("mini.doc")
 vim.cmd([[set rtp+=.]])
-minidoc.setup()
+local minidoc = require("mini.doc")
+if _G.MiniDoc == nil then minidoc.setup() end
 
 -- Deep copy the default hooks
 local hooks = vim.deepcopy(minidoc.default_hooks)
