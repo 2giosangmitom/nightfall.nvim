@@ -16,9 +16,10 @@ end
 function M.hash(v)
   if type(v) == "table" then
     local hash = 0
-    for p, u in next, v do
-      local combined_str = tostring(p) .. tostring(M.hash(u))
-      hash = bit.bxor(hash, hash_str(combined_str))
+    for p, u in pairs(v) do
+      local p_hash = hash_str(tostring(p))
+      local u_hash = M.hash(u)
+      hash = bit.bxor(hash, bit.bxor(p_hash, hash_str(tostring(u_hash))))
     end
     return hash
   elseif type(v) == "function" then
@@ -30,7 +31,7 @@ function M.hash(v)
       end
     end
   else
-    return tostring(v)
+    return hash_str(tostring(v))
   end
 end
 
