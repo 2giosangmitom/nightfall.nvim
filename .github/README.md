@@ -13,9 +13,6 @@ Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance 
 | ---------------------------------------------- | -------------------------------------------------- | -------------------------------------- |
 | ![nightfall demo](./screenshots/nightfall.png) | ![deepernight demo](./screenshots/deepernight.png) | ![maron demo](./screenshots/maron.png) |
 
-> [!NOTE]
-> Nightfall.nvim is currently in active development, with ongoing enhancements and refinements being made to continuously improve the experience.
-
 ## ✨ Features
 
 - ⚡️ Automatic caching ensures faster load times.
