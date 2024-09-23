@@ -111,6 +111,7 @@ M.supported_plugins = {
   "cmp",
   "neo_tree",
   "mini",
+  "noice",
 }
 
 return M
