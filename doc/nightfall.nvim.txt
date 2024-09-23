@@ -1,4 +1,4 @@
-*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 July 13
+*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 September 23
 
 Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance
 your coding experience. It offers a clean and minimalist design with multiple
@@ -327,6 +327,13 @@ integrations config:
     enabled = true,
     icons = true, -- Enable `mini.icons`
   },
+<
+------------------------------------------------------------------------------
+                                                          *nightfall.nvim_noice*
+To enable `noice.nvim` support, add the following to your Nightfall
+integration config.
+>lua
+  noice = { enabled = true }
 <
 ------------------------------------------------------------------------------
                                                         *nightfall.nvim_lualine*
