@@ -10,17 +10,19 @@ local M = {}
 ---@param colors NightfallPalette
 ---@private
 function M.get(colors)
+  local utils = require("nightfall.utils")
+  local accent = utils.vary_color({ maron = colors.pale_yellow, deepernight = colors.sky }, colors.violet)
   return {
-    DashboardShortCut = { fg = colors.violet },
-    DashboardHeader = { fg = colors.violet },
+    DashboardShortCut = { fg = accent },
+    DashboardHeader = { fg = accent },
     DashboardCenter = { fg = colors.green },
     DashboardFooter = { fg = colors.pale_yellow, style = { italic = true } },
-    DashboardMruTitle = { fg = colors.sky },
-    DashboardProjectTitle = { fg = colors.sky },
-    DashboardFiles = { fg = colors.lavender },
-    DashboardKey = { fg = colors.peach },
+    DashboardMruTitle = { fg = colors.foreground },
+    DashboardProjectTitle = { fg = colors.foreground },
+    DashboardFiles = { fg = colors.light_cyan },
+    DashboardKey = { fg = accent },
     DashboardDesc = { fg = colors.light_cyan },
-    DashboardIcon = { fg = colors.violet, bold = true },
+    DashboardIcon = { fg = accent, bold = true },
   }
 end
 
