@@ -132,7 +132,7 @@ vim.api.nvim_create_user_command("NightfallCompile", function()
   end
   M.flavor = user
 
-  vim.schedule(function() vim.notify("Compiled successfully", vim.log.levels.INFO, { title = "Nightfall" }) end)
+  vim.schedule(function() vim.notify("Compiled successfully", vim.log.levels.DEBUG, { title = "Nightfall" }) end)
 end, {})
 
 --- This built-in Nightfall feature provides a real-time debugging experience for
