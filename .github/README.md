@@ -163,6 +163,7 @@ For more detailed information, refer to `:h nightfall.nvim_integrations`.
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 - [noice.nvim](https://github.com/folke/noice.nvim)
+- [snacks.nvim](https://github.com/folke/snacks.nvim)
 
 ## 🤝 Contributing
 

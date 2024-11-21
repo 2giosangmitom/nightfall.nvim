@@ -112,6 +112,7 @@ M.supported_plugins = {
   "neo_tree",
   "mini",
   "noice",
+  "snacks",
 }
 
 return M
