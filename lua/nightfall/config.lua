@@ -41,6 +41,7 @@ local defaults = {
     cmp = { enabled = true },
     neo_tree = { enabled = true },
     mini = { enabled = true, icons = true },
+    which_key = { enabled = true },
   },
   color_overrides = {},
   highlight_overrides = {},

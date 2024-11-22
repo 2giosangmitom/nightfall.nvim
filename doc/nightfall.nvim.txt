@@ -1,4 +1,4 @@
-*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 November 21
+*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 November 22
 
 Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance
 your coding experience. It offers a clean and minimalist design with multiple
@@ -133,6 +133,7 @@ refer to the documentation of the |nightfall.nvim_setup| function.
       cmp = { enabled = true },
       neo_tree = { enabled = true },
       mini = { enabled = true, icons = true },
+      which_key = { enabled = true },
     },
     color_overrides = {},
     highlight_overrides = {},
@@ -341,6 +342,13 @@ Enable `snacks.nvim` support by adding the following to your Nightfall
 integrations config:
 >lua
   snacks = { enabled = true }
+<
+------------------------------------------------------------------------------
+                                                      *nightfall.nvim_which_key*
+Enable `which_key.nvim` support by adding the following to your Nightfall
+integrations config:
+>lua
+  which_key = { enabled = true }
 <
 ------------------------------------------------------------------------------
                                                         *nightfall.nvim_lualine*
