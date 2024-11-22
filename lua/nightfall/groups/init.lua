@@ -113,6 +113,7 @@ M.supported_plugins = {
   "mini",
   "noice",
   "snacks",
+  "which_key",
 }
 
 return M

@@ -164,6 +164,7 @@ For more detailed information, refer to `:h nightfall.nvim_integrations`.
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 - [noice.nvim](https://github.com/folke/noice.nvim)
 - [snacks.nvim](https://github.com/folke/snacks.nvim)
+- [which-key.nvim](https://github.com/folke/which-key.nvim)
 
 ## 🤝 Contributing
 
