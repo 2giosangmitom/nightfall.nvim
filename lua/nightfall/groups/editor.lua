@@ -32,6 +32,7 @@ function M.get(colors)
     MatchWord = { bg = colors.grey, fg = colors.ghost_white },
     MatchParen = { fg = colors.lavender, style = { bold = true } },
     Directory = { fg = utils.vary_color({ maron = colors.green, deepernight = colors.nord_blue }, colors.pink) },
+    Title = { fg = colors.pink, style = { bold = true } },
     ModeMsg = { fg = colors.foreground },
     SpecialKey = { fg = colors.dark_slate_blue },
     Visual = { bg = colors.deep_navy, style = { bold = true } },
