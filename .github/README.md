@@ -165,6 +165,7 @@ For more detailed information, refer to `:h nightfall.nvim_integrations`.
 - [noice.nvim](https://github.com/folke/noice.nvim)
 - [snacks.nvim](https://github.com/folke/snacks.nvim)
 - [which-key.nvim](https://github.com/folke/which-key.nvim)
+- [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
 
 ## 🤝 Contributing
 

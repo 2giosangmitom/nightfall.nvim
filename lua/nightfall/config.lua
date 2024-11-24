@@ -42,6 +42,7 @@ local defaults = {
     neo_tree = { enabled = true },
     mini = { enabled = true, icons = true },
     which_key = { enabled = true },
+    indent_blankline = { enabled = true },
   },
   color_overrides = {},
   highlight_overrides = {},
