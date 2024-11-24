@@ -114,6 +114,7 @@ M.supported_plugins = {
   "noice",
   "snacks",
   "which_key",
+  "indent_blankline",
 }
 
 return M

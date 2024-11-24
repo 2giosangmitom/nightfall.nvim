@@ -1,4 +1,4 @@
-*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 November 22
+*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 November 25
 
 Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance
 your coding experience. It offers a clean and minimalist design with multiple
@@ -134,6 +134,7 @@ refer to the documentation of the |nightfall.nvim_setup| function.
       neo_tree = { enabled = true },
       mini = { enabled = true, icons = true },
       which_key = { enabled = true },
+      indent_blankline = { enabled = true },
     },
     color_overrides = {},
     highlight_overrides = {},
@@ -349,6 +350,34 @@ Enable `which_key.nvim` support by adding the following to your Nightfall
 integrations config:
 >lua
   which_key = { enabled = true }
+<
+------------------------------------------------------------------------------
+                                               *nightfall.nvim_indent_blankline*
+Enable `indent-blankline.nvim` support by adding the following to your Nightfall
+integrations config:
+>lua
+  indent_blankline = { enabled = true }
+<
+If you want to enable rainbow indent colors, please follow this instruction
+Firstly, update your `indent-blankline.nvim` config
+>lua
+  require("ibl").setup({
+    indent = {
+      highlight = {
+        "RainbowRed",
+        "RainbowYellow",
+        "RainbowBlue",
+        "RainbowOrange",
+        "RainbowGreen",
+        "RainbowViolet",
+        "RainbowCyan",
+      }
+    }
+  })
+<
+Then add `rainbow = true` to `indent_blankline` Nightfall integrations config:
+>lua
+  indent_blankline = { enabled = true, rainbow = true }
 <
 ------------------------------------------------------------------------------
                                                         *nightfall.nvim_lualine*
