@@ -37,8 +37,6 @@ function M.get(colors)
     SpecialKey = { fg = colors.dark_slate_blue },
     Visual = { bg = colors.deep_navy, style = { bold = true } },
     VisualNOS = { link = "Visual" },
-    WarningMsg = { fg = colors.violet },
-    WildMenu = { fg = colors.violet, bg = colors.sky },
     Whitespace = { fg = colors.dark_slate_blue },
     Conceal = { fg = colors.grey },
     NonText = { fg = colors.dark_slate_blue },
@@ -56,7 +54,7 @@ function M.get(colors)
     lCursor = { link = "Cursor" },
     CursorIM = { link = "Cursor" },
     CursorLine = { bg = colors.deep_navy },
-    CursorColumn = { bg = colors.dark_navy },
+    CursorColumn = { link = "CursorLine" },
     QuickFixLine = { bg = colors.dark_navy, sp = "none" },
 
     -- Search and Spell
@@ -68,7 +66,6 @@ function M.get(colors)
     SpellLocal = { sp = colors.light_cyan, style = { undercurl = true } },
     SpellCap = { sp = colors.turquoise, style = { undercurl = true } },
     SpellRare = { sp = colors.pink, style = { undercurl = true } },
-    healthSuccess = { bg = colors.green, fg = colors.black },
 
     -- Diff Colors
     DiffAdd = { bg = colors.added },
@@ -85,6 +82,7 @@ function M.get(colors)
 
     -- Error and Message Colors
     ErrorMsg = { fg = colors.violet, style = { bold = true, italic = true } },
+    WarningMsg = { fg = colors.violet },
     Question = { fg = colors.violet },
   }
 end
