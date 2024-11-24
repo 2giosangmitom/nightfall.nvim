@@ -22,9 +22,9 @@ function M.get(colors)
     FloatBorder = { fg = colors.dark_slate_blue, bg = colors.bg_float },
     NormalFloat = { bg = colors.bg_float },
     FloatTitle = { fg = colors.foreground, bg = colors.bg_float },
-    TabLine = { bg = colors.statusline_bg, fg = colors.foreground },
+    TabLine = { fg = utils.lighten(colors.light_grey, 0.97), bg = utils.lighten(colors.statusline_bg, 0.99) },
     TabLineFill = { bg = colors.black },
-    TabLineSel = { fg = colors.black, bg = colors.dark_blue },
+    TabLineSel = { fg = colors.foreground, bg = colors.background, style = { bold = true } },
     StatusLine = { fg = colors.foreground, bg = colors.statusline_bg },
     StatusLineNC = { fg = colors.statusline_bg, bg = colors.statusline_bg },
 
