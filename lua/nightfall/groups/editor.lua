@@ -43,6 +43,7 @@ function M.get(colors)
     Whitespace = { fg = colors.dark_slate_blue },
     Conceal = { fg = colors.grey },
     NonText = { fg = colors.dark_slate_blue },
+    ColorColumn = { bg = colors.dark_blue },
     SignColumn = { fg = colors.dark_slate_blue },
     WinSeparator = { fg = colors.dark_slate_blue },
     VertSplit = { fg = Options.transparent and colors.dark_navy or colors.dark_slate_blue },
