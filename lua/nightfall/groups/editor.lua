@@ -27,6 +27,8 @@ function M.get(colors)
     TabLineSel = { fg = colors.foreground, bg = colors.background, style = { bold = true } },
     StatusLine = { fg = colors.foreground, bg = colors.statusline_bg },
     StatusLineNC = { fg = colors.statusline_bg, bg = colors.statusline_bg },
+    WinBar = { fg = colors.foreground, style = { bold = true } },
+    WinBarNC = { fg = utils.lighten(colors.light_grey, 0.97) },
 
     -- Syntax Highlighting
     MatchWord = { bg = colors.grey, fg = colors.ghost_white },
