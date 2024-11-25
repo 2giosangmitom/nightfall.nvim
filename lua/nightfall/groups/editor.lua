@@ -36,6 +36,7 @@ function M.get(colors)
     Directory = { fg = utils.vary_color({ maron = colors.green, deepernight = colors.nord_blue }, colors.pink) },
     Title = { fg = colors.pink, style = { bold = true } },
     ModeMsg = { fg = colors.foreground },
+    MoreMsg = { fg = colors.light_cyan },
     SpecialKey = { fg = colors.dark_slate_blue },
     Visual = { bg = colors.deep_navy, style = { bold = true } },
     VisualNOS = { link = "Visual" },
