@@ -43,6 +43,7 @@ local defaults = {
     mini = { enabled = true, icons = true },
     which_key = { enabled = true },
     indent_blankline = { enabled = true },
+    fzf = { enabled = true, style = "borderless" },
   },
   color_overrides = {},
   highlight_overrides = {},
