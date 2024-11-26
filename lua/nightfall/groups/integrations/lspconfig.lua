@@ -50,39 +50,60 @@ function M.get(colors)
     ["@modifier"] = { fg = colors.lavender },
     ["@regexp"] = { fg = colors.pale_yellow },
 
-    -- Diagnostic Colors
-    DiagnosticHint = {
-      fg = colors.violet,
-      bg = utils.darken(colors.dark_navy, 0.95, colors.violet),
-      style = { italic = true },
-    },
-    DiagnosticError = {
+    -- Diagnostic Virtual Text Colors
+    DiagnosticVirtualTextError = {
       fg = colors.red,
       bg = utils.darken(colors.dark_navy, 0.95, colors.red),
       style = { italic = true },
     },
-    DiagnosticWarn = {
+    DiagnosticVirtualTextWarn = {
       fg = colors.pale_yellow,
       bg = utils.darken(colors.dark_navy, 0.95, colors.pale_yellow),
       style = { italic = true },
     },
-    DiagnosticInfo = {
+    DiagnosticVirtualTextInfo = {
       fg = colors.light_cyan,
       bg = utils.darken(colors.dark_navy, 0.95, colors.light_cyan),
       style = { italic = true },
     },
+    DiagnosticVirtualTextHint = {
+      fg = colors.violet,
+      bg = utils.darken(colors.dark_navy, 0.95, colors.violet),
+      style = { italic = true },
+    },
+    DiagnosticVirtualTextOk = {
+      fg = colors.green,
+      bg = utils.darken(colors.dark_navy, 0.95, colors.green),
+      style = { italic = true },
+    },
 
-    -- Floating Diagnostic Colors
+    -- Diagnostic Colors
+    DiagnosticError = { fg = colors.red },
+    DiagnosticWarn = { fg = colors.pale_yellow },
+    DiagnosticInfo = { fg = colors.light_cyan },
+    DiagnosticHint = { fg = colors.violet },
+    DiagnosticOk = { fg = colors.green },
+
+    -- Diagnostic Underline Colors
+    DiagnosticUnderlineError = { sp = colors.red, style = { undercurl = true } },
+    DiagnosticUnderlineWarn = { sp = colors.pale_yellow, style = { undercurl = true } },
+    DiagnosticUnderlineInfo = { sp = colors.light_cyan, style = { undercurl = true } },
+    DiagnosticUnderlineHint = { sp = colors.violet, style = { undercurl = true } },
+    DiagnosticUnderlineOk = { sp = colors.green, style = { undercurl = true } },
+
+    -- Diagnostic Floating Colors
     DiagnosticFloatingError = { fg = colors.red },
     DiagnosticFloatingWarn = { fg = colors.pale_yellow },
     DiagnosticFloatingInfo = { fg = colors.light_cyan },
     DiagnosticFloatingHint = { fg = colors.violet },
+    DiagnosticFloatingOk = { fg = colors.green },
 
     -- Diagnostic Sign Colors
     DiagnosticSignError = { fg = colors.red },
     DiagnosticSignWarn = { fg = colors.pale_yellow },
     DiagnosticSignInfo = { fg = colors.light_cyan },
     DiagnosticSignHint = { fg = colors.violet },
+    DiagnosticSignOk = { fg = colors.green },
 
     -- LSP Reference Colors
     LspReferenceText = { bg = colors.deep_navy },
