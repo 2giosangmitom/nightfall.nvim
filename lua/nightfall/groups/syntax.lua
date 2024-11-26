@@ -13,7 +13,9 @@ function M.get(colors)
 
     -- Syntax Highlighting
     Comment = { fg = utils.lighten(colors.light_grey, 0.9), style = Options.styles.comments },
-    Special = { fg = colors.light_cyan },
+    Special = {
+      fg = utils.vary_color({ deepernight = colors.light_cyan, maron = colors.nord_blue }, colors.pale_yellow),
+    },
     Constant = { fg = utils.vary_color({ nightfall = colors.violet }, colors.red) },
     String = {
       fg = utils.vary_color({ maron = colors.pale_yellow }, colors.pale_yellow),

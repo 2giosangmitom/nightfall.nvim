@@ -115,6 +115,7 @@ M.supported_plugins = {
   "snacks",
   "which_key",
   "indent_blankline",
+  "fzf",
 }
 
 return M

@@ -166,6 +166,7 @@ For more detailed information, refer to `:h nightfall.nvim_integrations`.
 - [snacks.nvim](https://github.com/folke/snacks.nvim)
 - [which-key.nvim](https://github.com/folke/which-key.nvim)
 - [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
+- [fzf-lua](https://github.com/ibhagwan/fzf-lua)
 
 ## 🤝 Contributing
 
