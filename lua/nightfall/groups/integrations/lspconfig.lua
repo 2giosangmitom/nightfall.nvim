@@ -50,34 +50,41 @@ function M.get(colors)
     ["@modifier"] = { fg = colors.lavender },
     ["@regexp"] = { fg = colors.pale_yellow },
 
-    -- Diagnostic Colors
-    DiagnosticError = {
+    -- Diagnostic Virtual Text Colors
+    DiagnosticVirtualTextError = {
       fg = colors.red,
       bg = utils.darken(colors.dark_navy, 0.95, colors.red),
       style = { italic = true },
     },
-    DiagnosticWarn = {
+    DiagnosticVirtualTextWarn = {
       fg = colors.pale_yellow,
       bg = utils.darken(colors.dark_navy, 0.95, colors.pale_yellow),
       style = { italic = true },
     },
-    DiagnosticInfo = {
+    DiagnosticVirtualTextInfo = {
       fg = colors.light_cyan,
       bg = utils.darken(colors.dark_navy, 0.95, colors.light_cyan),
       style = { italic = true },
     },
-    DiagnosticHint = {
+    DiagnosticVirtualTextHint = {
       fg = colors.violet,
       bg = utils.darken(colors.dark_navy, 0.95, colors.violet),
       style = { italic = true },
     },
-    DiagnosticOk = {
+    DiagnosticVirtualTextOk = {
       fg = colors.green,
       bg = utils.darken(colors.dark_navy, 0.95, colors.green),
       style = { italic = true },
     },
 
-    --  Diagnostic Underline Colors
+    -- Diagnostic Colors
+    DiagnosticError = { fg = colors.red },
+    DiagnosticWarn = { fg = colors.pale_yellow },
+    DiagnosticInfo = { fg = colors.light_cyan },
+    DiagnosticHint = { fg = colors.violet },
+    DiagnosticOk = { fg = colors.green },
+
+    -- Diagnostic Underline Colors
     DiagnosticUnderlineError = { sp = colors.red, style = { undercurl = true } },
     DiagnosticUnderlineWarn = { sp = colors.pale_yellow, style = { undercurl = true } },
     DiagnosticUnderlineInfo = { sp = colors.light_cyan, style = { undercurl = true } },
