@@ -91,20 +91,6 @@ function M.get(colors)
     DiagnosticUnderlineHint = { sp = colors.violet, style = { undercurl = true } },
     DiagnosticUnderlineOk = { sp = colors.green, style = { undercurl = true } },
 
-    -- Diagnostic Floating Colors
-    DiagnosticFloatingError = { fg = colors.red },
-    DiagnosticFloatingWarn = { fg = colors.pale_yellow },
-    DiagnosticFloatingInfo = { fg = colors.light_cyan },
-    DiagnosticFloatingHint = { fg = colors.violet },
-    DiagnosticFloatingOk = { fg = colors.green },
-
-    -- Diagnostic Sign Colors
-    DiagnosticSignError = { fg = colors.red },
-    DiagnosticSignWarn = { fg = colors.pale_yellow },
-    DiagnosticSignInfo = { fg = colors.light_cyan },
-    DiagnosticSignHint = { fg = colors.violet },
-    DiagnosticSignOk = { fg = colors.green },
-
     -- LSP Reference Colors
     LspReferenceText = { bg = colors.deep_navy },
     LspReferenceRead = { bg = colors.deep_navy },
