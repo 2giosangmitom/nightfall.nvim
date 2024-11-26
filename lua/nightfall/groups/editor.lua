@@ -17,7 +17,7 @@ function M.get(colors)
     -- UI Elements
     Pmenu = { bg = colors.bg_float },
     PmenuSbar = { bg = colors.dark_blue },
-    PmenuSel = { bg = colors.lavender, fg = colors.black },
+    PmenuSel = { fg = colors.black, bg = colors.lavender },
     PmenuThumb = { bg = colors.grey },
     FloatBorder = { fg = colors.dark_slate_blue, bg = colors.bg_float },
     NormalFloat = { bg = colors.bg_float },
@@ -31,7 +31,7 @@ function M.get(colors)
     WinBarNC = { fg = utils.lighten(colors.light_grey, 0.97) },
 
     -- Syntax Highlighting
-    MatchWord = { bg = colors.grey, fg = colors.ghost_white },
+    MatchWord = { fg = colors.ghost_white, bg = colors.grey },
     MatchParen = { fg = colors.lavender, style = { bold = true } },
     Directory = { fg = utils.vary_color({ maron = colors.green, deepernight = colors.nord_blue }, colors.pink) },
     Title = { fg = colors.pink, style = { bold = true } },
@@ -49,7 +49,7 @@ function M.get(colors)
     VertSplit = { fg = Options.transparent and colors.dark_navy or colors.dark_slate_blue },
     EndOfBuffer = { fg = colors.grey },
     Folded = { fg = colors.lavender, bg = colors.deep_navy },
-    FoldColumn = { bg = Options.transparent and colors.none or colors.background, fg = colors.grey },
+    FoldColumn = { fg = colors.grey, bg = Options.transparent and colors.none or colors.background },
 
     -- Cursor and Line Numbers
     CursorLineNr = { fg = colors.lavender },
@@ -62,8 +62,8 @@ function M.get(colors)
     QuickFixLine = { bg = colors.dark_navy, sp = "none" },
 
     -- Search and Spell
-    Search = { bg = utils.vary_color({ maron = colors.pale_yellow }, colors.violet), fg = colors.black },
-    IncSearch = { bg = colors.peach, fg = colors.black },
+    Search = { fg = colors.black, bg = utils.vary_color({ maron = colors.pale_yellow }, colors.violet) },
+    IncSearch = { fg = colors.black, bg = colors.peach },
     CurSearch = { link = "IncSearch" },
     Substitute = { fg = colors.black, bg = colors.violet },
     SpellBad = { sp = colors.violet, style = { undercurl = true } },

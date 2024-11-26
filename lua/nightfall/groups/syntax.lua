@@ -71,7 +71,7 @@ function M.get(colors)
 
     -- Error and Warning
     Error = { fg = colors.red },
-    Todo = { bg = colors.pink, fg = colors.background, style = { bold = true } },
+    Todo = { fg = colors.background, bg = colors.pink, style = { bold = true } },
   }
 end
 
