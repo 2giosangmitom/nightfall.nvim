@@ -1,4 +1,4 @@
-*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 November 25
+*nightfall.nvim*   For Neovim version 0.9 and later   Last change: 2024 November 26
 
 Nightfall.nvim is a meticulously crafted Neovim colorscheme designed to enhance
 your coding experience. It offers a clean and minimalist design with multiple
@@ -135,6 +135,7 @@ refer to the documentation of the |nightfall.nvim_setup| function.
       mini = { enabled = true, icons = true },
       which_key = { enabled = true },
       indent_blankline = { enabled = true },
+      fzf = { enabled = true, style = "borderless" },
     },
     color_overrides = {},
     highlight_overrides = {},
@@ -378,6 +379,14 @@ Firstly, update your `indent-blankline.nvim` config
 Then add `rainbow = true` to `indent_blankline` Nightfall integrations config:
 >lua
   indent_blankline = { enabled = true, rainbow = true }
+<
+------------------------------------------------------------------------------
+                                                            *nightfall.nvim_fzf*
+To enable `fzf-lua` support, add the following to your Nightfall
+integrations config, choosing between two styles: 'borderless' and
+'bordered'.
+>lua
+  fzf = { enabled = true, style = "borderless" }
 <
 ------------------------------------------------------------------------------
                                                         *nightfall.nvim_lualine*
