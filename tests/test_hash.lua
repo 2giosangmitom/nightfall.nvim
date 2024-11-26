@@ -42,7 +42,7 @@ describe("hashing module", function()
   end)
 
   it("correctly hashes functions based on nightfall options", function()
-    local mock_palette = { green = "#00FF00", deep_navy = "#000080", black = "#000000" }
+    local mock_palette = { green = "#00ff00", deep_navy = "#000080", black = "#000000" }
 
     package.loaded["nightfall.palettes"] = {
       get = function(_) return mock_palette end,
