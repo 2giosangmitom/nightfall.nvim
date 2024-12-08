@@ -32,7 +32,6 @@
 ---@field rose string
 ---@field coral string
 ---@field peach string
----@field plum string
 ---@field lavender string
 ---@field violet string
 ---@field indigo string
