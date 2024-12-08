@@ -16,9 +16,10 @@ M.Options = {
 }
 
 --- Set user configurations.
----@param user_config NightfallOptions
+---@param user_config? NightfallOptions
 function M.setup(user_config)
-  if user_config.default_integrations == false then M.Options.integrations = {} end
+  user_config = user_config or {}
+  if not user_config.default_integrations then M.Options.integrations = {} end
   M.Options = vim.tbl_deep_extend("keep", user_config, M.Options)
 end
 
