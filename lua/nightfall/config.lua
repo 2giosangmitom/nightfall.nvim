@@ -2,7 +2,7 @@ local M = {}
 
 --- Default configuration options.
 ---@class NightfallOptions
-M.Options = {
+local Options = {
   transparent = false,
   terminal_colors = true,
   dim_inactive = true,
@@ -19,8 +19,12 @@ M.Options = {
 ---@param user_config? NightfallOptions
 function M.setup(user_config)
   user_config = user_config or {}
-  if not user_config.default_integrations then M.Options.integrations = {} end
-  M.Options = vim.tbl_deep_extend("keep", user_config, M.Options)
+  if not user_config.default_integrations then Options.integrations = {} end
+  Options = vim.tbl_deep_extend("keep", user_config, Options)
 end
+
+--- Get options
+---@return NightfallOptions
+function M.get_options() return Options end
 
 return M
