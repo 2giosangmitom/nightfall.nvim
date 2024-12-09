@@ -1,32 +1,53 @@
 local nightfall = require("nightfall")
 local expect = MiniTest.expect
+local palettes = require("nightfall.palettes")
 
-before_each(function() nightfall.setup() end)
+describe("palette management", function()
+  before_each(function() nightfall.setup() end)
 
-describe("overrides the palette correctly", function()
-  it("should override the colors correctly", function()
-    local overrides = {
-      bg = "#000000",
-      fg = "#ffffff",
-    }
+  describe("palette overrides", function()
+    it("applies color overrides correctly", function()
+      local overrides = {
+        bg = "#000000",
+        fg = "#ffffff",
+      }
 
-    local default_palette = require("nightfall.palettes.nightfall")
-    local expected_palette = vim.tbl_deep_extend("force", {}, default_palette, overrides)
+      local default_palette = require("nightfall.palettes.nightfall")
+      local expected_palette = vim.tbl_deep_extend("force", {}, default_palette, overrides)
+      local palette = palettes.get_palette("nightfall", overrides)
 
-    local palette = require("nightfall.palettes").get_palette("nightfall", overrides)
-    expect.equality(expected_palette, palette)
+      expect.equality(palette, expected_palette)
+      expect.equality(palette.bg, "#000000")
+      expect.equality(palette.fg, "#ffffff")
+    end)
+
+    it("preserves non-overridden colors", function()
+      local overrides = { bg = "#000000" }
+      local default_palette = require("nightfall.palettes.nightfall")
+      local palette = palettes.get_palette("nightfall", overrides)
+
+      expect.equality(palette.fg, default_palette.fg)
+      expect.equality(palette.bg, "#000000")
+    end)
+
+    it("returns unmodified default palette without overrides", function()
+      local default_palette = require("nightfall.palettes.nightfall")
+      local palette = palettes.get_palette("nightfall")
+      expect.equality(palette, default_palette)
+    end)
   end)
 
-  it("should return the default palette with no overrides", function()
-    local default_palette = require("nightfall.palettes.nightfall")
-    local palette = require("nightfall.palettes").get_palette("nightfall")
-    MiniTest.expect.equality(default_palette, palette)
-  end)
-end)
+  describe("error handling", function()
+    it("should return an error for an invalid flavor", function()
+      local invalid_flavors = {
+        "invalid",
+        "handsome",
+        "night",
+      }
 
-describe("get_palette error handling", function()
-  it("should return an error for an invalid flavor", function()
-    local invalid_flavor = "invalid_flavor"
-    expect.error(function() nightfall.get_palette(invalid_flavor) end)
+      for _, flavor in ipairs(invalid_flavors) do
+        expect.error(function() nightfall.get_palette(flavor) end)
+      end
+    end)
   end)
 end)
