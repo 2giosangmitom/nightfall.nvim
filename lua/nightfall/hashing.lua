@@ -2,6 +2,9 @@ local get_palette = require("nightfall.palettes").get_palette
 
 local M = {}
 
+--- Hashes a string using a variant of the djb2 algorithm.
+--- @param str string The string to hash.
+--- @return string The hashed string as an 8-character hexadecimal value.
 local function hash_str(str)
   local band, lshift = bit.band, bit.lshift
   local h = 5381
@@ -11,6 +14,9 @@ local function hash_str(str)
   return string.format("%08x", h)
 end
 
+--- Hashes a value. If the value is a table, it recursively hashes its keys and values.
+--- @param val any The value to hash.
+--- @return string The hashed value as an 8-character hexadecimal string.
 function M.hash(val)
   if type(val) ~= "table" then return hash_str(tostring(val)) end
 
@@ -20,7 +26,7 @@ function M.hash(val)
   end
   table.sort(keys)
 
-  local result = ""
+  local result = {}
   for _, k in ipairs(keys) do
     local value = val[k]
     if type(value) == "function" then
@@ -30,13 +36,13 @@ function M.hash(val)
       local ok, res = pcall(value, colors)
       if not ok then error(string.format("Failed to hash options for '%s': %s", k, res), 2) end
 
-      result = result .. k .. M.hash(res)
+      table.insert(result, k .. M.hash(res))
     else
-      result = result .. k .. M.hash(value)
+      table.insert(result, k .. M.hash(value))
     end
   end
 
-  return hash_str(result)
+  return hash_str(table.concat(result))
 end
 
 return M

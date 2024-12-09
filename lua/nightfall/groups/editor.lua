@@ -2,8 +2,7 @@ local M = {}
 
 ---@param colors NightfallPalette
 function M.get(colors)
-  return {
-  }
+  return {}
 end
 
 return M

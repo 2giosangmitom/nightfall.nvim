@@ -2,15 +2,19 @@ local M = {}
 
 --- Default configuration options.
 ---@class NightfallOptions
+---@field transparent boolean
+---@field terminal_colors boolean
+---@field dim_inactive boolean
+---@field default_integrations boolean
+---@field integrations table<string, table>
+---@field color_overrides table<string, table>
+---@field highlight_overrides table<string, table|function>
 local Options = {
   transparent = false,
   terminal_colors = true,
   dim_inactive = true,
   default_integrations = true,
-  integrations = {
-    lazy = { enabled = true },
-    snacks = { enabled = true },
-  },
+  integrations = {},
   color_overrides = {},
   highlight_overrides = {},
 }
