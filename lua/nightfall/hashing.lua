@@ -1,10 +1,8 @@
-local get_palette = require("nightfall.palettes").get_palette
-
 local M = {}
 
 --- Hashes a string using a variant of the djb2 algorithm.
---- @param str string The string to hash.
---- @return string The hashed string as an 8-character hexadecimal value.
+---@param str string The string to hash.
+---@return string The hashed string as an 8-character hexadecimal value.
 local function hash_str(str)
   local band, lshift = bit.band, bit.lshift
   local h = 5381
@@ -14,9 +12,11 @@ local function hash_str(str)
   return string.format("%08x", h)
 end
 
+local get_palette = require("nightfall.palettes").get_palette
+
 --- Hashes a value. If the value is a table, it recursively hashes its keys and values.
---- @param val any The value to hash.
---- @return string The hashed value as an 8-character hexadecimal string.
+---@param val any The value to hash.
+---@return string The hashed value as an 8-character hexadecimal string.
 function M.hash(val)
   if type(val) ~= "table" then return hash_str(tostring(val)) end
 

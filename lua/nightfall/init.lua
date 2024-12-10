@@ -1,8 +1,6 @@
 local M = {}
 
 local config = require("nightfall.config")
-
---- Constants
 local CACHE_DIR = vim.fn.stdpath("cache") .. "/nightfall/"
 local HASH_FILE = CACHE_DIR .. "cached_hash"
 local SUPPORTED_FLAVORS = { "nightfall" }
@@ -10,37 +8,12 @@ local SUPPORTED_FLAVORS = { "nightfall" }
 --- Setup options for Nightfall.
 M.setup = config.setup
 
---- Compute the current hash based on config and file modification time.
----@return string Current hash
-local function compute_current_hash()
-  local me = debug.getinfo(1).source:sub(2):gsub("/[^/]+$", "") .. "/.git"
-  return require("nightfall.hashing").hash(config.get_options()) .. vim.fn.getftime(me)
-end
-
---- Read the cached hash from file.
----@return string|nil Cached hash
-local function read_cached_hash()
-  if vim.fn.filereadable(HASH_FILE) == 1 then return vim.fn.readfile(HASH_FILE)[1] end
-  return nil
-end
-
---- Write the current hash to the cache file.
----@param hash string Hash to write
-local function write_hash(hash)
-  local file, err = io.open(HASH_FILE, "wb")
-  if file then
-    file:write(hash)
-    file:close()
-  else
-    vim.notify(("Failed to write hash file: %s"):format(err), vim.log.levels.ERROR, { title = "Nightfall" })
-  end
-end
-
 --- Compile all supported flavors.
 function M.compile()
   local compiler = require("nightfall.compiler")
   for _, flavor in ipairs(SUPPORTED_FLAVORS) do
     compiler.compile(flavor)
+    vim.notify(("Theme '%s' compiled successfully!"):format(flavor), vim.log.levels.INFO, { title = "Nightfall" })
   end
 end
 
@@ -52,12 +25,20 @@ function M.load(flavor)
     return
   end
 
-  local cached_hash = read_cached_hash()
-  local current_hash = compute_current_hash()
+  local me = debug.getinfo(1).source:sub(2):gsub("/[^/]+$", "") .. "/.git"
+  local cached_hash = vim.fn.filereadable(HASH_FILE) == 1 and vim.fn.readfile(HASH_FILE)[1] or nil
+  local current_hash = require("nightfall.hashing").hash(config.get_options()) .. vim.fn.getftime(me)
 
   if cached_hash ~= current_hash then
     M.compile()
-    write_hash(current_hash)
+
+    local file, err = io.open(HASH_FILE, "wb")
+    if file then
+      file:write(current_hash)
+      file:close()
+    else
+      vim.notify(("Failed to write hash file: %s"):format(err), vim.log.levels.ERROR, { title = "Nightfall" })
+    end
   end
 
   local flavor_file = CACHE_DIR .. flavor

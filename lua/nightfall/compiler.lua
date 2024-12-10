@@ -1,27 +1,21 @@
 local M = {}
 
 local compile_path = vim.fn.stdpath("cache") .. "/nightfall/"
-local mkdir_mode = "p" -- Mode for creating directories
-
---- Ensures the compile path exists.
-local function ensure_compile_path()
-  if not vim.uv.fs_stat(compile_path) then vim.fn.mkdir(compile_path, mkdir_mode) end
-end
 
 --- Writes compiled theme code to a file.
 ---@param file_path string The path to write the compiled theme to.
 ---@param lua_code string The Lua code to compile and write.
 local function write_compiled_theme(file_path, lua_code)
-  local compiled_func, compile_err = load(lua_code)
-  if not compiled_func then error(string.format("Failed to compile theme: %s", compile_err)) end
+  local f, compile_err = load(lua_code)
+  if not f then error(string.format("Failed to compile theme: %s", compile_err)) end
 
   local file, err = io.open(file_path, "wb")
   if not file then error(string.format("Failed to open file '%s': %s", file_path, err)) end
 
-  local success, write_err = file:write(compiled_func())
+  local ok, write_err = file:write(f())
   file:close()
 
-  if not success then error(string.format("Failed to write compiled theme: %s", write_err)) end
+  if not ok then error(string.format("Failed to write compiled theme: %s", write_err)) end
 end
 
 --- Parses style options for highlighting groups and generates Lua code.
@@ -42,7 +36,8 @@ end
 --- Compiles the theme for a given flavor.
 ---@param flavor string The flavor of the theme to compile.
 function M.compile(flavor)
-  ensure_compile_path()
+  -- Ensure compile directory
+  if not vim.uv.fs_stat(compile_path) then vim.fn.mkdir(compile_path, "p") end
 
   local config = require("nightfall.config").get_options()
   local theme = require("nightfall.groups").get_theme(flavor)
@@ -51,7 +46,7 @@ function M.compile(flavor)
     string.format(
       [[return string.dump(function()
 vim.opt.termguicolors = true
-if vim.g.colors_name then vim.cmd("hi clear") end
+vim.cmd("hi clear")
 vim.opt.background = "dark"
 vim.g.colors_name = "%s"
 %s]],
@@ -74,8 +69,6 @@ vim.g.colors_name = "%s"
   local file_path = compile_path .. flavor
   local lua_code = table.concat(theme_code, "\n")
   write_compiled_theme(file_path, lua_code)
-
-  vim.notify(("Theme '%s' compiled successfully!"):format(flavor), vim.log.levels.INFO, { title = "Nightfall" })
 end
 
 return M
