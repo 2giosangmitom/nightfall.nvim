@@ -35,14 +35,12 @@ function M.get_theme(flavor)
 
   -- Load core themes
   local theme = {}
-  do
-    local syntax = load_module("nightfall.groups.syntax")
-    local editor = load_module("nightfall.groups.editor")
-    if syntax and editor then
-      local core_ok, core_theme = pcall(vim.tbl_deep_extend, "force", {}, syntax.get(colors), editor.get(colors))
-      if not core_ok then error(string.format("Failed to load core themes: %s", core_theme)) end
-      theme = core_theme
-    end
+  local syntax = load_module("nightfall.groups.syntax")
+  local editor = load_module("nightfall.groups.editor")
+  if syntax and editor then
+    local core_ok, core_theme = pcall(vim.tbl_deep_extend, "force", {}, syntax.get(colors), editor.get(colors))
+    if not core_ok then error(string.format("Failed to load core themes: %s", core_theme)) end
+    theme = core_theme
   end
 
   -- Load integration themes

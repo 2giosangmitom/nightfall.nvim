@@ -3,7 +3,7 @@ local M = {}
 local config = require("nightfall.config")
 local CACHE_DIR = vim.fn.stdpath("cache") .. "/nightfall/"
 local HASH_FILE = CACHE_DIR .. "cached_hash"
-local SUPPORTED_FLAVORS = { "nightfall" }
+local SUPPORTED_FLAVORS = { "nightfall", "deeper-night" }
 
 --- Setup options for Nightfall.
 M.setup = config.setup
