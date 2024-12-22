@@ -1,92 +1,76 @@
 local M = {}
 
-local function load_module(module_path)
-  local ok, module = pcall(require, module_path)
-  if not ok then
-    vim.notify(string.format("Failed to load module '%s': %s", module_path, module), vim.log.levels.WARN)
-    return nil
-  end
-  return module
-end
-
-local function apply_highlight_overrides(flavor, colors, overrides)
-  local flavor_overrides = overrides[flavor]
-  if type(flavor_overrides) == "function" then
-    local ok, result = pcall(flavor_overrides, colors)
-    if not ok then
-      vim.notify(
-        string.format("Failed to process highlight overrides for %s: %s", flavor, result),
-        vim.log.levels.ERROR
-      )
-      return {}
-    end
-    return result
-  end
-  return flavor_overrides or {}
-end
-
+--- Load color override and highlight override
 ---@param flavor NightfallFlavor
----@return table theme
-function M.get_theme(flavor)
-  local nightfall_config = require("nightfall.config")
-  local palettes = require("nightfall.palettes")
-  local options = nightfall_config.get_options()
-  local colors = palettes.get_palette(flavor, options.color_overrides[flavor])
+---@param options NightfallOptions
+---@return table, table: Returns the color and highlight overrides
+local function load_overrides(flavor, options)
+  -- Get the base color and highlight overrides for all flavors
+  local colors = options.color_overrides.all or {}
+  local highlights = options.highlight_overrides.all or {}
 
-  -- Load core themes
-  local theme = {}
-  local syntax = load_module("nightfall.groups.syntax")
-  local editor = load_module("nightfall.groups.editor")
-  if syntax and editor then
-    local core_ok, core_theme = pcall(vim.tbl_deep_extend, "force", {}, syntax.get(colors), editor.get(colors))
-    if not core_ok then error(string.format("Failed to load core themes: %s", core_theme)) end
-    theme = core_theme
-  end
+  -- Extend the base overrides with the specific overrides for the given flavor
+  colors = vim.tbl_deep_extend(
+    "keep",
+    type(options.color_overrides[flavor]) == "function" and options.color_overrides[flavor]()
+      or options.color_overrides[flavor]
+      or {},
+    colors
+  )
+  highlights = vim.tbl_deep_extend(
+    "keep",
+    type(options.highlight_overrides[flavor]) == "function" and options.highlight_overrides[flavor]()
+      or options.highlight_overrides[flavor]
+      or {},
+    highlights
+  )
 
-  -- Load integration themes
-  for name, config in pairs(options.integrations) do
-    if config.enabled then
-      local path = string.format("nightfall.groups.integrations.%s", name)
-      local module = load_module(path)
-      if module then
-        local integration_ok, highlights = pcall(module.get, colors)
-        if integration_ok then
-          theme = vim.tbl_deep_extend("force", theme, highlights)
-        else
-          vim.notify(string.format("Failed to get highlights for %s: %s", name, highlights), vim.log.levels.WARN)
-        end
+  return colors, highlights
+end
+
+--- Get core theme
+---@param flavor NightfallFlavor
+---@return table, table, table: Core highlights, terminal highlights, integration highlights
+function M.get(flavor)
+  local config = require("nightfall.config")
+  local options = config.get_options()
+
+  -- Load color and highlight overrides
+  local color_overrides, highlight_overrides = load_overrides(flavor, options)
+
+  -- Get the palette for the given flavor with the color overrides
+  local colors = require("nightfall.palettes").get_palette(flavor, color_overrides)
+
+  -- Get the highlight groups and merge them
+  local highlights = vim.tbl_deep_extend(
+    "error",
+    require("nightfall.groups.editor").get(colors),
+    require("nightfall.groups.syntax").get(colors)
+  )
+  highlights = vim.tbl_deep_extend("keep", highlight_overrides, highlights)
+
+  -- Get terminal highlights if terminal colors are enabled
+  local terminal_highlights = options.terminal_colors and require("nightfall.groups.terminal").get(colors) or {}
+
+  -- Get integration highlights for enabled integrations
+  local integration_highlights = {}
+  for integration, integration_config in pairs(options.integrations) do
+    if integration_config.enabled then
+      local ok, integration_f = pcall(require, "nightfall.groups.integrations." .. integration)
+      if ok then
+        integration_highlights =
+          vim.tbl_deep_extend("error", integration_f.get(colors, integration_config), integration_highlights)
+      else
+        vim.notify(
+          string.format("%s integration is not supported or not found", integration),
+          vim.log.levels.WARN,
+          { title = "Nightfall" }
+        )
       end
     end
   end
 
-  -- Apply highlight overrides
-  local overrides = options.highlight_overrides or {}
-  local override_theme = apply_highlight_overrides(flavor, colors, overrides)
-
-  return vim.tbl_deep_extend("force", theme, overrides.all or {}, override_theme)
-end
-
----@param flavor NightfallFlavor
----@return table terminal_colors
-function M.get_terminal_theme(flavor)
-  local nightfall_config = require("nightfall.config")
-  local options = nightfall_config.get_options()
-
-  -- Get colors with overrides
-  local palettes = require("nightfall.palettes")
-  local colors = palettes.get_palette(flavor, options.color_overrides[flavor])
-
-  -- Load terminal colors
-  local terminal_module = load_module("nightfall.groups.terminal")
-  if not terminal_module then return {} end
-
-  local ok, terminal_colors = pcall(terminal_module.get, colors)
-  if not ok then
-    vim.notify(string.format("Failed to load terminal colors: %s", terminal_colors), vim.log.levels.WARN)
-    return {}
-  end
-
-  return terminal_colors
+  return highlights, terminal_highlights, integration_highlights
 end
 
 return M

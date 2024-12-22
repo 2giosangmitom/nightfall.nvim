@@ -7,7 +7,7 @@ local function reload()
   end
   require("nightfall").setup({})
   require("nightfall").compile()
-  vim.schedule(function() vim.cmd.colorscheme(vim.g.colors_name) end)
+  vim.schedule_wrap(function() vim.cmd.colorscheme(vim.g.colors_name) end)
 end
 
 vim.api.nvim_create_autocmd("User", {
