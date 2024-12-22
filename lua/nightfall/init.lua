@@ -43,14 +43,16 @@ function M.load(flavor)
   end
 
   local cache_file = CACHE_DIR .. string.format("%s.json", flavor)
-  local theme = vim.fn.filereadable(cache_file) and vim.json.decode(vim.fn.readfile(cache_file)[1]) or nil
+  local theme = vim.fn.filereadable(cache_file) == 1 and vim.json.decode(vim.fn.readfile(cache_file)[1]) or nil
   if not theme then
-    error(
-      "An error encountered while reading cache file. Try deleting the cache directory and restarting Neovim.\n"
+    vim.notify(
+      "An error encountered while reading cache file.\nTry deleting the cache directory and restarting Neovim.\n"
         .. "Cache directory: "
         .. CACHE_DIR,
-      vim.log.levels.ERROR
+      vim.log.levels.ERROR,
+      { title = "Nightfall" }
     )
+    return
   end
 
   -- Load highlights
