@@ -1,9 +1,11 @@
 local M = {}
 
 ---@param colors NightfallPalette
-function M.get(colors)
+---@param options table<"transparent"|"dim_inactive", boolean>
+function M.get(colors, options)
+  -- See `:h highlight-groups`
   return {
-    Normal = { fg = colors.fg, bg = colors.bg },
+    ColorColumn = { bg = options.transparent and "NONE" or colors.black },
   }
 end
 

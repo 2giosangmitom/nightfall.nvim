@@ -1,6 +1,7 @@
 local M = {}
 
 ---@param colors NightfallPalette
-function M.get(colors) return {} end
+---@param options table
+function M.get(colors, options) return {} end
 
 return M
