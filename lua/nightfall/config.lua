@@ -17,7 +17,7 @@ local Options = {
 function M.setup(user_config)
   user_config = user_config or {}
   if user_config.default_integrations == false then Options.integrations = {} end
-  Options = vim.tbl_deep_extend("keep", user_config, Options)
+  Options = vim.tbl_deep_extend("force", Options, user_config)
 end
 
 --- Get options

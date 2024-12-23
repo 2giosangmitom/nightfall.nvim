@@ -1,6 +1,6 @@
 local M = {}
 
--- TODO: convert from lua table to toml format, write to file
-function M.to_toml() end
+function M.to_vim()
+end
 
 return M

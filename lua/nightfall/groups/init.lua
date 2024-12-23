@@ -9,7 +9,7 @@ function M.get(flavor)
 
   -- Merge user's custom colors
   local color_overrides = options.color_overrides.all or {}
-  color_overrides = vim.tbl_deep_extend("keep", options.color_overrides[flavor] or {}, color_overrides)
+  color_overrides = vim.tbl_deep_extend("force", color_overrides, options.color_overrides[flavor] or {})
   local colors = require("nightfall.palettes").get_palette(flavor, color_overrides)
 
   -- Merge user's custom highlights
