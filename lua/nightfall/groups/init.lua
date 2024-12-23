@@ -1,34 +1,5 @@
 local M = {}
 
---- Load color override and highlight override
----@param flavor NightfallFlavor
----@param options NightfallOptions
----@param palette NightfallPalette
----@return table, table: Returns the color and highlight overrides
-local function load_overrides(flavor, options, palette)
-  -- Get the base color and highlight overrides for all flavors
-  local colors = options.color_overrides.all or {}
-  local highlights = options.highlight_overrides.all or {}
-
-  -- Extend the base overrides with the specific overrides for the given flavor
-  colors = vim.tbl_deep_extend(
-    "keep",
-    type(options.color_overrides[flavor]) == "function" and options.color_overrides[flavor](palette)
-      or options.color_overrides[flavor]
-      or {},
-    colors
-  )
-  highlights = vim.tbl_deep_extend(
-    "keep",
-    type(options.highlight_overrides[flavor]) == "function" and options.highlight_overrides[flavor](palette)
-      or options.highlight_overrides[flavor]
-      or {},
-    highlights
-  )
-
-  return colors, highlights
-end
-
 --- Get core theme
 ---@param flavor NightfallFlavor
 ---@return table, table, table: Core highlights, terminal highlights, integration highlights
@@ -36,13 +7,22 @@ function M.get(flavor)
   local config = require("nightfall.config")
   local options = config.get_options()
 
-  -- Load color and highlight overrides
-  local color_overrides, highlight_overrides = load_overrides(flavor, options, colors)
-
-  -- Get the palette for the given flavor with the color overrides
+  -- Merge user's custom colors
+  local color_overrides = options.color_overrides.all or {}
+  color_overrides = vim.tbl_deep_extend("keep", options.color_overrides[flavor] or {}, color_overrides)
   local colors = require("nightfall.palettes").get_palette(flavor, color_overrides)
 
-  -- Get the highlight groups and merge them
+  -- Merge user's custom highlights
+  local highlight_overrides = options.highlight_overrides.all or {}
+  highlight_overrides = vim.tbl_deep_extend(
+    "keep",
+    type(options.highlight_overrides[flavor]) == "function" and options.highlight_overrides[flavor](colors)
+      or options.highlight_overrides[flavor]
+      or {},
+    highlight_overrides
+  )
+
+  -- Get core highlights
   local highlights = vim.tbl_deep_extend(
     "error",
     require("nightfall.groups.editor").get(
