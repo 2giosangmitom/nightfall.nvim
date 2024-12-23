@@ -5,7 +5,7 @@ function M.get()
   ---@type NightfallPalette
   return {
     azure = "#edf7f6",
-    bg = "#141523",
+    bg = "#E6DFDC",
     black = "#011502",
     blue = "#05c3ff",
     brown = "#613a3a",

@@ -7,7 +7,7 @@ function M.get()
     azure = "#F6F8FF",
     bg = "#0e131b",
     black = "#1A181B",
-    blue = "#92BDA3",
+    blue = "#48BEFF",
     brown = "#613a3a",
     charcoal = "#454955",
     coral = "#e76b74",

@@ -21,7 +21,7 @@ function M.get()
     lavender = "#beb8eb",
     lime = "#a1e44d",
     magenta = "#e2adf2",
-    navy = "#373760",
+    navy = "#313244",
     orange = "#ea9010",
     peach = "#f7dba7",
     pink = "#f84aa7",
