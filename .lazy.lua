@@ -10,7 +10,7 @@ vim.api.nvim_create_user_command("NightfallDev", function()
         if pack:match("^nightfall.") then package.loaded[pack] = nil end
       end
       nightfall.compile()
-      nightfall.load(vim.g.colors_name)
+      vim.schedule(function() nightfall.load(vim.g.colors_name) end)
       vim.notify("Reloaded", vim.log.levels.INFO, { title = "Nightfall" })
     end,
   })
