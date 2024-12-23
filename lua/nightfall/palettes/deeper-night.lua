@@ -17,7 +17,6 @@ function M.get()
     gold = "#fcc737",
     gray = "#6060a4",
     green = "#a6e3a1",
-    indigo = "#4d243d",
     lavender = "#C2AFF0",
     lime = "#A5CC6B",
     magenta = "#e2adf2",
@@ -32,7 +31,6 @@ function M.get()
     silver = "#c9c9c9",
     sky = "#00CECB",
     teal = "#72bda3",
-    violet = "#382633",
     white = "#ffffff",
     yellow = "#f9e2af",
   }

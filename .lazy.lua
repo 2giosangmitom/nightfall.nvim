@@ -10,7 +10,6 @@ vim.api.nvim_create_user_command("NightfallDev", function()
       end
 
       local nightfall = require("nightfall")
-      nightfall.setup({ transparent = true })
       if nightfall.compile then nightfall.compile() end
       vim.schedule(function()
         if nightfall.load then nightfall.load(vim.g.colors_name) end

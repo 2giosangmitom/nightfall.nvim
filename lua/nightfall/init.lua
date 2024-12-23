@@ -18,6 +18,9 @@ function M.compile()
   vim.notify("Cached highlight values", vim.log.levels.INFO, { title = "Nightfall" })
 end
 
+--- User command for compile highlight values manually
+vim.api.nvim_create_user_command("NightfallCompile", M.compile, {})
+
 --- Write the current hash to the hash file
 ---@param current_hash string The current hash value
 local function write_hash_file(current_hash)

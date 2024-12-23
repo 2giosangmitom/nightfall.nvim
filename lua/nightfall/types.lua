@@ -33,7 +33,5 @@
 ---@field coral string
 ---@field peach string
 ---@field lavender string
----@field violet string
----@field indigo string
 ---@field azure string
 ---@field navy string
