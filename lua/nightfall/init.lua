@@ -12,6 +12,7 @@ M.setup = config.setup
 function M.compile()
   local compiler = require("nightfall.compiler")
   for _, flavor in ipairs(SUPPORTED_FLAVORS) do
+    M.flavor = flavor
     compiler.compile(flavor)
   end
   vim.notify("Cached highlight values", vim.log.levels.INFO, { title = "Nightfall" })
