@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 local nightfall = require("nightfall")
 local expect = MiniTest.expect
 

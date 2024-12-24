@@ -1,4 +1,4 @@
-local nightfall = require("nightfall")
+---@diagnostic disable: undefined-global
 local expect = MiniTest.expect
 local palettes = require("nightfall.palettes")
 

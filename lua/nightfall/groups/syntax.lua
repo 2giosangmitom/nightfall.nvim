@@ -3,6 +3,7 @@ local M = {}
 ---@param colors NightfallPalette
 function M.get(colors)
   local utils = require("nightfall.utils.colors")
+  -- See: `:h group-name`
   return {
     Comment = { fg = colors.gray, italic = true },
     Constant = {

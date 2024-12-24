@@ -6,7 +6,7 @@ local M = {}
 function M.get(colors, options)
   local utils = require("nightfall.utils.colors")
   local accent = utils.vary_color({
-    nightfall = colors.lavender,
+    nightfall = colors.pink,
     ["deeper-night"] = colors.blue,
     maron = colors.sand,
     ["white-night"] = colors.sky,
@@ -84,7 +84,7 @@ function M.get(colors, options)
     PmenuThumb = { bg = colors.charcoal },
     PmenuMatch = { fg = colors.sky, bg = colors.black },
     PmenuMatchSel = { fg = colors.cyan, bg = colors.black },
-    Question = { fg = accent },
+    Question = { fg = accent, bold = true },
     QuickFixLine = { fg = accent },
     Search = { fg = colors.black, bg = colors.cream },
     SnippetTabstop = {

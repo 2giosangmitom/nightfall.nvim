@@ -16,7 +16,9 @@ local default_options = {
   terminal_colors = true,
   dim_inactive = false,
   default_integrations = true,
-  integrations = {},
+  integrations = {
+    lazy = { enabled = true },
+  },
   color_overrides = {},
   highlight_overrides = {},
 }

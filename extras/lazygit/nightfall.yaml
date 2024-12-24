@@ -5,7 +5,7 @@ gui:
   border: rounded
   theme:
     selectedLineBgColor:
-      - "#9a86fd"
+      - "#43454f"
     defaultFgColor:
       - "#e9e9f4"
     optionsTextColor:
