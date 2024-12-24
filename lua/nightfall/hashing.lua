@@ -4,14 +4,15 @@ local M = {}
 ---@param str string: The string to hash
 ---@return string: The hashed string as an 8-character hexadecimal value
 local function hash_str(str)
-  local band, lshift = bit.band, bit.lshift
-  local h = 5381
+  local bit_band, bit_lshift = bit.band, bit.lshift
+  local hash = 5381
   for i = 1, #str do
-    h = band(lshift(h, 5) + h + str:byte(i), 0xffffffff)
+    hash = bit_band(bit_lshift(hash, 5) + hash + str:byte(i), 0xffffffff)
   end
-  return string.format("%08x", h)
+  return string.format("%08x", hash)
 end
 
+-- Import palette function
 local get_palette = require("nightfall.palettes").get_palette
 
 --- Hashes a value. If the value is a table, it recursively hashes its keys and values

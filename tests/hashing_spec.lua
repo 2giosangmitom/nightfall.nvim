@@ -9,8 +9,6 @@ end
 describe("hashing module", function()
   local hash = require("nightfall.hashing")
 
-  before_each(function() nightfall.setup() end)
-
   describe("primitive types", function()
     it("hashes strings consistently", function()
       expect.no_equality(hash.hash("hello"), hash.hash("world"))

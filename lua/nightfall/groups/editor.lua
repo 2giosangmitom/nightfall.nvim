@@ -19,8 +19,14 @@ function M.get(colors, options)
     CurSearch = { fg = colors.black, bg = colors.lavender },
     Cursor = { fg = colors.bg, bg = colors.fg },
     lCursor = { fg = colors.bg, bg = colors.fg },
-    CursorColumn = { bg = utils.lighten(colors.navy, 0.8, colors.azure) },
-    CursorLine = { bg = utils.lighten(colors.navy, 0.8, colors.azure) },
+    CursorColumn = {
+      bg = options.transparent and utils.lighten(colors.navy, 0.8, colors.azure)
+        or utils.lighten(colors.navy, 0.9, colors.azure),
+    },
+    CursorLine = {
+      bg = options.transparent and utils.lighten(colors.navy, 0.8, colors.azure)
+        or utils.lighten(colors.navy, 0.9, colors.azure),
+    },
     Directory = { fg = accent },
     DiffAdd = { bg = utils.darken(colors.green, 0.52) },
     DiffChange = { bg = utils.darken(colors.yellow, 0.5) },
@@ -37,23 +43,43 @@ function M.get(colors, options)
     IncSearch = { fg = colors.black, bg = accent },
     Substitute = { fg = colors.black, bg = accent },
     LineNr = { fg = colors.gray },
-    CursorLineNr = { fg = utils.vary_color({ maron = colors.yellow }, colors.azure), bold = true },
-    MatchParen = { fg = accent, bg = utils.darken(colors.white, 0.4), bold = true },
+    CursorLineNr = {
+      fg = utils.vary_color({ maron = colors.yellow }, colors.azure),
+      bold = true,
+    },
+    MatchParen = {
+      fg = accent,
+      bg = utils.darken(colors.white, 0.4),
+      bold = true,
+    },
     ModeMsg = { fg = accent },
     MsgArea = { fg = colors.fg },
     MsgSeparator = { fg = colors.fg },
     MoreMsg = { fg = colors.azure },
     NonText = { fg = colors.gray },
-    Normal = { fg = colors.fg, bg = options.transparent and "NONE" or colors.bg },
-    NormalFloat = { fg = colors.fg, bg = options.transparent and "NONE" or utils.darken(colors.bg, 0.9) },
+    Normal = {
+      fg = colors.fg,
+      bg = options.transparent and "NONE" or colors.bg,
+    },
+    NormalFloat = {
+      fg = colors.fg,
+      bg = options.transparent and "NONE" or utils.darken(colors.bg, 0.9),
+    },
     FloatBorder = { fg = accent },
     FloatTitle = { fg = accent },
     NormalNC = {
       fg = options.dim_inactive and utils.darken(colors.fg, 0.9) or colors.fg,
       bg = options.transparent and "NONE" or options.dim_inactive and utils.darken(colors.bg, 0.9) or colors.bg,
     },
-    Pmenu = { fg = colors.fg, bg = options.transparent and "NONE" or colors.black },
-    PmenuSel = { fg = colors.black, bg = utils.vary_color({ nightfall = colors.lavender }, colors.cream), bold = true },
+    Pmenu = {
+      fg = colors.fg,
+      bg = options.transparent and "NONE" or colors.black,
+    },
+    PmenuSel = {
+      fg = colors.black,
+      bg = utils.vary_color({ nightfall = colors.lavender }, colors.cream),
+      bold = true,
+    },
     PmenuSbar = { bg = colors.navy },
     PmenuThumb = { bg = colors.charcoal },
     PmenuMatch = { fg = colors.sky, bg = colors.black },
@@ -61,13 +87,19 @@ function M.get(colors, options)
     Question = { fg = accent },
     QuickFixLine = { fg = accent },
     Search = { fg = colors.black, bg = colors.cream },
-    SnippetTabstop = { fg = utils.lighten(accent, 0.5), bg = utils.darken(accent, 0.3) },
+    SnippetTabstop = {
+      fg = utils.lighten(accent, 0.5),
+      bg = utils.darken(accent, 0.3),
+    },
     SpecialKey = { fg = colors.charcoal },
     SpellBad = { sp = colors.coral, undercurl = true },
     SpellCap = { sp = colors.peach, undercurl = true },
     SpellLocal = { sp = colors.lime, undercurl = true },
     SpellRare = { sp = colors.cyan, undercurl = true },
-    StatusLine = { fg = colors.azure, bg = options.transparent and "NONE" or colors.black },
+    StatusLine = {
+      fg = colors.azure,
+      bg = options.transparent and "NONE" or colors.black,
+    },
     StatusLineNC = {
       fg = options.dim_inactive and utils.darken(colors.fg, 0.9) or colors.fg,
       bg = options.transparent and "NONE" or colors.black,
@@ -82,7 +114,9 @@ function M.get(colors, options)
     Visual = { bg = utils.lighten(colors.navy, 0.7, colors.azure), bold = true },
     Whitespace = { fg = colors.gray },
     WinBar = { fg = colors.fg, bold = true },
-    WinBarNC = { fg = options.dim_inactive and utils.darken(colors.fg, 0.9) or utils.lighten(colors.gray, 0.9) },
+    WinBarNC = {
+      fg = options.dim_inactive and utils.darken(colors.fg, 0.9) or utils.lighten(colors.gray, 0.9),
+    },
   }
 end
 

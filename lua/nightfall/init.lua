@@ -21,18 +21,6 @@ end
 --- User command for compile highlight values manually
 vim.api.nvim_create_user_command("NightfallCompile", M.compile, {})
 
---- Write the current hash to the hash file
----@param current_hash string The current hash value
-local function write_hash_file(current_hash)
-  local file, err = io.open(HASH_FILE, "wb")
-  if file then
-    file:write(current_hash)
-    file:close()
-  else
-    vim.notify(("Failed to write hash file: %s"):format(err), vim.log.levels.ERROR, { title = "Nightfall" })
-  end
-end
-
 --- Load a colorscheme.
 ---@param flavor string Flavor to load
 function M.load(flavor)
@@ -43,14 +31,21 @@ function M.load(flavor)
 
   if cached_hash ~= current_hash then
     M.compile()
-    write_hash_file(current_hash)
+    local file, err = io.open(HASH_FILE, "wb")
+    if file then
+      file:write(current_hash)
+      file:close()
+    else
+      vim.notify(("Failed to write hash file: %s"):format(err), vim.log.levels.ERROR, { title = "Nightfall" })
+    end
   end
 
+  -- Load the cached theme file
   local cache_file = CACHE_DIR .. string.format("%s.json", flavor)
   local theme = vim.fn.filereadable(cache_file) == 1 and vim.json.decode(vim.fn.readfile(cache_file)[1]) or nil
   if not theme then
     vim.notify(
-      "An error encountered while reading cache file.\nTry deleting the cache directory and restarting Neovim.\n"
+      "An error occurred while reading the cache file.\nTry deleting the cache directory and restarting Neovim.\n"
         .. "Cache directory: "
         .. CACHE_DIR,
       vim.log.levels.ERROR,
@@ -59,7 +54,7 @@ function M.load(flavor)
     return
   end
 
-  -- Load highlights
+  -- Clear existing highlights if any
   if vim.g.colors_name then vim.cmd("hi clear") end
   vim.g.colors_name = flavor
 
@@ -75,7 +70,7 @@ function M.load(flavor)
     sethl(0, group, group_opts)
   end
 
-  -- Load terminal highlights
+  -- Load terminal highlights if enabled
   if options.terminal_colors then
     for name, color in pairs(theme.terminal) do
       vim.g[name] = color

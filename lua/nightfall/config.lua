@@ -1,8 +1,17 @@
 local M = {}
 
---- Default options
 ---@class NightfallOptions
-local Options = {
+---@field transparent? boolean
+---@field terminal_colors? boolean
+---@field dim_inactive? boolean
+---@field default_integrations? boolean
+---@field integrations? table<string,table>
+---@field color_overrides? table<string,table>
+---@field highlight_overrides? table<string,table>
+
+--- Default options
+---@type NightfallOptions
+local default_options = {
   transparent = false,
   terminal_colors = true,
   dim_inactive = false,
@@ -11,6 +20,8 @@ local Options = {
   color_overrides = {},
   highlight_overrides = {},
 }
+
+local Options = default_options
 
 --- Merge user configurations with defaults
 ---@param user_config? NightfallOptions

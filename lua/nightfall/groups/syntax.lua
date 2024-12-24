@@ -6,14 +6,13 @@ function M.get(colors)
   return {
     Comment = { fg = colors.gray, italic = true },
     Constant = {
-      fg = utils.vary_color(
-        { nightfall = colors.magenta, ["deeper-night"] = colors.charcoal, maron = colors.sand },
-        colors.cyan
-      ),
+      fg = utils.vary_color({
+        nightfall = colors.magenta,
+        ["deeper-night"] = colors.charcoal,
+        maron = colors.sand,
+      }, colors.cyan),
     },
-    String = {
-      fg = utils.vary_color({ nightfall = colors.yellow }, colors.blue),
-    },
+    String = { fg = utils.vary_color({ nightfall = colors.yellow }, colors.blue) },
     Character = { fg = utils.vary_color({ nightfall = colors.peach }, colors.charcoal) },
     Number = { fg = utils.vary_color({ nightfall = colors.gold }, colors.brown) },
     Boolean = { fg = utils.vary_color({ nightfall = colors.magenta }, colors.sky) },
@@ -27,7 +26,7 @@ function M.get(colors)
     Keyword = { fg = utils.vary_color({ nightfall = colors.pink }, colors.sky) },
     PreProc = { fg = utils.vary_color({ nightfall = colors.purple }, colors.pink) },
     Type = { fg = utils.vary_color({ nightfall = colors.yellow }, colors.yellow) },
-    Special = { fg = utils.vary_color({ nightfall = colors.yellow }, colors.coral) },
+    Special = { fg = utils.vary_color({ nightfall = colors.cyan }, colors.coral) },
     Delimiter = { fg = utils.vary_color({ nightfall = colors.rose }, colors.pink) },
     Error = { fg = colors.fg, bg = colors.red },
     Todo = { fg = colors.cream, bg = colors.sky },
