@@ -16,7 +16,7 @@ function M.get(colors, options)
   return {
     ColorColumn = { bg = colors.black },
     Conceal = { fg = colors.gray },
-    CurSearch = { fg = colors.black, bg = colors.lavender },
+    CurSearch = { fg = colors.black, bg = colors.blue },
     Cursor = { fg = colors.bg, bg = colors.fg },
     lCursor = { fg = colors.bg, bg = colors.fg },
     CursorColumn = {
@@ -40,7 +40,7 @@ function M.get(colors, options)
     Folded = { fg = accent, bg = colors.navy },
     FoldColumn = { fg = colors.navy },
     SignColumn = { fg = colors.charcoal },
-    IncSearch = { fg = colors.black, bg = accent },
+    IncSearch = { fg = colors.black, bg = colors.blue },
     Substitute = { fg = colors.black, bg = accent },
     LineNr = { fg = colors.gray },
     CursorLineNr = {
