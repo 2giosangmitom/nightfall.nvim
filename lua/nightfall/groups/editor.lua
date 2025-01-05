@@ -20,12 +20,12 @@ function M.get(colors, options)
     Cursor = { fg = colors.bg, bg = colors.fg },
     lCursor = { fg = colors.bg, bg = colors.fg },
     CursorColumn = {
-      bg = options.transparent and utils.lighten(colors.navy, 0.8, colors.azure)
-        or utils.lighten(colors.navy, 0.9, colors.azure),
+      bg = options.transparent and utils.lighten(colors.navy, 0.9, colors.azure)
+        or utils.lighten(colors.navy, 0.95, colors.azure),
     },
     CursorLine = {
-      bg = options.transparent and utils.lighten(colors.navy, 0.8, colors.azure)
-        or utils.lighten(colors.navy, 0.9, colors.azure),
+      bg = options.transparent and utils.lighten(colors.navy, 0.9, colors.azure)
+        or utils.lighten(colors.navy, 0.95, colors.azure),
     },
     Directory = { fg = accent },
     DiffAdd = { bg = utils.darken(colors.green, 0.52) },
@@ -48,7 +48,7 @@ function M.get(colors, options)
       bold = true,
     },
     MatchParen = {
-      fg = accent,
+      fg = colors.blue,
       bg = utils.darken(colors.white, 0.4),
       bold = true,
     },
@@ -111,7 +111,7 @@ function M.get(colors, options)
     TabLineFill = { bg = options.transparent and "NONE" or colors.black },
     TabLineSel = { fg = colors.fg, bg = colors.bg, bold = true },
     Title = { fg = accent },
-    Visual = { bg = utils.lighten(colors.navy, 0.7, colors.azure), bold = true },
+    Visual = { bg = utils.lighten(colors.navy, 0.85, colors.azure), bold = true },
     Whitespace = { fg = colors.gray },
     WinBar = { fg = colors.fg, bold = true },
     WinBarNC = {
