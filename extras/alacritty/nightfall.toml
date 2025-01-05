@@ -1,11 +1,11 @@
-[window]
-dynamic_padding = true
-opacity = 0.9
-blur = true
+# [window]
+# dynamic_padding = true
+# opacity = 0.9
+# blur = true
 
-[font]
-normal = { family = "JetBrainsMono NF", style = "Medium" }
-size = 13
+# [font]
+# normal = { family = "JetBrainsMono NF", style = "Medium" }
+# size = 13
 
 [colors.primary]
 foreground = "#e9e9f4"
@@ -23,7 +23,7 @@ end = { foreground = "#011502", background = "#fcc737" }
 [colors]
 line_indicator = { foreground = "#011502", background = "#f7dba7" }
 footer_bar = { foreground = "#011502", background = "#bbe5ed" }
-transparent_background_colors = true
+# transparent_background_colors = true
 
 [colors.normal]
 black = "#011502"
