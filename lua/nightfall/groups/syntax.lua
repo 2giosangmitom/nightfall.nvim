@@ -1,11 +1,12 @@
 local M = {}
 
 ---@param colors NightfallPalette
-function M.get(colors)
+---@param styles table
+function M.get(colors, styles)
   local utils = require("nightfall.utils.colors")
   -- See: `:h group-name`
   return {
-    Comment = { fg = colors.gray, italic = true },
+    Comment = { fg = colors.gray, style = styles.comments },
     Constant = {
       fg = utils.vary_color({
         nightfall = colors.magenta,
@@ -17,14 +18,14 @@ function M.get(colors)
     Character = { fg = utils.vary_color({ nightfall = colors.peach }, colors.charcoal) },
     Number = { fg = utils.vary_color({ nightfall = colors.gold }, colors.brown) },
     Boolean = { fg = utils.vary_color({ nightfall = colors.magenta }, colors.sky) },
-    Identifier = { fg = utils.vary_color({ nightfall = colors.azure }, colors.brown) },
+    Identifier = { fg = utils.vary_color({ nightfall = colors.azure }, colors.brown), style = styles.variables },
     Function = { fg = utils.vary_color({ nightfall = colors.green }, colors.blue) },
     Statement = { fg = utils.vary_color({ nightfall = colors.cyan }, colors.green) },
     Conditional = { fg = utils.vary_color({ nightfall = colors.magenta }, colors.pink) },
     Repeat = { fg = utils.vary_color({ nightfall = colors.rose }, colors.azure) },
     Label = { fg = utils.vary_color({ nightfall = colors.rose }, colors.rose) },
     Operator = { fg = utils.vary_color({ nightfall = colors.azure }, colors.sky) },
-    Keyword = { fg = utils.vary_color({ nightfall = colors.pink }, colors.sky) },
+    Keyword = { fg = utils.vary_color({ nightfall = colors.pink }, colors.sky), style = styles.keywords },
     PreProc = { fg = utils.vary_color({ nightfall = colors.purple }, colors.pink) },
     Type = { fg = utils.vary_color({ nightfall = colors.yellow }, colors.yellow) },
     Special = { fg = utils.vary_color({ nightfall = colors.cyan }, colors.coral) },

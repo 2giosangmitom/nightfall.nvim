@@ -29,7 +29,7 @@ function M.get(flavor)
       colors,
       { transparent = options.transparent, dim_inactive = options.dim_inactive }
     ),
-    require("nightfall.groups.syntax").get(colors)
+    require("nightfall.groups.syntax").get(colors, options.styles)
   )
   highlights = vim.tbl_deep_extend("keep", highlight_overrides, highlights)
 

@@ -5,9 +5,10 @@ local M = {}
 ---@field terminal_colors? boolean
 ---@field dim_inactive? boolean
 ---@field default_integrations? boolean
----@field integrations? table<string,table>
----@field color_overrides? table<string,table>
----@field highlight_overrides? table<string,table>
+---@field styles? table
+---@field integrations? table
+---@field color_overrides? table
+---@field highlight_overrides? table
 
 --- Default options
 ---@type NightfallOptions
@@ -16,8 +17,25 @@ local default_options = {
   terminal_colors = true,
   dim_inactive = false,
   default_integrations = true,
+  styles = {
+    comments = { italic = true },
+    keywords = { italic = true },
+    functions = {},
+    variables = {},
+    numbers = {},
+    conditionals = {},
+    constants = {},
+    operators = {},
+    strings = {},
+    types = {},
+    parameters = {},
+    booleans = {},
+    loops = {},
+    properties = {},
+  },
   integrations = {
     lazy = { enabled = true },
+    treesitter = { enabled = true },
   },
   color_overrides = {},
   highlight_overrides = {},

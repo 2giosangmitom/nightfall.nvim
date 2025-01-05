@@ -62,11 +62,23 @@ function M.load(flavor)
 
   -- Load core highlights
   for group, group_opts in pairs(theme.core) do
+    if group_opts.style then
+      for style, style_opts in pairs(group_opts.style) do
+        group_opts[style] = style_opts
+      end
+    end
+    group_opts.style = nil
     sethl(0, group, group_opts)
   end
 
   -- Load integration highlights
   for group, group_opts in pairs(theme.integrations) do
+    if group_opts.style then
+      for style, style_opts in pairs(group_opts.style) do
+        group_opts[style] = style_opts
+      end
+    end
+    group_opts.style = nil
     sethl(0, group, group_opts)
   end
 
