@@ -51,7 +51,7 @@ function M.get(colors, ts_opts)
 
     -- Keywords
     ["@keyword.coroutine"] = { fg = colors.cream, style = styles.coroutines },
-    ["@keyword.operator"] = { fg = colors.yellow, style = styles.keywords },
+    ["@keyword.operator"] = { fg = colors.cream, style = styles.keywords },
     ["@keyword.import"] = { fg = colors.cyan },
     ["@keyword.debug"] = { fg = colors.purple },
     ["@keyword.exception"] = { fg = colors.blue, style = styles.exceptions },

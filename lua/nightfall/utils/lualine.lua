@@ -22,7 +22,7 @@ function M.get(flavor)
   lualine.normal = {
     a = { fg = colors.black, bg = normal },
     b = { fg = normal, bg = navy },
-    c = { fg = colors.fg, bg = colors.black },
+    c = { fg = colors.fg, bg = options.transparent and "NONE" or colors.black },
   }
 
   lualine.insert = {
