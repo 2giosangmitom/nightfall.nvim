@@ -7,7 +7,7 @@ function M.get(colors)
 
   return {
     TreesitterContext = { bg = options.transparent and "NONE" or utils.lighten(colors.navy, 0.9) },
-    TreesitterContextBottom = { sp = colors.gray },
+    TreesitterContextBottom = { sp = utils.darken(colors.silver, 0.5), underline = options.transparent },
     TreesitterContextLineNumber = { fg = colors.cream },
   }
 end

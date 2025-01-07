@@ -17,7 +17,7 @@ function M.get(colors, styles)
     String = { fg = utils.vary_color({ nightfall = colors.yellow }, colors.blue) },
     Character = { fg = utils.vary_color({ nightfall = colors.peach }, colors.charcoal) },
     Number = { fg = utils.vary_color({ nightfall = colors.gold }, colors.brown) },
-    Boolean = { fg = utils.vary_color({ nightfall = colors.magenta }, colors.sky), style = styles.booleans },
+    Boolean = { fg = utils.vary_color({ nightfall = colors.blue }, colors.sky), style = styles.booleans },
     Identifier = { fg = utils.vary_color({ nightfall = colors.azure }, colors.brown), style = styles.variables },
     Function = { fg = utils.vary_color({ nightfall = colors.green }, colors.blue), style = styles.functions },
     Statement = { fg = utils.vary_color({ nightfall = colors.cyan }, colors.green) },
