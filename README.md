@@ -2,7 +2,7 @@
 
 > A draft outlining the improvements and enhancements planned for the Nightfall plugin.
 
-### Planned Changes
+## Planned Changes
 
 - Rewrite plugin code for better organization and maintainability
 - Introduce new features to support advanced Neovim users

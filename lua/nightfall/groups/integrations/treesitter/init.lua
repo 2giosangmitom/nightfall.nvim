@@ -71,7 +71,7 @@ function M.get(colors, ts_opts)
     ["@markup.heading.4"] = { fg = colors.lime },
     ["@markup.heading.5"] = { fg = colors.blue },
     ["@markup.heading.6"] = { fg = colors.cream },
-    ["@markup.quote"] = { fg = utils.lighten(colors.gray, 1, colors.navy) },
+    ["@markup.quote"] = { fg = utils.darken(colors.blue, 0.8, colors.charcoal) },
     ["@markup.math"] = { fg = colors.purple },
     ["@markup.link"] = { fg = colors.azure, undercurl = true },
     ["@markup.raw"] = { fg = colors.cream },

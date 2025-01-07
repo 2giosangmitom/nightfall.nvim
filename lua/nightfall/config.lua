@@ -38,6 +38,7 @@ local default_options = {
   integrations = {
     lazy = { enabled = true },
     treesitter = { enabled = true, context = true },
+    render_markdown = { enabled = true },
   },
   color_overrides = {},
   highlight_overrides = {},
