@@ -43,7 +43,7 @@ function M.get(colors, ts_opts)
 
     -- Functions
     ["@function.builtin"] = { fg = colors.cream },
-    ["@function.macro"] = { fg = colors.rose },
+    ["@function.macro"] = { link = "PreProc" },
     ["@constructor"] = { fg = colors.cyan },
 
     -- Operators
@@ -55,13 +55,16 @@ function M.get(colors, ts_opts)
     ["@keyword.import"] = { fg = colors.cyan },
     ["@keyword.debug"] = { fg = colors.purple },
     ["@keyword.exception"] = { fg = colors.blue, style = styles.exceptions },
-    ["@keyword.conditional.ternary"] = { fg = colors.blue, style = styles.operators },
+    ["@keyword.conditional"] = { link = "Conditional" },
+    ["@keyword.conditional.ternary"] = { link = "Operator" },
+    ["@keyword.repeat"] = { link = "Repeat" },
+    ["@keyword.type"] = { link = "Type" },
 
     -- Comments
-    ["@comment.error"] = { fg = colors.red },
-    ["@comment.warning"] = { fg = colors.yellow },
-    ["@comment.todo"] = { fg = colors.bg, bg = colors.cyan },
-    ["@comment.note"] = { fg = colors.bg, bg = colors.cyan },
+    ["@comment.error"] = { fg = colors.black, bg = colors.red },
+    ["@comment.warning"] = { fg = colors.black, bg = colors.yellow },
+    ["@comment.todo"] = { fg = colors.black, bg = colors.cyan },
+    ["@comment.note"] = { fg = colors.black, bg = colors.cyan },
 
     -- Markup
     ["@markup.heading"] = { fg = colors.green, bold = true },

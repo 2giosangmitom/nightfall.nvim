@@ -34,6 +34,7 @@ local default_options = {
     booleans = {},
     loops = {},
     properties = {},
+    characters = {},
   },
   integrations = {
     lazy = { enabled = true },
