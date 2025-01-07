@@ -6,7 +6,7 @@ local M = {}
 function M.get(colors, options)
   local utils = require("nightfall.utils.colors")
   local accent = utils.vary_color({
-    nightfall = colors.pink,
+    nightfall = colors.purple,
     ["deeper-night"] = colors.blue,
     maron = colors.sand,
     ["white-night"] = colors.sky,
@@ -49,7 +49,7 @@ function M.get(colors, options)
     },
     MatchParen = {
       fg = colors.blue,
-      bg = utils.darken(colors.white, 0.4),
+      bg = utils.lighten(colors.navy, 0.9),
       bold = true,
     },
     ModeMsg = { fg = accent },
@@ -101,7 +101,7 @@ function M.get(colors, options)
       bg = options.transparent and "NONE" or colors.black,
     },
     StatusLineNC = {
-      fg = options.dim_inactive and utils.darken(colors.fg, 0.9) or colors.fg,
+      fg = options.dim_inactive and utils.darken(colors.azure, 0.9) or colors.azure,
       bg = options.transparent and "NONE" or colors.black,
     },
     TabLine = {
