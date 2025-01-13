@@ -29,7 +29,7 @@ function M.get()
     rose = "#dd9ac2",
     sand = "#e5c697",
     silver = "#c9c9c9",
-    sky = "#2cccff",
+    sky = "#8caaee",
     teal = "#72bda3",
     white = "#ffffff",
     yellow = "#f2fa95",

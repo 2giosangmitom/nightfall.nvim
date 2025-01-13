@@ -40,6 +40,7 @@ local default_options = {
     lazy = { enabled = true },
     treesitter = { enabled = true, context = true },
     render_markdown = { enabled = true },
+    native_lsp = { enabled = true, semantic_tokens = true },
   },
   color_overrides = {},
   highlight_overrides = {},

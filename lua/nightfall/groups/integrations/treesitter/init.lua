@@ -22,7 +22,7 @@ function M.get(colors, ts_opts)
     ["@constant.builtin"] = { fg = colors.pink, style = options.styles.constants },
 
     -- Modules or namespaces
-    ["@module"] = { fg = colors.lavender },
+    ["@module"] = { fg = colors.cream },
     ["@module.builtin"] = { fg = colors.cyan },
     ["@label"] = { fg = colors.coral },
 
