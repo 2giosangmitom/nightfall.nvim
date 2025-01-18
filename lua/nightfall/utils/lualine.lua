@@ -16,12 +16,14 @@ function M.get(flavor)
     nightfall = colors.purple,
     ["deeper-night"] = colors.sky,
     maron = colors.peach,
+    nord = colors.blue,
   }
 
   local insert_colors = {
     nightfall = colors.green,
     ["deeper-night"] = colors.magenta,
     maron = colors.blue,
+    nord = colors.lime,
   }
 
   local command_color = flavor == "nightfall" and colors.blue or colors.coral
@@ -32,6 +34,7 @@ function M.get(flavor)
     nightfall = colors.sky,
     ["deeper-night"] = colors.yellow,
     maron = colors.lime,
+    nord = colors.cyan,
   }
 
   -- Define lualine configuration
