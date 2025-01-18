@@ -22,8 +22,10 @@ function ensureDirectoryExistence(dir) {
 }
 
 try {
+  // Ensure the output directory exists
   ensureDirectoryExistence(OUTPUT_DIR);
 
+  // Read all files in the cache directory
   const files = readdirSync(CACHE_DIR);
   const jsonFiles = files.filter((file) => file.endsWith(".json"));
 
@@ -37,41 +39,39 @@ try {
       try {
         const content = readFileSync(filePath, "utf-8");
         const json = JSON.parse(content);
+
+        // Initialize vimContent with the colorscheme name and clear command
         let vimContent = `let g:colors_name = "${basename(file, ".json")}"\nhi clear\n`;
 
-        for (const [key, val] of Object.entries(json.core)) {
-          let line = `hi ${key}`;
-          let styles = [];
-          for (const key in val) {
-            if (typeof val[key] === "string") {
-              if (key === "fg") {
-                line += ` guifg=${val[key]}`;
+        // Process 'core' key if it exists
+        if (json.core) {
+          for (const [key, val] of Object.entries(json.core)) {
+            let line = `hi ${key}`;
+            let styles = [];
+
+            for (const [attrKey, attrValue] of Object.entries(val)) {
+              if (typeof attrValue === "string") {
+                if (attrKey === "fg") line += ` guifg=${attrValue}`;
+                if (attrKey === "bg") line += ` guibg=${attrValue}`;
+                if (attrKey === "sp") line += ` guisp=${attrValue}`;
               }
-              if (key === "bg") {
-                line += ` guibg=${val[key]}`;
+              if (typeof attrValue === "boolean" && attrValue) {
+                styles.push(attrKey);
               }
-              if (key === "sp") {
-                line += ` guisp=${val[key]}`;
-              }
-            }
-            if (typeof val[key] === "boolean") {
-              if (val[key]) {
-                styles.push(key);
-              }
-            }
-            if (typeof val[key] === "object") {
-              for (const k in val[key]) {
-                if (val[key][k]) {
-                  styles.push(k);
+              if (typeof attrValue === "object") {
+                for (const [styleKey, styleValue] of Object.entries(
+                  attrValue,
+                )) {
+                  if (styleValue) styles.push(styleKey);
                 }
               }
             }
-          }
 
-          if (styles.length !== 0) {
-            line += ` gui=${styles.join(",")}`;
+            if (styles.length > 0) {
+              line += ` gui=${styles.join(",")}`;
+            }
+            vimContent += line.concat("\n");
           }
-          vimContent += line.concat("\n");
         }
 
         writeFileSync(vimFile, vimContent);
