@@ -7,7 +7,7 @@ function M.get(colors, options)
   local utils = require("nightfall.utils.colors")
   local accent = utils.vary_color({
     nightfall = colors.purple,
-    ["deeper-night"] = colors.blue,
+    ["deeper-night"] = colors.sky,
     maron = colors.sand,
     ["white-night"] = colors.sky,
   }, colors.lime)

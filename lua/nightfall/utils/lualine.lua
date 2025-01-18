@@ -11,23 +11,34 @@ function M.get(flavor)
   color_overrides = vim.tbl_deep_extend("force", color_overrides, options.color_overrides[flavor] or {})
   local colors = require("nightfall.palettes").get_palette(flavor, color_overrides)
 
-  local normal = flavor == "nightfall" and colors.purple or colors.blue
-  local insert = flavor == "nightfall" and colors.green or colors.sky
+  local normal = {
+    nightfall = colors.purple,
+    ["deeper-night"] = colors.sky,
+  }
+
+  local insert = {
+    nightfall = colors.green,
+    ["deeper-night"] = colors.magenta,
+  }
   local command = flavor == "nightfall" and colors.blue or colors.coral
   local terminal = flavor == "nightfall" and colors.cyan or colors.cream
   local navy = utils.lighten(colors.navy, 0.9)
+  local visual = {
+    nightfall = colors.sky,
+    ["deeper-night"] = colors.yellow,
+  }
 
   local lualine = {}
 
   lualine.normal = {
-    a = { fg = colors.black, bg = normal },
-    b = { fg = normal, bg = navy },
+    a = { fg = colors.black, bg = normal[flavor] },
+    b = { fg = normal[flavor], bg = navy },
     c = { fg = colors.fg, bg = options.transparent and "NONE" or colors.black },
   }
 
   lualine.insert = {
-    a = { fg = colors.black, bg = insert },
-    b = { fg = insert, bg = navy },
+    a = { fg = colors.black, bg = insert[flavor] },
+    b = { fg = insert[flavor], bg = navy },
   }
 
   lualine.terminal = {
@@ -41,8 +52,8 @@ function M.get(flavor)
   }
 
   lualine.visual = {
-    a = { bg = colors.sky, fg = colors.black },
-    b = { bg = navy, fg = colors.sky },
+    a = { bg = visual[flavor], fg = colors.black },
+    b = { bg = navy, fg = visual[flavor] },
   }
 
   lualine.replace = {

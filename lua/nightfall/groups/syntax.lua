@@ -26,7 +26,7 @@ function M.get(colors, styles)
     },
     Identifier = { fg = utils.vary_color({ nightfall = colors.azure }, colors.yellow), style = styles.variables },
     Function = {
-      fg = utils.vary_color({ nightfall = colors.green, ["deeper-night"] = colors.cyan }, colors.sky),
+      fg = utils.vary_color({ nightfall = colors.green, ["deeper-night"] = colors.sky }, colors.sky),
       style = styles.functions,
     },
     Statement = { fg = utils.vary_color({ nightfall = colors.cyan, ["deeper-night"] = colors.purple }, colors.green) },
@@ -34,7 +34,10 @@ function M.get(colors, styles)
       fg = utils.vary_color({ nightfall = colors.pink, ["deeper-night"] = colors.purple }, colors.pink),
       style = styles.conditionals,
     },
-    Repeat = { fg = utils.vary_color({ nightfall = colors.cyan }, colors.cyan), style = styles.loops },
+    Repeat = {
+      fg = utils.vary_color({ nightfall = colors.cyan, ["deeper-night"] = colors.cyan }, colors.cyan),
+      style = styles.loops,
+    },
     Label = { fg = utils.vary_color({ nightfall = colors.rose }, colors.cream) },
     Operator = { fg = utils.vary_color({ nightfall = colors.azure }, colors.cyan), style = styles.operators },
     Keyword = { fg = utils.vary_color({ nightfall = colors.pink }, colors.coral), style = styles.keywords },
