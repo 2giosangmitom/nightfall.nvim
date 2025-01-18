@@ -45,7 +45,7 @@ try {
 
         // Process 'core' key if it exists
         if (json.core) {
-          for (const [key, val] of Object.entries(json.core)) {
+          for (const [key, val] of Object.entries(json.core).sort()) {
             let line = `hi ${key}`;
             let styles = [];
 
