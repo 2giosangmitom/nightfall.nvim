@@ -45,7 +45,7 @@ function M.get(colors, ts_opts)
     ["@attribute.builtin"] = { fg = colors.blue },
 
     -- Properties
-    ["@property"] = { fg = utils.vary_color({ maron = colors.peach, nord = colors.lime }, colors.lavender) },
+    ["@property"] = { fg = utils.vary_color({ maron = colors.peach, nord = colors.cyan }, colors.lavender) },
 
     -- Functions
     ["@function.builtin"] = { fg = colors.cream },

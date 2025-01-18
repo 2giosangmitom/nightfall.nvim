@@ -22,7 +22,7 @@ function M.get()
     navy = "#2e3440",
     orange = "#d08770",
     peach = "#ffb997",
-    pink = "#f84aa7",
+    pink = "#FFE2E2",
     purple = "#cba6f7",
     red = "#FF748B",
     rose = "#dd9ac2",
