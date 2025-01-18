@@ -11,7 +11,7 @@ function M.get(colors, styles)
       fg = utils.vary_color({
         nightfall = colors.magenta,
         ["deeper-night"] = colors.cream,
-        maron = colors.lime,
+        maron = colors.coral,
       }, colors.cyan),
     },
     String = {

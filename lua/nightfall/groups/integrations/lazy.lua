@@ -20,7 +20,7 @@ function M.get(colors)
     LazyReasonImport = { fg = utils.vary_color({ maron = colors.sky }, colors.blue) },
     LazyReasonStart = { fg = colors.pink },
     LazySpecial = { fg = colors.lavender },
-    LazyLocal = { fg = colors.pink },
+    LazyLocal = { fg = utils.vary_color({ maron = colors.red }, colors.pink) },
     LazyReasonKeys = { fg = utils.vary_color({ maron = colors.sky }, colors.blue) },
   }
 end
