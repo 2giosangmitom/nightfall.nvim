@@ -16,7 +16,7 @@ function M.get(colors, options)
   return {
     ColorColumn = { bg = colors.black },
     Conceal = { fg = colors.gray },
-    CurSearch = { fg = colors.black, bg = colors.blue },
+    CurSearch = { fg = colors.black, bg = utils.vary_color({ nightfall = colors.blue }, colors.coral) },
     Cursor = { fg = colors.bg, bg = colors.fg },
     lCursor = { fg = colors.bg, bg = colors.fg },
     CursorColumn = {
