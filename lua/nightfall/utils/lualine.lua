@@ -11,54 +11,61 @@ function M.get(flavor)
   color_overrides = vim.tbl_deep_extend("force", color_overrides, options.color_overrides[flavor] or {})
   local colors = require("nightfall.palettes").get_palette(flavor, color_overrides)
 
-  local normal = {
+  -- Define color mappings for different modes
+  local normal_colors = {
     nightfall = colors.purple,
     ["deeper-night"] = colors.sky,
+    maron = colors.peach,
   }
 
-  local insert = {
+  local insert_colors = {
     nightfall = colors.green,
     ["deeper-night"] = colors.magenta,
-  }
-  local command = flavor == "nightfall" and colors.blue or colors.coral
-  local terminal = flavor == "nightfall" and colors.cyan or colors.cream
-  local navy = utils.lighten(colors.navy, 0.9)
-  local visual = {
-    nightfall = colors.sky,
-    ["deeper-night"] = colors.yellow,
+    maron = colors.blue,
   }
 
+  local command_color = flavor == "nightfall" and colors.blue or colors.coral
+  local terminal_color = flavor == "nightfall" and colors.cyan or colors.cream
+  local navy_color = utils.lighten(colors.navy, 0.9)
+
+  local visual_colors = {
+    nightfall = colors.sky,
+    ["deeper-night"] = colors.yellow,
+    maron = colors.lime,
+  }
+
+  -- Define lualine configuration
   local lualine = {}
 
   lualine.normal = {
-    a = { fg = colors.black, bg = normal[flavor] },
-    b = { fg = normal[flavor], bg = navy },
+    a = { fg = colors.black, bg = normal_colors[flavor] },
+    b = { fg = normal_colors[flavor], bg = navy_color },
     c = { fg = colors.fg, bg = options.transparent and "NONE" or colors.black },
   }
 
   lualine.insert = {
-    a = { fg = colors.black, bg = insert[flavor] },
-    b = { fg = insert[flavor], bg = navy },
+    a = { fg = colors.black, bg = insert_colors[flavor] },
+    b = { fg = insert_colors[flavor], bg = navy_color },
   }
 
   lualine.terminal = {
-    a = { bg = terminal, fg = colors.black },
-    b = { bg = navy, fg = terminal },
+    a = { bg = terminal_color, fg = colors.black },
+    b = { bg = navy_color, fg = terminal_color },
   }
 
   lualine.command = {
-    a = { fg = colors.black, bg = command },
-    b = { fg = command, bg = navy },
+    a = { fg = colors.black, bg = command_color },
+    b = { fg = command_color, bg = navy_color },
   }
 
   lualine.visual = {
-    a = { bg = visual[flavor], fg = colors.black },
-    b = { bg = navy, fg = visual[flavor] },
+    a = { bg = visual_colors[flavor], fg = colors.black },
+    b = { bg = navy_color, fg = visual_colors[flavor] },
   }
 
   lualine.replace = {
     a = { fg = colors.black, bg = colors.red },
-    b = { fg = colors.red, bg = navy },
+    b = { fg = colors.red, bg = navy_color },
   }
 
   lualine.inactive = {

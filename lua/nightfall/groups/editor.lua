@@ -8,7 +8,7 @@ function M.get(colors, options)
   local accent = utils.vary_color({
     nightfall = colors.purple,
     ["deeper-night"] = colors.sky,
-    maron = colors.sand,
+    maron = colors.lavender,
     ["white-night"] = colors.sky,
   }, colors.lime)
 
@@ -16,7 +16,10 @@ function M.get(colors, options)
   return {
     ColorColumn = { bg = colors.black },
     Conceal = { fg = colors.gray },
-    CurSearch = { fg = colors.black, bg = utils.vary_color({ nightfall = colors.blue }, colors.coral) },
+    CurSearch = {
+      fg = colors.black,
+      bg = utils.vary_color({ nightfall = colors.blue, maron = colors.gold }, colors.coral),
+    },
     Cursor = { fg = colors.bg, bg = colors.fg },
     lCursor = { fg = colors.bg, bg = colors.fg },
     CursorColumn = {
@@ -86,7 +89,10 @@ function M.get(colors, options)
     PmenuMatchSel = { fg = colors.cyan, bg = colors.black },
     Question = { fg = accent, bold = true },
     QuickFixLine = { fg = accent },
-    Search = { fg = colors.black, bg = colors.cream },
+    Search = {
+      fg = colors.black,
+      bg = utils.vary_color({ nightfall = colors.cream, maron = colors.green }, colors.cyan),
+    },
     SnippetTabstop = {
       fg = utils.lighten(accent, 0.5),
       bg = utils.darken(accent, 0.3),

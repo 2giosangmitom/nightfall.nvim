@@ -13,9 +13,15 @@ function M.get(colors, ts_opts)
     -- Variables
     ["@variable"] = { link = "Identifier" },
     ["@variable.builtin"] = { fg = colors.peach, style = options.styles.variables },
-    ["@variable.parameter"] = { fg = colors.white, style = options.styles.parameters },
+    ["@variable.parameter"] = {
+      fg = utils.vary_color({ nightfall = colors.azure }, colors.azure),
+      style = options.styles.parameters,
+    },
     ["@variable.parameter.builtin"] = { fg = colors.pink, style = options.styles.parameters },
-    ["@variable.member"] = { fg = colors.lavender, style = options.styles.properties },
+    ["@variable.member"] = {
+      fg = utils.vary_color({ maron = colors.sand }, colors.lavender),
+      style = options.styles.properties,
+    },
 
     -- Constants
     ["@constant"] = { link = "Constant" },
@@ -39,7 +45,7 @@ function M.get(colors, ts_opts)
     ["@attribute.builtin"] = { fg = colors.blue },
 
     -- Properties
-    ["@property"] = { fg = colors.lavender },
+    ["@property"] = { fg = utils.vary_color({ maron = colors.magenta }, colors.lavender) },
 
     -- Functions
     ["@function.builtin"] = { fg = colors.cream },
