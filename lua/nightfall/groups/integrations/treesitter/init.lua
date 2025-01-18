@@ -45,7 +45,7 @@ function M.get(colors, ts_opts)
     ["@attribute.builtin"] = { fg = colors.blue },
 
     -- Properties
-    ["@property"] = { fg = utils.vary_color({ maron = colors.magenta }, colors.lavender) },
+    ["@property"] = { fg = utils.vary_color({ maron = colors.peach }, colors.lavender) },
 
     -- Functions
     ["@function.builtin"] = { fg = colors.cream },
@@ -86,7 +86,7 @@ function M.get(colors, ts_opts)
     ["@markup.raw"] = { fg = colors.cream },
   }
 
-  if ts_opts.context then
+  if ts_opts.context or false then
     result =
       vim.tbl_deep_extend("error", result, require("nightfall.groups.integrations.treesitter.context").get(colors))
   end

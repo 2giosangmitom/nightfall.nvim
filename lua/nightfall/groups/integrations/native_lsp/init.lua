@@ -48,7 +48,7 @@ function M.get(colors, opts)
     DiagnosticUnderlineOk = { sp = colors.green, style = { undercurl = true } },
   }
 
-  if opts.semantic_tokens then
+  if opts.semantic_tokens or false then
     highlights = vim.tbl_deep_extend(
       "error",
       highlights,

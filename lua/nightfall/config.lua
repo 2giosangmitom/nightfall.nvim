@@ -41,6 +41,7 @@ local default_options = {
     treesitter = { enabled = true, context = true },
     render_markdown = { enabled = true },
     native_lsp = { enabled = true, semantic_tokens = true },
+    snacks = { enabled = true, dashboard = true },
   },
   color_overrides = {},
   highlight_overrides = {},
