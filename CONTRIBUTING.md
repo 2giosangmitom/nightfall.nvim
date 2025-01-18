@@ -12,12 +12,10 @@ vim.api.nvim_create_user_command("NightfallDev", function()
 
       local nightfall = require("nightfall")
       nightfall.setup({
-        transparent = true,
+        transparent = false,
       })
       nightfall.compile()
-      vim.schedule(function()
-        if nightfall.load then nightfall.load(vim.g.colors_name) end
-      end)
+      vim.schedule_wrap(function() vim.cmd("colorscheme " .. vim.g.colors_name) end)
       vim.notify("Nightfall reloaded", vim.log.levels.INFO, { title = "Nightfall" })
     end,
   })
