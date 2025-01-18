@@ -10,6 +10,7 @@ function M.get(colors, options)
     ["deeper-night"] = colors.sky,
     maron = colors.lavender,
     ["white-night"] = colors.sky,
+    nord = colors.teal,
   }, colors.lime)
 
   -- See `:h highlight-groups`
@@ -18,7 +19,7 @@ function M.get(colors, options)
     Conceal = { fg = colors.gray },
     CurSearch = {
       fg = colors.black,
-      bg = utils.vary_color({ nightfall = colors.blue, maron = colors.gold }, colors.coral),
+      bg = utils.vary_color({ nightfall = colors.blue, maron = colors.gold, nord = colors.blue }, colors.coral),
     },
     Cursor = { fg = colors.bg, bg = colors.fg },
     lCursor = { fg = colors.bg, bg = colors.fg },

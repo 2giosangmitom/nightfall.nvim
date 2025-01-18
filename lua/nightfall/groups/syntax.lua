@@ -12,6 +12,7 @@ function M.get(colors, styles)
         nightfall = colors.magenta,
         ["deeper-night"] = colors.cream,
         maron = colors.coral,
+        nord = colors.sky,
       }, colors.cyan),
     },
     String = {
@@ -19,6 +20,7 @@ function M.get(colors, styles)
         nightfall = colors.yellow,
         ["deeper-night"] = colors.yellow,
         maron = colors.sand,
+        nord = colors.green,
       }, colors.blue),
     },
     Character = {
@@ -26,14 +28,16 @@ function M.get(colors, styles)
         nightfall = colors.peach,
         ["deeper-night"] = colors.purple,
         maron = colors.cyan,
+        nord = colors.lime,
       }, colors.purple),
       style = styles.characters,
     },
-    Number = { fg = utils.vary_color({ nightfall = colors.gold }, colors.teal) },
+    Number = { fg = utils.vary_color({ nightfall = colors.gold, nord = colors.cream }, colors.teal) },
     Boolean = {
       fg = utils.vary_color({
         nightfall = colors.blue,
         ["deeper-night"] = colors.pink,
+        nord = colors.rose,
       }, colors.sky),
       style = styles.booleans,
     },
@@ -41,6 +45,7 @@ function M.get(colors, styles)
       fg = utils.vary_color({
         nightfall = colors.azure,
         maron = colors.peach,
+        nord = colors.white,
       }, colors.yellow),
       style = styles.variables,
     },
@@ -49,6 +54,7 @@ function M.get(colors, styles)
         nightfall = colors.green,
         ["deeper-night"] = colors.sky,
         maron = colors.lime,
+        nord = colors.blue,
       }, colors.sky),
       style = styles.functions,
     },
@@ -62,6 +68,7 @@ function M.get(colors, styles)
       fg = utils.vary_color({
         nightfall = colors.pink,
         ["deeper-night"] = colors.purple,
+        nord = colors.magenta,
       }, colors.pink),
       style = styles.conditionals,
     },
@@ -69,6 +76,7 @@ function M.get(colors, styles)
       fg = utils.vary_color({
         nightfall = colors.cyan,
         ["deeper-night"] = colors.cyan,
+        nord = colors.yellow,
       }, colors.cyan),
       style = styles.loops,
     },
@@ -82,16 +90,18 @@ function M.get(colors, styles)
         nightfall = colors.pink,
         ["deeper-night"] = colors.coral,
         maron = colors.orange,
+        nord = colors.purple,
       }, colors.coral),
       style = styles.keywords,
     },
     PreProc = { fg = utils.vary_color({ nightfall = colors.sky }, colors.pink) },
-    Type = { fg = utils.vary_color({ nightfall = colors.yellow }, colors.cyan) },
+    Type = { fg = utils.vary_color({ nightfall = colors.yellow, nord = colors.yellow }, colors.cyan) },
     Special = {
       fg = utils.vary_color({
         nightfall = colors.cyan,
         ["deeper-night"] = colors.sky,
-        maron = colors.gold,
+        maron = colors.sand,
+        nord = colors.teal,
       }, colors.coral),
     },
     Delimiter = { fg = utils.vary_color({ nightfall = colors.rose }, colors.lavender) },

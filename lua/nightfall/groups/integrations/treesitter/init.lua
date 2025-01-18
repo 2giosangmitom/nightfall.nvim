@@ -14,7 +14,7 @@ function M.get(colors, ts_opts)
     ["@variable"] = { link = "Identifier" },
     ["@variable.builtin"] = { fg = colors.peach, style = options.styles.variables },
     ["@variable.parameter"] = {
-      fg = utils.vary_color({ nightfall = colors.azure }, colors.azure),
+      fg = utils.vary_color({ nightfall = colors.azure, nord = colors.white }, colors.azure),
       style = options.styles.parameters,
     },
     ["@variable.parameter.builtin"] = { fg = colors.pink, style = options.styles.parameters },
@@ -41,11 +41,11 @@ function M.get(colors, ts_opts)
     ["@character.special"] = { fg = colors.coral },
 
     -- Attributes or annotations
-    ["@attribute"] = { fg = colors.pink },
+    ["@attribute"] = { fg = utils.vary_color({ nightfall = colors.pink }, colors.magenta) },
     ["@attribute.builtin"] = { fg = colors.blue },
 
     -- Properties
-    ["@property"] = { fg = utils.vary_color({ maron = colors.peach }, colors.lavender) },
+    ["@property"] = { fg = utils.vary_color({ maron = colors.peach, nord = colors.lime }, colors.lavender) },
 
     -- Functions
     ["@function.builtin"] = { fg = colors.cream },
