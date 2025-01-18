@@ -42,6 +42,7 @@ local default_options = {
     render_markdown = { enabled = true },
     native_lsp = { enabled = true, semantic_tokens = true },
     snacks = { enabled = true, dashboard = true },
+    mini = { enabled = true, icons = true },
   },
   color_overrides = {},
   highlight_overrides = {},

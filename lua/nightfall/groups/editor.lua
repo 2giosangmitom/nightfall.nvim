@@ -51,7 +51,7 @@ function M.get(colors, options)
       bold = true,
     },
     MatchParen = {
-      fg = colors.blue,
+      fg = utils.vary_color({ ["deeper-night"] = colors.magenta }, colors.blue),
       bg = utils.lighten(colors.navy, 0.9),
       bold = true,
     },
