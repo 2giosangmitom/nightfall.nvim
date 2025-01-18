@@ -22,7 +22,6 @@
 ---@field teal string
 ---@field sky string
 ---@field lime string
----@field brown string
 ---@field sand string
 ---@field cream string
 ---@field gray string

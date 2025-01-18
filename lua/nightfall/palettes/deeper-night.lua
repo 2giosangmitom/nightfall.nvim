@@ -8,7 +8,6 @@ function M.get()
     bg = "#0e131b",
     black = "#1a181b",
     blue = "#3dc2ec",
-    brown = "#613a3a",
     charcoal = "#454955",
     coral = "#eb87a3",
     cream = "#edf7d2",
