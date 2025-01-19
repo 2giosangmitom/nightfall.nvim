@@ -45,7 +45,7 @@ function M.get(flavor)
         integration_highlights =
           vim.tbl_deep_extend("error", integration_f.get(colors, integration_config), integration_highlights)
       else
-        vim.notify(
+        vim.notify_once(
           string.format("%s integration is not supported or not found", integration),
           vim.log.levels.WARN,
           { title = "Nightfall" }
