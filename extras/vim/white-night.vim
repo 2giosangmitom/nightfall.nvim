@@ -1,85 +1,85 @@
 let g:colors_name = "white-night"
 hi clear
-hi Added guifg=#50fa7b
-hi Boolean guifg=#2cccff
-hi Changed guifg=#f2fa95
-hi Character guifg=#9a86fd
+hi Added guifg=#16C47F
+hi Boolean guifg=#344CB7
+hi Changed guifg=#C07F00
+hi Character guifg=#8576FF
 hi ColorColumn guibg=#011502
 hi Comment guifg=#888da7 gui=italic
 hi Conceal guifg=#888da7
 hi Conditional guifg=#f84aa7
-hi Constant guifg=#8be9fd
-hi CurSearch guibg=#e76b74 guifg=#011502
-hi Cursor guibg=#e9e9f4 guifg=#e6dfdc
+hi Constant guifg=#36C2CE
+hi CurSearch guifg=#011502 guibg=#CF455C
+hi Cursor guifg=#F5EFFF guibg=#3D3D3D
 hi CursorColumn guibg=#404168
-hi CursorLine guibg=#404168
-hi CursorLineNr guifg=#edf7f6 gui=bold
+hi CursorLine guibg=#d5dedd
+hi CursorLineNr guifg=#344CB7 gui=bold
 hi Delimiter guifg=#beb8eb
-hi DiffAdd guibg=#2a8240
-hi DiffChange guibg=#797d4b
+hi DiffAdd guibg=#0b6642
+hi DiffChange guibg=#604000
 hi DiffDelete guibg=#8a2e2e
 hi DiffText guibg=#036280
-hi Directory guifg=#2cccff
+hi Directory guifg=#344CB7
 hi EndOfBuffer guifg=#454955
 hi Error guifg=#ff5555
-hi ErrorMsg guifg=#ff5555 gui=italic,bold
-hi FloatBorder guifg=#2cccff
-hi FloatTitle guifg=#2cccff
+hi ErrorMsg guifg=#ff5555 gui=bold,italic
+hi FloatBorder guifg=#344CB7
+hi FloatTitle guifg=#344CB7
 hi FoldColumn guifg=#373760
-hi Folded guibg=#373760 guifg=#2cccff
-hi Function guifg=#2cccff
-hi Identifier guifg=#f2fa95
-hi IncSearch guibg=#05c3ff guifg=#011502
-hi Keyword guifg=#e76b74 gui=italic
+hi Folded guifg=#344CB7 guibg=#373760
+hi Function guifg=#344CB7
+hi Identifier guifg=#C07F00
+hi IncSearch guifg=#011502 guibg=#05c3ff
+hi Keyword guifg=#CF455C gui=italic
 hi Label guifg=#edf7d2
 hi LineNr guifg=#888da7
-hi MatchParen guifg=#05c3ff guibg=#4b4b70 gui=bold
-hi ModeMsg guifg=#2cccff
+hi MatchParen guibg=#4b4b70 guifg=#05c3ff gui=bold
+hi ModeMsg guifg=#344CB7
 hi MoreMsg guifg=#edf7f6
-hi MsgArea guifg=#e9e9f4
-hi MsgSeparator guifg=#e9e9f4
+hi MsgArea guifg=#3D3D3D
+hi MsgSeparator guifg=#3D3D3D
 hi NonText guifg=#888da7
-hi Normal guibg=#e6dfdc guifg=#e9e9f4
-hi NormalFloat guibg=#cfc9c6 guifg=#e9e9f4
-hi NormalNC guibg=#e6dfdc guifg=#e9e9f4
-hi Number guifg=#72bda3
-hi Operator guifg=#8be9fd
-hi Pmenu guibg=#011502 guifg=#e9e9f4
-hi PmenuMatch guibg=#011502 guifg=#2cccff
-hi PmenuMatchSel guibg=#011502 guifg=#8be9fd
+hi Normal guifg=#3D3D3D guibg=#F5EFFF
+hi NormalFloat guifg=#3D3D3D guibg=#ddd7e6
+hi NormalNC guifg=#3D3D3D guibg=#F5EFFF
+hi Number guifg=#79D7BE
+hi Operator guifg=#36C2CE
+hi Pmenu guifg=#3D3D3D guibg=#011502
+hi PmenuMatch guifg=#344CB7 guibg=#011502
+hi PmenuMatchSel guifg=#36C2CE guibg=#011502
 hi PmenuSbar guibg=#373760
-hi PmenuSel guifg=#011502 guibg=#edf7d2 gui=bold
+hi PmenuSel guibg=#edf7d2 guifg=#011502 gui=bold
 hi PmenuThumb guibg=#454955
 hi PreProc guifg=#f84aa7
-hi Question guifg=#2cccff gui=bold
-hi QuickFixLine guifg=#2cccff
+hi Question guifg=#344CB7 gui=bold
+hi QuickFixLine guifg=#344CB7
 hi Removed guifg=#ff5555
-hi Repeat guifg=#8be9fd
-hi Search guibg=#8be9fd guifg=#011502
+hi Repeat guifg=#36C2CE
+hi Search guifg=#011502 guibg=#36C2CE
 hi SignColumn guifg=#454955
-hi SnippetTabstop guibg=#0d3d4d guifg=#96e6ff
-hi Special guifg=#e76b74
+hi SnippetTabstop guifg=#9aa6db guibg=#101737
+hi Special guifg=#CF455C
 hi SpecialKey guifg=#454955
-hi SpellBad guisp=#e76b74 gui=undercurl
-hi SpellCap guisp=#f7dba7 gui=undercurl
+hi SpellBad guisp=#CF455C gui=undercurl
+hi SpellCap guisp=#F0BB78 gui=undercurl
 hi SpellLocal guisp=#a1e44d gui=undercurl
-hi SpellRare guisp=#8be9fd gui=undercurl
-hi Statement guifg=#50fa7b
-hi StatusLine guibg=#011502 guifg=#edf7f6
-hi StatusLineNC guibg=#011502 guifg=#edf7f6
+hi SpellRare guisp=#36C2CE gui=undercurl
+hi Statement guifg=#16C47F
+hi StatusLine guifg=#011502 guibg=#edf7f6
+hi StatusLineNC guifg=#edf7f6 guibg=#011502
 hi String guifg=#05c3ff
-hi Substitute guibg=#2cccff guifg=#011502
-hi TabLine guibg=#e9e2e0 guifg=#acafc1
+hi Substitute guifg=#011502 guibg=#344CB7
+hi TabLine guifg=#acafc1 guibg=#f6f1ff
 hi TabLineFill guibg=#011502
-hi TabLineSel guifg=#e9e9f4 guibg=#e6dfdc gui=bold
-hi TermCursor guibg=#e9e9f4 guifg=#e6dfdc
-hi Title guifg=#2cccff
-hi Todo guibg=#2cccff guifg=#011502
-hi Type guifg=#8be9fd
-hi Visual guibg=#525477 gui=bold
-hi WarningMsg guifg=#f7dba7 gui=italic,bold
+hi TabLineSel guibg=#F5EFFF guifg=#3D3D3D gui=bold
+hi TermCursor guifg=#F5EFFF guibg=#3D3D3D
+hi Title guifg=#344CB7
+hi Todo guifg=#011502 guibg=#344CB7
+hi Type guifg=#36C2CE
+hi Visual guibg=#d5dedd gui=bold
+hi WarningMsg guifg=#F0BB78 gui=bold,italic
 hi Whitespace guifg=#888da7
-hi WinBar guifg=#e9e9f4 gui=bold
+hi WinBar guifg=#3D3D3D gui=bold
 hi WinBarNC guifg=#9498b0
 hi WinSeparator guifg=#454955
-hi lCursor guibg=#e9e9f4 guifg=#e6dfdc
+hi lCursor guifg=#F5EFFF guibg=#3D3D3D
