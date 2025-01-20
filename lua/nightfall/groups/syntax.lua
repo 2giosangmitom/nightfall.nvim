@@ -43,7 +43,7 @@ function M.get(colors, styles)
     },
     Identifier = {
       fg = utils.vary_color({
-        nightfall = colors.azure,
+        nightfall = colors.latte,
         maron = colors.peach,
         nord = colors.white,
       }, colors.yellow),
@@ -82,7 +82,7 @@ function M.get(colors, styles)
     },
     Label = { fg = utils.vary_color({ nightfall = colors.rose }, colors.cream) },
     Operator = {
-      fg = utils.vary_color({ nightfall = colors.azure }, colors.cyan),
+      fg = utils.vary_color({ nightfall = colors.latte }, colors.cyan),
       style = styles.operators,
     },
     Keyword = {

@@ -7,11 +7,9 @@ function M.get(colors, options)
   local utils = require("nightfall.utils.colors")
   local accent = utils.vary_color({
     nightfall = colors.purple,
-    ["deeper-night"] = colors.sky,
     maron = colors.lavender,
-    ["white-night"] = colors.sky,
     nord = colors.teal,
-  }, colors.lime)
+  }, colors.sky)
 
   -- See `:h highlight-groups`
   return {
@@ -24,12 +22,14 @@ function M.get(colors, options)
     Cursor = { fg = colors.bg, bg = colors.fg },
     lCursor = { fg = colors.bg, bg = colors.fg },
     CursorColumn = {
-      bg = options.transparent and utils.lighten(colors.navy, 0.9, colors.azure)
-        or utils.lighten(colors.navy, 0.95, colors.azure),
+      bg = options.transparent and utils.lighten(colors.navy, 0.9, colors.latte)
+        or utils.lighten(colors.navy, 0.95, colors.latte),
     },
     CursorLine = {
-      bg = options.transparent and utils.lighten(colors.navy, 0.9, colors.azure)
-        or utils.lighten(colors.navy, 0.95, colors.azure),
+      bg = options.transparent and utils.lighten(colors.navy, 0.9, colors.latte) or utils.vary_color(
+        { ["white-night"] = utils.darken(colors.latte, 0.9) },
+        utils.lighten(colors.navy, 0.95, colors.latte)
+      ),
     },
     Directory = { fg = accent },
     DiffAdd = { bg = utils.darken(colors.green, 0.52) },
@@ -48,7 +48,7 @@ function M.get(colors, options)
     Substitute = { fg = colors.black, bg = accent },
     LineNr = { fg = colors.gray },
     CursorLineNr = {
-      fg = utils.vary_color({ maron = colors.yellow }, colors.azure),
+      fg = utils.vary_color({ maron = colors.yellow, ["white-night"] = colors.sky }, colors.latte),
       bold = true,
     },
     MatchParen = {
@@ -59,7 +59,7 @@ function M.get(colors, options)
     ModeMsg = { fg = accent },
     MsgArea = { fg = colors.fg },
     MsgSeparator = { fg = colors.fg },
-    MoreMsg = { fg = colors.azure },
+    MoreMsg = { fg = colors.latte },
     NonText = { fg = colors.gray },
     Normal = {
       fg = colors.fg,
@@ -104,11 +104,11 @@ function M.get(colors, options)
     SpellLocal = { sp = colors.lime, undercurl = true },
     SpellRare = { sp = colors.cyan, undercurl = true },
     StatusLine = {
-      fg = colors.azure,
-      bg = options.transparent and "NONE" or colors.black,
+      fg = utils.vary_color({ ["white-night"] = colors.black }, colors.latte),
+      bg = options.transparent and "NONE" or utils.vary_color({ ["white-night"] = colors.latte }, colors.black),
     },
     StatusLineNC = {
-      fg = options.dim_inactive and utils.darken(colors.azure, 0.9) or colors.azure,
+      fg = options.dim_inactive and utils.darken(colors.latte, 0.9) or colors.latte,
       bg = options.transparent and "NONE" or colors.black,
     },
     TabLine = {
@@ -118,7 +118,13 @@ function M.get(colors, options)
     TabLineFill = { bg = options.transparent and "NONE" or colors.black },
     TabLineSel = { fg = colors.fg, bg = colors.bg, bold = true },
     Title = { fg = accent },
-    Visual = { bg = utils.lighten(colors.navy, 0.85, colors.azure), bold = true },
+    Visual = {
+      bg = utils.vary_color(
+        { ["white-night"] = utils.darken(colors.latte, 0.9) },
+        utils.lighten(colors.navy, 0.85, colors.latte)
+      ),
+      bold = true,
+    },
     Whitespace = { fg = colors.gray },
     WinBar = { fg = colors.fg, bold = true },
     WinBarNC = {

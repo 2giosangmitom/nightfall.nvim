@@ -22,7 +22,7 @@ end
 vim.api.nvim_create_user_command("NightfallCompile", M.compile, {})
 
 --- Load a colorscheme.
----@param flavor string Flavor to load
+---@param flavor NightfallFlavor
 function M.load(flavor)
   local me = debug.getinfo(1).source:sub(2):gsub("/[^/]+$", "") .. "/.git"
   local cached_hash = vim.fn.filereadable(HASH_FILE) == 1 and vim.fn.readfile(HASH_FILE)[1] or nil
@@ -57,6 +57,11 @@ function M.load(flavor)
   -- Clear existing highlights if any
   if vim.g.colors_name then vim.cmd("hi clear") end
   vim.g.colors_name = flavor
+  if flavor == "white-night" then
+    vim.o.background = "light"
+  else
+    vim.o.background = "dark"
+  end
 
   local sethl = vim.api.nvim_set_hl
 

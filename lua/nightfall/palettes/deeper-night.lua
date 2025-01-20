@@ -4,7 +4,7 @@ local M = {}
 function M.get()
   ---@type NightfallPalette
   return {
-    azure = "#f6f8ff",
+    latte = "#f6f8ff",
     bg = "#0e131b",
     black = "#1a181b",
     blue = "#3dc2ec",

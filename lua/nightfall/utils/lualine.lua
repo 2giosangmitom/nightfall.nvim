@@ -72,9 +72,9 @@ function M.get(flavor)
   }
 
   lualine.inactive = {
-    a = { bg = colors.black, fg = options.dim_inactive and utils.darken(colors.azure, 0.9) or colors.azure },
-    b = { bg = colors.black, fg = options.dim_inactive and utils.darken(colors.azure, 0.9) or colors.azure },
-    c = { bg = colors.black, fg = options.dim_inactive and utils.darken(colors.azure, 0.9) or colors.azure },
+    a = { bg = colors.black, fg = options.dim_inactive and utils.darken(colors.latte, 0.9) or colors.latte },
+    b = { bg = colors.black, fg = options.dim_inactive and utils.darken(colors.latte, 0.9) or colors.latte },
+    c = { bg = colors.black, fg = options.dim_inactive and utils.darken(colors.latte, 0.9) or colors.latte },
   }
 
   return lualine

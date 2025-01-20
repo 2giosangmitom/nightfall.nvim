@@ -3,8 +3,8 @@ local M = {}
 ---@param colors NightfallPalette
 function M.get(colors)
   return {
-    terminal_color_0 = colors.azure,
-    terminal_color_8 = colors.azure,
+    terminal_color_0 = colors.latte,
+    terminal_color_8 = colors.latte,
 
     terminal_color_1 = colors.red,
     terminal_color_9 = colors.red,

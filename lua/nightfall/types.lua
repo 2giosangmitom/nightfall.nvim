@@ -32,5 +32,5 @@
 ---@field coral string
 ---@field peach string
 ---@field lavender string
----@field azure string
+---@field latte string
 ---@field navy string

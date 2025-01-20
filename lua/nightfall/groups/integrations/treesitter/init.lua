@@ -14,12 +14,15 @@ function M.get(colors, ts_opts)
     ["@variable"] = { link = "Identifier" },
     ["@variable.builtin"] = { fg = colors.peach, style = options.styles.variables },
     ["@variable.parameter"] = {
-      fg = utils.vary_color({ nightfall = colors.azure, nord = colors.white }, colors.azure),
+      fg = utils.vary_color(
+        { nightfall = colors.latte, nord = colors.white, ["white-night"] = colors.charcoal },
+        colors.latte
+      ),
       style = options.styles.parameters,
     },
     ["@variable.parameter.builtin"] = { fg = colors.pink, style = options.styles.parameters },
     ["@variable.member"] = {
-      fg = utils.vary_color({ maron = colors.sand }, colors.lavender),
+      fg = utils.vary_color({ maron = colors.sand, ["white-night"] = colors.cyan }, colors.lavender),
       style = options.styles.properties,
     },
 
@@ -45,7 +48,12 @@ function M.get(colors, ts_opts)
     ["@attribute.builtin"] = { fg = colors.blue },
 
     -- Properties
-    ["@property"] = { fg = utils.vary_color({ maron = colors.peach, nord = colors.cyan }, colors.lavender) },
+    ["@property"] = {
+      fg = utils.vary_color(
+        { maron = colors.peach, nord = colors.cyan, ["white-night"] = colors.gold },
+        colors.lavender
+      ),
+    },
 
     -- Functions
     ["@function.builtin"] = { fg = colors.cream },
@@ -53,11 +61,14 @@ function M.get(colors, ts_opts)
     ["@constructor"] = { fg = colors.cyan },
 
     -- Operators
-    ["@operator"] = { fg = colors.yellow },
+    ["@operator"] = { fg = utils.vary_color({ ["white-night"] = colors.charcoal }, colors.yellow) },
 
     -- Keywords
     ["@keyword.coroutine"] = { fg = colors.cream, style = styles.coroutines },
-    ["@keyword.operator"] = { fg = colors.cream, style = styles.keywords },
+    ["@keyword.operator"] = {
+      fg = utils.vary_color({ ["white-night"] = colors.charcoal }, colors.yellow),
+      style = styles.keywords,
+    },
     ["@keyword.import"] = { fg = colors.cyan },
     ["@keyword.debug"] = { fg = colors.purple },
     ["@keyword.exception"] = { fg = colors.blue, style = styles.exceptions },
@@ -82,7 +93,7 @@ function M.get(colors, ts_opts)
     ["@markup.heading.6"] = { fg = colors.cream, bold = true },
     ["@markup.quote"] = { fg = utils.darken(colors.blue, 0.8, colors.charcoal) },
     ["@markup.math"] = { fg = colors.purple },
-    ["@markup.link"] = { fg = colors.azure, undercurl = true },
+    ["@markup.link"] = { fg = colors.latte, undercurl = true },
     ["@markup.raw"] = { fg = colors.cream },
   }
 
