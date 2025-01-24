@@ -42,7 +42,7 @@ function M.get(colors, options)
     Folded = { fg = accent, bg = colors.navy },
     FoldColumn = { fg = colors.navy },
     SignColumn = { fg = colors.charcoal },
-    IncSearch = { fg = colors.black, bg = colors.blue },
+    IncSearch = { fg = colors.black, bg = colors.peach },
     Substitute = { fg = colors.black, bg = accent },
     LineNr = { fg = colors.gray },
     CursorLineNr = {
@@ -78,8 +78,7 @@ function M.get(colors, options)
       bg = options.transparent and "NONE" or colors.black,
     },
     PmenuSel = {
-      fg = colors.black,
-      bg = utils.vary_color({ nightfall = colors.lavender }, colors.cream),
+      bg = utils.lighten(colors.navy, 0.85, colors.latte),
       bold = true,
     },
     PmenuSbar = { bg = colors.navy },
@@ -90,7 +89,7 @@ function M.get(colors, options)
     QuickFixLine = { fg = accent },
     Search = {
       fg = colors.black,
-      bg = utils.vary_color({ nightfall = colors.cream, maron = colors.green }, colors.cyan),
+      bg = utils.vary_color({ maron = colors.lime, nord = colors.teal }, colors.cream),
     },
     SnippetTabstop = {
       fg = utils.lighten(accent, 0.5),

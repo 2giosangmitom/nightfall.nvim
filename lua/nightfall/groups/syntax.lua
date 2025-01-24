@@ -4,6 +4,12 @@ local M = {}
 ---@param styles table
 function M.get(colors, styles)
   local utils = require("nightfall.utils.colors")
+  local accent = utils.vary_color({
+    nightfall = colors.purple,
+    maron = colors.lavender,
+    nord = colors.teal,
+  }, colors.sky)
+
   -- See: `:h group-name`
   return {
     Comment = { fg = colors.gray, style = styles.comments },
@@ -90,20 +96,12 @@ function M.get(colors, styles)
         nightfall = colors.pink,
         ["deeper-night"] = colors.coral,
         maron = colors.orange,
-        nord = colors.purple,
-      }, colors.coral),
+      }, colors.rose),
       style = styles.keywords,
     },
     PreProc = { fg = utils.vary_color({ nightfall = colors.sky }, colors.pink) },
     Type = { fg = utils.vary_color({ nightfall = colors.yellow, nord = colors.yellow }, colors.cyan) },
-    Special = {
-      fg = utils.vary_color({
-        nightfall = colors.cyan,
-        ["deeper-night"] = colors.sky,
-        maron = colors.sand,
-        nord = colors.teal,
-      }, colors.coral),
-    },
+    Special = { fg = accent },
     Delimiter = { fg = utils.vary_color({ nightfall = colors.rose }, colors.lavender) },
     Error = { fg = colors.red },
     Todo = { fg = colors.black, bg = colors.sky },

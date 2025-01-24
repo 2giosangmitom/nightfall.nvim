@@ -9,8 +9,8 @@ hi Comment guifg=#6060a4 gui=italic
 hi Conceal guifg=#6060a4
 hi Conditional guifg=#cba6f7
 hi Constant guifg=#edf7d2
-hi CurSearch guibg=#eb87a3 guifg=#1a181b
-hi Cursor guibg=#f8e9e9 guifg=#0e131b
+hi CurSearch guifg=#1a181b guibg=#eb87a3
+hi Cursor guifg=#0e131b guibg=#f8e9e9
 hi CursorColumn guibg=#27273b
 hi CursorLine guibg=#27273b
 hi CursorLineNr guifg=#f6f8ff gui=bold
@@ -22,42 +22,42 @@ hi DiffText guibg=#4a716b
 hi Directory guifg=#89b4fa
 hi EndOfBuffer guifg=#454955
 hi Error guifg=#ff5e5b
-hi ErrorMsg guifg=#ff5e5b gui=italic,bold
+hi ErrorMsg guifg=#ff5e5b gui=bold,italic
 hi FloatBorder guifg=#89b4fa
 hi FloatTitle guifg=#89b4fa
 hi FoldColumn guifg=#1c1c31
-hi Folded guibg=#1c1c31 guifg=#89b4fa
+hi Folded guifg=#89b4fa guibg=#1c1c31
 hi Function guifg=#89b4fa
 hi Identifier guifg=#f9e2af
-hi IncSearch guibg=#94e2d5 guifg=#1a181b
+hi IncSearch guifg=#1a181b guibg=#f7dba7
 hi Keyword guifg=#eb87a3 gui=italic
 hi Label guifg=#edf7d2
 hi LineNr guifg=#6060a4
-hi MatchParen guibg=#333346 guifg=#e2adf2 gui=bold
+hi MatchParen guifg=#e2adf2 guibg=#333346 gui=bold
 hi ModeMsg guifg=#89b4fa
 hi MoreMsg guifg=#f6f8ff
 hi MsgArea guifg=#f8e9e9
 hi MsgSeparator guifg=#f8e9e9
 hi NonText guifg=#6060a4
-hi Normal guibg=#0e131b guifg=#f8e9e9
-hi NormalFloat guibg=#0d1118 guifg=#f8e9e9
-hi NormalNC guibg=#0e131b guifg=#f8e9e9
+hi Normal guifg=#f8e9e9 guibg=#0e131b
+hi NormalFloat guifg=#f8e9e9 guibg=#0d1118
+hi NormalNC guifg=#f8e9e9 guibg=#0e131b
 hi Number guifg=#72bda3
 hi Operator guifg=#b5ffe9
-hi Pmenu guibg=#1a181b guifg=#f8e9e9
-hi PmenuMatch guibg=#1a181b guifg=#89b4fa
-hi PmenuMatchSel guibg=#1a181b guifg=#b5ffe9
+hi Pmenu guifg=#f8e9e9 guibg=#1a181b
+hi PmenuMatch guifg=#89b4fa guibg=#1a181b
+hi PmenuMatchSel guifg=#b5ffe9 guibg=#1a181b
 hi PmenuSbar guibg=#1c1c31
-hi PmenuSel guibg=#edf7d2 guifg=#1a181b gui=bold
+hi PmenuSel guibg=#3d3d50 gui=bold
 hi PmenuThumb guibg=#454955
 hi PreProc guifg=#ffc7ed
 hi Question guifg=#89b4fa gui=bold
 hi QuickFixLine guifg=#89b4fa
 hi Removed guifg=#ff5e5b
 hi Repeat guifg=#b5ffe9
-hi Search guibg=#b5ffe9 guifg=#1a181b
+hi Search guifg=#1a181b guibg=#edf7d2
 hi SignColumn guifg=#454955
-hi SnippetTabstop guibg=#29364b guifg=#c4dafd
+hi SnippetTabstop guifg=#c4dafd guibg=#29364b
 hi Special guifg=#89b4fa
 hi SpecialKey guifg=#454955
 hi SpellBad guisp=#eb87a3 gui=undercurl
@@ -65,21 +65,21 @@ hi SpellCap guisp=#f7dba7 gui=undercurl
 hi SpellLocal guisp=#a5cc6b gui=undercurl
 hi SpellRare guisp=#b5ffe9 gui=undercurl
 hi Statement guifg=#cba6f7
-hi StatusLine guibg=#1a181b guifg=#f6f8ff
-hi StatusLineNC guibg=#1a181b guifg=#f6f8ff
+hi StatusLine guifg=#f6f8ff guibg=#1a181b
+hi StatusLineNC guifg=#f6f8ff guibg=#1a181b
 hi String guifg=#f9e2af
-hi Substitute guibg=#89b4fa guifg=#1a181b
-hi TabLine guibg=#262b32 guifg=#9090bf
+hi Substitute guifg=#1a181b guibg=#89b4fa
+hi TabLine guifg=#9090bf guibg=#262b32
 hi TabLineFill guibg=#1a181b
-hi TabLineSel guibg=#0e131b guifg=#f8e9e9 gui=bold
-hi TermCursor guibg=#f8e9e9 guifg=#0e131b
+hi TabLineSel guifg=#f8e9e9 guibg=#0e131b gui=bold
+hi TermCursor guifg=#0e131b guibg=#f8e9e9
 hi Title guifg=#89b4fa
-hi Todo guibg=#89b4fa guifg=#1a181b
+hi Todo guifg=#1a181b guibg=#89b4fa
 hi Type guifg=#b5ffe9
 hi Visual guibg=#3d3d50 gui=bold
-hi WarningMsg guifg=#f7dba7 gui=italic,bold
+hi WarningMsg guifg=#f7dba7 gui=bold,italic
 hi Whitespace guifg=#6060a4
 hi WinBar guifg=#f8e9e9 gui=bold
 hi WinBarNC guifg=#7070ad
 hi WinSeparator guifg=#454955
-hi lCursor guibg=#f8e9e9 guifg=#0e131b
+hi lCursor guifg=#0e131b guibg=#f8e9e9

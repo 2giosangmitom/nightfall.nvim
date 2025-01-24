@@ -9,7 +9,7 @@ function M.get(colors)
     LazyDir = { fg = colors.peach },
     LazyH1 = {
       fg = colors.black,
-      bg = utils.vary_color({ nightfall = colors.purple, maron = colors.yellow }, colors.lavender),
+      bg = utils.vary_color({ nightfall = colors.purple, maron = colors.yellow }, colors.sky),
     },
     LazyH2 = { fg = colors.fg, bold = true },
     LazyInfo = { fg = colors.cyan, bg = utils.darken(colors.cyan, 1, colors.cyan) },

@@ -8,7 +8,13 @@ function M.get(colors)
     SnacksDashboardHeader = {
       fg = utils.vary_color({ maron = colors.peach, ["deeper-night"] = colors.blue }, colors.lavender),
     },
-    SnacksDashboardKey = { fg = colors.yellow },
+    SnacksDashboardKey = {
+      fg = utils.vary_color(
+        { ["deeper-night"] = colors.pink, maron = colors.cyan, nord = colors.green },
+        colors.yellow
+      ),
+    },
+    SnacksDashboardSpecial = { fg = colors.gold },
   }
 end
 

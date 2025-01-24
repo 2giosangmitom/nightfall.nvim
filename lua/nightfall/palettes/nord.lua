@@ -16,7 +16,7 @@ function M.get()
     gold = "#fcc737",
     gray = "#888da7",
     green = "#d6ffb7",
-    lavender = "#cae9ff",
+    lavender = "#ca9ee6",
     lime = "#A7D477",
     magenta = "#e2adf2",
     navy = "#2e3440",
