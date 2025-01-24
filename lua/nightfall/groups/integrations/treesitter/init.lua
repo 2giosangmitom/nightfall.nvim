@@ -14,15 +14,12 @@ function M.get(colors, ts_opts)
     ["@variable"] = { link = "Identifier" },
     ["@variable.builtin"] = { fg = colors.peach, style = options.styles.variables },
     ["@variable.parameter"] = {
-      fg = utils.vary_color(
-        { nightfall = colors.latte, nord = colors.white, ["white-night"] = colors.charcoal },
-        colors.latte
-      ),
+      fg = utils.vary_color({ nightfall = colors.latte, nord = colors.white }, colors.latte),
       style = options.styles.parameters,
     },
     ["@variable.parameter.builtin"] = { fg = colors.pink, style = options.styles.parameters },
     ["@variable.member"] = {
-      fg = utils.vary_color({ maron = colors.sand, ["white-night"] = colors.cyan }, colors.lavender),
+      fg = utils.vary_color({ maron = colors.sand }, colors.lavender),
       style = options.styles.properties,
     },
 
@@ -49,10 +46,7 @@ function M.get(colors, ts_opts)
 
     -- Properties
     ["@property"] = {
-      fg = utils.vary_color(
-        { maron = colors.peach, nord = colors.cyan, ["white-night"] = colors.gold },
-        colors.lavender
-      ),
+      fg = utils.vary_color({ maron = colors.peach, nord = colors.cyan }, colors.lavender),
     },
 
     -- Functions
@@ -61,12 +55,12 @@ function M.get(colors, ts_opts)
     ["@constructor"] = { fg = colors.cyan },
 
     -- Operators
-    ["@operator"] = { fg = utils.vary_color({ ["white-night"] = colors.charcoal }, colors.yellow) },
+    ["@operator"] = { fg = colors.yellow },
 
     -- Keywords
     ["@keyword.coroutine"] = { fg = colors.cream, style = styles.coroutines },
     ["@keyword.operator"] = {
-      fg = utils.vary_color({ ["white-night"] = colors.charcoal }, colors.yellow),
+      fg = colors.yellow,
       style = styles.keywords,
     },
     ["@keyword.import"] = { fg = colors.cyan },

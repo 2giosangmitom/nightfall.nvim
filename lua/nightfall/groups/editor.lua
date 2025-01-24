@@ -26,10 +26,8 @@ function M.get(colors, options)
         or utils.lighten(colors.navy, 0.95, colors.latte),
     },
     CursorLine = {
-      bg = options.transparent and utils.lighten(colors.navy, 0.9, colors.latte) or utils.vary_color(
-        { ["white-night"] = utils.darken(colors.latte, 0.9) },
-        utils.lighten(colors.navy, 0.95, colors.latte)
-      ),
+      bg = options.transparent and utils.lighten(colors.navy, 0.9, colors.latte)
+        or utils.lighten(colors.navy, 0.95, colors.latte),
     },
     Directory = { fg = accent },
     DiffAdd = { bg = utils.darken(colors.green, 0.52) },
@@ -48,7 +46,7 @@ function M.get(colors, options)
     Substitute = { fg = colors.black, bg = accent },
     LineNr = { fg = colors.gray },
     CursorLineNr = {
-      fg = utils.vary_color({ maron = colors.yellow, ["white-night"] = colors.sky }, colors.latte),
+      fg = utils.vary_color({ maron = colors.yellow }, colors.latte),
       bold = true,
     },
     MatchParen = {
@@ -104,8 +102,8 @@ function M.get(colors, options)
     SpellLocal = { sp = colors.lime, undercurl = true },
     SpellRare = { sp = colors.cyan, undercurl = true },
     StatusLine = {
-      fg = utils.vary_color({ ["white-night"] = colors.black }, colors.latte),
-      bg = options.transparent and "NONE" or utils.vary_color({ ["white-night"] = colors.latte }, colors.black),
+      fg = colors.latte,
+      bg = options.transparent and "NONE" or colors.black,
     },
     StatusLineNC = {
       fg = options.dim_inactive and utils.darken(colors.latte, 0.9) or colors.latte,
@@ -119,10 +117,7 @@ function M.get(colors, options)
     TabLineSel = { fg = colors.fg, bg = colors.bg, bold = true },
     Title = { fg = accent },
     Visual = {
-      bg = utils.vary_color(
-        { ["white-night"] = utils.darken(colors.latte, 0.9) },
-        utils.lighten(colors.navy, 0.85, colors.latte)
-      ),
+      bg = utils.lighten(colors.navy, 0.85, colors.latte),
       bold = true,
     },
     Whitespace = { fg = colors.gray },

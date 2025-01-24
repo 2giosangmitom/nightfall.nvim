@@ -3,7 +3,6 @@
 --- | "maron"
 --- | "deeper-night"
 --- | "nord"
---- | "white-night"
 
 ---@class NightfallPalette
 ---@field bg string

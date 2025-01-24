@@ -3,7 +3,7 @@ local M = {}
 local config = require("nightfall.config")
 local CACHE_DIR = vim.fn.stdpath("cache") .. "/nightfall/"
 local HASH_FILE = CACHE_DIR .. "cached_hash"
-local SUPPORTED_FLAVORS = { "nightfall", "deeper-night", "maron", "nord", "white-night" }
+local SUPPORTED_FLAVORS = { "nightfall", "deeper-night", "maron", "nord" }
 
 --- Setup options for Nightfall.
 M.setup = config.setup
@@ -57,11 +57,7 @@ function M.load(flavor)
   -- Clear existing highlights if any
   if vim.g.colors_name then vim.cmd("hi clear") end
   vim.g.colors_name = flavor
-  if flavor == "white-night" then
-    vim.o.background = "light"
-  else
-    vim.o.background = "dark"
-  end
+  vim.o.background = "dark"
 
   local sethl = vim.api.nvim_set_hl
 

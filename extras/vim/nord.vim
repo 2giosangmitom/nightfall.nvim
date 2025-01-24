@@ -33,7 +33,7 @@ hi IncSearch guifg=#011502 guibg=#77CDFF
 hi Keyword guifg=#cba6f7 gui=italic
 hi Label guifg=#edf7d2
 hi LineNr guifg=#888da7
-hi MatchParen guibg=#434853 guifg=#77CDFF gui=bold
+hi MatchParen guifg=#77CDFF guibg=#434853 gui=bold
 hi ModeMsg guifg=#7ae7c7
 hi MoreMsg guifg=#edf7f6
 hi MsgArea guifg=#e9e9f4
@@ -48,7 +48,7 @@ hi Pmenu guifg=#e9e9f4 guibg=#011502
 hi PmenuMatch guifg=#b5f8fe guibg=#011502
 hi PmenuMatchSel guifg=#94e2d5 guibg=#011502
 hi PmenuSbar guibg=#2e3440
-hi PmenuSel guibg=#edf7d2 guifg=#011502 gui=bold
+hi PmenuSel guifg=#011502 guibg=#edf7d2 gui=bold
 hi PmenuThumb guibg=#454955
 hi PreProc guifg=#FFE2E2
 hi Question guifg=#7ae7c7 gui=bold
@@ -71,7 +71,7 @@ hi String guifg=#d6ffb7
 hi Substitute guifg=#011502 guibg=#7ae7c7
 hi TabLine guifg=#acafc1 guibg=#32353d
 hi TabLineFill guibg=#011502
-hi TabLineSel guibg=#1B1F27 guifg=#e9e9f4 gui=bold
+hi TabLineSel guifg=#e9e9f4 guibg=#1B1F27 gui=bold
 hi TermCursor guifg=#1B1F27 guibg=#e9e9f4
 hi Title guifg=#7ae7c7
 hi Todo guifg=#011502 guibg=#b5f8fe
