@@ -15,7 +15,7 @@ function M.get(colors)
     WhichKeyIconPurple = { fg = colors.purple },
     WhichKeyIconRed = { fg = colors.coral },
     WhichKeyIconYellow = { fg = colors.yellow },
-    WhichKeySeparator = { fg = colors.charcoal },
+    WhichKeySeparator = { fg = colors.gray },
   }
 end
 
