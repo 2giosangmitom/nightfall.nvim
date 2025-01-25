@@ -1,24 +1,38 @@
-return {
-  background = "#141523",
-  black = "#000000",
-  dark_blue = "#23233d",
-  dark_navy = "#1c1c31",
-  dark_slate_blue = "#373760",
-  deep_navy = "#24273a",
-  foreground = "#e9e9f4",
-  ghost_white = "#f8f8f2",
-  green = "#50fa7b",
-  grey = "#414171",
-  lavender = "#b4befe",
-  light_cyan = "#8be9fd",
-  light_grey = "#6060a4",
-  nord_blue = "#05c3ff",
-  pale_yellow = "#f2fa95",
-  peach = "#ffb86c",
-  pink = "#ff6bcb",
-  red = "#ff5555",
-  sand = "#e5c697",
-  sky = "#2cccff",
-  turquoise = "#20e3b2",
-  violet = "#9a86fd",
-}
+local M = {}
+
+---@return NightfallPalette
+function M.get()
+  ---@type NightfallPalette
+  return {
+    latte = "#edf7f6",
+    bg = "#141523",
+    black = "#011502",
+    blue = "#bbe5ed",
+    charcoal = "#454955",
+    coral = "#e76b74",
+    cream = "#edf7d2",
+    cyan = "#8be9fd",
+    fg = "#e9e9f4",
+    gold = "#fcc737",
+    gray = "#888da7",
+    green = "#20e3b2",
+    lavender = "#beb8eb",
+    lime = "#a1e44d",
+    magenta = "#e2adf2",
+    navy = "#181825",
+    orange = "#ea9010",
+    peach = "#f7dba7",
+    pink = "#ff6bcb",
+    purple = "#9a86fd",
+    red = "#ff5555",
+    rose = "#dd9ac2",
+    sand = "#e5c697",
+    silver = "#c9c9c9",
+    sky = "#8caaee",
+    teal = "#72bda3",
+    white = "#ffffff",
+    yellow = "#f2fa95",
+  }
+end
+
+return M

@@ -1,38 +1,47 @@
-local bit = require("bit")
-
 local M = {}
 
+--- Hashes a string using a variant of the djb2 algorithm
+---@param str string: The string to hash
+---@return string: The hashed string as an 8-character hexadecimal value
 local function hash_str(str)
+  local bit_band, bit_lshift = bit.band, bit.lshift
   local hash = 5381
   for i = 1, #str do
-    hash = bit.bxor(bit.lshift(hash, 5), hash) + string.byte(str, i)
+    hash = bit_band(bit_lshift(hash, 5) + hash + str:byte(i), 0xffffffff)
   end
-  return hash
+  return string.format("%08x", hash)
 end
 
---- Computes a hash value for a given value or table.
----@param v any: The value or table to hash.
----@return string|number|nil: The computed hash value as a string for non-table values, or a number for tables.
-function M.hash(v)
-  if type(v) == "table" then
-    local hash = 0
-    for p, u in pairs(v) do
-      local p_hash = hash_str(tostring(p))
-      local u_hash = M.hash(u)
-      hash = bit.bxor(hash, bit.bxor(p_hash, hash_str(tostring(u_hash))))
-    end
-    return hash
-  elseif type(v) == "function" then
-    local nightfall = require("nightfall")
-    for flavor, func in pairs(nightfall.Options.highlight_overrides) do
-      if func == v then
-        local palette_value = require("nightfall.palettes").get(flavor)
-        if palette_value then return M.hash(v(palette_value)) end
-      end
-    end
-  else
-    return hash_str(tostring(v))
+-- Import palette function
+local get_palette = require("nightfall.palettes").get_palette
+
+--- Hashes a value. If the value is a table, it recursively hashes its keys and values
+---@param val any: The value to hash
+---@return string: The hashed value as an 8-character hexadecimal string
+function M.hash(val)
+  if type(val) ~= "table" then return hash_str(tostring(val)) end
+
+  local keys = {}
+  for k in pairs(val) do
+    keys[#keys + 1] = k
   end
+  table.sort(keys)
+
+  local result = {}
+  for _, k in ipairs(keys) do
+    local value = val[k]
+    if type(value) == "function" then
+      local colors = get_palette(k)
+      if not colors then error(string.format("No palette found for '%s'", k), 2) end
+      local ok, res = pcall(value, colors)
+      if not ok then error(string.format("Failed to hash options for '%s': %s", k, res), 2) end
+      table.insert(result, k .. M.hash(res))
+    else
+      table.insert(result, k .. M.hash(value))
+    end
+  end
+
+  return hash_str(table.concat(result))
 end
 
 return M

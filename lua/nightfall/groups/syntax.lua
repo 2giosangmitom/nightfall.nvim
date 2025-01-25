@@ -1,77 +1,115 @@
 local M = {}
 
 ---@param colors NightfallPalette
-function M.get(colors)
-  local Options = require("nightfall").Options
-  local utils = require("nightfall.utils")
+---@param styles table
+function M.get(colors, styles)
+  local utils = require("nightfall.utils.colors")
+  local accent = utils.vary_color({
+    nightfall = colors.purple,
+    maron = colors.lavender,
+    nord = colors.teal,
+  }, colors.sky)
 
+  -- See: `:h group-name`
   return {
-    -- Text Styles
-    Bold = { style = { bold = true } },
-    Underlined = { style = { underline = true } },
-    Italic = { style = { italic = true } },
-
-    -- Syntax Highlighting
-    Comment = { fg = utils.lighten(colors.light_grey, 0.9), style = Options.styles.comments },
-    Special = {
-      fg = utils.vary_color({ deepernight = colors.light_cyan, maron = colors.nord_blue }, colors.pale_yellow),
+    Comment = { fg = colors.gray, style = styles.comments },
+    Constant = {
+      fg = utils.vary_color({
+        nightfall = colors.magenta,
+        ["deeper-night"] = colors.cream,
+        maron = colors.coral,
+        nord = colors.sky,
+      }, colors.cyan),
     },
-    Constant = { fg = utils.vary_color({ nightfall = colors.violet }, colors.red) },
     String = {
-      fg = utils.vary_color({ maron = colors.pale_yellow }, colors.pale_yellow),
-      style = Options.styles.strings or {},
+      fg = utils.vary_color({
+        nightfall = colors.yellow,
+        ["deeper-night"] = colors.yellow,
+        maron = colors.sand,
+        nord = colors.green,
+      }, colors.blue),
     },
-    Character = { fg = colors.violet },
-    Number = { fg = colors.peach, style = Options.styles.numbers or {} },
-    Float = { link = "Number" },
-    Boolean = { fg = colors.peach, style = Options.styles.booleans or {} },
+    Character = {
+      fg = utils.vary_color({
+        nightfall = colors.peach,
+        ["deeper-night"] = colors.purple,
+        maron = colors.cyan,
+        nord = colors.lime,
+      }, colors.purple),
+      style = styles.characters,
+    },
+    Number = { fg = utils.vary_color({ nightfall = colors.gold, nord = colors.cream }, colors.teal) },
+    Boolean = {
+      fg = utils.vary_color({
+        nightfall = colors.blue,
+        ["deeper-night"] = colors.pink,
+        nord = colors.rose,
+      }, colors.sky),
+      style = styles.booleans,
+    },
     Identifier = {
-      fg = utils.vary_color({ maron = colors.ghost_white, deepernight = colors.pale_yellow }, colors.foreground),
-      style = Options.styles.variables or {},
+      fg = utils.vary_color({
+        nightfall = colors.latte,
+        maron = colors.peach,
+        nord = colors.white,
+      }, colors.yellow),
+      style = styles.variables,
     },
     Function = {
-      fg = utils.vary_color({ maron = colors.green, deepernight = colors.sky }, colors.turquoise),
-      style = Options.styles.functions or {},
+      fg = utils.vary_color({
+        nightfall = colors.green,
+        ["deeper-night"] = colors.sky,
+        maron = colors.lime,
+        nord = colors.blue,
+      }, colors.sky),
+      style = styles.functions,
     },
-    Statement = { fg = colors.violet },
+    Statement = {
+      fg = utils.vary_color({
+        nightfall = colors.cyan,
+        ["deeper-night"] = colors.purple,
+      }, colors.green),
+    },
     Conditional = {
-      fg = utils.vary_color({ deepernight = colors.violet }, colors.pink),
-      style = Options.styles.conditionals or {},
+      fg = utils.vary_color({
+        nightfall = colors.pink,
+        ["deeper-night"] = colors.purple,
+        nord = colors.magenta,
+      }, colors.pink),
+      style = styles.conditionals,
     },
-    Repeat = { fg = colors.light_cyan, style = Options.styles.loops or {} },
-    Label = { fg = utils.vary_color({ maron = colors.nord_blue }, colors.sky) },
-    Operator = { fg = colors.ghost_white, style = Options.styles.operators or {} },
+    Repeat = {
+      fg = utils.vary_color({
+        nightfall = colors.cyan,
+        ["deeper-night"] = colors.cyan,
+        nord = colors.yellow,
+      }, colors.cyan),
+      style = styles.loops,
+    },
+    Label = { fg = utils.vary_color({ nightfall = colors.rose }, colors.cream) },
+    Operator = {
+      fg = utils.vary_color({ nightfall = colors.latte }, colors.cyan),
+      style = styles.operators,
+    },
     Keyword = {
-      fg = utils.vary_color({ maron = colors.peach, deepernight = colors.red }, colors.pink),
-      style = Options.styles.keywords or {},
+      fg = utils.vary_color({
+        nightfall = colors.pink,
+        ["deeper-night"] = colors.coral,
+        maron = colors.orange,
+      }, colors.rose),
+      style = styles.keywords,
     },
-    Exception = { fg = colors.pink, style = Options.styles.keywords or {} },
-
-    -- Preprocessor Directives
-    PreProc = { fg = colors.pink },
-    Include = { fg = colors.turquoise, style = Options.styles.keywords or {} },
-    Define = { link = "PreProc" },
-    Macro = { fg = colors.turquoise },
-    PreCondit = { link = "PreProc" },
-
-    -- Type Definitions and Declarations
-    StorageClass = { fg = colors.pale_yellow },
-    Structure = { fg = colors.pink },
-    Type = {
-      fg = utils.vary_color({ deepernight = colors.light_cyan }, colors.pale_yellow),
-      style = Options.styles.types or {},
-    },
-    Typedef = { fg = colors.sky },
-
-    -- Special Characters and Tags
-    SpecialChar = { fg = colors.lavender },
-    Tag = { fg = colors.light_cyan, style = { bold = true } },
-    Delimiter = { fg = colors.lavender },
-    Debug = { link = "Special" },
-
-    -- Error and Warning
+    PreProc = { fg = utils.vary_color({ nightfall = colors.sky }, colors.pink) },
+    Type = { fg = utils.vary_color({ nightfall = colors.yellow, nord = colors.yellow }, colors.cyan) },
+    Special = { fg = accent },
+    Delimiter = { fg = utils.vary_color({ nightfall = colors.rose }, colors.lavender) },
     Error = { fg = colors.red },
-    Todo = { fg = colors.background, bg = colors.pink, style = { bold = true } },
+    Todo = { fg = colors.black, bg = colors.sky },
+
+    -- Diff
+    Added = { fg = colors.green },
+    Changed = { fg = colors.yellow },
+    Removed = { fg = colors.red },
   }
 end
 

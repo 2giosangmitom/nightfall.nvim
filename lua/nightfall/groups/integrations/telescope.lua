@@ -1,51 +1,40 @@
---- To enable `telescope.nvim` support, add the following to your Nightfall
---- integrations config, choosing between two styles: 'borderless' and
---- 'bordered'.
---- >lua
----   telescope = { enabled = true, style = "borderless" }
---- <
----@tag nightfall.nvim_telescope
-
 local M = {}
 
 ---@param colors NightfallPalette
----@private
-function M.get(colors)
-  local Options = require("nightfall").Options
-  local telescope = Options.integrations.telescope or {}
-  local telescope_style = telescope.style or "borderless"
-  local utils = require("nightfall.utils")
-  local bg = utils.darken(colors.background, 0.8)
+---@param opts table
+function M.get(colors, opts)
+  local telescope_style = opts.style or "borderless"
+  local utils = require("nightfall.utils.colors")
 
-  local result = {
-    TelescopePromptPrefix = { fg = colors.red, bg = bg },
-    TelescopeNormal = { bg = bg },
-    TelescopePromptTitle = { fg = colors.black, bg = utils.vary_color({ maron = colors.pale_yellow }, colors.red) },
-    TelescopeSelection = { bg = colors.dark_navy, fg = colors.foreground },
-    TelescopeResultsDiffAdd = { fg = colors.green },
-    TelescopeResultsDiffChange = { fg = colors.pale_yellow },
-    TelescopeResultsDiffDelete = { fg = colors.red },
-    TelescopeMatching = { bg = colors.dark_navy, fg = colors.violet },
+  local res = {
+    TelescopeMatching = { fg = colors.purple },
+    TelescopePromptPrefix = { fg = colors.sky },
   }
 
-  local styles = {
-    borderless = {
-      TelescopeBorder = { fg = bg, bg = bg },
-      TelescopePromptBorder = { fg = bg, bg = bg },
-      TelescopePromptNormal = { fg = colors.foreground, bg = bg },
-      TelescopeResultsTitle = { fg = colors.black, bg = utils.vary_color({ maron = colors.green }, colors.light_cyan) },
-      TelescopePreviewTitle = { fg = colors.black, bg = utils.vary_color({ maron = colors.violet }, colors.green) },
-    },
-
+  local style = {
     bordered = {
-      TelescopeBorder = { fg = colors.lavender, bg = colors.black },
-      TelescopeNormal = { fg = colors.foreground, bg = colors.black },
-      TelescopePromptBorder = { fg = colors.violet, bg = colors.black },
-      TelescopePromptTitle = { fg = colors.violet, bg = colors.black },
+      TelescopeNormal = { link = "NormalFloat" },
+      TelescopePromptBorder = { fg = colors.yellow },
+      TelescopePromptTitle = { fg = colors.peach },
+      TelescopeBorder = { link = "FloatBorder" },
+    },
+    borderless = {
+      TelescopeBorder = {
+        fg = utils.darken(colors.bg, 0.9),
+        bg = utils.darken(colors.bg, 0.9),
+      },
+      TelescopePromptNormal = { bg = utils.darken(colors.bg, 0.9) },
+      TelescopeNormal = { fg = colors.fg, bg = utils.darken(colors.bg, 0.9) },
+      TelescopePromptTitle = { fg = colors.black, bg = colors.pink },
+      TelescopePreviewTitle = { fg = colors.black, bg = colors.pink },
+      TelescopePromptBorder = { fg = utils.darken(colors.bg, 0.9), bg = utils.darken(colors.bg, 0.9) },
+      TelescopeResultsTitle = { fg = colors.black, bg = colors.pink },
     },
   }
 
-  return vim.tbl_deep_extend("force", result, styles[telescope_style])
+  res = vim.tbl_deep_extend("force", res, style[telescope_style])
+
+  return res
 end
 
 return M
