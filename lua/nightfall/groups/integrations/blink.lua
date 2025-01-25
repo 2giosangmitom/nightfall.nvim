@@ -8,6 +8,9 @@ function M.get(colors)
     BlinkCmpLabel = { link = "NonText" },
     BlinkCmpLabelDeprecated = { strikethrough = true },
     BlinkCmpLabelMatch = { fg = colors.magenta },
+    BlinkCmpMenuBorder = { fg = colors.purple },
+    BlinkCmpDocBorder = { fg = colors.purple },
+    BlinkCmpSignatureHelpBorder = { fg = colors.purple },
 
     -- Kind
     BlinkCmpKindText = { fg = colors.lavender },
