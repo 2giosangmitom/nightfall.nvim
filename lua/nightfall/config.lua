@@ -48,6 +48,7 @@ local default_options = {
     which_key = { enabled = true },
     noice = { enabled = true },
     fzf = { enabled = true },
+    neo_tree = { enabled = true },
   },
   color_overrides = {},
   highlight_overrides = {},
