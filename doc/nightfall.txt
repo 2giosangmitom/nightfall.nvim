@@ -2,8 +2,8 @@
 
                                 NIGHTFALL.NVIM
 
-Nightfall.nvim is a clean, eye-friendly Neovim colorscheme with multiple flavors 
-to suit your style. It integrates seamlessly with popular plugins and supports 
+Nightfall.nvim is a clean, eye-friendly Neovim colorscheme with multiple flavors
+to suit your style. It integrates seamlessly with popular plugins and supports
 extended coding sessions with minimal strain.
 
 ==============================================================================
@@ -29,10 +29,11 @@ Flavors                                                         *nightfall_flavo
 ==============================================================================
 Setup                                                           *nightfall_setup*
 
-Nightfall.nvim allows customization through a simple `setup` function. You can 
+Nightfall.nvim allows customization through a simple `setup` function. You can
 adjust transparency, highlights, and plugin integrations as needed.
 
 Example:
+>lua
   require("nightfall").setup({
     transparent = true,
     dim_inactive = true,
@@ -40,36 +41,43 @@ Example:
       flash = { enabled = true },
     },
   })
-
+<
 ==============================================================================
 Compile command                                       *nightfall_compile_command*
 
-Compiles all flavors into binary files to improve performance and reduce runtime 
+Compiles all flavors into json files to improve performance and reduce runtime
 overhead.
 
 Usage:
-  :NightfallCompile
+  `:NightfallCompile`
 
 ==============================================================================
 Overriding colors and highlights                        *nightfall_overriding*
 
-Nightfall.nvim allows you to override colors and highlight groups for precise 
+Nightfall.nvim allows you to override colors and highlight groups for precise
 control. Flavor-specific overrides take priority.
 
 Example:
+>lua
   require("nightfall").setup({
     color_overrides = {
       all = { foreground = "#ffffff" },
       nightfall = { background = "#ff0000" },
     },
     highlight_overrides = {
-      all = { Normal = { bg = "#120809" } },
+      all = {
+	Normal = { bg = "#120809" }
+      },
       nightfall = function(colors)
-        return { Normal = { bg = colors.black } }
+	return {
+	  Normal = { bg = colors.black }
+	}
       end,
-      maron = { Normal = { fg = "#ffffff" } },
+      maron = {
+	Normal = { fg = "#ffffff" }
+      },
     },
   })
-
+<
 ==============================================================================
 vim:tw=78:ts=8:noet:ft=help:norl:
