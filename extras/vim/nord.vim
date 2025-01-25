@@ -33,7 +33,7 @@ hi IncSearch guifg=#011502 guibg=#ffb997
 hi Keyword guifg=#dd9ac2 gui=italic
 hi Label guifg=#edf7d2
 hi LineNr guifg=#888da7
-hi MatchParen guifg=#77CDFF guibg=#434853 gui=bold
+hi MatchParen guifg=#A7D477 guibg=#434853 gui=bold
 hi ModeMsg guifg=#7ae7c7
 hi MoreMsg guifg=#edf7f6
 hi MsgArea guifg=#e9e9f4
