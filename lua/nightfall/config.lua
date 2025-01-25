@@ -49,6 +49,7 @@ local default_options = {
     noice = { enabled = true },
     fzf = { enabled = true },
     neo_tree = { enabled = true },
+    telescope = { enabled = true },
   },
   color_overrides = {},
   highlight_overrides = {},
