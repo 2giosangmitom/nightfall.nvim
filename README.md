@@ -14,7 +14,7 @@ _Nightfall.nvim_ is a clean and eye-friendly Neovim colorscheme designed to enha
 - ⚡️ Automatic caching for faster load times.
 - 🌲 Full Treesitter support for enhanced syntax highlighting.
 - 🎟️ LSP semantic token integration.
-- 🧩 Compatible with major [plugins](#-supported-plugins).
+- 🧩 Compatible with major plugins.
 - 🖌️ Highly customizable to fit your preferences.
 - 🏵 Designed to reduce eye strain.
 - 🪁 Multiple flavors to match your style.
@@ -159,6 +159,8 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     vim.notify("Nightfall reloaded", vim.log.levels.INFO, { title = "Nightfall" })
   end,
 })
+
+return {} -- You can add more lazy.nvim specs here
 ```
 
 ## ❤️ Support
