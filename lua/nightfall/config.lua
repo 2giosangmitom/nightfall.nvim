@@ -1,61 +1,72 @@
 local M = {}
 
---- Nightfall.nvim provides a comprehensive set of default configuration values
---- that define the appearance and behavior of the colorscheme. These defaults
---- can be overridden to tailor the colorscheme to your preferences and coding
---- workflow. For detailed instructions on overriding these defaults, please
---- refer to the documentation of the |nightfall.nvim_setup| function.
----
----@eval return MiniDoc.afterlines_to_code(MiniDoc.current.eval_section)
----@tag nightfall.nvim_defaults
-local defaults = {
-  compile_path = vim.fn.stdpath("cache") .. "/nightfall",
+---@class NightfallOptions
+---@field transparent? boolean
+---@field terminal_colors? boolean
+---@field dim_inactive? boolean
+---@field default_integrations? boolean
+---@field styles? table
+---@field integrations? table
+---@field color_overrides? table
+---@field highlight_overrides? table
+
+--- Default options
+---@type NightfallOptions
+local default_options = {
   transparent = false,
   terminal_colors = true,
   dim_inactive = false,
+  default_integrations = true,
   styles = {
     comments = { italic = true },
     keywords = { italic = true },
     functions = {},
     variables = {},
     numbers = {},
+    exceptions = {},
     conditionals = {},
     constants = {},
     operators = {},
+    coroutines = { italic = true },
     strings = {},
     types = {},
+    parameters = {},
     booleans = {},
     loops = {},
     properties = {},
+    characters = {},
   },
-  default_integrations = true,
   integrations = {
     lazy = { enabled = true },
-    telescope = { enabled = true, style = "borderless" },
-    illuminate = { enabled = false },
     treesitter = { enabled = true, context = true },
-    lspconfig = { enabled = true },
-    flash = { enabled = true },
-    trouble = { enabled = true },
-    dashboard = { enabled = true },
-    cmp = { enabled = true },
-    neo_tree = { enabled = true },
+    render_markdown = { enabled = true },
+    native_lsp = { enabled = true, semantic_tokens = true },
+    snacks = { enabled = true, dashboard = true },
     mini = { enabled = true, icons = true },
+    blink = { enabled = true },
+    flash = { enabled = true },
     which_key = { enabled = true },
-    indent_blankline = { enabled = true },
-    fzf = { enabled = true, style = "borderless" },
+    noice = { enabled = true },
+    fzf = { enabled = true },
+    neo_tree = { enabled = true },
+    telescope = { enabled = true },
   },
   color_overrides = {},
   highlight_overrides = {},
 }
 
---- Merges user configuration with defaults and returns the resulting options table.
----@param user_config table: User configuration table.
----@return table: Merged options table.
----@private
-function M.set_options(user_config)
-  if user_config.default_integrations == false then defaults.integrations = {} end
-  return vim.tbl_deep_extend("keep", user_config, defaults)
+local Options = default_options
+
+--- Merge user configurations with defaults
+---@param user_config? NightfallOptions
+function M.setup(user_config)
+  user_config = user_config or {}
+  if user_config.default_integrations == false then Options.integrations = {} end
+  Options = vim.tbl_deep_extend("force", Options, user_config)
 end
+
+--- Get options
+---@return NightfallOptions
+function M.get_options() return Options end
 
 return M
