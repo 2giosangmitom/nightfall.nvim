@@ -47,6 +47,7 @@ local default_options = {
     flash = { enabled = true },
     which_key = { enabled = true },
     noice = { enabled = true },
+    fzf = { enabled = true },
   },
   color_overrides = {},
   highlight_overrides = {},
