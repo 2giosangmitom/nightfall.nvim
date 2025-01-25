@@ -1,35 +1,31 @@
-*nightfall.nvim*    For Neovim version 0.10 and later    Last change: 2025 January 24
+*nightfall.nvim*    For Neovim version 0.10 and later    Last change: 2025 January 25
 
                                 NIGHTFALL.NVIM
 
-Nightfall.nvim is a thoughtfully designed Neovim colorscheme tailored to enhance
-your coding experience. It combines a clean, minimalist aesthetic with multiple
-flavors to match your unique style. Built with an emphasis on reducing eye strain,
-Nightfall.nvim integrates seamlessly with major plugins and is perfect for extended
-coding sessions.
+Nightfall.nvim is a clean, eye-friendly Neovim colorscheme with multiple flavors 
+to suit your style. It integrates seamlessly with popular plugins and supports 
+extended coding sessions with minimal strain.
 
 Features ~
-- Automatic Caching: Faster load times for a seamless experience.
-- Treesitter Support: Full compatibility with the nvim-treesitter plugin for
-  enhanced syntax highlighting.
-- LSP Integration: Effortlessly supports LSP semantic tokens for better code
-  navigation.
-- Plugin Compatibility: Works beautifully with a variety of popular plugins.
-- Customizable: Tailor the colorscheme to suit your preferences.
-- Eye-Friendly: Designed to reduce eye strain during long coding sessions.
-- Multiple Flavors: Match your coding style with different aesthetic options.
-- Improved Readability: A minimalist design to keep your focus on what matters.
+- Automatic Caching: Faster load times.
+- Treesitter Support: Enhanced syntax highlighting.
+- LSP Integration: Supports LSP semantic tokens.
+- Plugin Compatibility: Works with major plugins.
+- Customizable: Easily tweak to your liking.
+- Eye-Friendly: Reduces strain during long sessions.
+- Multiple Flavors: Choose a style that suits you.
+- Improved Readability: Minimalist design for focus.
 
 Flavors ~
-- Nightfall: A dark and vibrant theme inspired by Dracula.
-- Deeper Night: A high-contrast dark theme for improved focus.
-- Maron: A warm, earthy palette for a softer experience.
-- Nord: A dark theme influenced by Onedark and Nord.
+- Nightfall: Dark, vibrant theme inspired by Dracula.
+- Deeper Night: High contrast for better focus.
+- Maron: Warm, earthy tones for a soft feel.
+- Nord: Inspired by Onedark and Nord themes.
 
 ------------------------------------------------------------------------------
                                                           *nightfall_setup*
-Nightfall.nvim is highly customizable, allowing you to tweak colors, highlights,
-and integrations. Configuration is simple and done via the `setup` function.
+Nightfall.nvim allows customization through a simple `setup` function. You can 
+adjust transparency, highlights, and plugin integrations easily.
 
 Example:
 >lua
@@ -41,6 +37,34 @@ Example:
     },
   })
 <
+------------------------------------------------------------------------------
+                                                *nightfall_compile_command*
+Compiles all flavors into binary files to improve performance and reduce runtime 
+overhead.
 
+Usage ~
+`:NightfallCompile`
+
+------------------------------------------------------------------------------
+                                                     *nightfall_overriding*
+Nightfall.nvim lets you override colors and highlight groups for precise control. 
+Flavor-specific overrides take priority.
+
+Example:
+>lua
+  require("nightfall").setup({
+    color_overrides = {
+      all = { foreground = "#ffffff" },
+      nightfall = { background = "#ff0000" },
+    },
+    highlight_overrides = {
+      all = { Normal = { bg = "#120809" } },
+      nightfall = function(colors) 
+        return { Normal = { bg = colors.black } }
+      end,
+      maron = { Normal = { fg = "#ffffff" } },
+    },
+  })
+<
 ------------------------------------------------------------------------------
 vim:tw=80:ts=8:noet:ft=help:norl:
