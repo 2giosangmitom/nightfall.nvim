@@ -84,26 +84,24 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 Nightfall.nvim allows overriding colors and highlights to suit your needs. Refer to `:h nightfall_overriding` for details.
 
-### Override Colors
-
 ```lua
 require("nightfall").setup({
   color_overrides = {
     all = { foreground = "#ffffff" },
     nightfall = { background = "#ff0000" },
   },
-})
-```
-
-### Override Highlight Groups
-
-```lua
-require("nightfall").setup({
   highlight_overrides = {
-    all = { Normal = { bg = "#120809" } },
+    all = {
+      Normal = { bg = "#120809" },
+    },
     nightfall = function(colors)
-      return { Normal = { bg = colors.black } }
+      return {
+        Normal = { bg = colors.black },
+      }
     end,
+    maron = {
+      Normal = { fg = "#ffffff" },
+    },
   },
 })
 ```
