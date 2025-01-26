@@ -1,13 +1,13 @@
-*nightfall.nvim*          For Neovim 0.10 and later          Last change: 2025 January 25
+*nightfall.nvim*        For Neovim 0.10 and later        Last change: 2025 January 25
 
-                                NIGHTFALL.NVIM
+                             NIGHTFALL.NVIM
 
 Nightfall.nvim is a clean, eye-friendly Neovim colorscheme with multiple flavors
 to suit your style. It integrates seamlessly with popular plugins and supports
 extended coding sessions with minimal strain.
 
 ==============================================================================
-Features                                                        *nightfall_features*
+Features                                                    *nightfall_features*
 
 - Automatic caching for faster load times.
 - Treesitter support for enhanced syntax highlighting.
@@ -19,7 +19,7 @@ Features                                                        *nightfall_featu
 - Minimalist design for improved readability.
 
 ==============================================================================
-Flavors                                                         *nightfall_flavors*
+Flavors                                                      *nightfall_flavors*
 
 - Nightfall: Dark, vibrant theme inspired by Dracula.
 - Deeper Night: High contrast for better focus.
@@ -27,7 +27,7 @@ Flavors                                                         *nightfall_flavo
 - Nord: Inspired by Onedark and Nord themes.
 
 ==============================================================================
-Setup                                                           *nightfall_setup*
+Setup                                                          *nightfall_setup*
 
 Nightfall.nvim allows customization through a simple `setup` function. You can
 adjust transparency, highlights, and plugin integrations as needed.
@@ -43,7 +43,7 @@ Example:
   })
 <
 ==============================================================================
-Compile command                                       *nightfall_compile_command*
+Compile command                                      *nightfall_compile_command*
 
 Compiles all flavors into json files to improve performance and reduce runtime
 overhead.
@@ -52,7 +52,7 @@ Usage:
   `:NightfallCompile`
 
 ==============================================================================
-Overriding colors and highlights                        *nightfall_overriding*
+Overriding colors and highlights                          *nightfall_overriding*
 
 Nightfall.nvim allows you to override colors and highlight groups for precise
 control. Flavor-specific overrides take priority.
