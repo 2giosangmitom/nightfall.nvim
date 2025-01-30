@@ -37,11 +37,11 @@ function M.get(colors, ts_opts)
     ["@string.regexp"] = { fg = colors.blue },
     ["@string.escape"] = { fg = colors.blue },
     ["@string.special"] = { fg = colors.cream },
-    ["@string.special.url"] = { fg = colors.lime, undercurl = true },
+    ["@string.special.url"] = { fg = colors.lime, underline = true },
     ["@character.special"] = { fg = colors.coral },
 
     -- Attributes or annotations
-    ["@attribute"] = { fg = utils.vary_color({ nightfall = colors.pink }, colors.magenta) },
+    ["@attribute"] = { fg = colors.magenta },
     ["@attribute.builtin"] = { fg = colors.blue },
 
     -- Properties
@@ -89,6 +89,12 @@ function M.get(colors, ts_opts)
     ["@markup.math"] = { fg = colors.purple },
     ["@markup.link"] = { fg = colors.latte, undercurl = true },
     ["@markup.raw"] = { fg = colors.cream },
+
+    -- HTML, Vue,...
+    ["@tag"] = { fg = colors.magenta },
+    ["@tag.attribute"] = { fg = colors.cyan, italic = true },
+    ["@tag.builtin"] = { fg = colors.purple },
+    ["@tag.delimiter"] = { fg = colors.cyan },
   }
 
   if ts_opts.context or false then
