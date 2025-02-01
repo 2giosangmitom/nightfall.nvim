@@ -34,7 +34,7 @@ function M.get(colors, options)
     DiffChange = { bg = utils.darken(colors.yellow, 0.5) },
     DiffDelete = { bg = utils.darken(colors.red, 0.54) },
     DiffText = { bg = utils.darken(colors.blue, 0.5) },
-    EndOfBuffer = { fg = colors.charcoal },
+    EndOfBuffer = { fg = options.hide_end_of_buffer and colors.bg or colors.charcoal },
     TermCursor = { fg = colors.bg, bg = colors.fg },
     ErrorMsg = { fg = colors.red, bold = true, italic = true },
     WarningMsg = { fg = colors.peach, bold = true, italic = true },
