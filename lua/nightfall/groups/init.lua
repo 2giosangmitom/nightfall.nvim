@@ -27,7 +27,11 @@ function M.get(flavor)
     "error",
     require("nightfall.groups.editor").get(
       colors,
-      { transparent = options.transparent, dim_inactive = options.dim_inactive }
+      {
+        transparent = options.transparent,
+        dim_inactive = options.dim_inactive,
+        hide_end_of_buffer = options.hide_end_of_buffer,
+      }
     ),
     require("nightfall.groups.syntax").get(colors, options.styles)
   )
