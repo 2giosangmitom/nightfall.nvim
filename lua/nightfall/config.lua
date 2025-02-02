@@ -17,7 +17,6 @@ local default_options = {
   terminal_colors = true,
   dim_inactive = false,
   default_integrations = true,
-  hide_end_of_buffer = true,
   styles = {
     comments = { italic = true },
     keywords = { italic = true },
