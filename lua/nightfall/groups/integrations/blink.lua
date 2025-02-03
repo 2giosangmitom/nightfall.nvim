@@ -6,7 +6,7 @@ local M = {}
 function M.get(colors)
   return {
     BlinkCmpLabel = { link = "NonText" },
-    BlinkCmpLabelDeprecated = { strikethrough = true },
+    BlinkCmpLabelDeprecated = { fg = colors.gray, strikethrough = true },
     BlinkCmpLabelMatch = { fg = colors.magenta },
     BlinkCmpMenuBorder = { fg = colors.purple },
     BlinkCmpDocBorder = { fg = colors.purple },
