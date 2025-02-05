@@ -58,10 +58,9 @@ function M.get(colors, styles)
     Function = {
       fg = utils.vary_color({
         nightfall = colors.green,
-        ["deeper-night"] = colors.sky,
-        maron = colors.lime,
         nord = colors.blue,
-      }, colors.sky),
+        maron = colors.lime,
+      }, colors.green),
       style = styles.functions,
     },
     Statement = {
