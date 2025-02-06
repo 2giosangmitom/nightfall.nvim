@@ -25,14 +25,10 @@ function M.get(flavor)
   -- Get core highlights
   local highlights = vim.tbl_deep_extend(
     "error",
-    require("nightfall.groups.editor").get(
-      colors,
-      {
-        transparent = options.transparent,
-        dim_inactive = options.dim_inactive,
-        hide_end_of_buffer = options.hide_end_of_buffer,
-      }
-    ),
+    require("nightfall.groups.editor").get(colors, {
+      transparent = options.transparent,
+      dim_inactive = options.dim_inactive,
+    }),
     require("nightfall.groups.syntax").get(colors, options.styles)
   )
   highlights = vim.tbl_deep_extend("keep", highlight_overrides, highlights)
