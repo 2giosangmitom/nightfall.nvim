@@ -1,90 +1,106 @@
-import {
-  readdirSync,
-  readFileSync,
-  writeFileSync,
-  mkdirSync,
-  existsSync,
-} from "node:fs";
-import { homedir } from "node:os";
-import { join, basename, extname } from "node:path";
-import { cwd } from "node:process";
+const fs = require("node:fs");
+const path = require("node:path");
+const process = require("node:process");
 
-// Define the cache directory and current working directory
-const CACHE_DIR = join(homedir(), ".cache/nvim/nightfall/");
-const CURRENT_DIR = cwd();
-const OUTPUT_DIR = join(CURRENT_DIR, "extras/vim");
+const cwd = process.cwd();
+const dataDir = process.env.HOME.concat("/.cache/nvim/nightfall/");
 
-// Function to ensure directory exists, create if it doesn't
-function ensureDirectoryExistence(dir) {
-  if (!existsSync(dir)) {
-    mkdirSync(dir, { recursive: true });
-  }
+function parseJson(file, callback) {
+	fs.readFile(file, { encoding: "utf-8" }, callback);
 }
 
-// Function to process JSON content and generate Vim script
-function processJsonContent(filePath, outputDir) {
-  const fileName = basename(filePath, extname(filePath));
-  const vimFile = join(outputDir, `${fileName}.vim`);
+/**
+ * Return the highlight command string in vim
+ * @param {string} group
+ * @param {object} groupOpts
+ */
+function vimmify(group, groupOpts) {
+	let res = `hi ${group}`;
 
-  try {
-    const content = readFileSync(filePath, "utf-8");
-    const json = JSON.parse(content);
+	let style = [];
+	for (const opt in groupOpts) {
+		if (opt === "fg") {
+			res += ` guifg=${groupOpts.fg}`;
+		} else if (opt === "bg") {
+			res += ` guibg=${groupOpts.bg}`;
+		} else if (opt === "sp") {
+			res += ` guisp=${groupOpts.sp}`;
+		} else if (opt === "style" && typeof opt === "object") {
+			for (const s in opt.style) {
+				if (opt.style[s]) {
+					style.push(s);
+				}
+			}
+		} else {
+			if (opt === "style") {
+				// Skip empty style
+				continue;
+			}
+			if (groupOpts[opt]) {
+				style.push(opt);
+			}
+		}
+	}
+	style = style.sort();
 
-    // Initialize vimContent with the colorscheme name and clear command
-    let vimContent = `let g:colors_name = "${fileName}"\nhi clear\n`;
+	if (style.length !== 0) {
+		res += ` gui=${style.join(",")}`;
+	}
+	res += " cterm=none";
 
-    // Process 'core' key if it exists
-    if (json.core) {
-      for (const [key, val] of Object.entries(json.core).sort()) {
-        let line = `hi ${key}`;
-        const styles = [];
-
-        for (const [attrKey, attrValue] of Object.entries(val)) {
-          if (typeof attrValue === "string") {
-            if (attrKey === "fg") line += ` guifg=${attrValue}`;
-            if (attrKey === "bg") line += ` guibg=${attrValue}`;
-            if (attrKey === "sp") line += ` guisp=${attrValue}`;
-          }
-          if (typeof attrValue === "boolean" && attrValue) {
-            styles.push(attrKey);
-          }
-          if (typeof attrValue === "object") {
-            for (const [styleKey, styleValue] of Object.entries(attrValue)) {
-              if (styleValue) styles.push(styleKey);
-            }
-          }
-        }
-
-        if (styles.length > 0) {
-          line += ` gui=${styles.join(",")}`;
-        }
-        vimContent += line.concat("\n");
-      }
-    }
-
-    writeFileSync(vimFile, vimContent);
-    console.log(`Vim colorscheme written to ${vimFile}`);
-  } catch (readError) {
-    console.error(`Error reading file ${filePath}:`, readError.message);
-  }
+	return res;
 }
 
-try {
-  // Ensure the output directory exists
-  ensureDirectoryExistence(OUTPUT_DIR);
+fs.readdir(dataDir, { encoding: "utf-8" }, (err, files) => {
+	if (err) {
+		console.error(err);
+		return;
+	}
 
-  // Read all files in the cache directory
-  const files = readdirSync(CACHE_DIR);
-  const jsonFiles = files.filter((file) => file.endsWith(".json"));
+	let jsonFiles = files.filter((file) => file.endsWith(".json"));
+	jsonFiles = jsonFiles.map((v) => dataDir + v);
 
-  if (jsonFiles.length === 0) {
-    console.log("No JSON files found in the directory.");
-  } else {
-    for (const file of jsonFiles) {
-      const filePath = join(CACHE_DIR, file);
-      processJsonContent(filePath, OUTPUT_DIR);
-    }
-  }
-} catch (dirError) {
-  console.error(`Error accessing directory ${CACHE_DIR}:`, dirError.message);
-}
+	for (const f of jsonFiles) {
+		parseJson(f, (err, data) => {
+			if (err) {
+				console.error(err);
+				return;
+			}
+
+			const json = JSON.parse(data);
+
+			// Handle core groups
+			if (json.core) {
+				const flavor = path.basename(f, ".json");
+				let vim = `" This file is auto-generated, do not edit.
+let g:colors_name = "${flavor}"
+hi clear
+set termguicolors
+
+`;
+
+				for (const group of Object.keys(json.core).sort()) {
+					vim += vimmify(group, json.core[group]);
+					vim += "\n";
+				}
+
+				fs.writeFile(
+					`${cwd}/extras/vim/colors/${flavor}.vim`,
+					vim,
+					{
+						encoding: "utf-8",
+					},
+					(err) => {
+						if (err) {
+							console.error(err);
+						} else {
+							console.log(
+								`Generated vim colorscheme to ${cwd}/extras/vim/colors/${flavor}.vim`,
+							);
+						}
+					},
+				);
+			}
+		});
+	}
+});
