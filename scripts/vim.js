@@ -1,106 +1,109 @@
 const fs = require("node:fs");
 const path = require("node:path");
-const process = require("node:process");
 
-const cwd = process.cwd();
-const dataDir = process.env.HOME.concat("/.cache/nvim/nightfall/");
+// Constants
+const DATA_DIR = `${process.env.HOME}/.cache/nvim/nightfall/`;
+const CWD = process.cwd();
 
-function parseJson(file, callback) {
-	fs.readFile(file, { encoding: "utf-8" }, callback);
+/**
+ * Reads a JSON file and returns its contents.
+ * @param {string} file - Path to the JSON file.
+ * @param {function} callback - Callback function to handle the file contents.
+ */
+function readJsonFile(file, callback) {
+  fs.readFile(file, { encoding: "utf-8" }, callback);
 }
 
 /**
- * Return the highlight command string in vim
- * @param {string} group
- * @param {object} groupOpts
+ * Generates a Vim highlight command string.
+ * @param {string} group - Vim group name.
+ * @param {object} groupOpts - Options for the Vim group.
+ * @returns {string} Vim highlight command string.
  */
-function vimmify(group, groupOpts) {
-	let res = `hi ${group}`;
+function generateVimHighlightCommand(group, groupOpts) {
+  let command = `hi ${group}`;
 
-	let style = [];
-	for (const opt in groupOpts) {
-		if (opt === "fg") {
-			res += ` guifg=${groupOpts.fg}`;
-		} else if (opt === "bg") {
-			res += ` guibg=${groupOpts.bg}`;
-		} else if (opt === "sp") {
-			res += ` guisp=${groupOpts.sp}`;
-		} else if (opt === "style" && typeof opt === "object") {
-			for (const s in opt.style) {
-				if (opt.style[s]) {
-					style.push(s);
-				}
-			}
-		} else {
-			if (opt === "style") {
-				// Skip empty style
-				continue;
-			}
-			if (groupOpts[opt]) {
-				style.push(opt);
-			}
-		}
-	}
-	style = style.sort();
+  // Add foreground, background, and special colors
+  if (groupOpts.fg) command += ` guifg=${groupOpts.fg}`;
+  if (groupOpts.bg) command += ` guibg=${groupOpts.bg}`;
+  if (groupOpts.sp) command += ` guisp=${groupOpts.sp}`;
 
-	if (style.length !== 0) {
-		res += ` gui=${style.join(",")}`;
-	}
-	res += " cterm=none";
+  // Add style options
+  const styleOptions = [];
+  for (const option in groupOpts) {
+    if (option === "style" && typeof groupOpts.style === "object") {
+      for (const style in groupOpts.style) {
+        if (groupOpts.style[style]) styleOptions.push(style);
+      }
+    } else if (
+      groupOpts[option] &&
+      option !== "fg" &&
+      option !== "bg" &&
+      option !== "sp"
+    ) {
+      styleOptions.push(option);
+    }
+  }
+  if (styleOptions.length > 0)
+    command += ` gui=${styleOptions.sort().join(",")}`;
 
-	return res;
+  // Add terminal colors
+  command += " cterm=none";
+
+  return command;
 }
 
-fs.readdir(dataDir, { encoding: "utf-8" }, (err, files) => {
-	if (err) {
-		console.error(err);
-		return;
-	}
+// Read JSON files in the data directory
+fs.readdir(DATA_DIR, { encoding: "utf-8" }, (err, files) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
 
-	let jsonFiles = files.filter((file) => file.endsWith(".json"));
-	jsonFiles = jsonFiles.map((v) => dataDir + v);
+  // Filter JSON files
+  const jsonFiles = files
+    .filter((file) => file.endsWith(".json"))
+    .map((file) => `${DATA_DIR}${file}`);
 
-	for (const f of jsonFiles) {
-		parseJson(f, (err, data) => {
-			if (err) {
-				console.error(err);
-				return;
-			}
+  // Process each JSON file
+  jsonFiles.forEach((file) => {
+    readJsonFile(file, (err, data) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
 
-			const json = JSON.parse(data);
+      // Parse JSON data
+      const jsonData = JSON.parse(data);
 
-			// Handle core groups
-			if (json.core) {
-				const flavor = path.basename(f, ".json");
-				let vim = `" This file is auto-generated, do not edit.
+      // Handle core groups
+      if (jsonData.core) {
+        const flavor = path.basename(file, ".json");
+        let vimContent = `" This file is auto-generated, do not edit.
 let g:colors_name = "${flavor}"
 hi clear
 set termguicolors
 
 `;
 
-				for (const group of Object.keys(json.core).sort()) {
-					vim += vimmify(group, json.core[group]);
-					vim += "\n";
-				}
+        // Generate Vim highlight commands
+        Object.keys(jsonData.core)
+          .sort()
+          .forEach((group) => {
+            vimContent +=
+              generateVimHighlightCommand(group, jsonData.core[group]) + "\n";
+          });
 
-				fs.writeFile(
-					`${cwd}/extras/vim/colors/${flavor}.vim`,
-					vim,
-					{
-						encoding: "utf-8",
-					},
-					(err) => {
-						if (err) {
-							console.error(err);
-						} else {
-							console.log(
-								`Generated vim colorscheme to ${cwd}/extras/vim/colors/${flavor}.vim`,
-							);
-						}
-					},
-				);
-			}
-		});
-	}
+        // Write Vim colorscheme file
+        const outputFile = `${CWD}/extras/vim/colors/${flavor}.vim`;
+        fs.writeFile(outputFile, vimContent, { encoding: "utf-8" }, (err) => {
+          if (err) {
+            console.error(err);
+          } else {
+            console.log(`Generated Vim colorscheme to ${outputFile}`);
+          }
+        });
+      }
+    });
+  });
 });
