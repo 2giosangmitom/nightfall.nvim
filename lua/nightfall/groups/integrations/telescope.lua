@@ -3,7 +3,7 @@ local M = {}
 ---@param colors NightfallPalette
 ---@param opts table
 function M.get(colors, opts)
-  local telescope_style = opts.style or "borderless"
+  local telescope_style = opts.style or "bordered"
   local utils = require("nightfall.utils.colors")
 
   local res = {
