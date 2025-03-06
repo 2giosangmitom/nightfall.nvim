@@ -65,9 +65,10 @@ Example:
       nightfall = { background = "#ff0000" },
     },
     highlight_overrides = {
-      all = {
+      all = { -- This can only a table
 	Normal = { bg = "#120809" }
       },
+      -- Can be a function or a table for a specific flavor
       nightfall = function(colors)
 	return {
 	  Normal = { bg = colors.black }
@@ -75,6 +76,37 @@ Example:
       end,
       maron = {
 	Normal = { fg = "#ffffff" }
+      },
+    },
+  })
+<
+==============================================================================
+Integrations                                            *nightfall_integrations*
+
+Seamlessly integrates with various plugins. Enable or customize integrations
+as needed:
+
+>lua
+  require("nightfall").setup({
+    integrations = {
+      lazy = { enabled = true },
+      treesitter = { enabled = true, context = true },
+      render_markdown = { enabled = true },
+      native_lsp = { enabled = true, semantic_tokens = true },
+      snacks = { enabled = true, dashboard = true, indent = true, picker = true },
+      mini = { enabled = true, icons = true },
+      blink = { enabled = true },
+      flash = { enabled = true },
+      which_key = { enabled = true },
+      noice = { enabled = true },
+      fzf = {
+        enabled = true,
+        style = "borderless", -- or "bordered"
+      },
+      neo_tree = { enabled = true },
+      telescope = {
+        enabled = true,
+        style = "borderless", -- or "bordered"
       },
     },
   })
