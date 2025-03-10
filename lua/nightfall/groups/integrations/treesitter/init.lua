@@ -37,7 +37,7 @@ function M.get(colors, ts_opts)
     ["@string.regexp"] = { fg = colors.blue },
     ["@string.escape"] = { fg = colors.blue },
     ["@string.special"] = { fg = colors.cream },
-    ["@string.special.url"] = { fg = colors.lime, underline = true },
+    ["@string.special.url"] = { fg = colors.cyan },
     ["@character.special"] = { fg = colors.coral },
 
     -- Attributes or annotations
@@ -87,7 +87,7 @@ function M.get(colors, ts_opts)
     ["@markup.heading.6"] = { fg = colors.cream, bold = true },
     ["@markup.quote"] = { fg = utils.darken(colors.blue, 0.8, colors.charcoal) },
     ["@markup.math"] = { fg = colors.purple },
-    ["@markup.link"] = { fg = colors.latte, undercurl = true },
+    ["@markup.link"] = { fg = colors.cyan },
     ["@markup.raw"] = { fg = colors.cream },
 
     -- HTML, Vue,...
