@@ -6,7 +6,12 @@ vim:
 deps:
   mkdir -p deps
   git clone https://github.com/echasnovski/mini.test.git deps/mini.test
+  git clone https://github.com/echasnovski/mini.doc.git deps/mini.doc
 
-# Run test
+# Run tests using mini.test
 test:
-  nvim -l tests/minitest.lua
+  nvim --headless -u scripts/minit.lua -c "lua require('mini.test').run()" -c "qa!"
+
+# Generate vimdoc using mini.doc
+vimdoc:
+  nvim --headless -u scripts/minit.lua -c "lua require('mini.doc').generate()" -c "qa!"
