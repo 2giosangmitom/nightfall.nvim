@@ -24,6 +24,6 @@ jobs:
       - name: Run tests
         run: |
           export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-          mkdir -p deps
-          git clone https://github.com/echasnovski/mini.test.git deps/mini.test
-          nvim -l tests/minitest.lua
+          sudo snap install --edge --classic just
+          just deps
+          just test
