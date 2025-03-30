@@ -22,19 +22,24 @@ function M.get(flavor)
   local insert_colors = {
     nightfall = colors.green,
     ["deeper-night"] = colors.magenta,
-    maron = colors.blue,
+    maron = colors.cyan,
     nord = colors.lime,
   }
 
-  local command_color = flavor == "nightfall" and colors.blue or colors.coral
+  local command_color = {
+    nightfall = colors.cream,
+    ["deeper-night"] = colors.pink,
+    maron = colors.blue,
+    nord = colors.lime,
+  }
   local terminal_color = flavor == "nightfall" and colors.cyan or colors.cream
   local navy_color = utils.lighten(colors.navy, 0.9)
 
   local visual_colors = {
-    nightfall = colors.sky,
+    nightfall = colors.blue,
     ["deeper-night"] = colors.yellow,
-    maron = colors.lime,
-    nord = colors.cyan,
+    maron = colors.gold,
+    nord = colors.sky,
   }
 
   -- Define lualine configuration
@@ -60,8 +65,8 @@ function M.get(flavor)
   }
 
   lualine.command = {
-    a = { fg = colors.black, bg = command_color },
-    b = { fg = command_color, bg = navy_color },
+    a = { fg = colors.black, bg = command_color[flavor] },
+    b = { fg = command_color[flavor], bg = navy_color },
   }
 
   lualine.visual = {
@@ -70,8 +75,8 @@ function M.get(flavor)
   }
 
   lualine.replace = {
-    a = { fg = colors.black, bg = colors.red },
-    b = { fg = colors.red, bg = navy_color },
+    a = { fg = colors.black, bg = colors.coral },
+    b = { fg = colors.coral, bg = navy_color },
   }
 
   lualine.inactive = {
