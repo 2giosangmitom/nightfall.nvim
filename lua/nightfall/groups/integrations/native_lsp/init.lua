@@ -9,7 +9,7 @@ function M.get(colors, opts)
     -- Diagnostic colors
     DiagnosticError = { fg = colors.red },
     DiagnosticWarn = { fg = colors.yellow },
-    DiagnosticInfo = { fg = colors.purple },
+    DiagnosticInfo = { fg = utils.vary_color({ ["deeper-night"] = colors.sky }, colors.purple) },
     DiagnosticHint = { fg = colors.cyan },
     DiagnosticOk = { fg = colors.green },
 
@@ -25,8 +25,11 @@ function M.get(colors, opts)
       style = { italic = true },
     },
     DiagnosticVirtualTextInfo = {
-      fg = colors.purple,
-      bg = utils.darken(colors.navy, 0.9, colors.purple),
+      fg = utils.vary_color({ ["deeper-night"] = colors.sky }, colors.purple),
+      bg = utils.vary_color(
+        { ["deeper-night"] = utils.darken(colors.navy, 0.9, colors.sky) },
+        utils.darken(colors.navy, 0.9, colors.purple)
+      ),
       style = { italic = true },
     },
     DiagnosticVirtualTextHint = {
@@ -43,7 +46,10 @@ function M.get(colors, opts)
     -- Diagnostic Underline Colors
     DiagnosticUnderlineError = { sp = colors.red, style = { undercurl = true } },
     DiagnosticUnderlineWarn = { sp = colors.yellow, style = { undercurl = true } },
-    DiagnosticUnderlineInfo = { sp = colors.purple, style = { undercurl = true } },
+    DiagnosticUnderlineInfo = {
+      sp = utils.vary_color({ ["deeper-night"] = colors.sky }, colors.purple),
+      style = { undercurl = true },
+    },
     DiagnosticUnderlineHint = { sp = colors.cyan, style = { undercurl = true } },
     DiagnosticUnderlineOk = { sp = colors.green, style = { undercurl = true } },
   }
