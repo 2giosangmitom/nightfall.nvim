@@ -1,5 +1,5 @@
-const fs = require("node:fs");
-const path = require("node:path");
+import { readFile, readdir, writeFile } from "node:fs";
+import { basename } from "node:path";
 
 // Constants
 const DATA_DIR = `${process.env.HOME}/.cache/nvim/nightfall/`;
@@ -11,7 +11,7 @@ const CWD = process.cwd();
  * @param {function} callback - Callback function to handle the file contents.
  */
 function readJsonFile(file, callback) {
-  fs.readFile(file, { encoding: "utf-8" }, callback);
+  readFile(file, { encoding: "utf-8" }, callback);
 }
 
 /**
@@ -54,7 +54,7 @@ function generateVimHighlightCommand(group, groupOpts) {
 }
 
 // Read JSON files in the data directory
-fs.readdir(DATA_DIR, { encoding: "utf-8" }, (err, files) => {
+readdir(DATA_DIR, { encoding: "utf-8" }, (err, files) => {
   if (err) {
     console.error(err);
     return;
@@ -78,7 +78,7 @@ fs.readdir(DATA_DIR, { encoding: "utf-8" }, (err, files) => {
 
       // Handle core groups
       if (jsonData.core) {
-        const flavor = path.basename(file, ".json");
+        const flavor = basename(file, ".json");
         let vimContent = `" This file is auto-generated, do not edit.
 let g:colors_name = "${flavor}"
 hi clear
@@ -96,7 +96,7 @@ set termguicolors
 
         // Write Vim colorscheme file
         const outputFile = `${CWD}/extras/vim/colors/${flavor}.vim`;
-        fs.writeFile(outputFile, vimContent, { encoding: "utf-8" }, (err) => {
+        writeFile(outputFile, vimContent, { encoding: "utf-8" }, (err) => {
           if (err) {
             console.error(err);
           } else {
