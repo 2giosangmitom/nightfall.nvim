@@ -42,7 +42,7 @@ local default_options = {
     render_markdown = { enabled = true },
     native_lsp = { enabled = true, semantic_tokens = true },
     snacks = { enabled = true, dashboard = true, indent = true, picker = true },
-    mini = { enabled = true, icons = true },
+    mini = { enabled = true, icons = true, trailspace = true },
     blink = { enabled = true },
     flash = { enabled = true },
     which_key = { enabled = true },
