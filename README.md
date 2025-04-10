@@ -22,8 +22,8 @@ _Nightfall.nvim_ is a clean and eye-friendly Neovim colorscheme designed to enha
 
 ## 🎨 Preview
 
-<details>
-<summary>Click to preview theme flavors</summary>
+<details open>
+<summary>Click to toggle preview</summary>
 
 ### Nightfall
 
