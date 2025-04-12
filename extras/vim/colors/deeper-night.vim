@@ -18,10 +18,10 @@ hi CursorColumn guibg=#27273b cterm=none
 hi CursorLine guibg=#27273b cterm=none
 hi CursorLineNr guifg=#f6f8ff gui=bold cterm=none
 hi Delimiter guifg=#c2aff0 cterm=none
-hi DiffAdd guibg=#567654 cterm=none
-hi DiffChange guibg=#7d7158 cterm=none
-hi DiffDelete guibg=#8a3331 cterm=none
-hi DiffText guibg=#4a716b cterm=none
+hi DiffAdd guibg=#2d343e cterm=none
+hi DiffChange guibg=#32303e cterm=none
+hi DiffDelete guibg=#60303e cterm=none
+hi DiffText guibg=#344452 cterm=none
 hi Directory guifg=#89b4fa cterm=none
 hi EndOfBuffer guifg=#454955 cterm=none
 hi Error guifg=#ff5e5b cterm=none
