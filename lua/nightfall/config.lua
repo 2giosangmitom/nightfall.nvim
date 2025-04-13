@@ -50,6 +50,7 @@ local default_options = {
     fzf = { enabled = true },
     neo_tree = { enabled = true },
     telescope = { enabled = true },
+    indent_blankline = { enabled = true },
   },
   color_overrides = {},
   highlight_overrides = {},
