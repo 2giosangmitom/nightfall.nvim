@@ -167,7 +167,11 @@ Enjoying Nightfall.nvim? Give it a 🌟 on GitHub and share it with others!
 
 ## 📜 License
 
-Licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
+
+Thanks to all the amazing [contributors](https://github.com/2giosangmitom/nightfall.nvim/graphs/contributors) 💛
+
+[![Contributors](https://contrib.rocks/image?repo=2giosangmitom/nightfall.nvim)](https://github.com/2giosangmitom/nightfall.nvim/graphs/contributors)
 
 ## 🎖️ Acknowledgments
 
