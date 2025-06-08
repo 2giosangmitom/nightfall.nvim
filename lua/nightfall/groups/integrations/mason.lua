@@ -9,11 +9,13 @@ function M.get(colors)
   }, colors.sky)
 
   return {
-    MasonHeader = { fg = colors.black, bg = colors.purple },
+    MasonHeader = { fg = colors.black, bg = accent },
     MasonLink = { fg = colors.black, bg = colors.purple },
-    MasonHighlight = { fg = colors.green },
-    MasonHeading = { fg = colors.lavender, bold = true },
+    MasonHighlight = { fg = accent },
+    MasonHeading = { fg = colors.fg, bold = true },
     MasonHighlightBlockBold = { fg = colors.black, bg = accent },
+    MasonMutedBlock = { fg = utils.lighten(colors.gray, 0.6), bg = utils.lighten(colors.navy, 0.85, colors.latte) },
+    MasonHighlightBlock = { fg = colors.black, bg = accent },
   }
 end
 
