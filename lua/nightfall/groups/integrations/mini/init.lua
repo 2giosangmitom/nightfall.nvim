@@ -13,6 +13,10 @@ function M.get(colors, opts)
     res = vim.tbl_deep_extend("error", res, require("nightfall.groups.integrations.mini.trailspace").get(colors))
   end
 
+  if opts.indentscope or false then
+    res = vim.tbl_deep_extend("error", res, require("nightfall.groups.integrations.mini.indentscope").get(colors))
+  end
+
   return res
 end
 
