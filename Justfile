@@ -11,7 +11,3 @@ deps:
 # Run tests using mini.test
 test:
   nvim --headless -u scripts/minit.lua -c "lua require('mini.test').run()" -c "qa!"
-
-# Generate vimdoc using mini.doc
-vimdoc:
-  nvim --headless -u scripts/minit.lua -c "lua require('mini.doc').generate()" -c "qa!"
