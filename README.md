@@ -1,5 +1,8 @@
 # 🌆 Nightfall.nvim
 
+> [!WARNING]
+> **DEPRECATED**: I am archiving this repository because I no longer use Neovim. Thank you to everyone who used and contributed to this project!
+
 _Nightfall.nvim_ is a clean and eye-friendly Neovim colorscheme designed to enhance your coding experience. With a minimalist aesthetic and multiple flavors, it reduces eye strain and integrates seamlessly with popular plugins, making it perfect for extended coding sessions.
 
 ![Stars](https://img.shields.io/github/stars/2giosangmitom/nightfall.nvim?style=for-the-badge&logo=apachespark&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41)
