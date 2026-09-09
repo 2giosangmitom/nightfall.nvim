@@ -1,1 +1,1 @@
-return require("nightfall.utils.lualine").get("maron")
+return require("nightfall.lualine").get("maron")

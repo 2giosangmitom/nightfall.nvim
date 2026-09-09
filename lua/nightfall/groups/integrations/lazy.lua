@@ -1,27 +1,31 @@
+--- https://github.com/folke/lazy.nvim
+
 local M = {}
 
----@param colors NightfallPalette
-function M.get(colors)
-  local utils = require("nightfall.utils.colors")
+---@param ctx NightfallCtx
+---@return table<string,table>
+function M.get(ctx)
+  local c = ctx.c
+
   return {
-    LazyCommit = { fg = colors.white },
-    LazyCommitType = { fg = colors.yellow },
-    LazyDir = { fg = colors.peach },
+    LazyCommit = { fg = c.white },
+    LazyCommitType = { fg = c.yellow },
+    LazyDir = { fg = c.peach },
     LazyH1 = {
-      fg = colors.black,
-      bg = utils.vary_color({ nightfall = colors.purple, maron = colors.yellow }, colors.sky),
+      fg = c.black,
+      bg = ctx.vary({ nightfall = c.purple, maron = c.yellow }, c.sky),
     },
-    LazyH2 = { fg = colors.fg, bold = true },
-    LazyInfo = { fg = colors.cyan, bg = utils.darken(colors.cyan, 1, colors.cyan) },
-    LazyUrl = { fg = colors.sky, undercurl = true },
-    LazyReasonCmd = { fg = colors.cream },
-    LazyReasonEvent = { fg = colors.yellow },
-    LazyReasonFt = { fg = colors.green },
-    LazyReasonImport = { fg = utils.vary_color({ maron = colors.sky }, colors.blue) },
-    LazyReasonStart = { fg = colors.pink },
-    LazySpecial = { fg = colors.lavender },
-    LazyLocal = { fg = utils.vary_color({ maron = colors.red }, colors.pink) },
-    LazyReasonKeys = { fg = utils.vary_color({ maron = colors.sky }, colors.blue) },
+    LazyH2 = { fg = c.fg, bold = true },
+    LazyInfo = { fg = c.cyan, bg = ctx.darken(c.cyan, 1, c.cyan) },
+    LazyUrl = { fg = c.sky, undercurl = true },
+    LazyReasonCmd = { fg = c.cream },
+    LazyReasonEvent = { fg = c.yellow },
+    LazyReasonFt = { fg = c.green },
+    LazyReasonImport = { fg = ctx.vary({ maron = c.sky }, c.blue) },
+    LazyReasonStart = { fg = c.pink },
+    LazySpecial = { fg = c.lavender },
+    LazyLocal = { fg = ctx.vary({ maron = c.red }, c.pink) },
+    LazyReasonKeys = { fg = ctx.vary({ maron = c.sky }, c.blue) },
   }
 end
 

@@ -1,121 +1,394 @@
-*nightfall.nvim*     For Neovim 0.10 and later     Last change: 2025 February 03
+                                                                *nightfall.nvim*
+A clean, eye-friendly Neovim colorscheme.
 
-                             NIGHTFALL.NVIM
+MIT License Copyright (c) 2024 Vo Quang Chien
 
-Nightfall.nvim is a clean, eye-friendly Neovim colorscheme with multiple flavors
-to suit your style. It integrates seamlessly with popular plugins and supports
-extended coding sessions with minimal strain.
+Nightfall ships three dark flavors that share one palette vocabulary, so every
+flavor covers the same highlight groups and the same plugin integrations.
 
-==============================================================================
-Features                                                    *nightfall_features*
+Flavors ~
 
-- Automatic caching for faster load times.
-- Treesitter support for enhanced syntax highlighting.
-- LSP integration with semantic tokens.
-- Plugin compatibility with major plugins.
-- Customizable options to suit your preferences.
-- Eye-friendly design to reduce strain.
-- Multiple flavors to match your coding style.
-- Minimalist design for improved readability.
+- `nightfall`: dark and vibrant, in the spirit of Dracula.
+- `deeper-night`: higher contrast, for focus.
+- `maron`: warm earthy tones.
 
-==============================================================================
-Flavors                                                      *nightfall_flavors*
+Getting started ~
 
-- Nightfall: Dark, vibrant theme inspired by Dracula.
-- Deeper Night: High contrast for better focus.
-- Maron: Warm, earthy tones for a soft feel.
-- Nord: Inspired by Onedark and Nord themes.
+Install the plugin, then pick a flavor with `:colorscheme`. Calling
+|nightfall.setup()| is optional and only needed to change the defaults.
 
-==============================================================================
-Setup                                                          *nightfall_setup*
-
-Nightfall.nvim allows customization through a simple `setup` function. You can
-adjust transparency, highlights, and plugin integrations as needed.
-
-Example:
 >lua
-  require("nightfall").setup({
-    transparent = true,
-    dim_inactive = true,
-    integrations = {
-      flash = { enabled = true },
-    },
-  })
+  require("nightfall").setup({ transparent = true })
+  vim.cmd.colorscheme("nightfall")
 <
+`setup()` must run before `:colorscheme` for its options to take effect.
+
+Beyond Neovim ~
+
+The `extras/` directory of this repository carries matching themes for
+Alacritty, lazygit and yazi, one file per flavor, generated from the same
+palettes.
+
+------------------------------------------------------------------------------
+Table of contents
+  Introduction .............................................. |nightfall.nvim|
+  Options ................................................. |nightfall-config|
+  Palettes ............................................... |nightfall-palette|
+  Colors ................................................... |nightfall-color|
+  Themes ................................................... |nightfall-theme|
+  Lualine ................................................ |nightfall-lualine|
+
+------------------------------------------------------------------------------
+                                                             *nightfall.flavors*
+                              `nightfall.flavors`
+Names of every flavor, in the order they appear in the documentation.
+Type ~
+`(NightfallFlavor[])`
+
+------------------------------------------------------------------------------
+                                                             *nightfall.setup()*
+                           `nightfall.setup`({opts})
+Apply user options.
+
+Call this before `:colorscheme`. It is optional: without it every option
+keeps the default shown in |NightfallOptions|.
+Parameters ~
+{opts} `(optional)` `(NightfallOptions)` Options to apply.
+
+------------------------------------------------------------------------------
+                                                              *nightfall.load()*
+                           `nightfall.load`({flavor})
+Apply a flavor to the current session.
+
+This is what `colors/<flavor>.lua` calls, so `:colorscheme nightfall` and
+`require("nightfall").load("nightfall")` do the same thing.
+Parameters ~
+{flavor} `(optional)` `(NightfallFlavor)` Which flavor to apply. Defaults to `"nightfall"`.
+
+
 ==============================================================================
-Compile command                                      *nightfall_compile_command*
+------------------------------------------------------------------------------
+                                                              *nightfall-config*
+User options and their defaults.
 
-Compiles all flavors into json files to improve performance and reduce runtime
-overhead.
+Overriding colors ~
 
-Usage:
-  `:NightfallCompile`
+`color_overrides` replaces entries of the palette before any highlight is
+built, so a replaced color reaches every group that uses it. Keys are flavor
+names, or `all` for every flavor, and a flavor's own entry wins.
 
-==============================================================================
-Overriding colors and highlights                          *nightfall_overriding*
-
-Nightfall.nvim allows you to override colors and highlight groups for precise
-control. Flavor-specific overrides take priority.
-
-Example:
 >lua
   require("nightfall").setup({
     color_overrides = {
-      all = { foreground = "#ffffff" },
-      nightfall = { background = "#ff0000" },
-    },
-    highlight_overrides = {
-      all = { -- This can only a table
-	Normal = { bg = "#120809" }
-      },
-      -- Can be a function or a table for a specific flavor
-      nightfall = function(colors)
-	return {
-	  Normal = { bg = colors.black }
-	}
-      end,
-      maron = {
-	Normal = { fg = "#ffffff" }
-      },
+      all = { fg = "#ffffff" },
+      nightfall = { bg = "#0b0b14" },
     },
   })
 <
-==============================================================================
-Integrations                                            *nightfall_integrations*
+Overriding highlights ~
 
-Seamlessly integrates with various plugins. Enable or customize integrations
-as needed:
+`highlight_overrides` replaces highlight groups after they are built. An
+entry is a table of groups, or a function receiving the palette and
+returning one, under `all` or under a flavor name. Keys a group does not
+mention keep the value the colorscheme gave them.
 
 >lua
   require("nightfall").setup({
-    integrations = {
-      mini = { enabled = true, icons = true }, -- Enable support for mini.nvim
-      native_lsp = { enabled = true, semantic_tokens = true },
-      snacks = {
-	enabled = true,
-	dashboard = true,
-	indent = true,
-	picker = true,
-      },
-      blink = { enabled = true },
-      flash = { enabled = true },
-      fzf = {
-        enabled = true,
-        style = "borderless", -- or "bordered"
-      },
-      lazy = { enabled = true },
-      treesitter = { enabled = true, context = true },
-      render_markdown = { enabled = true },
-      which_key = { enabled = true },
-      noice = { enabled = true },
-      neo_tree = { enabled = true },
-      telescope = {
-        enabled = true,
-        style = "borderless", -- or "bordered"
-      },
-      nvim_cmp = { enabled = true },
+    highlight_overrides = {
+      all = { Normal = { bg = "#120809" } },
+      nightfall = function(colors)
+        return { Comment = { fg = colors.teal, italic = false } }
+      end,
     },
   })
 <
+Integrations ~
+
+Each key of `integrations` names a plugin and carries at least `enabled`.
+Some take more: `fzf` and `telescope` accept a `style` of `"bordered"` or
+`"borderless"`, and `mini`, `snacks`, `native_lsp` and `treesitter` have a
+switch per feature. Set `default_integrations = false` to start from none
+of them and opt back in one at a time.
+
+>lua
+  require("nightfall").setup({
+    default_integrations = false,
+    integrations = {
+      telescope = { enabled = true, style = "borderless" },
+      treesitter = { enabled = true, context = true },
+    },
+  })
+<
+
+------------------------------------------------------------------------------
+                                                               *NightfallStyles*
+Class ~
+{NightfallStyles}
+Fields ~
+{comments} `(optional)` `(table)`
+{keywords} `(optional)` `(table)`
+{functions} `(optional)` `(table)`
+{variables} `(optional)` `(table)`
+{numbers} `(optional)` `(table)`
+{exceptions} `(optional)` `(table)`
+{conditionals} `(optional)` `(table)`
+{constants} `(optional)` `(table)`
+{operators} `(optional)` `(table)`
+{coroutines} `(optional)` `(table)`
+{strings} `(optional)` `(table)`
+{types} `(optional)` `(table)`
+{parameters} `(optional)` `(table)`
+{booleans} `(optional)` `(table)`
+{loops} `(optional)` `(table)`
+{properties} `(optional)` `(table)`
+{characters} `(optional)` `(table)`
+
+------------------------------------------------------------------------------
+                                                              *NightfallOptions*
+Class ~
+{NightfallOptions}
+Fields ~
+{transparent} `(optional)` `(boolean)` Skip every background color so the terminal shows through.
+{terminal_colors} `(optional)` `(boolean)` Set the `terminal_color_*` globals from the palette.
+{dim_inactive} `(optional)` `(boolean)` Darken windows that do not hold the cursor.
+{default_integrations} `(optional)` `(boolean)` Start from every integration enabled.
+{styles} `(optional)` `(NightfallStyles)` Extra attributes per syntax category.
+{integrations} `(optional)` `(table<string,table>)` Per-plugin settings, keyed by integration name.
+{color_overrides} `(optional)` `(table<string,table<string,string>>)` Palette colors to replace.
+{highlight_overrides} `(optional)` `(table<string,table|fun(colors: NightfallPalette): table>)` Highlight groups to replace.
+
+------------------------------------------------------------------------------
+Default options.
+
+Each key of `color_overrides` and `highlight_overrides` is either a flavor
+name or `all`, which applies to every flavor. A `highlight_overrides` entry
+may be a table, or a function receiving the palette and returning one.
+>lua
+  defaults = {
+    transparent = false,
+    terminal_colors = true,
+    dim_inactive = false,
+    default_integrations = true,
+    styles = {
+      comments = { italic = true },
+      keywords = { italic = true },
+      functions = {},
+      variables = {},
+      numbers = {},
+      exceptions = {},
+      conditionals = {},
+      constants = {},
+      operators = {},
+      coroutines = { italic = true },
+      strings = {},
+      types = {},
+      parameters = {},
+      booleans = {},
+      loops = {},
+      properties = {},
+      characters = {},
+    },
+    integrations = {
+      blink = { enabled = true },
+      flash = { enabled = true },
+      fzf = { enabled = true, style = "bordered" },
+      indent_blankline = { enabled = true },
+      lazy = { enabled = true },
+      mason = { enabled = true },
+      mini = { enabled = true, icons = true, trailspace = true, indentscope = true },
+      native_lsp = { enabled = true, semantic_tokens = true },
+      neo_tree = { enabled = true },
+      noice = { enabled = true },
+      nvim_cmp = { enabled = true },
+      render_markdown = { enabled = true },
+      snacks = { enabled = true, dashboard = true, indent = true, picker = true },
+      telescope = { enabled = true, style = "bordered" },
+      treesitter = { enabled = true, context = true },
+      which_key = { enabled = true },
+    },
+    color_overrides = {},
+    highlight_overrides = {},
+  }
+<
+Type ~
+`(NightfallOptions)`
+
+------------------------------------------------------------------------------
+                                                      *nightfall.config.setup()*
+                        `nightfall.config.setup`({user})
+Merge user options over the defaults and keep the result.
+
+Safe to call more than once: every call starts from a fresh copy of the
+defaults, so options never accumulate across calls.
+Parameters ~
+{user} `(optional)` `(NightfallOptions)` Options to apply. Anything omitted keeps its default.
+Usage ~
+>lua
+  require("nightfall").setup({
+    transparent = true,
+    integrations = { flash = { enabled = false } },
+  })
+<
+------------------------------------------------------------------------------
+                                                        *nightfall.config.get()*
+                            `nightfall.config.get`()
+The options currently in effect.
+Return ~
+`(NightfallOptions)`
+
+
 ==============================================================================
-vim:tw=80:ts=8:noet:ft=help:norl:
+------------------------------------------------------------------------------
+                                                             *nightfall-palette*
+Access to the raw color palettes behind each flavor.
+
+------------------------------------------------------------------------------
+                                                              *NightfallPalette*
+Class ~
+{NightfallPalette}
+Fields ~
+{bg} `(string)`
+{fg} `(string)`
+{black} `(string)`
+{red} `(string)`
+{green} `(string)`
+{yellow} `(string)`
+{blue} `(string)`
+{magenta} `(string)`
+{cyan} `(string)`
+{white} `(string)`
+{orange} `(string)`
+{pink} `(string)`
+{purple} `(string)`
+{teal} `(string)`
+{sky} `(string)`
+{lime} `(string)`
+{sand} `(string)`
+{cream} `(string)`
+{gray} `(string)`
+{charcoal} `(string)`
+{silver} `(string)`
+{gold} `(string)`
+{rose} `(string)`
+{coral} `(string)`
+{peach} `(string)`
+{lavender} `(string)`
+{latte} `(string)`
+{navy} `(string)`
+
+------------------------------------------------------------------------------
+                                                     *nightfall.palette.flavors*
+                          `nightfall.palette.flavors`
+Names of every flavor this colorscheme ships.
+Type ~
+`(NightfallFlavor[])`
+
+------------------------------------------------------------------------------
+                                                       *nightfall.palette.get()*
+                 `nightfall.palette.get`({flavor}, {overrides})
+Read the palette of a flavor, with optional per-color overrides applied.
+Parameters ~
+{flavor} `(NightfallFlavor)` Which flavor to read.
+{overrides} `(optional)` `(table<string,string>)` Colors replacing the flavor's own.
+Return ~
+`(NightfallPalette)`
+
+
+==============================================================================
+------------------------------------------------------------------------------
+                                                               *nightfall-color*
+Pure helpers for manipulating `#RRGGBB` color strings.
+
+Every function here is free of side effects and of any knowledge about the
+active flavor, which makes them safe to call from anywhere and easy to test.
+
+------------------------------------------------------------------------------
+                                                       *nightfall.color.blend()*
+          `nightfall.color.blend`({foreground}, {background}, {alpha})
+Mix two colors together.
+
+An `alpha` of 1 returns `foreground` untouched and an alpha of 0 returns
+`background` untouched.
+Parameters ~
+{foreground} `(string)` A `#RRGGBB` color string.
+{background} `(string)` A `#RRGGBB` color string.
+{alpha} `(number)` How much of `foreground` to keep, between 0 and 1.
+Return ~
+`(string)` The mixed color as `#RRGGBB`.
+
+------------------------------------------------------------------------------
+                                                      *nightfall.color.darken()*
+                `nightfall.color.darken`({hex}, {amount}, {bg})
+Blend a color towards black, or towards `bg` when one is given.
+Parameters ~
+{hex} `(string)` A `#RRGGBB` color string.
+{amount} `(number)` How much of `hex` to keep, between 0 and 1.
+{bg} `(optional)` `(string)` The color to blend towards. Defaults to black.
+Return ~
+`(string)` The darkened color as `#RRGGBB`.
+
+------------------------------------------------------------------------------
+                                                     *nightfall.color.lighten()*
+                `nightfall.color.lighten`({hex}, {amount}, {fg})
+Blend a color towards white, or towards `fg` when one is given.
+Parameters ~
+{hex} `(string)` A `#RRGGBB` color string.
+{amount} `(number)` How much of `hex` to keep, between 0 and 1.
+{fg} `(optional)` `(string)` The color to blend towards. Defaults to white.
+Return ~
+`(string)` The lightened color as `#RRGGBB`.
+
+
+==============================================================================
+------------------------------------------------------------------------------
+                                                               *nightfall-theme*
+Assembly of a complete theme from the individual group modules.
+
+------------------------------------------------------------------------------
+                                                                *NightfallTheme*
+Class ~
+{NightfallTheme}
+Fields ~
+{highlights} `(table<string,table>)` Groups ready for |nvim_set_hl()|.
+{terminal} `(table<string,string>)` `terminal_color_*` globals.
+
+------------------------------------------------------------------------------
+                                                   *nightfall.theme.overrides()*
+                       `nightfall.theme.overrides`({ctx})
+The highlight overrides that apply to this flavor.
+
+Entries under the flavor's own key win over entries under `all`.
+Parameters ~
+{ctx} `(NightfallCtx)`
+Return ~
+`(table<string,table>)`
+
+------------------------------------------------------------------------------
+                                                       *nightfall.theme.build()*
+                         `nightfall.theme.build`({ctx})
+Build every highlight for one flavor.
+Parameters ~
+{ctx} `(NightfallCtx)` Context to build for.
+Return ~
+`(NightfallTheme)`
+
+
+==============================================================================
+------------------------------------------------------------------------------
+                                                             *nightfall-lualine*
+A lualine theme matching each flavor.
+
+Set it by name, as `require("lualine").setup({ options = { theme =
+"nightfall" } })`, or read it directly through |nightfall.lualine.get()|.
+
+------------------------------------------------------------------------------
+                                                       *nightfall.lualine.get()*
+                       `nightfall.lualine.get`({flavor})
+Build the lualine theme for a flavor.
+Parameters ~
+{flavor} `(NightfallFlavor)`
+Return ~
+`(table)` A table of lualine mode sections.
+
+
+ vim:tw=78:ts=8:noet:ft=help:norl:

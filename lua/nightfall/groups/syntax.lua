@@ -1,114 +1,106 @@
+--- Highlights for the language-agnostic syntax groups. See `:h group-name`.
+
 local M = {}
 
----@param colors NightfallPalette
----@param styles table
-function M.get(colors, styles)
-  local utils = require("nightfall.utils.colors")
-  local accent = utils.vary_color({
-    nightfall = colors.purple,
-    maron = colors.lavender,
-    nord = colors.teal,
-  }, colors.sky)
+---@param ctx NightfallCtx
+---@return table<string,table>
+function M.get(ctx)
+  local c, styles = ctx.c, ctx.styles
 
-  -- See: `:h group-name`
   return {
-    Comment = { fg = colors.gray, style = styles.comments },
+    Comment = { fg = c.gray, style = styles.comments },
     Constant = {
-      fg = utils.vary_color({
-        nightfall = colors.magenta,
-        ["deeper-night"] = colors.cream,
-        maron = colors.coral,
-        nord = colors.sky,
-      }, colors.cyan),
+      fg = ctx.vary({
+        nightfall = c.magenta,
+        ["deeper-night"] = c.cream,
+        maron = c.coral,
+      }, c.cyan),
     },
     String = {
-      fg = utils.vary_color({
-        nightfall = colors.yellow,
-        ["deeper-night"] = colors.yellow,
-        maron = colors.sand,
-        nord = colors.green,
-      }, colors.blue),
+      fg = ctx.vary({
+        nightfall = c.yellow,
+        ["deeper-night"] = c.yellow,
+        maron = c.sand,
+      }, c.blue),
+      style = styles.strings,
     },
     Character = {
-      fg = utils.vary_color({
-        nightfall = colors.peach,
-        ["deeper-night"] = colors.purple,
-        maron = colors.cyan,
-        nord = colors.lime,
-      }, colors.purple),
+      fg = ctx.vary({
+        nightfall = c.peach,
+        ["deeper-night"] = c.purple,
+        maron = c.cyan,
+      }, c.purple),
       style = styles.characters,
     },
-    Number = { fg = utils.vary_color({ nightfall = colors.gold, nord = colors.cream }, colors.teal) },
+    Number = {
+      fg = ctx.vary({ nightfall = c.gold }, c.teal),
+      style = styles.numbers,
+    },
     Boolean = {
-      fg = utils.vary_color({
-        nightfall = colors.blue,
-        ["deeper-night"] = colors.pink,
-        nord = colors.rose,
-      }, colors.sky),
+      fg = ctx.vary({
+        nightfall = c.blue,
+        ["deeper-night"] = c.pink,
+      }, c.sky),
       style = styles.booleans,
     },
     Identifier = {
-      fg = utils.vary_color({
-        nightfall = colors.latte,
-        maron = colors.peach,
-        nord = colors.white,
-      }, colors.yellow),
+      fg = ctx.vary({
+        nightfall = c.latte,
+        maron = c.peach,
+      }, c.yellow),
       style = styles.variables,
     },
     Function = {
-      fg = utils.vary_color({
-        nightfall = colors.green,
-        nord = colors.blue,
-        maron = colors.lime,
-      }, colors.green),
+      fg = ctx.vary({
+        nightfall = c.green,
+        maron = c.lime,
+      }, c.green),
       style = styles.functions,
     },
     Statement = {
-      fg = utils.vary_color({
-        nightfall = colors.cyan,
-        ["deeper-night"] = colors.purple,
-      }, colors.green),
+      fg = ctx.vary({ nightfall = c.cyan, ["deeper-night"] = c.purple }, c.green),
     },
     Conditional = {
-      fg = utils.vary_color({
-        nightfall = colors.pink,
-        ["deeper-night"] = colors.purple,
-        nord = colors.magenta,
-      }, colors.pink),
+      fg = ctx.vary({
+        nightfall = c.pink,
+        ["deeper-night"] = c.purple,
+      }, c.pink),
       style = styles.conditionals,
     },
     Repeat = {
-      fg = utils.vary_color({
-        nightfall = colors.cyan,
-        ["deeper-night"] = colors.cyan,
-        nord = colors.yellow,
-      }, colors.cyan),
+      fg = ctx.vary({
+        nightfall = c.cyan,
+        ["deeper-night"] = c.cyan,
+      }, c.cyan),
       style = styles.loops,
     },
-    Label = { fg = utils.vary_color({ nightfall = colors.rose }, colors.cream) },
+    Label = { fg = ctx.vary({ nightfall = c.rose }, c.cream) },
     Operator = {
-      fg = utils.vary_color({ nightfall = colors.latte }, colors.cyan),
+      fg = ctx.vary({ nightfall = c.latte }, c.cyan),
       style = styles.operators,
     },
     Keyword = {
-      fg = utils.vary_color({
-        nightfall = colors.pink,
-        ["deeper-night"] = colors.coral,
-        maron = colors.orange,
-      }, colors.rose),
+      fg = ctx.vary({
+        nightfall = c.pink,
+        ["deeper-night"] = c.coral,
+        maron = c.orange,
+      }, c.rose),
       style = styles.keywords,
     },
-    PreProc = { fg = utils.vary_color({ nightfall = colors.sky }, colors.pink) },
-    Type = { fg = utils.vary_color({ nightfall = colors.yellow, nord = colors.yellow }, colors.cyan) },
-    Special = { fg = accent },
-    Delimiter = { fg = utils.vary_color({ nightfall = colors.rose }, colors.lavender) },
-    Error = { fg = colors.red },
-    Todo = { fg = colors.black, bg = colors.sky },
+    PreProc = { fg = ctx.vary({ nightfall = c.sky }, c.pink) },
+    Type = {
+      fg = ctx.vary({ nightfall = c.yellow }, c.cyan),
+      style = styles.types,
+    },
+    Special = { fg = ctx.accent },
+    Delimiter = { fg = ctx.vary({ nightfall = c.rose }, c.lavender) },
+    Error = { fg = c.red },
+    Todo = { fg = c.black, bg = c.sky },
 
-    -- Diff
-    Added = { fg = colors.green },
-    Changed = { fg = colors.yellow },
-    Removed = { fg = colors.red },
+    -- Diff summary groups, used by `:h diff` and by plugins showing hunks.
+    Added = { fg = c.green },
+    Changed = { fg = c.yellow },
+    Removed = { fg = c.red },
   }
 end
 

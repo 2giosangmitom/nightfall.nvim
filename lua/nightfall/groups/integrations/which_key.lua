@@ -1,21 +1,26 @@
+--- https://github.com/folke/which-key.nvim
+
 local M = {}
 
----@param colors NightfallPalette
-function M.get(colors)
+---@param ctx NightfallCtx
+---@return table<string,table>
+function M.get(ctx)
+  local c = ctx.c
+
   return {
-    WhichKey = { fg = colors.pink },
-    WhichKeyDesc = { fg = colors.latte },
-    WhichKeyGroup = { fg = colors.cyan },
-    WhichKeyIconAzure = { fg = colors.sky },
-    WhichKeyIconBlue = { fg = colors.blue },
-    WhichKeyIconCyan = { fg = colors.cyan },
-    WhichKeyIconGreen = { fg = colors.green },
-    WhichKeyIconGrey = { fg = colors.gray },
-    WhichKeyIconOrange = { fg = colors.orange },
-    WhichKeyIconPurple = { fg = colors.purple },
-    WhichKeyIconRed = { fg = colors.coral },
-    WhichKeyIconYellow = { fg = colors.yellow },
-    WhichKeySeparator = { fg = colors.gray },
+    WhichKey = { fg = c.pink },
+    WhichKeyDesc = { fg = c.latte },
+    WhichKeyGroup = { fg = c.cyan },
+    WhichKeyIconAzure = { fg = c.sky },
+    WhichKeyIconBlue = { fg = c.blue },
+    WhichKeyIconCyan = { fg = c.cyan },
+    WhichKeyIconGreen = { fg = c.green },
+    WhichKeyIconGrey = { fg = c.gray },
+    WhichKeyIconOrange = { fg = c.orange },
+    WhichKeyIconPurple = { fg = c.purple },
+    WhichKeyIconRed = { fg = c.coral },
+    WhichKeyIconYellow = { fg = c.yellow },
+    WhichKeySeparator = { fg = c.gray },
   }
 end
 

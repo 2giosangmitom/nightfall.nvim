@@ -1,93 +1,79 @@
+--- A clean, eye-friendly Neovim colorscheme.
+---
+--- MIT License Copyright (c) 2024 Vo Quang Chien
+---
+--- Nightfall ships three dark flavors that share one palette vocabulary, so every
+--- flavor covers the same highlight groups and the same plugin integrations.
+---
+--- Flavors ~
+---
+--- - `nightfall`: dark and vibrant, in the spirit of Dracula.
+--- - `deeper-night`: higher contrast, for focus.
+--- - `maron`: warm earthy tones.
+---
+--- Getting started ~
+---
+--- Install the plugin, then pick a flavor with `:colorscheme`. Calling
+--- |nightfall.setup()| is optional and only needed to change the defaults.
+---
+--- >lua
+---   require("nightfall").setup({ transparent = true })
+---   vim.cmd.colorscheme("nightfall")
+--- <
+--- `setup()` must run before `:colorscheme` for its options to take effect.
+---
+--- Beyond Neovim ~
+---
+--- The `extras/` directory of this repository carries matching themes for
+--- Alacritty, lazygit and yazi, one file per flavor, generated from the same
+--- palettes.
+---@tag nightfall.nvim
+---@toc_entry Introduction
+
+--- Table of contents
+---@toc
+
+local cache = require("nightfall.cache")
+local config = require("nightfall.config")
+local context = require("nightfall.context")
+local palette = require("nightfall.palette")
+
 local M = {}
 
-local config = require("nightfall.config")
-local CACHE_DIR = vim.fn.stdpath("cache") .. "/nightfall/"
-local HASH_FILE = CACHE_DIR .. "cached_hash"
-local SUPPORTED_FLAVORS = { "nightfall", "deeper-night", "maron", "nord" }
+---@alias NightfallFlavor "nightfall"|"deeper-night"|"maron"
 
---- Setup options for Nightfall.
-M.setup = config.setup
+--- Names of every flavor, in the order they appear in the documentation.
+---@type NightfallFlavor[]
+M.flavors = palette.flavors
 
---- Compile all supported flavors.
-function M.compile()
-  local compiler = require("nightfall.compiler")
-  for _, flavor in ipairs(SUPPORTED_FLAVORS) do
-    M.flavor = flavor
-    compiler.compile(flavor)
-  end
-  vim.notify("Cached highlight values", vim.log.levels.INFO, { title = "Nightfall" })
-end
+--- Apply user options.
+---
+--- Call this before `:colorscheme`. It is optional: without it every option
+--- keeps the default shown in |NightfallOptions|.
+---@param opts? NightfallOptions Options to apply.
+function M.setup(opts) config.setup(opts) end
 
---- User command for compile highlight values manually
-vim.api.nvim_create_user_command("NightfallCompile", M.compile, {})
-
---- Load a colorscheme.
----@param flavor NightfallFlavor
+--- Apply a flavor to the current session.
+---
+--- This is what `colors/<flavor>.lua` calls, so `:colorscheme nightfall` and
+--- `require("nightfall").load("nightfall")` do the same thing.
+---@param flavor? NightfallFlavor Which flavor to apply. Defaults to `"nightfall"`.
 function M.load(flavor)
-  local me = debug.getinfo(1).source:sub(2):gsub("/[^/]+$", "") .. "/.git"
-  local cached_hash = vim.fn.filereadable(HASH_FILE) == 1 and vim.fn.readfile(HASH_FILE)[1] or nil
-  local options = config.get_options()
-  local current_hash = require("nightfall.hashing").hash(options) .. vim.fn.getftime(me)
+  flavor = flavor or "nightfall"
 
-  if cached_hash ~= current_hash then
-    M.compile()
-    local file, err = io.open(HASH_FILE, "wb")
-    if file then
-      file:write(current_hash)
-      file:close()
-    else
-      vim.notify(("Failed to write hash file: %s"):format(err), vim.log.levels.ERROR, { title = "Nightfall" })
-    end
-  end
+  local opts = config.get()
+  local theme = cache.get(context.new(flavor, opts))
 
-  -- Load the cached theme file
-  local cache_file = CACHE_DIR .. string.format("%s.json", flavor)
-  local theme = vim.fn.filereadable(cache_file) == 1 and vim.json.decode(vim.fn.readfile(cache_file)[1]) or nil
-  if not theme then
-    vim.notify(
-      "An error occurred while reading the cache file.\nTry deleting the cache directory and restarting Neovim.\n"
-        .. "Cache directory: "
-        .. CACHE_DIR,
-      vim.log.levels.ERROR,
-      { title = "Nightfall" }
-    )
-    return
-  end
-
-  -- Clear existing highlights if any
-  if vim.g.colors_name then vim.cmd("hi clear") end
+  if vim.g.colors_name then vim.cmd("highlight clear") end
   vim.g.colors_name = flavor
   vim.o.background = "dark"
 
-  local sethl = vim.api.nvim_set_hl
-
-  -- Load core highlights
-  for group, group_opts in pairs(theme.core) do
-    if group_opts.style then
-      for style, style_opts in pairs(group_opts.style) do
-        group_opts[style] = style_opts
-      end
-    end
-    group_opts.style = nil
-    sethl(0, group, group_opts)
+  for group, spec in pairs(theme.highlights) do
+    vim.api.nvim_set_hl(0, group, spec)
   end
 
-  -- Load integration highlights
-  for group, group_opts in pairs(theme.integrations) do
-    if group_opts.style then
-      for style, style_opts in pairs(group_opts.style) do
-        group_opts[style] = style_opts
-      end
-    end
-    group_opts.style = nil
-    sethl(0, group, group_opts)
-  end
-
-  -- Load terminal highlights if enabled
-  if options.terminal_colors then
-    for name, color in pairs(theme.terminal) do
-      vim.g[name] = color
-    end
+  for name, color in pairs(theme.terminal) do
+    vim.g[name] = color
   end
 end
 

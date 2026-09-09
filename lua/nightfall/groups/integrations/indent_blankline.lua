@@ -1,10 +1,13 @@
+--- https://github.com/lukas-reineke/indent-blankline.nvim
+
 local M = {}
 
----@param colors NightfallPalette
-function M.get(colors)
+---@param ctx NightfallCtx
+---@return table<string,table>
+function M.get(ctx)
   return {
-    IblIndent = { fg = colors.charcoal },
-    IblScope = { fg = colors.cream },
+    IblIndent = { fg = ctx.c.charcoal },
+    IblScope = { fg = ctx.c.cream },
   }
 end
 

@@ -1,16 +1,20 @@
+--- https://github.com/nvim-neo-tree/neo-tree.nvim
+
 local M = {}
 
----@param colors NightfallPalette
-function M.get(colors)
-  local utils = require("nightfall.utils.colors")
+---@param ctx NightfallCtx
+---@return table<string,table>
+function M.get(ctx)
+  local c = ctx.c
+
   return {
     NeoTreeFloatTitle = { link = "FloatTitle" },
     NeoTreeFloatBorder = { link = "FloatBorder" },
     NeoTreeDimText = { link = "Comment" },
-    NeoTreeIndentMarker = { fg = colors.charcoal },
+    NeoTreeIndentMarker = { fg = c.charcoal },
     NeoTreeTitleBar = {
-      fg = colors.black,
-      bg = utils.vary_color({ nightfall = colors.purple, ["deeper-night"] = colors.sky }, colors.peach),
+      fg = c.black,
+      bg = ctx.vary({ nightfall = c.purple, ["deeper-night"] = c.sky }, c.peach),
     },
   }
 end

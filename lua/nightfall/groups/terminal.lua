@@ -1,32 +1,41 @@
+--- The sixteen ANSI colors Neovim's built-in terminal uses.
+---
+--- The same mapping drives the generated terminal emulator themes under
+--- `extras/`, so a terminal and `:terminal` agree on their colors.
+
 local M = {}
 
+--- Palette color backing each ANSI slot, in the usual black-to-white order.
 ---@param colors NightfallPalette
-function M.get(colors)
-  return {
-    terminal_color_0 = colors.latte,
-    terminal_color_8 = colors.latte,
-
-    terminal_color_1 = colors.red,
-    terminal_color_9 = colors.red,
-
-    terminal_color_2 = colors.green,
-    terminal_color_10 = colors.green,
-
-    terminal_color_3 = colors.yellow,
-    terminal_color_11 = colors.yellow,
-
-    terminal_color_4 = colors.sky,
-    terminal_color_12 = colors.sky,
-
-    terminal_color_5 = colors.pink,
-    terminal_color_13 = colors.pink,
-
-    terminal_color_6 = colors.cyan,
-    terminal_color_14 = colors.cyan,
-
-    terminal_color_7 = colors.white,
-    terminal_color_15 = colors.white,
+---@return string[] Sixteen `#RRGGBB` strings, normal slots then bright ones.
+function M.ansi(colors)
+  local normal = {
+    colors.latte,
+    colors.red,
+    colors.green,
+    colors.yellow,
+    colors.sky,
+    colors.pink,
+    colors.cyan,
+    colors.white,
   }
+
+  local ansi = {}
+  for slot = 1, 8 do
+    ansi[slot], ansi[slot + 8] = normal[slot], normal[slot]
+  end
+
+  return ansi
+end
+
+---@param ctx NightfallCtx
+---@return table<string,string> `terminal_color_*` globals and their values.
+function M.get(ctx)
+  local result = {}
+  for index, hex in ipairs(M.ansi(ctx.c)) do
+    result["terminal_color_" .. (index - 1)] = hex
+  end
+  return result
 end
 
 return M

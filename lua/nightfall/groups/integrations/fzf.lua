@@ -1,38 +1,39 @@
+--- https://github.com/ibhagwan/fzf-lua
+
 local M = {}
 
----@param colors NightfallPalette
----@param opts table
-function M.get(colors, opts)
-  local fzf_style = opts.style or "bordered"
-  local utils = require("nightfall.utils.colors")
+---@param ctx NightfallCtx
+---@param opts table Integration options. `style` is `"bordered"` or `"borderless"`.
+---@return table<string,table>
+function M.get(ctx, opts)
+  local c = ctx.c
+  local sunken = ctx.darken(c.bg, 0.9)
 
-  local res = {
-    FzfLuaFzfMatch = { fg = colors.purple },
-    FzfLuaFzfHeader = { fg = colors.sky },
-    FzfLuaHeaderText = { fg = colors.cyan },
-    FzfLuaHeaderBind = { fg = colors.rose },
-    FzfLuaLiveSym = { fg = colors.blue },
-  }
-
-  local style = {
+  local styles = {
     bordered = {
       FzfLuaNormal = { link = "NormalFloat" },
       FzfLuaBorder = { link = "FloatBorder" },
-      FzfLuaTitle = { fg = colors.peach },
+      FzfLuaTitle = { fg = c.peach },
     },
     borderless = {
-      FzfLuaBorder = {
-        fg = utils.darken(colors.bg, 0.9),
-        bg = utils.darken(colors.bg, 0.9),
-      },
-      FzfLuaNormal = { bg = utils.darken(colors.bg, 0.9) },
-      FzfLuaTitle = { fg = colors.black, bg = colors.pink },
+      FzfLuaNormal = { bg = sunken },
+      FzfLuaBorder = { fg = sunken, bg = sunken },
+      FzfLuaTitle = { fg = c.black, bg = c.pink },
     },
   }
 
-  res = vim.tbl_deep_extend("force", res, style[fzf_style])
+  local style = styles[opts.style or "bordered"]
+  if not style then
+    error(string.format("nightfall: unknown fzf style %q, expected 'bordered' or 'borderless'", opts.style), 0)
+  end
 
-  return res
+  return vim.tbl_extend("error", {
+    FzfLuaFzfMatch = { fg = c.purple },
+    FzfLuaFzfHeader = { fg = c.sky },
+    FzfLuaHeaderText = { fg = c.cyan },
+    FzfLuaHeaderBind = { fg = c.rose },
+    FzfLuaLiveSym = { fg = c.blue },
+  }, style)
 end
 
 return M

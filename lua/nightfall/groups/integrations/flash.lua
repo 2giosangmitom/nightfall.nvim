@@ -1,14 +1,18 @@
+--- https://github.com/folke/flash.nvim
+
 local M = {}
 
----@param colors NightfallPalette
-function M.get(colors)
-  local utils = require("nightfall.utils.colors")
+---@param ctx NightfallCtx
+---@return table<string,table>
+function M.get(ctx)
+  local c = ctx.c
+
   return {
-    FlashMatch = { fg = utils.vary_color({ nightfall = colors.yellow, nord = colors.green }, colors.cyan) },
-    FlashCurrent = { fg = colors.sky },
-    FlashLabel = { fg = colors.pink, bold = true },
-    FlashPrompt = { fg = colors.cyan },
-    FlashPromptIcon = { fg = colors.cyan },
+    FlashMatch = { fg = ctx.vary({ nightfall = c.yellow }, c.cyan) },
+    FlashCurrent = { fg = c.sky },
+    FlashLabel = { fg = c.pink, bold = true },
+    FlashPrompt = { fg = c.cyan },
+    FlashPromptIcon = { fg = c.cyan },
   }
 end
 

@@ -1,21 +1,23 @@
+--- https://github.com/mason-org/mason.nvim
+
 local M = {}
 
----@param colors NightfallPalette
-function M.get(colors)
-  local utils = require("nightfall.utils.colors")
-  local accent = utils.vary_color({
-    nightfall = colors.purple,
-    maron = colors.lavender,
-  }, colors.sky)
+---@param ctx NightfallCtx
+---@return table<string,table>
+function M.get(ctx)
+  local c, accent = ctx.c, ctx.accent
 
   return {
-    MasonHeader = { fg = colors.black, bg = accent },
-    MasonLink = { fg = colors.black, bg = colors.purple },
+    MasonHeader = { fg = c.black, bg = accent },
+    MasonLink = { fg = c.black, bg = c.purple },
     MasonHighlight = { fg = accent },
-    MasonHeading = { fg = colors.fg, bold = true },
-    MasonHighlightBlockBold = { fg = colors.black, bg = accent },
-    MasonMutedBlock = { fg = utils.lighten(colors.gray, 0.6), bg = utils.lighten(colors.navy, 0.85, colors.latte) },
-    MasonHighlightBlock = { fg = colors.black, bg = accent },
+    MasonHeading = { fg = c.fg, bold = true },
+    MasonHighlightBlock = { fg = c.black, bg = accent },
+    MasonHighlightBlockBold = { fg = c.black, bg = accent },
+    MasonMutedBlock = {
+      fg = ctx.lighten(c.gray, 0.6),
+      bg = ctx.lighten(c.navy, 0.85, c.latte),
+    },
   }
 end
 

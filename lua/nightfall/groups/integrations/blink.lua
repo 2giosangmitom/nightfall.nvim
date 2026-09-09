@@ -1,43 +1,46 @@
+--- https://github.com/Saghen/blink.cmp
+
 local M = {}
 
--- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#completionItemKind
+---@param ctx NightfallCtx
+---@return table<string,table>
+function M.get(ctx)
+  local c = ctx.c
 
----@param colors NightfallPalette
-function M.get(colors)
   return {
     BlinkCmpLabel = { link = "NonText" },
-    BlinkCmpLabelDeprecated = { fg = colors.gray, strikethrough = true },
-    BlinkCmpLabelMatch = { fg = colors.magenta },
-    BlinkCmpMenuBorder = { fg = colors.purple },
-    BlinkCmpDocBorder = { fg = colors.purple },
-    BlinkCmpSignatureHelpBorder = { fg = colors.purple },
+    BlinkCmpLabelDeprecated = { fg = c.gray, strikethrough = true },
+    BlinkCmpLabelMatch = { fg = c.magenta },
+    BlinkCmpMenuBorder = { fg = c.purple },
+    BlinkCmpDocBorder = { fg = c.purple },
+    BlinkCmpSignatureHelpBorder = { fg = c.purple },
 
-    -- Kind
-    BlinkCmpKindText = { fg = colors.lavender },
+    -- Completion item kinds, following the order in the LSP specification.
+    BlinkCmpKindText = { fg = c.lavender },
     BlinkCmpKindMethod = { link = "Function" },
     BlinkCmpKindFunction = { link = "Function" },
-    BlinkCmpKindConstructor = { fg = colors.cyan },
+    BlinkCmpKindConstructor = { fg = c.cyan },
     BlinkCmpKindField = { link = "@property" },
     BlinkCmpKindVariable = { link = "Identifier" },
-    BlinkCmpKindClass = { fg = colors.magenta },
+    BlinkCmpKindClass = { fg = c.magenta },
     BlinkCmpKindInterface = { link = "Type" },
-    BlinkCmpKindModule = { fg = colors.cream },
+    BlinkCmpKindModule = { fg = c.cream },
     BlinkCmpKindProperty = { link = "@property" },
-    BlinkCmpKindUnit = { fg = colors.cyan },
-    BlinkCmpKindValue = { fg = colors.sky },
-    BlinkCmpKindEnum = { fg = colors.coral },
-    BlinkCmpKindKeyword = { fg = colors.yellow },
-    BlinkCmpKindSnippet = { fg = colors.gray },
-    BlinkCmpKindColor = { fg = colors.blue },
-    BlinkCmpKindFile = { fg = colors.green },
-    BlinkCmpKindReference = { fg = colors.lime },
+    BlinkCmpKindUnit = { fg = c.cyan },
+    BlinkCmpKindValue = { fg = c.sky },
+    BlinkCmpKindEnum = { fg = c.coral },
+    BlinkCmpKindKeyword = { fg = c.yellow },
+    BlinkCmpKindSnippet = { fg = c.gray },
+    BlinkCmpKindColor = { fg = c.blue },
+    BlinkCmpKindFile = { fg = c.green },
+    BlinkCmpKindReference = { fg = c.lime },
     BlinkCmpKindFolder = { link = "Directory" },
-    BlinkCmpKindEnumMember = { fg = colors.peach },
+    BlinkCmpKindEnumMember = { fg = c.peach },
     BlinkCmpKindConstant = { link = "Constant" },
-    BlinkCmpKindStruct = { fg = colors.purple },
-    BlinkCmpKindEvent = { fg = colors.teal },
-    BlinkCmpKindOperator = { fg = colors.rose },
-    BlinkCmpKindTypeParameter = { fg = colors.rose },
+    BlinkCmpKindStruct = { fg = c.purple },
+    BlinkCmpKindEvent = { fg = c.teal },
+    BlinkCmpKindOperator = { fg = c.rose },
+    BlinkCmpKindTypeParameter = { fg = c.rose },
   }
 end
 

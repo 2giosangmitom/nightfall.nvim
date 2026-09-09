@@ -1,34 +1,39 @@
+--- https://github.com/hrsh7th/nvim-cmp
+
 local M = {}
 
----@param colors NightfallPalette
-function M.get(colors)
+---@param ctx NightfallCtx
+---@return table<string,table>
+function M.get(ctx)
+  local c = ctx.c
+
   return {
-    -- Kind
-    CmpItemKindText = { fg = colors.lavender },
+    -- Completion item kinds, following the order in the LSP specification.
+    CmpItemKindText = { fg = c.lavender },
     CmpItemKindMethod = { link = "Function" },
     CmpItemKindFunction = { link = "Function" },
-    CmpItemKindConstructor = { fg = colors.cyan },
+    CmpItemKindConstructor = { fg = c.cyan },
     CmpItemKindField = { link = "@property" },
     CmpItemKindVariable = { link = "Identifier" },
-    CmpItemKindClass = { fg = colors.magenta },
+    CmpItemKindClass = { fg = c.magenta },
     CmpItemKindInterface = { link = "Type" },
-    CmpItemKindModule = { fg = colors.cream },
+    CmpItemKindModule = { fg = c.cream },
     CmpItemKindProperty = { link = "@property" },
-    CmpItemKindUnit = { fg = colors.cyan },
-    CmpItemKindValue = { fg = colors.sky },
-    CmpItemKindEnum = { fg = colors.coral },
-    CmpItemKindKeyword = { fg = colors.yellow },
-    CmpItemKindSnippet = { fg = colors.gray },
-    CmpItemKindColor = { fg = colors.blue },
-    CmpItemKindFile = { fg = colors.green },
-    CmpItemKindReference = { fg = colors.lime },
+    CmpItemKindUnit = { fg = c.cyan },
+    CmpItemKindValue = { fg = c.sky },
+    CmpItemKindEnum = { fg = c.coral },
+    CmpItemKindKeyword = { fg = c.yellow },
+    CmpItemKindSnippet = { fg = c.gray },
+    CmpItemKindColor = { fg = c.blue },
+    CmpItemKindFile = { fg = c.green },
+    CmpItemKindReference = { fg = c.lime },
     CmpItemKindFolder = { link = "Directory" },
-    CmpItemKindEnumMember = { fg = colors.peach },
+    CmpItemKindEnumMember = { fg = c.peach },
     CmpItemKindConstant = { link = "Constant" },
-    CmpItemKindStruct = { fg = colors.purple },
-    CmpItemKindEvent = { fg = colors.teal },
-    CmpItemKindOperator = { fg = colors.rose },
-    CmpItemKindTypeParameter = { fg = colors.rose },
+    CmpItemKindStruct = { fg = c.purple },
+    CmpItemKindEvent = { fg = c.teal },
+    CmpItemKindOperator = { fg = c.rose },
+    CmpItemKindTypeParameter = { fg = c.rose },
   }
 end
 
