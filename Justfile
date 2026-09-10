@@ -22,7 +22,7 @@ docs:
 
 # Regenerate the terminal and tool themes under `extras/`.
 extras:
-    nvim --headless -u scripts/minit.lua -c "luafile scripts/extras.lua" -c "qa!"
+    nvim --headless -u scripts/minit.lua -c "lua require('extras').generate()" -c "qa!"
 
 # Format the Lua sources with stylua.
 fmt:
