@@ -35,9 +35,9 @@
 ---
 --- Each key of `integrations` names a plugin and carries at least `enabled`.
 --- Some take more: `fzf` and `telescope` accept a `style` of `"bordered"` or
---- `"borderless"`, and `mini`, `snacks`, `native_lsp` and `treesitter` have a
---- switch per feature. Set `default_integrations = false` to start from none
---- of them and opt back in one at a time.
+--- `"borderless"`, and `dap`, `mini`, `snacks`, `native_lsp` and `treesitter`
+--- have a switch per feature. Set `default_integrations = false` to start from
+--- none of them and opt back in one at a time.
 ---
 --- >lua
 ---   require("nightfall").setup({
@@ -118,21 +118,39 @@ M.defaults = {
     characters = {},
   },
   integrations = {
+    aerial = { enabled = true },
+    alpha = { enabled = true },
     blink = { enabled = true },
+    bufferline = { enabled = true },
+    dap = { enabled = true, ui = true },
+    diffview = { enabled = true },
     flash = { enabled = true },
     fzf = { enabled = true, style = "bordered" },
+    gitsigns = { enabled = true },
+    grug_far = { enabled = true },
+    illuminate = { enabled = true },
     indent_blankline = { enabled = true },
     lazy = { enabled = true },
+    leap = { enabled = true },
     mason = { enabled = true },
     mini = { enabled = true, icons = true, trailspace = true, indentscope = true },
     native_lsp = { enabled = true, semantic_tokens = true },
+    navic = { enabled = true },
+    neogit = { enabled = true },
     neo_tree = { enabled = true },
+    neotest = { enabled = true },
     noice = { enabled = true },
+    notify = { enabled = true },
     nvim_cmp = { enabled = true },
+    nvim_tree = { enabled = true },
+    oil = { enabled = true },
+    rainbow_delimiters = { enabled = true },
     render_markdown = { enabled = true },
     snacks = { enabled = true, dashboard = true, indent = true, picker = true },
     telescope = { enabled = true, style = "bordered" },
+    todo_comments = { enabled = true },
     treesitter = { enabled = true, context = true },
+    trouble = { enabled = true },
     which_key = { enabled = true },
   },
   color_overrides = {},

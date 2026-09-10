@@ -6,26 +6,34 @@
 local M = {}
 
 --- Palette color backing each ANSI slot, in the usual black-to-white order.
+---
+--- The eight bright slots are their own colors rather than copies of the normal
+--- ones, so a program that reaches for bright red or bright black gets
+--- something the flavor actually chose.
 ---@param colors NightfallPalette
 ---@return string[] Sixteen `#RRGGBB` strings, normal slots then bright ones.
 function M.ansi(colors)
-  local normal = {
-    colors.latte,
+  return {
+    -- Normal
+    colors.black,
     colors.red,
     colors.green,
     colors.yellow,
     colors.sky,
-    colors.pink,
+    colors.purple,
     colors.cyan,
+    colors.silver,
+
+    -- Bright
+    colors.subtle,
+    colors.coral,
+    colors.lime,
+    colors.gold,
+    colors.blue,
+    colors.magenta,
+    colors.teal,
     colors.white,
   }
-
-  local ansi = {}
-  for slot = 1, 8 do
-    ansi[slot], ansi[slot + 8] = normal[slot], normal[slot]
-  end
-
-  return ansi
 end
 
 ---@param ctx NightfallCtx

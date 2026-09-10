@@ -1,5 +1,7 @@
 --- https://github.com/hrsh7th/nvim-cmp
 
+local kinds = require("nightfall.groups.kinds")
+
 local M = {}
 
 ---@param ctx NightfallCtx
@@ -7,34 +9,15 @@ local M = {}
 function M.get(ctx)
   local c = ctx.c
 
-  return {
-    -- Completion item kinds, following the order in the LSP specification.
-    CmpItemKindText = { fg = c.lavender },
-    CmpItemKindMethod = { link = "Function" },
-    CmpItemKindFunction = { link = "Function" },
-    CmpItemKindConstructor = { fg = c.cyan },
-    CmpItemKindField = { link = "@property" },
-    CmpItemKindVariable = { link = "Identifier" },
-    CmpItemKindClass = { fg = c.magenta },
-    CmpItemKindInterface = { link = "Type" },
-    CmpItemKindModule = { fg = c.cream },
-    CmpItemKindProperty = { link = "@property" },
-    CmpItemKindUnit = { fg = c.cyan },
-    CmpItemKindValue = { fg = c.sky },
-    CmpItemKindEnum = { fg = c.coral },
-    CmpItemKindKeyword = { fg = c.yellow },
-    CmpItemKindSnippet = { fg = c.gray },
-    CmpItemKindColor = { fg = c.blue },
-    CmpItemKindFile = { fg = c.green },
-    CmpItemKindReference = { fg = c.lime },
-    CmpItemKindFolder = { link = "Directory" },
-    CmpItemKindEnumMember = { fg = c.peach },
-    CmpItemKindConstant = { link = "Constant" },
-    CmpItemKindStruct = { fg = c.purple },
-    CmpItemKindEvent = { fg = c.teal },
-    CmpItemKindOperator = { fg = c.rose },
-    CmpItemKindTypeParameter = { fg = c.rose },
-  }
+  return vim.tbl_extend("error", {
+    CmpItemAbbr = { fg = c.silver },
+    CmpItemAbbrDeprecated = { fg = c.gray, strikethrough = true },
+    CmpItemAbbrMatch = { fg = ctx.accent, bold = true },
+    CmpItemAbbrMatchFuzzy = { fg = ctx.accent },
+    CmpItemMenu = { fg = c.subtle, italic = true },
+    CmpItemKindDefault = { fg = ctx.accent },
+    CmpGhostText = { fg = c.subtle, italic = true },
+  }, kinds.groups(ctx, "CmpItemKind"))
 end
 
 return M

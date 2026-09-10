@@ -12,12 +12,13 @@ _Nightfall.nvim_ is a clean and eye-friendly Neovim colorscheme designed to enha
 ## ✨ Features
 
 - 🪁 Three flavors that all cover the same highlight groups.
-- 🌲 Full Treesitter support for enhanced syntax highlighting.
-- 🎟️ LSP diagnostics and semantic token integration.
-- 🧩 Sixteen plugin integrations, each one switchable.
+- 🖼️ Every highlight group Neovim documents through 0.12, including the newer completion, message and popup border groups.
+- 🌲 Every Treesitter capture Neovim documents, so no language falls back to a default color.
+- 🎟️ LSP diagnostics, virtual lines, inlay hints, code lenses and semantic tokens.
+- 🧩 Thirty-four plugin integrations, each one switchable.
 - 🖌️ Colors and highlight groups you can override per flavor.
 - ⚡️ Compiled once and reused, so startup stays fast.
-- 🏵 Designed to reduce eye strain.
+- 🏵 Every color checked for contrast against its own background.
 - 🖥️ Matching themes for Alacritty, lazygit and yazi.
 
 ## 🎨 Preview
@@ -112,9 +113,19 @@ require("nightfall").setup({
 
 Only the keys you name change; the rest of a group keeps the value the colorscheme gave it. See `:h nightfall-config` for details.
 
+### The palette
+
+Each flavor's palette has two halves. The first is a ramp of neutrals that every flavor orders by brightness, so a highlight can ask for a surface or a foreground by role rather than by hue:
+
+`black` → `bg_dim` → `bg` → `bg_alt` → `surface` → `overlay` → `border` → `subtle` → `gray` → `silver` → `fg` → `latte` → `white`
+
+The second is the hues, named the same way in every flavor: `red`, `coral`, `rose`, `pink`, `magenta`, `purple`, `lavender`, `blue`, `sky`, `cyan`, `teal`, `green`, `lime`, `yellow`, `cream`, `gold`, `orange`, `peach` and `sand`.
+
+Which hue a flavor paints a string, a keyword or a type is decided in one table, listed under `:h nightfall-roles`. Reading down a column shows an entire flavor at a glance, which is the place to look before overriding anything.
+
 ## 🛠️ Integrations
 
-Every integration is on by default and takes at least `enabled`. Some take more: `fzf` and `telescope` accept a `style` of `"bordered"` or `"borderless"`, and `mini`, `snacks`, `native_lsp` and `treesitter` have a switch per feature.
+Every integration is on by default and takes at least `enabled`. Some take more: `fzf` and `telescope` accept a `style` of `"bordered"` or `"borderless"`, and `dap`, `mini`, `snacks`, `native_lsp` and `treesitter` have a switch per feature.
 
 ```lua
 require("nightfall").setup({
@@ -128,7 +139,42 @@ require("nightfall").setup({
 
 Set `default_integrations = false` to start from none of them and opt back in one at a time.
 
-Supported: blink.cmp, flash.nvim, fzf-lua, indent-blankline.nvim, lazy.nvim, mason.nvim, mini.nvim, Neovim diagnostics and semantic tokens, neo-tree.nvim, noice.nvim, nvim-cmp, render-markdown.nvim, snacks.nvim, telescope.nvim, Treesitter, which-key.nvim.
+| Key                  | Plugin                     | Extra options                        |
+| -------------------- | -------------------------- | ------------------------------------ |
+| `aerial`             | aerial.nvim                |                                      |
+| `alpha`              | alpha-nvim                 |                                      |
+| `blink`              | blink.cmp                  |                                      |
+| `bufferline`         | bufferline.nvim            |                                      |
+| `dap`                | nvim-dap and nvim-dap-ui   | `ui`                                 |
+| `diffview`           | diffview.nvim              |                                      |
+| `flash`              | flash.nvim                 |                                      |
+| `fzf`                | fzf-lua                    | `style`                              |
+| `gitsigns`           | gitsigns.nvim              |                                      |
+| `grug_far`           | grug-far.nvim              |                                      |
+| `illuminate`         | vim-illuminate             |                                      |
+| `indent_blankline`   | indent-blankline.nvim      |                                      |
+| `lazy`               | lazy.nvim                  |                                      |
+| `leap`               | leap.nvim                  |                                      |
+| `mason`              | mason.nvim                 |                                      |
+| `mini`               | mini.nvim                  | `icons`, `trailspace`, `indentscope` |
+| `native_lsp`         | Neovim diagnostics and LSP | `semantic_tokens`                    |
+| `navic`              | nvim-navic                 |                                      |
+| `neogit`             | neogit                     |                                      |
+| `neo_tree`           | neo-tree.nvim              |                                      |
+| `neotest`            | neotest                    |                                      |
+| `noice`              | noice.nvim                 |                                      |
+| `notify`             | nvim-notify                |                                      |
+| `nvim_cmp`           | nvim-cmp                   |                                      |
+| `nvim_tree`          | nvim-tree.lua              |                                      |
+| `oil`                | oil.nvim                   |                                      |
+| `rainbow_delimiters` | rainbow-delimiters.nvim    |                                      |
+| `render_markdown`    | render-markdown.nvim       |                                      |
+| `snacks`             | snacks.nvim                | `dashboard`, `indent`, `picker`      |
+| `telescope`          | telescope.nvim             | `style`                              |
+| `todo_comments`      | todo-comments.nvim         |                                      |
+| `treesitter`         | Treesitter                 | `context`                            |
+| `trouble`            | trouble.nvim               |                                      |
+| `which_key`          | which-key.nvim             |                                      |
 
 ### lualine
 
@@ -142,11 +188,11 @@ require("lualine").setup({ options = { theme = "nightfall" } })
 
 The `extras/` directory carries matching themes for other tools, one file per flavor, generated from the same palettes.
 
-| Tool                                                  | Where it goes                                                             |
-| ----------------------------------------------------- | ------------------------------------------------------------------------- |
-| [Alacritty](https://alacritty.org)                    | Import `extras/alacritty/<flavor>.toml` from `alacritty.toml`              |
-| [lazygit](https://github.com/jesseduffield/lazygit)   | Merge `extras/lazygit/<flavor>.yaml` into your lazygit config              |
-| [yazi](https://yazi-rs.github.io)                     | Copy `extras/yazi/<flavor>.toml` to `~/.config/yazi/theme.toml`            |
+| Tool                                                | Where it goes                                                   |
+| --------------------------------------------------- | --------------------------------------------------------------- |
+| [Alacritty](https://alacritty.org)                  | Import `extras/alacritty/<flavor>.toml` from `alacritty.toml`   |
+| [lazygit](https://github.com/jesseduffield/lazygit) | Merge `extras/lazygit/<flavor>.yaml` into your lazygit config   |
+| [yazi](https://yazi-rs.github.io)                   | Copy `extras/yazi/<flavor>.toml` to `~/.config/yazi/theme.toml` |
 
 ## 🤝 Contributing
 

@@ -3,7 +3,8 @@
 -- the generated files by hand.
 
 local color = require("nightfall.color")
-local palette = require("nightfall.palette")
+local config = require("nightfall.config")
+local context = require("nightfall.context")
 local terminal = require("nightfall.groups.terminal")
 
 --- Write `lines` to `path`, creating the directory when it is missing.
@@ -29,8 +30,9 @@ end
 --- Alacritty reads a TOML file with one table per color role.
 ---@param flavor string
 ---@param c NightfallPalette
+---@param accent string
 ---@return string[]
-local function alacritty(flavor, c)
+local function alacritty(flavor, c, accent)
   local ansi = terminal.ansi(c)
 
   --- One `[colors.<name>]` table holding eight ANSI colors, starting at `from`.
@@ -57,7 +59,7 @@ local function alacritty(flavor, c)
     "[colors.primary]",
     string.format('foreground = "%s"', c.fg),
     string.format('background = "%s"', c.bg),
-    string.format('dim_foreground = "%s"', c.latte),
+    string.format('dim_foreground = "%s"', c.silver),
     string.format('bright_foreground = "%s"', c.white),
     "",
     "[colors.cursor]",
@@ -66,11 +68,11 @@ local function alacritty(flavor, c)
     "",
     "[colors.vi_mode_cursor]",
     string.format('text = "%s"', c.bg),
-    string.format('cursor = "%s"', c.lavender),
+    string.format('cursor = "%s"', accent),
     "",
     "[colors.selection]",
     string.format('text = "%s"', c.fg),
-    string.format('background = "%s"', c.navy),
+    string.format('background = "%s"', c.overlay),
     "",
     "[colors.search]",
     string.format('matches = { foreground = "%s", background = "%s" }', c.black, c.cream),
@@ -99,8 +101,9 @@ end
 --- lazygit reads a YAML file where every color is a list of one or more values.
 ---@param flavor string
 ---@param c NightfallPalette
+---@param accent string
 ---@return string[]
-local function lazygit(flavor, c)
+local function lazygit(flavor, c, accent)
   --- A `name:` key followed by its colors, indented under `theme:`.
   ---@param name string
   ---@param values string[]
@@ -116,12 +119,12 @@ local function lazygit(flavor, c)
   local lines = header("#", flavor)
 
   vim.list_extend(lines, { "gui:", '  nerdFontsVersion: "3"', "  border: rounded", "  theme:" })
-  vim.list_extend(lines, entry("activeBorderColor", { c.purple, "bold" }))
-  vim.list_extend(lines, entry("inactiveBorderColor", { c.charcoal }))
+  vim.list_extend(lines, entry("activeBorderColor", { accent, "bold" }))
+  vim.list_extend(lines, entry("inactiveBorderColor", { c.border }))
   vim.list_extend(lines, entry("searchingActiveBorderColor", { c.teal }))
   vim.list_extend(lines, entry("optionsTextColor", { c.cyan }))
-  vim.list_extend(lines, entry("selectedLineBgColor", { c.navy }))
-  vim.list_extend(lines, entry("inactiveViewSelectedLineBgColor", { c.charcoal }))
+  vim.list_extend(lines, entry("selectedLineBgColor", { c.overlay }))
+  vim.list_extend(lines, entry("inactiveViewSelectedLineBgColor", { c.border }))
   vim.list_extend(lines, entry("defaultFgColor", { c.fg }))
   vim.list_extend(lines, entry("cherryPickedCommitBgColor", { c.bg }))
   vim.list_extend(lines, entry("cherryPickedCommitFgColor", { c.rose }))
@@ -136,14 +139,15 @@ end
 --- yazi reads a TOML theme split by pane.
 ---@param flavor string
 ---@param c NightfallPalette
+---@param accent string
 ---@return string[]
-local function yazi(flavor, c)
+local function yazi(flavor, c, accent)
   local lines = header("#", flavor)
 
   vim.list_extend(lines, {
     "[mgr]",
     string.format('cwd = { fg = "%s" }', c.cyan),
-    string.format('hovered = { fg = "%s", bg = "%s" }', c.fg, c.navy),
+    string.format('hovered = { fg = "%s", bg = "%s" }', c.fg, c.overlay),
     "preview_hovered = { underline = true }",
     string.format('find_keyword = { fg = "%s", bold = true }', c.gold),
     string.format('find_position = { fg = "%s", bg = "reset", bold = true }', c.magenta),
@@ -151,45 +155,45 @@ local function yazi(flavor, c)
     string.format('marker_cut = { fg = "%s", bg = "%s" }', c.red, c.red),
     string.format('marker_marked = { fg = "%s", bg = "%s" }', c.teal, c.teal),
     string.format('marker_selected = { fg = "%s", bg = "%s" }', c.gold, c.gold),
-    string.format('tab_active = { fg = "%s", bg = "%s" }', c.black, c.purple),
-    string.format('tab_inactive = { fg = "%s", bg = "%s" }', c.fg, c.navy),
+    string.format('tab_active = { fg = "%s", bg = "%s" }', c.black, accent),
+    string.format('tab_inactive = { fg = "%s", bg = "%s" }', c.fg, c.overlay),
     "tab_width = 1",
     string.format('count_copied = { fg = "%s", bg = "%s" }', c.black, c.green),
     string.format('count_cut = { fg = "%s", bg = "%s" }', c.black, c.red),
     string.format('count_selected = { fg = "%s", bg = "%s" }', c.black, c.gold),
     'border_symbol = "│"',
-    string.format('border_style = { fg = "%s" }', c.charcoal),
+    string.format('border_style = { fg = "%s" }', c.border),
     "",
     "[mode]",
-    string.format('normal_main = { fg = "%s", bg = "%s", bold = true }', c.black, c.purple),
-    string.format('normal_alt = { fg = "%s", bg = "%s" }', c.purple, c.navy),
+    string.format('normal_main = { fg = "%s", bg = "%s", bold = true }', c.black, accent),
+    string.format('normal_alt = { fg = "%s", bg = "%s" }', accent, c.overlay),
     string.format('select_main = { fg = "%s", bg = "%s", bold = true }', c.black, c.green),
-    string.format('select_alt = { fg = "%s", bg = "%s" }', c.green, c.navy),
+    string.format('select_alt = { fg = "%s", bg = "%s" }', c.green, c.overlay),
     string.format('unset_main = { fg = "%s", bg = "%s", bold = true }', c.black, c.rose),
-    string.format('unset_alt = { fg = "%s", bg = "%s" }', c.rose, c.navy),
+    string.format('unset_alt = { fg = "%s", bg = "%s" }', c.rose, c.overlay),
     "",
     "[status]",
     string.format('overall = { fg = "%s", bg = "%s" }', c.fg, c.bg),
     'sep_left = { open = "", close = "" }',
     'sep_right = { open = "", close = "" }',
     string.format('progress_label = { fg = "%s", bold = true }', c.white),
-    string.format('progress_normal = { fg = "%s", bg = "%s" }', c.purple, c.navy),
-    string.format('progress_error = { fg = "%s", bg = "%s" }', c.red, c.navy),
+    string.format('progress_normal = { fg = "%s", bg = "%s" }', accent, c.overlay),
+    string.format('progress_error = { fg = "%s", bg = "%s" }', c.red, c.overlay),
     "",
     "[pick]",
-    string.format('border = { fg = "%s" }', c.purple),
+    string.format('border = { fg = "%s" }', accent),
     string.format('active = { fg = "%s", bold = true }', c.magenta),
     string.format('inactive = { fg = "%s" }', c.fg),
     "",
     "[input]",
-    string.format('border = { fg = "%s" }', c.purple),
+    string.format('border = { fg = "%s" }', accent),
     string.format('title = { fg = "%s" }', c.fg),
     string.format('value = { fg = "%s" }', c.fg),
-    string.format('selected = { bg = "%s" }', c.navy),
+    string.format('selected = { bg = "%s" }', c.overlay),
     "",
     "[confirm]",
-    string.format('border = { fg = "%s" }', c.purple),
-    string.format('title = { fg = "%s" }', c.purple),
+    string.format('border = { fg = "%s" }', accent),
+    string.format('title = { fg = "%s" }', accent),
     string.format('content = { fg = "%s" }', c.fg),
     string.format('list = { fg = "%s" }', c.cyan),
     string.format('btn_yes = { fg = "%s", bg = "%s" }', c.black, c.green),
@@ -197,28 +201,28 @@ local function yazi(flavor, c)
     'btn_labels = [ "  Yes  ", "  (N)o  " ]',
     "",
     "[cmp]",
-    string.format('border = { fg = "%s" }', c.purple),
+    string.format('border = { fg = "%s" }', accent),
     string.format('active = { fg = "%s", bold = true }', c.magenta),
     string.format('inactive = { fg = "%s" }', c.fg),
     "",
     "[tasks]",
-    string.format('border = { fg = "%s" }', c.purple),
+    string.format('border = { fg = "%s" }', accent),
     string.format('title = { fg = "%s" }', c.fg),
     string.format('hovered = { fg = "%s", underline = true }', c.magenta),
     "",
     "[which]",
     "cols = 3",
-    string.format('mask = { bg = "%s" }', c.navy),
+    string.format('mask = { bg = "%s" }', c.overlay),
     string.format('cand = { fg = "%s" }', c.cyan),
     string.format('rest = { fg = "%s" }', c.gray),
     string.format('desc = { fg = "%s" }', c.magenta),
     'separator = "  "',
-    string.format('separator_style = { fg = "%s" }', c.charcoal),
+    string.format('separator_style = { fg = "%s" }', c.border),
     "",
     "[help]",
     string.format('on = { fg = "%s" }', c.cyan),
     string.format('run = { fg = "%s" }', c.magenta),
-    string.format('hovered = { bg = "%s", bold = true }', c.navy),
+    string.format('hovered = { bg = "%s", bold = true }', c.overlay),
     string.format('footer = { fg = "%s", bg = "%s" }', c.fg, c.bg),
     "",
     "[notify]",
@@ -235,7 +239,7 @@ local function yazi(flavor, c)
     string.format('  { mime = "application/{pdf,doc,rtf}", fg = "%s" },', c.green),
     string.format('  { name = "*", is = "orphan", bg = "%s" },', c.red),
     string.format('  { name = "*", is = "exec", fg = "%s" },', c.green),
-    string.format('  { name = "*/", fg = "%s" },', c.purple),
+    string.format('  { name = "*/", fg = "%s" },', accent),
     "]",
     "",
   })
@@ -250,12 +254,12 @@ local targets = {
   { dir = "yazi", extension = "toml", render = yazi },
 }
 
-for _, flavor in ipairs(palette.flavors) do
-  local colors = palette.get(flavor)
+for _, flavor in ipairs(require("nightfall.palette").flavors) do
+  local ctx = context.new(flavor, config.get())
 
   for _, target in ipairs(targets) do
     local path = string.format("extras/%s/%s.%s", target.dir, flavor, target.extension)
-    write(path, target.render(flavor, colors))
+    write(path, target.render(flavor, ctx.c, ctx.accent))
     print("wrote " .. path)
   end
 end

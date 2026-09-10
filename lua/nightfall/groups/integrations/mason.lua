@@ -8,16 +8,22 @@ function M.get(ctx)
   local c, accent = ctx.c, ctx.accent
 
   return {
-    MasonHeader = { fg = c.black, bg = accent },
-    MasonLink = { fg = c.black, bg = c.purple },
+    MasonNormal = { link = "NormalFloat" },
+    MasonHeader = { fg = c.black, bg = accent, bold = true },
+    MasonHeaderSecondary = { fg = c.black, bg = c.teal, bold = true },
+    MasonHeading = { fg = c.latte, bold = true },
     MasonHighlight = { fg = accent },
-    MasonHeading = { fg = c.fg, bold = true },
     MasonHighlightBlock = { fg = c.black, bg = accent },
-    MasonHighlightBlockBold = { fg = c.black, bg = accent },
-    MasonMutedBlock = {
-      fg = ctx.lighten(c.gray, 0.6),
-      bg = ctx.lighten(c.navy, 0.85, c.latte),
-    },
+    MasonHighlightBlockBold = { fg = c.black, bg = accent, bold = true },
+    MasonHighlightSecondary = { fg = c.teal },
+    MasonHighlightBlockSecondary = { fg = c.black, bg = c.teal },
+    MasonHighlightBlockBoldSecondary = { fg = c.black, bg = c.teal, bold = true },
+    MasonLink = { fg = c.sky, underline = true },
+    MasonMuted = { fg = c.gray },
+    MasonMutedBlock = { fg = c.gray, bg = c.surface },
+    MasonMutedBlockBold = { fg = c.gray, bg = c.surface, bold = true },
+    MasonError = { fg = c.red },
+    MasonWarning = { fg = c.yellow },
   }
 end
 

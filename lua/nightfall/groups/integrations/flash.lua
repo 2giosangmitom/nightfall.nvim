@@ -8,11 +8,13 @@ function M.get(ctx)
   local c = ctx.c
 
   return {
-    FlashMatch = { fg = ctx.vary({ nightfall = c.yellow }, c.cyan) },
-    FlashCurrent = { fg = c.sky },
-    FlashLabel = { fg = c.pink, bold = true },
-    FlashPrompt = { fg = c.cyan },
-    FlashPromptIcon = { fg = c.cyan },
+    FlashBackdrop = { fg = c.subtle },
+    FlashMatch = { fg = c.black, bg = ctx.vary({ nightfall = c.cyan }, c.sky) },
+    FlashCurrent = { fg = c.black, bg = c.gold, bold = true },
+    FlashLabel = { fg = c.black, bg = c.pink, bold = true },
+    FlashCursor = { fg = c.bg, bg = c.fg },
+    FlashPrompt = { fg = c.fg, bg = ctx.solid(c.bg_dim) },
+    FlashPromptIcon = { fg = ctx.accent },
   }
 end
 

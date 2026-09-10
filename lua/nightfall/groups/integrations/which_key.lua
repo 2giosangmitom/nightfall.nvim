@@ -8,9 +8,14 @@ function M.get(ctx)
   local c = ctx.c
 
   return {
-    WhichKey = { fg = c.pink },
-    WhichKeyDesc = { fg = c.latte },
+    WhichKey = { fg = ctx.accent, bold = true },
+    WhichKeyNormal = { link = "NormalFloat" },
+    WhichKeyBorder = { link = "FloatBorder" },
+    WhichKeyTitle = { link = "FloatTitle" },
+    WhichKeyDesc = { fg = c.fg },
     WhichKeyGroup = { fg = c.cyan },
+    WhichKeySeparator = { fg = c.subtle },
+    WhichKeyValue = { fg = c.gray },
     WhichKeyIconAzure = { fg = c.sky },
     WhichKeyIconBlue = { fg = c.blue },
     WhichKeyIconCyan = { fg = c.cyan },
@@ -20,7 +25,6 @@ function M.get(ctx)
     WhichKeyIconPurple = { fg = c.purple },
     WhichKeyIconRed = { fg = c.coral },
     WhichKeyIconYellow = { fg = c.yellow },
-    WhichKeySeparator = { fg = c.gray },
   }
 end
 

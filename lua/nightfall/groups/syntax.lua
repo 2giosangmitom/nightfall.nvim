@@ -1,101 +1,59 @@
 --- Highlights for the language-agnostic syntax groups. See `:h group-name`.
+---
+--- Which color a flavor gives to each of these is decided in |nightfall-roles|,
+--- so this module says what a group means and the role map says how a flavor
+--- paints it.
 
 local M = {}
 
 ---@param ctx NightfallCtx
 ---@return table<string,table>
 function M.get(ctx)
-  local c, styles = ctx.c, ctx.styles
+  local c, styles, role = ctx.c, ctx.styles, ctx.role
 
   return {
     Comment = { fg = c.gray, style = styles.comments },
-    Constant = {
-      fg = ctx.vary({
-        nightfall = c.magenta,
-        ["deeper-night"] = c.cream,
-        maron = c.coral,
-      }, c.cyan),
-    },
-    String = {
-      fg = ctx.vary({
-        nightfall = c.yellow,
-        ["deeper-night"] = c.yellow,
-        maron = c.sand,
-      }, c.blue),
-      style = styles.strings,
-    },
-    Character = {
-      fg = ctx.vary({
-        nightfall = c.peach,
-        ["deeper-night"] = c.purple,
-        maron = c.cyan,
-      }, c.purple),
-      style = styles.characters,
-    },
-    Number = {
-      fg = ctx.vary({ nightfall = c.gold }, c.teal),
-      style = styles.numbers,
-    },
-    Boolean = {
-      fg = ctx.vary({
-        nightfall = c.blue,
-        ["deeper-night"] = c.pink,
-      }, c.sky),
-      style = styles.booleans,
-    },
-    Identifier = {
-      fg = ctx.vary({
-        nightfall = c.latte,
-        maron = c.peach,
-      }, c.yellow),
-      style = styles.variables,
-    },
-    Function = {
-      fg = ctx.vary({
-        nightfall = c.green,
-        maron = c.lime,
-      }, c.green),
-      style = styles.functions,
-    },
-    Statement = {
-      fg = ctx.vary({ nightfall = c.cyan, ["deeper-night"] = c.purple }, c.green),
-    },
-    Conditional = {
-      fg = ctx.vary({
-        nightfall = c.pink,
-        ["deeper-night"] = c.purple,
-      }, c.pink),
-      style = styles.conditionals,
-    },
-    Repeat = {
-      fg = ctx.vary({
-        nightfall = c.cyan,
-        ["deeper-night"] = c.cyan,
-      }, c.cyan),
-      style = styles.loops,
-    },
-    Label = { fg = ctx.vary({ nightfall = c.rose }, c.cream) },
-    Operator = {
-      fg = ctx.vary({ nightfall = c.latte }, c.cyan),
-      style = styles.operators,
-    },
-    Keyword = {
-      fg = ctx.vary({
-        nightfall = c.pink,
-        ["deeper-night"] = c.coral,
-        maron = c.orange,
-      }, c.rose),
-      style = styles.keywords,
-    },
-    PreProc = { fg = ctx.vary({ nightfall = c.sky }, c.pink) },
-    Type = {
-      fg = ctx.vary({ nightfall = c.yellow }, c.cyan),
-      style = styles.types,
-    },
-    Special = { fg = ctx.accent },
-    Delimiter = { fg = ctx.vary({ nightfall = c.rose }, c.lavender) },
+    SpecialComment = { fg = ctx.lighten(c.gray, 0.7, c.silver), style = styles.comments },
+
+    Constant = { fg = role("constant"), style = styles.constants },
+    String = { fg = role("string"), style = styles.strings },
+    Character = { fg = role("character"), style = styles.characters },
+    Number = { fg = role("number"), style = styles.numbers },
+    Float = { link = "Number" },
+    Boolean = { fg = role("boolean"), style = styles.booleans },
+
+    Identifier = { fg = role("identifier"), style = styles.variables },
+    Function = { fg = role("func"), style = styles.functions },
+
+    Statement = { fg = role("statement") },
+    Conditional = { fg = role("conditional"), style = styles.conditionals },
+    Repeat = { fg = role("loop"), style = styles.loops },
+    Label = { fg = role("label") },
+    Operator = { fg = role("operator"), style = styles.operators },
+    Keyword = { fg = role("keyword"), style = styles.keywords },
+    Exception = { fg = role("exception"), style = styles.exceptions },
+
+    PreProc = { fg = role("preproc") },
+    Include = { fg = role("include") },
+    Define = { link = "PreProc" },
+    Macro = { link = "PreProc" },
+    PreCondit = { link = "PreProc" },
+
+    Type = { fg = role("type"), style = styles.types },
+    StorageClass = { fg = role("storage") },
+    Structure = { fg = role("type") },
+    Typedef = { link = "Type" },
+
+    Special = { fg = role("special") },
+    SpecialChar = { fg = role("special_char") },
+    Tag = { fg = role("tag") },
+    Delimiter = { fg = role("delimiter") },
+    Debug = { fg = ctx.role("debug") },
+
+    Underlined = { fg = ctx.accent, underline = true },
+    Ignore = { fg = c.subtle },
     Error = { fg = c.red },
-    Todo = { fg = c.black, bg = c.sky },
+    Todo = { fg = c.black, bg = c.sky, bold = true },
 
     -- Diff summary groups, used by `:h diff` and by plugins showing hunks.
     Added = { fg = c.green },

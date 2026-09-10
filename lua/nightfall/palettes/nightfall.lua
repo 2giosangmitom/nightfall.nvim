@@ -1,32 +1,44 @@
 --- Color palette for the `nightfall` flavor.
+---
+--- A violet-leaning take on the Dracula family, in the spirit of the
+--- `chadracula-evondev` theme of https://github.com/NvChad/base46.
 ---@type NightfallPalette
 return {
-  latte = "#edf7f6",
-  bg = "#141523",
-  black = "#011502",
-  blue = "#bbe5ed",
-  charcoal = "#454955",
-  coral = "#e76b74",
-  cream = "#edf7d2",
-  cyan = "#8be9fd",
+  -- Surfaces, from the deepest to the most raised.
+  bg_dim = "#0e0e1a",
+  bg = "#141423",
+  bg_alt = "#1c1c31",
+  surface = "#23233d",
+  overlay = "#2d2d4e",
+  border = "#3b3b66",
+
+  -- Foregrounds, from the quietest to the brightest.
+  black = "#0a0a12",
+  subtle = "#55558f",
+  gray = "#7b7bb5",
+  silver = "#c5c5de",
   fg = "#e9e9f4",
-  gold = "#fcc737",
-  gray = "#888da7",
-  green = "#20e3b2",
-  lavender = "#beb8eb",
-  lime = "#a1e44d",
-  magenta = "#e2adf2",
-  navy = "#181825",
-  orange = "#ea9010",
-  peach = "#f7dba7",
-  pink = "#ff6bcb",
-  purple = "#9a86fd",
+  latte = "#f1f2f8",
+  white = "#f7f7fb",
+
+  -- Hues, warm to cool.
   red = "#ff5555",
+  coral = "#ff6e6e",
   rose = "#dd9ac2",
-  sand = "#e5c697",
-  silver = "#c9c9c9",
+  pink = "#ff6bcb",
+  magenta = "#e2adf2",
+  purple = "#9a86fd",
+  lavender = "#bd93f9",
+  blue = "#2cccff",
   sky = "#8caaee",
-  teal = "#72bda3",
-  white = "#ffffff",
-  yellow = "#f2fa95",
+  cyan = "#8be9fd",
+  teal = "#20e3b2",
+  green = "#50fa7b",
+  lime = "#a1e44d",
+  yellow = "#f1fa8c",
+  cream = "#edf7d2",
+  gold = "#fcc737",
+  orange = "#ffb86c",
+  peach = "#f7dba7",
+  sand = "#e5c697",
 }

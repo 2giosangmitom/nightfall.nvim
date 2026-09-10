@@ -26,6 +26,15 @@ T["defaults"]["name an integration module that exists"] = function()
   end
 end
 
+T["defaults"]["mention every integration module that ships"] = function()
+  for name in vim.fs.dir("lua/nightfall/groups/integrations") do
+    local integration = name:gsub("%.lua$", "")
+    expect.equality(config.defaults.integrations[integration] ~= nil, true, {
+      fail_reason = "no default entry for the integration " .. integration,
+    })
+  end
+end
+
 T["setup"] = MiniTest.new_set()
 
 T["setup"]["merges into the defaults rather than replacing them"] = function()

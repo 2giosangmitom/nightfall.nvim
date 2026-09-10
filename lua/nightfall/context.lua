@@ -7,6 +7,7 @@
 
 local color = require("nightfall.color")
 local palette = require("nightfall.palette")
+local roles = require("nightfall.roles")
 
 local M = {}
 
@@ -17,6 +18,9 @@ local M = {}
 ---@field styles NightfallStyles Shorthand for `o.styles`.
 ---@field accent string The flavor's accent color.
 ---@field vary fun(per_flavor: table<string,string>, fallback: string): string
+---@field role fun(name: string): string This flavor's color for a syntax role.
+---@field solid fun(hex: string): string A background, or `NONE` when transparent.
+---@field blend fun(fg: string, bg: string, alpha: number): string
 ---@field darken fun(hex: string, amount: number, bg?: string): string
 ---@field lighten fun(hex: string, amount: number, fg?: string): string
 
@@ -54,6 +58,9 @@ function M.new(flavor, opts)
     styles = opts.styles,
     accent = accent_of(colors, flavor),
     vary = function(per_flavor, fallback) return per_flavor[flavor] or fallback end,
+    role = function(name) return roles.get(colors, flavor, name) end,
+    solid = function(hex) return opts.transparent and "NONE" or hex end,
+    blend = color.blend,
     darken = color.darken,
     lighten = color.lighten,
   }

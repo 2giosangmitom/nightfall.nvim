@@ -6,19 +6,25 @@ local M = {}
 ---@param opts table Integration options. `style` is `"bordered"` or `"borderless"`.
 ---@return table<string,table>
 function M.get(ctx, opts)
-  local c = ctx.c
-  local sunken = ctx.darken(c.bg, 0.9)
+  local c, accent = ctx.c, ctx.accent
+  local sunken = ctx.solid(c.bg_dim)
 
   local styles = {
     bordered = {
       FzfLuaNormal = { link = "NormalFloat" },
       FzfLuaBorder = { link = "FloatBorder" },
-      FzfLuaTitle = { fg = c.peach },
+      FzfLuaTitle = { fg = accent, bold = true },
+      FzfLuaPreviewNormal = { link = "NormalFloat" },
+      FzfLuaPreviewBorder = { link = "FloatBorder" },
+      FzfLuaPreviewTitle = { fg = c.green, bold = true },
     },
     borderless = {
-      FzfLuaNormal = { bg = sunken },
+      FzfLuaNormal = { fg = c.fg, bg = sunken },
       FzfLuaBorder = { fg = sunken, bg = sunken },
-      FzfLuaTitle = { fg = c.black, bg = c.pink },
+      FzfLuaTitle = { fg = c.black, bg = accent, bold = true },
+      FzfLuaPreviewNormal = { fg = c.fg, bg = sunken },
+      FzfLuaPreviewBorder = { fg = sunken, bg = sunken },
+      FzfLuaPreviewTitle = { fg = c.black, bg = c.green, bold = true },
     },
   }
 
@@ -28,11 +34,43 @@ function M.get(ctx, opts)
   end
 
   return vim.tbl_extend("error", {
-    FzfLuaFzfMatch = { fg = c.purple },
-    FzfLuaFzfHeader = { fg = c.sky },
-    FzfLuaHeaderText = { fg = c.cyan },
+    -- The picker window
+    FzfLuaCursor = { fg = c.bg, bg = c.fg },
+    FzfLuaCursorLine = { bg = c.overlay },
+    FzfLuaCursorLineNr = { fg = accent, bg = c.overlay, bold = true },
+    FzfLuaSearch = { fg = c.black, bg = c.gold, bold = true },
+    FzfLuaScrollBorderEmpty = { fg = c.border },
+    FzfLuaScrollBorderFull = { fg = accent },
+    FzfLuaScrollFloatEmpty = { bg = c.bg_alt },
+    FzfLuaScrollFloatFull = { bg = c.border },
+
+    -- Entries
     FzfLuaHeaderBind = { fg = c.rose },
+    FzfLuaHeaderText = { fg = c.cyan },
+    FzfLuaPathColNr = { fg = c.gray },
+    FzfLuaPathLineNr = { fg = c.gray },
+    FzfLuaDirPart = { fg = c.gray },
+    FzfLuaFilePart = { fg = c.fg },
+    FzfLuaBufName = { fg = c.fg },
+    FzfLuaBufNr = { fg = c.gray },
+    FzfLuaBufFlagCur = { fg = accent, bold = true },
+    FzfLuaBufFlagAlt = { fg = c.teal },
+    FzfLuaTabTitle = { fg = accent, bold = true },
+    FzfLuaTabMarker = { fg = c.gold, bold = true },
     FzfLuaLiveSym = { fg = c.blue },
+
+    -- The fzf process itself
+    FzfLuaFzfNormal = { fg = c.fg },
+    FzfLuaFzfMatch = { fg = accent, bold = true },
+    FzfLuaFzfPointer = { fg = accent },
+    FzfLuaFzfMarker = { fg = c.gold },
+    FzfLuaFzfPrompt = { fg = accent },
+    FzfLuaFzfInfo = { fg = c.gray },
+    FzfLuaFzfCursorLine = { bg = c.overlay },
+    FzfLuaFzfHeader = { fg = c.sky },
+    FzfLuaFzfGutter = { bg = ctx.solid(c.bg_dim) },
+    FzfLuaFzfSeparator = { fg = c.border },
+    FzfLuaFzfScrollbar = { fg = c.border },
   }, style)
 end
 

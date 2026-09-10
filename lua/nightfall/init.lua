@@ -7,9 +7,9 @@
 ---
 --- Flavors ~
 ---
---- - `nightfall`: dark and vibrant, in the spirit of Dracula.
---- - `deeper-night`: higher contrast, for focus.
---- - `maron`: warm earthy tones.
+--- - `nightfall`: dark and vibrant, a violet-leaning take on Dracula.
+--- - `deeper-night`: pastels on a blue-black night, for focus.
+--- - `maron`: beige and dusty earth tones on a near-black background.
 ---
 --- Getting started ~
 ---
