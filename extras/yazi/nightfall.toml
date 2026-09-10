@@ -54,7 +54,7 @@ content = { fg = "#e9e9f4" }
 list = { fg = "#8be9fd" }
 btn_yes = { fg = "#0a0a12", bg = "#50fa7b" }
 btn_no = { fg = "#0a0a12", bg = "#ff5555" }
-btn_labels = ["  Yes  ", "  (N)o  "]
+btn_labels = [ "  Yes  ", "  (N)o  " ]
 
 [cmp]
 border = { fg = "#9a86fd" }
