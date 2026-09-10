@@ -139,43 +139,6 @@ require("nightfall").setup({
 
 Set `default_integrations = false` to start from none of them and opt back in one at a time.
 
-| Key                  | Plugin                     | Extra options                        |
-| -------------------- | -------------------------- | ------------------------------------ |
-| `aerial`             | aerial.nvim                |                                      |
-| `alpha`              | alpha-nvim                 |                                      |
-| `blink`              | blink.cmp                  |                                      |
-| `bufferline`         | bufferline.nvim            |                                      |
-| `dap`                | nvim-dap and nvim-dap-ui   | `ui`                                 |
-| `diffview`           | diffview.nvim              |                                      |
-| `flash`              | flash.nvim                 |                                      |
-| `fzf`                | fzf-lua                    | `style`                              |
-| `gitsigns`           | gitsigns.nvim              |                                      |
-| `grug_far`           | grug-far.nvim              |                                      |
-| `illuminate`         | vim-illuminate             |                                      |
-| `indent_blankline`   | indent-blankline.nvim      |                                      |
-| `lazy`               | lazy.nvim                  |                                      |
-| `leap`               | leap.nvim                  |                                      |
-| `mason`              | mason.nvim                 |                                      |
-| `mini`               | mini.nvim                  | `icons`, `trailspace`, `indentscope` |
-| `native_lsp`         | Neovim diagnostics and LSP | `semantic_tokens`                    |
-| `navic`              | nvim-navic                 |                                      |
-| `neogit`             | neogit                     |                                      |
-| `neo_tree`           | neo-tree.nvim              |                                      |
-| `neotest`            | neotest                    |                                      |
-| `noice`              | noice.nvim                 |                                      |
-| `notify`             | nvim-notify                |                                      |
-| `nvim_cmp`           | nvim-cmp                   |                                      |
-| `nvim_tree`          | nvim-tree.lua              |                                      |
-| `oil`                | oil.nvim                   |                                      |
-| `rainbow_delimiters` | rainbow-delimiters.nvim    |                                      |
-| `render_markdown`    | render-markdown.nvim       |                                      |
-| `snacks`             | snacks.nvim                | `dashboard`, `indent`, `picker`      |
-| `telescope`          | telescope.nvim             | `style`                              |
-| `todo_comments`      | todo-comments.nvim         |                                      |
-| `treesitter`         | Treesitter                 | `context`                            |
-| `trouble`            | trouble.nvim               |                                      |
-| `which_key`          | which-key.nvim             |                                      |
-
 ### lualine
 
 A matching [lualine](https://github.com/nvim-lualine/lualine.nvim) theme ships with each flavor:
