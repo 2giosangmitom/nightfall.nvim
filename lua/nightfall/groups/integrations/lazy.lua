@@ -1,5 +1,6 @@
 --- https://github.com/folke/lazy.nvim
 
+local U = require("nightfall.color")
 local M = {}
 
 ---@param ctx NightfallCtx
@@ -10,7 +11,7 @@ function M.get(ctx)
   return {
     LazyNormal = { link = "NormalFloat" },
     LazyButton = { fg = c.silver, bg = c.surface },
-    LazyButtonActive = { fg = c.black, bg = accent, bold = true },
+    LazyButtonActive = { fg = c.silver, bg = U.lighten(c.surface, 0.875), bold = true },
     LazyH1 = { fg = c.black, bg = ctx.vary({ maron = c.yellow }, accent), bold = true },
     LazyH2 = { fg = accent, bold = true },
     LazyComment = { link = "Comment" },

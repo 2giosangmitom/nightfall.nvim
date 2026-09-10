@@ -1,7 +1,6 @@
 --- Color palette for the `nightfall` flavor.
 ---
---- A violet-leaning take on the Dracula family, in the spirit of the
---- `chadracula-evondev` theme of https://github.com/NvChad/base46.
+--- A violet-leaning take on the Dracula family.
 ---@type NightfallPalette
 return {
   -- Surfaces, from the deepest to the most raised.
@@ -22,7 +21,7 @@ return {
   white = "#f7f7fb",
 
   -- Hues, warm to cool.
-  red = "#ff5555",
+  red = "#ff4860",
   coral = "#ff6e6e",
   rose = "#dd9ac2",
   pink = "#ff6bcb",

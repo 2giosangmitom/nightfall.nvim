@@ -28,29 +28,15 @@ _Nightfall.nvim_ is a clean and eye-friendly Neovim colorscheme designed to enha
 
 ### Nightfall
 
-![Nightfall](./assets/nightfall.png)
+![Nightfall](./assets/nightfall.webp)
 
 ### Deeper Night
 
-![Deeper Night](./assets/deeper-night.png)
+![Deeper Night](./assets/deeper-night.webp)
 
 ### Maron
 
-![Maron](./assets/maron.png)
-
-### Transparent Themes
-
-#### Transparent Nightfall
-
-![Transparent Nightfall](./assets/transparent_nightfall.png)
-
-#### Transparent Deeper Night
-
-![Transparent Deeper Night](./assets/transparent_deeper-night.png)
-
-#### Transparent Maron
-
-![Transparent Maron](./assets/transparent_maron.png)
+![Maron](./assets/maron.webp)
 
 </details>
 
@@ -112,16 +98,6 @@ require("nightfall").setup({
 ```
 
 Only the keys you name change; the rest of a group keeps the value the colorscheme gave it. See `:h nightfall-config` for details.
-
-### The palette
-
-Each flavor's palette has two halves. The first is a ramp of neutrals that every flavor orders by brightness, so a highlight can ask for a surface or a foreground by role rather than by hue:
-
-`black` → `bg_dim` → `bg` → `bg_alt` → `surface` → `overlay` → `border` → `subtle` → `gray` → `silver` → `fg` → `latte` → `white`
-
-The second is the hues, named the same way in every flavor: `red`, `coral`, `rose`, `pink`, `magenta`, `purple`, `lavender`, `blue`, `sky`, `cyan`, `teal`, `green`, `lime`, `yellow`, `cream`, `gold`, `orange`, `peach` and `sand`.
-
-Which hue a flavor paints a string, a keyword or a type is decided in one table, listed under `:h nightfall-roles`. Reading down a column shows an entire flavor at a glance, which is the place to look before overriding anything.
 
 ## 🛠️ Integrations
 
