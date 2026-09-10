@@ -122,7 +122,6 @@ return function(ctx)
         { "list", { fg = c.cyan } },
         { "btn_yes", { fg = c.black, bg = c.green } },
         { "btn_no", { fg = c.black, bg = c.red } },
-        { "btn_labels", { "  Yes  ", "  (N)o  " } },
       },
     },
     {

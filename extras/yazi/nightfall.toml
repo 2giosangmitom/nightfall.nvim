@@ -63,7 +63,6 @@ body = { fg = "#e9e9f4" }
 list = { fg = "#8be9fd" }
 btn_yes = { fg = "#0a0a12", bg = "#50fa7b" }
 btn_no = { fg = "#0a0a12", bg = "#ff4860" }
-btn_labels = [ "  Yes  ", "  (N)o  " ]
 
 [spot]
 border = { fg = "#9a86fd" }
