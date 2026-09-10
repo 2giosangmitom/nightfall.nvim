@@ -29,5 +29,5 @@ gui:
     markedBaseCommitFgColor:
       - "#fcc737"
     unstagedChangesColor:
-      - "#ff5555"
+      - "#ff4860"
 

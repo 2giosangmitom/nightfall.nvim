@@ -7,11 +7,11 @@ find_keyword = { fg = "#fcc737", bold = true }
 find_position = { fg = "#e2adf2", bg = "reset", bold = true }
 symlink_target = { fg = "#7b7bb5", italic = true }
 marker_copied = { fg = "#50fa7b", bg = "#50fa7b" }
-marker_cut = { fg = "#ff5555", bg = "#ff5555" }
+marker_cut = { fg = "#ff4860", bg = "#ff4860" }
 marker_marked = { fg = "#20e3b2", bg = "#20e3b2" }
 marker_selected = { fg = "#fcc737", bg = "#fcc737" }
 count_copied = { fg = "#0a0a12", bg = "#50fa7b" }
-count_cut = { fg = "#0a0a12", bg = "#ff5555" }
+count_cut = { fg = "#0a0a12", bg = "#ff4860" }
 count_selected = { fg = "#0a0a12", bg = "#fcc737" }
 border_symbol = "│"
 border_style = { fg = "#3b3b66" }
@@ -40,11 +40,11 @@ sep_right = { open = "", close = "" }
 perm_sep = { fg = "#55558f" }
 perm_type = { fg = "#2cccff" }
 perm_read = { fg = "#fcc737" }
-perm_write = { fg = "#ff5555" }
+perm_write = { fg = "#ff4860" }
 perm_exec = { fg = "#50fa7b" }
 progress_label = { fg = "#f7f7fb", bold = true }
 progress_normal = { fg = "#9a86fd", bg = "#2d2d4e" }
-progress_error = { fg = "#ff5555", bg = "#2d2d4e" }
+progress_error = { fg = "#ff4860", bg = "#2d2d4e" }
 
 [which]
 border = { fg = "#9a86fd" }
@@ -62,7 +62,7 @@ title = { fg = "#9a86fd" }
 body = { fg = "#e9e9f4" }
 list = { fg = "#8be9fd" }
 btn_yes = { fg = "#0a0a12", bg = "#50fa7b" }
-btn_no = { fg = "#0a0a12", bg = "#ff5555" }
+btn_no = { fg = "#0a0a12", bg = "#ff4860" }
 btn_labels = [ "  Yes  ", "  (N)o  " ]
 
 [spot]
@@ -74,7 +74,7 @@ tbl_cell = { fg = "#0a0a12", bg = "#fcc737" }
 [notify]
 title_info = { fg = "#50fa7b" }
 title_warn = { fg = "#f1fa8c" }
-title_error = { fg = "#ff5555" }
+title_error = { fg = "#ff4860" }
 
 [pick]
 border = { fg = "#9a86fd" }
@@ -111,9 +111,9 @@ rules = [
   { mime = "**/application/{tar,bzip*,7z-compressed,xz,rar}", fg = "#e2adf2" },
   { mime = "**/application/{pdf,doc,rtf}", fg = "#50fa7b" },
   { mime = "vfs/{absent,stale}", fg = "#7b7bb5" },
-  { url = "*", is = "orphan", bg = "#ff5555" },
-  { url = "*", is = "dummy", bg = "#ff5555" },
-  { url = "*/", is = "dummy", bg = "#ff5555" },
+  { url = "*", is = "orphan", bg = "#ff4860" },
+  { url = "*", is = "dummy", bg = "#ff4860" },
+  { url = "*/", is = "dummy", bg = "#ff4860" },
   { url = "*", is = "exec", fg = "#50fa7b" },
   { url = "*/", fg = "#9a86fd" },
 ]
