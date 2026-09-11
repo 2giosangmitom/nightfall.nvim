@@ -28,15 +28,15 @@ _Nightfall.nvim_ is a clean and eye-friendly Neovim colorscheme designed to enha
 
 ### Nightfall
 
-![Nightfall](./assets/nightfall.webp)
+![Nightfall](https://i.imgur.com/X9QgIgQ.png)
 
 ### Deeper Night
 
-![Deeper Night](./assets/deeper-night.webp)
+![Deeper Night](https://i.imgur.com/Vk1LLmb.png)
 
 ### Maron
 
-![Maron](./assets/maron.webp)
+![Maron](https://i.imgur.com/BcEg3gJ.png)
 
 </details>
 
