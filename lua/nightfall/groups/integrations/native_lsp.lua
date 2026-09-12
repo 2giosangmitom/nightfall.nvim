@@ -29,7 +29,7 @@ function M.get(ctx, opts)
     -- Reference highlighting under the cursor
     LspReferenceText = { bg = c.overlay },
     LspReferenceRead = { bg = c.overlay },
-    LspReferenceWrite = { bg = c.overlay, underline = true },
+    LspReferenceWrite = { bg = c.overlay },
     LspReferenceTarget = { bg = c.overlay },
 
     -- Inline annotations the server contributes
