@@ -11,7 +11,11 @@ function M.get(ctx)
   return {
     LazyNormal = { link = "NormalFloat" },
     LazyButton = { fg = c.silver, bg = c.surface },
-    LazyButtonActive = { fg = c.silver, bg = U.lighten(c.surface, 0.875), bold = true },
+    LazyButtonActive = {
+      fg = ctx.on_accent(),
+      bg = ctx.vary({ winter = c.blue }, U.lighten(c.surface, 0.875)),
+      bold = true,
+    },
     LazyH1 = { fg = ctx.on_accent(), bg = ctx.vary({ maron = c.yellow }, accent), bold = true },
     LazyH2 = { fg = accent, bold = true },
     LazyComment = { link = "Comment" },

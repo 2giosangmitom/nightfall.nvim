@@ -375,6 +375,9 @@ T["options"]["use readable light text on winter accents"] = function()
 
   expect.equality(highlights.Visual.bg, colors.overlay)
   expect.equality(highlights.LazyH1.fg, colors.bg)
+  expect.equality(highlights.LazyButtonActive.bg, colors.blue)
+  expect.equality(highlights.LazyButtonActive.fg, colors.bg)
+  expect.no_equality(highlights.LazyButtonActive.bg, highlights.LazyButton.bg)
 end
 
 T["options"]["skip terminal colors when they are off"] = function()
