@@ -1,10 +1,10 @@
 # Nightfall.nvim
 
-A Neovim colorscheme with four cohesive flavors, broad built-in highlight coverage, and integrations for common plugins.
+An eye-friendly Neovim colorscheme with broad highlight coverage and integrations for common plugins.
 
 ## ✨ Features
 
-- 🎨 Four flavors: `nightfall`, `deeper-night`, `maron`, and the light `winter` theme.
+- 🎨 Four flavors: `nightfall`, `deeper-night`, `maron`, and `winter`.
 - 🖼️ Neovim highlight groups through 0.12, including completion, message, and popup border groups.
 - 🌲 Treesitter, LSP diagnostics, semantic tokens, inlay hints, code lenses, and virtual lines.
 - 🧩 34 plugin integrations, each switchable from config.
