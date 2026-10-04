@@ -2,7 +2,7 @@
 ---
 --- MIT License Copyright (c) 2024 Vo Quang Chien
 ---
---- Nightfall ships three dark flavors that share one palette vocabulary, so every
+--- Nightfall ships three dark flavors and one light flavor that share one palette vocabulary, so every
 --- flavor covers the same highlight groups and the same plugin integrations.
 ---
 --- Flavors ~
@@ -10,6 +10,7 @@
 --- - `nightfall`: dark and vibrant, a violet-leaning take on Dracula.
 --- - `deeper-night`: pastels on a blue-black night, for focus.
 --- - `maron`: beige and dusty earth tones on a near-black background.
+--- - `winter`: a cold, frosted light theme with navy text and blue accents.
 ---
 --- Getting started ~
 ---
@@ -40,7 +41,7 @@ local palette = require("nightfall.palette")
 
 local M = {}
 
----@alias NightfallFlavor "nightfall"|"deeper-night"|"maron"
+---@alias NightfallFlavor "nightfall"|"deeper-night"|"maron"|"winter"
 
 --- Names of every flavor, in the order they appear in the documentation.
 ---@type NightfallFlavor[]
@@ -66,7 +67,7 @@ function M.load(flavor)
 
   if vim.g.colors_name then vim.cmd("highlight clear") end
   vim.g.colors_name = flavor
-  vim.o.background = "dark"
+  vim.o.background = flavor == "winter" and "light" or "dark"
 
   for group, spec in pairs(theme.highlights) do
     vim.api.nvim_set_hl(0, group, spec)

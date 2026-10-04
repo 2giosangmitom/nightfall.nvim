@@ -50,7 +50,7 @@ local M = {}
 
 --- Names of every flavor this colorscheme ships.
 ---@type NightfallFlavor[]
-M.flavors = { "nightfall", "deeper-night", "maron" }
+M.flavors = { "nightfall", "deeper-night", "maron", "winter" }
 
 --- Read the palette of a flavor, with optional per-color overrides applied.
 ---@param flavor NightfallFlavor Which flavor to read.

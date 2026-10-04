@@ -18,7 +18,7 @@ local T = MiniTest.new_set({
 
 --- The same expectations hold for every flavor, so they are parametrized.
 T["flavor"] = MiniTest.new_set({
-  parametrize = { { "nightfall" }, { "deeper-night" }, { "maron" } },
+  parametrize = { { "nightfall" }, { "deeper-night" }, { "maron" }, { "winter" } },
 })
 
 T["flavor"]["builds without error"] = function(flavor)

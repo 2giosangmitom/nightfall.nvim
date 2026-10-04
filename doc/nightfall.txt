@@ -3,7 +3,7 @@ A clean, eye-friendly Neovim colorscheme.
 
 MIT License Copyright (c) 2024 Vo Quang Chien
 
-Nightfall ships three dark flavors that share one palette vocabulary, so every
+Nightfall ships three dark flavors and one light flavor that share one palette vocabulary, so every
 flavor covers the same highlight groups and the same plugin integrations.
 
 Flavors ~
@@ -11,6 +11,7 @@ Flavors ~
 - `nightfall`: dark and vibrant, a violet-leaning take on Dracula.
 - `deeper-night`: pastels on a blue-black night, for focus.
 - `maron`: beige and dusty earth tones on a near-black background.
+- `winter`: a cold, frosted light theme with navy text and blue accents.
 
 Getting started ~
 

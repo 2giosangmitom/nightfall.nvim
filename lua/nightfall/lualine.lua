@@ -13,12 +13,12 @@ local M = {}
 --- The accent each editor mode uses, per flavor.
 ---@private
 local MODES = {
-  normal = { nightfall = "purple", ["deeper-night"] = "sky", maron = "lavender" },
-  insert = { nightfall = "green", ["deeper-night"] = "teal", maron = "green" },
-  visual = { nightfall = "pink", ["deeper-night"] = "magenta", maron = "magenta" },
-  command = { nightfall = "gold", ["deeper-night"] = "gold", maron = "gold" },
-  terminal = { nightfall = "cyan", ["deeper-night"] = "cyan", maron = "cyan" },
-  replace = { nightfall = "coral", ["deeper-night"] = "coral", maron = "coral" },
+  normal = { nightfall = "purple", ["deeper-night"] = "sky", maron = "lavender", winter = "blue" },
+  insert = { nightfall = "green", ["deeper-night"] = "teal", maron = "green", winter = "teal" },
+  visual = { nightfall = "pink", ["deeper-night"] = "magenta", maron = "magenta", winter = "lavender" },
+  command = { nightfall = "gold", ["deeper-night"] = "gold", maron = "gold", winter = "purple" },
+  terminal = { nightfall = "cyan", ["deeper-night"] = "cyan", maron = "cyan", winter = "cyan" },
+  replace = { nightfall = "coral", ["deeper-night"] = "coral", maron = "coral", winter = "coral" },
 }
 
 --- Build the lualine theme for a flavor.

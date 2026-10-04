@@ -30,6 +30,7 @@ local function accent_of(colors, flavor)
   local accents = {
     nightfall = colors.purple,
     maron = colors.lavender,
+    winter = colors.blue,
   }
   return accents[flavor] or colors.sky
 end

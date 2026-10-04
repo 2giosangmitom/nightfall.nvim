@@ -1,10 +1,10 @@
 # Nightfall.nvim
 
-A dark Neovim colorscheme with three cohesive flavors, broad built-in highlight coverage, and integrations for common plugins.
+A Neovim colorscheme with four cohesive flavors, broad built-in highlight coverage, and integrations for common plugins.
 
 ## ✨ Features
 
-- 🎨 Three dark flavors: `nightfall`, `deeper-night`, and `maron`.
+- 🎨 Four flavors: `nightfall`, `deeper-night`, `maron`, and the light `winter` theme.
 - 🖼️ Neovim highlight groups through 0.12, including completion, message, and popup border groups.
 - 🌲 Treesitter, LSP diagnostics, semantic tokens, inlay hints, code lenses, and virtual lines.
 - 🧩 34 plugin integrations, each switchable from config.
@@ -48,7 +48,7 @@ Install the plugin, run `setup()` if you want to change defaults, then choose a 
   opts = {},
   config = function(_, opts)
     require("nightfall").setup(opts)
-    vim.cmd.colorscheme("nightfall") -- nightfall, deeper-night, maron
+    vim.cmd.colorscheme("nightfall") -- nightfall, deeper-night, maron, winter
   end,
 }
 ```
@@ -62,7 +62,7 @@ add({ source = "2giosangmitom/nightfall.nvim" })
 
 now(function()
   require("nightfall").setup({})
-  vim.cmd.colorscheme("nightfall") -- nightfall, deeper-night, maron
+  vim.cmd.colorscheme("nightfall") -- nightfall, deeper-night, maron, winter
 end)
 ```
 
@@ -74,7 +74,7 @@ vim.pack.add({
 })
 
 require("nightfall").setup({})
-vim.cmd.colorscheme("nightfall") -- nightfall, deeper-night, maron
+vim.cmd.colorscheme("nightfall") -- nightfall, deeper-night, maron, winter
 ```
 
 ## ⚙️ Configuration

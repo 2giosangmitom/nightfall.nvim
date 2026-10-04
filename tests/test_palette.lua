@@ -3,7 +3,9 @@ local palette = require("nightfall.palette")
 
 local T = MiniTest.new_set()
 
-T["lists every shipped flavor"] = function() expect.equality(palette.flavors, { "nightfall", "deeper-night", "maron" }) end
+T["lists every shipped flavor"] = function()
+  expect.equality(palette.flavors, { "nightfall", "deeper-night", "maron", "winter" })
+end
 
 T["get"] = MiniTest.new_set()
 
@@ -29,7 +31,7 @@ end
 
 --- Every flavor is checked the same way, so the cases are parametrized by name.
 T["flavor"] = MiniTest.new_set({
-  parametrize = { { "nightfall" }, { "deeper-night" }, { "maron" } },
+  parametrize = { { "nightfall" }, { "deeper-night" }, { "maron" }, { "winter" } },
 })
 
 T["flavor"]["defines the same colors as nightfall"] = function(flavor)
@@ -83,6 +85,13 @@ end
 T["flavor"]["orders its neutrals from darkest to brightest"] = function(flavor)
   local colors = palette.get(flavor)
 
+  if flavor == "winter" then
+    expect.equality(luminance(colors.bg_dim) < luminance(colors.bg), true)
+    expect.equality(luminance(colors.bg) < luminance(colors.bg_alt), true)
+    expect.equality(luminance(colors.bg_alt) < luminance(colors.surface), true)
+    return
+  end
+
   for index = 2, #RAMP do
     local darker, lighter = RAMP[index - 1], RAMP[index]
     expect.equality(luminance(colors[darker]) < luminance(colors[lighter]), true, {
@@ -98,7 +107,9 @@ T["flavor"]["keeps comments and hues readable on its background"] = function(fla
   for name, hex in pairs(colors) do
     -- The surfaces are backgrounds themselves, so contrast does not apply.
     if not vim.tbl_contains(RAMP, name) or name == "gray" or name == "silver" then
-      expect.equality((luminance(hex) + 0.05) / background >= 4, true, {
+      local contrast = flavor == "winter" and (background / (luminance(hex) + 0.05))
+        or ((luminance(hex) + 0.05) / background)
+      expect.equality(contrast >= 4, true, {
         fail_reason = string.format("%s: %s has too little contrast against the background", flavor, name),
       })
     end
