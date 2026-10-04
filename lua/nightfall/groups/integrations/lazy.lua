@@ -12,8 +12,8 @@ function M.get(ctx)
     LazyNormal = { link = "NormalFloat" },
     LazyButton = { fg = c.silver, bg = c.surface },
     LazyButtonActive = {
-      fg = ctx.on_accent(),
-      bg = ctx.vary({ winter = c.blue }, U.lighten(c.surface, 0.875)),
+      fg = ctx.vary({ winter = c.fg }, c.silver),
+      bg = ctx.vary({ winter = c.overlay }, U.lighten(c.surface, 0.875)),
       bold = true,
     },
     LazyH1 = { fg = ctx.on_accent(), bg = ctx.vary({ maron = c.yellow }, accent), bold = true },

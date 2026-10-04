@@ -30,6 +30,10 @@ A Neovim colorscheme with four cohesive flavors, broad built-in highlight covera
 
 ![Maron](https://i.imgur.com/BcEg3gJ.png)
 
+### Winter
+
+![Winter](https://i.imgur.com/wGqgYG0.png)
+
 </details>
 
 ## 🚀 Installation
