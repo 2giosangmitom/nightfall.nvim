@@ -1,30 +1,22 @@
-# 🌆 Nightfall.nvim
+# Nightfall.nvim
 
-_Nightfall.nvim_ is a clean and eye-friendly Neovim colorscheme designed to enhance your coding experience. With a minimalist aesthetic and multiple flavors, it reduces eye strain and integrates seamlessly with popular plugins, making it perfect for extended coding sessions.
-
-![Stars](https://img.shields.io/github/stars/2giosangmitom/nightfall.nvim?style=for-the-badge&logo=apachespark&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41)
-![Last commit](https://img.shields.io/github/last-commit/2giosangmitom/nightfall.nvim?style=for-the-badge&logo=github&color=7dc4e4&logoColor=D9E0EE&labelColor=302D41)
-![Forks](https://img.shields.io/github/forks/2giosangmitom/nightfall.nvim?style=for-the-badge&logo=starship&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41)
-![Issues](https://img.shields.io/github/issues/2giosangmitom/nightfall.nvim?style=for-the-badge&logo=lightning&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41)
-![Repo size](https://img.shields.io/github/repo-size/2giosangmitom/nightfall.nvim?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41)
-![LICENSE](https://img.shields.io/github/license/2giosangmitom/nightfall.nvim?style=for-the-badge&logo=alpinedotjs&color=ee999f&logoColor=D9E0EE&labelColor=302D41)
+A dark Neovim colorscheme with three cohesive flavors, broad built-in highlight coverage, and integrations for common plugins.
 
 ## ✨ Features
 
-- 🪁 Three flavors that all cover the same highlight groups.
-- 🖼️ Every highlight group Neovim documents through 0.12, including the newer completion, message and popup border groups.
-- 🌲 Every Treesitter capture Neovim documents, so no language falls back to a default color.
-- 🎟️ LSP diagnostics, virtual lines, inlay hints, code lenses and semantic tokens.
-- 🧩 Thirty-four plugin integrations, each one switchable.
-- 🖌️ Colors and highlight groups you can override per flavor.
-- ⚡️ Compiled once and reused, so startup stays fast.
-- 🏵 Every color checked for contrast against its own background.
-- 🖥️ Matching themes for Alacritty, lazygit and yazi.
+- 🎨 Three dark flavors: `nightfall`, `deeper-night`, and `maron`.
+- 🖼️ Neovim highlight groups through 0.12, including completion, message, and popup border groups.
+- 🌲 Treesitter, LSP diagnostics, semantic tokens, inlay hints, code lenses, and virtual lines.
+- 🧩 34 plugin integrations, each switchable from config.
+- 🖌️ Palette and highlight overrides per flavor.
+- 🪟 Optional transparent background, terminal colors, and inactive-window dimming.
+- ⚡ Cached theme builds for fast startup.
+- 🖥️ Matching extras for Alacritty, lazygit, yazi, and more.
 
 ## 🎨 Preview
 
 <details open>
-<summary>Click to toggle preview</summary>
+<summary>Show screenshots</summary>
 
 ### Nightfall
 
@@ -42,9 +34,11 @@ _Nightfall.nvim_ is a clean and eye-friendly Neovim colorscheme designed to enha
 
 ## 🚀 Installation
 
-Install Nightfall.nvim with your favourite plugin manager. Calling `setup` is optional; without it every option keeps its default.
+Install the plugin, run `setup()` if you want to change defaults, then choose a flavor with `:colorscheme`.
 
-With [lazy.nvim](https://github.com/folke/lazy.nvim):
+`setup()` must run before `:colorscheme` for its options to apply.
+
+### lazy.nvim
 
 ```lua
 {
@@ -59,28 +53,86 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 }
 ```
 
-`setup` has to run before `:colorscheme` for its options to take effect.
+### mini.deps
 
-## ⚙️ Options
+```lua
+local add, now = MiniDeps.add, MiniDeps.now
+
+add({ source = "2giosangmitom/nightfall.nvim" })
+
+now(function()
+  require("nightfall").setup({})
+  vim.cmd.colorscheme("nightfall") -- nightfall, deeper-night, maron
+end)
+```
+
+### vim.pack (Neovim 0.12+)
+
+```lua
+vim.pack.add({
+  "https://github.com/2giosangmitom/nightfall.nvim",
+})
+
+require("nightfall").setup({})
+vim.cmd.colorscheme("nightfall") -- nightfall, deeper-night, maron
+```
+
+## ⚙️ Configuration
+
+Calling `setup()` is optional. These are the defaults:
 
 ```lua
 require("nightfall").setup({
-  transparent = false,          -- skip backgrounds so the terminal shows through
-  terminal_colors = true,       -- set the terminal_color_* globals
-  dim_inactive = false,         -- darken windows without the cursor
-  default_integrations = true,  -- start from every integration enabled
-  styles = { comments = { italic = true } },
-  integrations = { flash = { enabled = false } },
+  transparent = false,         -- remove background colors
+  terminal_colors = true,      -- set terminal_color_* globals
+  dim_inactive = false,        -- dim inactive windows
+  default_integrations = true, -- enable every integration by default
+  styles = {
+    comments = { italic = true },
+    keywords = { italic = true },
+  },
+  integrations = {
+    telescope = { enabled = true, style = "bordered" },
+    treesitter = { enabled = true, context = true },
+    flash = { enabled = true },
+  },
   color_overrides = {},
   highlight_overrides = {},
 })
 ```
 
-See `:h nightfall-config` for the full list and every default.
+See `:h nightfall-config` for every option and default integration.
 
-## 🎨 Customization
+### Pick integrations
 
-`color_overrides` replaces palette colors before highlights are built, so a replaced color reaches every group that uses it. `highlight_overrides` replaces highlight groups afterwards. Both are keyed by flavor name, or by `all` for every flavor, and a flavor's own entry wins over `all`. An entry of `highlight_overrides` is a table of groups, or a function that receives the palette and returns one.
+Every integration is enabled by default. Disable one by setting `enabled = false`:
+
+```lua
+require("nightfall").setup({
+  integrations = {
+    flash = { enabled = false },
+    telescope = { enabled = true, style = "borderless" },
+  },
+})
+```
+
+Start from no integrations and opt in one by one:
+
+```lua
+require("nightfall").setup({
+  default_integrations = false,
+  integrations = {
+    treesitter = { enabled = true, context = true },
+    native_lsp = { enabled = true, semantic_tokens = true },
+  },
+})
+```
+
+### Override colors and highlights
+
+`color_overrides` changes palette colors before highlights are generated. `highlight_overrides` changes highlight groups after generation.
+
+Both support `all` for every flavor and flavor-specific keys. Flavor-specific values win over `all`.
 
 ```lua
 require("nightfall").setup({
@@ -97,97 +149,40 @@ require("nightfall").setup({
 })
 ```
 
-Only the keys you name change; the rest of a group keeps the value the colorscheme gave it. See `:h nightfall-config` for details.
+## 🎛️ lualine
 
-## 🛠️ Integrations
-
-Every integration is on by default and takes at least `enabled`. Some take more: `fzf` and `telescope` accept a `style` of `"bordered"` or `"borderless"`, and `dap`, `mini`, `snacks`, `native_lsp` and `treesitter` have a switch per feature.
+Nightfall includes a matching lualine theme for each flavor:
 
 ```lua
-require("nightfall").setup({
-  integrations = {
-    telescope = { enabled = true, style = "borderless" },
-    treesitter = { enabled = true, context = true },
-    flash = { enabled = false },
-  },
+require("lualine").setup({
+  options = { theme = "nightfall" },
 })
 ```
 
-Set `default_integrations = false` to start from none of them and opt back in one at a time.
+## 🖥️ Extras
 
-### lualine
+Matching themes live in `extras/`:
 
-A matching [lualine](https://github.com/nvim-lualine/lualine.nvim) theme ships with each flavor:
+| Tool                                                | File                                      |
+| --------------------------------------------------- | ----------------------------------------- |
+| [Alacritty](https://alacritty.org)                  | `extras/alacritty/<flavor>.toml`          |
+| [lazygit](https://github.com/jesseduffield/lazygit) | `extras/lazygit/<flavor>.yaml`            |
+| [yazi](https://yazi-rs.github.io)                   | `extras/yazi/<flavor>.toml`               |
 
-```lua
-require("lualine").setup({ options = { theme = "nightfall" } })
-```
+## 🛠️ Development
 
-## 🖥️ Beyond Neovim
-
-The `extras/` directory carries matching themes for other tools, one file per flavor, generated from the same palettes.
-
-| Tool                                                | Where it goes                                                   |
-| --------------------------------------------------- | --------------------------------------------------------------- |
-| [Alacritty](https://alacritty.org)                  | Import `extras/alacritty/<flavor>.toml` from `alacritty.toml`   |
-| [lazygit](https://github.com/jesseduffield/lazygit) | Merge `extras/lazygit/<flavor>.yaml` into your lazygit config   |
-| [yazi](https://yazi-rs.github.io)                   | Copy `extras/yazi/<flavor>.toml` to `~/.config/yazi/theme.toml` |
-
-## 🤝 Contributing
-
-Contributions are welcome, whether they fix bugs, add an integration or improve the documentation.
-
-The repository uses [just](https://github.com/casey/just) for every task:
+This repo uses [just](https://github.com/casey/just):
 
 ```sh
-just deps      # clone mini.test and mini.doc into deps/
-just test      # run the test suite
-just fmt       # format with stylua
-just generate  # regenerate doc/nightfall.txt and extras/
-just ci        # everything the CI runs
+just deps      # clone development dependencies
+just test      # run tests
+just fmt       # format Lua
+just generate  # regenerate docs and extras
+just ci        # run CI checks
 ```
 
-`doc/nightfall.txt` and everything under `extras/` are generated, so change the source and run `just generate` rather than editing them by hand. CI fails if either is out of date.
-
-Adding an integration means one file at `lua/nightfall/groups/integrations/<name>.lua`, exporting `get(ctx, opts)`, plus an entry named `<name>` in the defaults in `lua/nightfall/config.lua`.
-
-For local development, set `vim.g.nightfall_no_cache = true` so every reload rebuilds the theme, and reload the plugin on save:
-
-```lua
-vim.g.nightfall_no_cache = true
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "*/lua/nightfall/**.lua",
-  group = vim.api.nvim_create_augroup("nightfall_dev", { clear = true }),
-  callback = function()
-    for module in pairs(package.loaded) do
-      if module:match("^nightfall") then package.loaded[module] = nil end
-    end
-
-    require("nightfall").setup({})
-    vim.cmd.colorscheme(vim.g.colors_name)
-    vim.notify("Nightfall reloaded", vim.log.levels.INFO, { title = "Nightfall" })
-  end,
-})
-```
-
-## ❤️ Support
-
-Enjoying Nightfall.nvim? Give it a 🌟 on GitHub and share it with others!
+`doc/nightfall.txt` and `extras/` are generated. Change the source files and run `just generate` instead of editing generated files by hand.
 
 ## 📜 License
 
-This project is licensed under the [MIT License](LICENSE).
-
-Thanks to all the amazing [contributors](https://github.com/2giosangmitom/nightfall.nvim/graphs/contributors) 💛
-
-[![Contributors](https://contrib.rocks/image?repo=2giosangmitom/nightfall.nvim)](https://github.com/2giosangmitom/nightfall.nvim/graphs/contributors)
-
-## 🎖️ Acknowledgments
-
-Nightfall.nvim owes gratitude to the following projects for their inspiration and contributions:
-
-- [Onedark Pro](https://github.com/olimorris/onedarkpro.nvim)
-- [Catppuccin](https://github.com/catppuccin/nvim)
-- [Nightfox](https://github.com/EdenEast/nightfox.nvim)
-- [Tokyonight](https://github.com/folke/tokyonight.nvim)
+[MIT](LICENSE)

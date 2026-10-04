@@ -87,20 +87,17 @@ T["validation"]["rejects an unknown option"] = function()
 end
 
 T["validation"]["rejects an option of the wrong type"] = function()
-  expect.error(function() config.setup({ transparent = "yes" }) end, "`transparent` expects a boolean")
+  expect.error(function() config.setup({ transparent = "yes" }) end, "transparent: expected boolean")
 end
 
 T["validation"]["rejects a malformed integration"] = function()
-  expect.error(
-    function() config.setup({ integrations = { flash = true } }) end,
-    "`integrations%.flash` expects a table"
-  )
+  expect.error(function() config.setup({ integrations = { flash = true } }) end, "integrations%.flash: expected table")
 end
 
 T["validation"]["rejects a malformed highlight override"] = function()
   expect.error(
     function() config.setup({ highlight_overrides = { all = "Normal" } }) end,
-    "`highlight_overrides%.all` expects a table or a function"
+    "highlight_overrides%.all: expected table|function"
   )
 end
 

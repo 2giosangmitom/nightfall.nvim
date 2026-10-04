@@ -163,38 +163,28 @@ M.defaults = {
 ---@private
 local options = vim.deepcopy(M.defaults)
 
---- Report a configuration mistake and where it was made.
----@param path string Dotted path of the offending key.
----@param expected string What that key accepts.
----@param got any What the user passed.
----@private
-local function reject(path, expected, got)
-  error(string.format("nightfall: `%s` expects %s, got %s", path, expected, type(got)), 0)
-end
-
 --- Reject unknown keys and values of the wrong type.
----@param user NightfallOptions
+---@param user NightfallOptions|nil
 ---@private
 local function validate(user)
+  vim.validate("opts", user, "table", true)
+  if user == nil then return end
+
   for key, value in pairs(user) do
     if M.defaults[key] == nil then error(string.format("nightfall: unknown option `%s`", key), 0) end
-
-    local expected = type(M.defaults[key])
-    if type(value) ~= expected then reject(key, "a " .. expected, value) end
+    vim.validate(key, value, type(M.defaults[key]))
   end
 
   for name, integration in pairs(user.integrations or {}) do
-    if type(integration) ~= "table" then reject("integrations." .. name, "a table", integration) end
+    vim.validate("integrations." .. name, integration, "table")
   end
 
   for flavor, colors in pairs(user.color_overrides or {}) do
-    if type(colors) ~= "table" then reject("color_overrides." .. flavor, "a table", colors) end
+    vim.validate("color_overrides." .. flavor, colors, "table")
   end
 
   for flavor, groups in pairs(user.highlight_overrides or {}) do
-    if type(groups) ~= "table" and type(groups) ~= "function" then
-      reject("highlight_overrides." .. flavor, "a table or a function", groups)
-    end
+    vim.validate("highlight_overrides." .. flavor, groups, { "table", "function" })
   end
 end
 
@@ -210,10 +200,10 @@ end
 ---   })
 --- <
 function M.setup(user)
-  user = user or {}
   validate(user)
+  user = user or {}
 
-  local base = vim.deepcopy(M.defaults)
+  local base = vim.tbl_deep_extend("force", {}, M.defaults)
   if user.default_integrations == false then base.integrations = {} end
 
   options = vim.tbl_deep_extend("force", base, user)
