@@ -53,7 +53,7 @@ function M.get(ctx)
     Underlined = { fg = ctx.accent, underline = true },
     Ignore = { fg = c.subtle },
     Error = { fg = c.red },
-    Todo = { fg = c.black, bg = c.sky, bold = true },
+    Todo = { fg = ctx.on_accent(), bg = c.sky, bold = true },
 
     -- Diff summary groups, used by `:h diff` and by plugins showing hunks.
     Added = { fg = c.green },

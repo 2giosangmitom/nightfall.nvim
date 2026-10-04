@@ -19,7 +19,7 @@ function M.get(ctx)
     GrugFarResultsHeader = { fg = c.cyan, bold = true },
     GrugFarResultsStats = { fg = c.gray },
     GrugFarResultsActionMessage = { fg = c.gold },
-    GrugFarResultsMatch = { fg = c.black, bg = c.gold },
+    GrugFarResultsMatch = { fg = ctx.on_accent(), bg = c.gold },
     GrugFarResultsMatchAdded = { fg = c.green },
     GrugFarResultsMatchRemoved = { fg = c.red, strikethrough = true },
     GrugFarResultsPath = { fg = accent, bold = true },

@@ -21,10 +21,10 @@ function M.get(ctx, opts)
     borderless = {
       FzfLuaNormal = { fg = c.fg, bg = sunken },
       FzfLuaBorder = { fg = sunken, bg = sunken },
-      FzfLuaTitle = { fg = c.black, bg = accent, bold = true },
+      FzfLuaTitle = { fg = ctx.on_accent(), bg = accent, bold = true },
       FzfLuaPreviewNormal = { fg = c.fg, bg = sunken },
       FzfLuaPreviewBorder = { fg = sunken, bg = sunken },
-      FzfLuaPreviewTitle = { fg = c.black, bg = c.green, bold = true },
+      FzfLuaPreviewTitle = { fg = ctx.on_accent(), bg = c.green, bold = true },
     },
   }
 
@@ -38,7 +38,7 @@ function M.get(ctx, opts)
     FzfLuaCursor = { fg = c.bg, bg = c.fg },
     FzfLuaCursorLine = { bg = c.overlay },
     FzfLuaCursorLineNr = { fg = accent, bg = c.overlay, bold = true },
-    FzfLuaSearch = { fg = c.black, bg = c.gold, bold = true },
+    FzfLuaSearch = { fg = ctx.on_accent(), bg = c.gold, bold = true },
     FzfLuaScrollBorderEmpty = { fg = c.border },
     FzfLuaScrollBorderFull = { fg = accent },
     FzfLuaScrollFloatEmpty = { bg = c.bg_alt },

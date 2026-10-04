@@ -369,6 +369,14 @@ T["options"]["dim inactive windows on request"] = function()
   expect.no_equality(dimmed, plain)
 end
 
+T["options"]["use readable light text on winter accents"] = function()
+  local highlights = build("winter").highlights
+  local colors = require("nightfall.palettes.winter")
+
+  expect.equality(highlights.Visual.bg, colors.overlay)
+  expect.equality(highlights.LazyH1.fg, colors.bg)
+end
+
 T["options"]["skip terminal colors when they are off"] = function()
   expect.equality(build("nightfall", { terminal_colors = false }).terminal, {})
 end

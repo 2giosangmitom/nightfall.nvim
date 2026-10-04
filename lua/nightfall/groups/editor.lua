@@ -64,16 +64,16 @@ function M.get(ctx)
 
     -- Search and substitution
     Search = {
-      fg = c.black,
+      fg = ctx.on_accent(),
       bg = ctx.vary({ maron = c.lime }, c.cream),
     },
     CurSearch = {
-      fg = c.black,
+      fg = ctx.on_accent(),
       bg = ctx.vary({ nightfall = c.pink, ["deeper-night"] = c.coral, maron = c.gold }, c.coral),
       bold = true,
     },
-    IncSearch = { fg = c.black, bg = c.peach, bold = true },
-    Substitute = { fg = c.black, bg = accent, bold = true },
+    IncSearch = { fg = ctx.on_accent(), bg = c.peach, bold = true },
+    Substitute = { fg = ctx.on_accent(), bg = accent, bold = true },
     QuickFixLine = { bg = c.overlay, bold = true },
 
     -- Diffs

@@ -26,7 +26,7 @@ function M.get(ctx)
   for keyword, name in pairs(KEYWORDS) do
     local fg = c[name]
 
-    result["TodoBg" .. keyword] = { fg = c.black, bg = fg, bold = true }
+    result["TodoBg" .. keyword] = { fg = ctx.on_accent(), bg = fg, bold = true }
     result["TodoFg" .. keyword] = { fg = fg }
     result["TodoSign" .. keyword] = { fg = fg }
   end

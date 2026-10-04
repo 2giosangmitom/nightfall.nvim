@@ -43,9 +43,9 @@ function M.get(ctx, opts)
     MiniDepsMsgBreaking = { fg = c.orange, bold = true },
     MiniDepsPlaceholder = { fg = c.subtle },
     MiniDepsTitle = { fg = accent, bold = true },
-    MiniDepsTitleError = { fg = c.black, bg = c.red, bold = true },
-    MiniDepsTitleSame = { fg = c.black, bg = c.teal, bold = true },
-    MiniDepsTitleUpdate = { fg = c.black, bg = c.green, bold = true },
+    MiniDepsTitleError = { fg = ctx.on_accent(), bg = c.red, bold = true },
+    MiniDepsTitleSame = { fg = ctx.on_accent(), bg = c.teal, bold = true },
+    MiniDepsTitleUpdate = { fg = ctx.on_accent(), bg = c.green, bold = true },
 
     -- mini.diff
     MiniDiffSignAdd = { fg = c.green },
@@ -69,13 +69,13 @@ function M.get(ctx, opts)
     MiniFilesTitleFocused = { fg = accent, bg = float_bg, bold = true },
 
     -- mini.hipatterns
-    MiniHipatternsFixme = { fg = c.black, bg = c.red, bold = true },
-    MiniHipatternsHack = { fg = c.black, bg = c.yellow, bold = true },
-    MiniHipatternsNote = { fg = c.black, bg = c.teal, bold = true },
-    MiniHipatternsTodo = { fg = c.black, bg = c.sky, bold = true },
+    MiniHipatternsFixme = { fg = ctx.on_accent(), bg = c.red, bold = true },
+    MiniHipatternsHack = { fg = ctx.on_accent(), bg = c.yellow, bold = true },
+    MiniHipatternsNote = { fg = ctx.on_accent(), bg = c.teal, bold = true },
+    MiniHipatternsTodo = { fg = ctx.on_accent(), bg = c.sky, bold = true },
 
     -- mini.jump and mini.jump2d
-    MiniJump = { fg = c.black, bg = c.gold, bold = true },
+    MiniJump = { fg = ctx.on_accent(), bg = c.gold, bold = true },
     MiniJump2dDim = { fg = c.subtle },
     MiniJump2dSpot = { fg = c.pink, bold = true, nocombine = true },
     MiniJump2dSpotAhead = { fg = c.cyan, bg = float_bg, nocombine = true },
@@ -126,12 +126,12 @@ function M.get(ctx, opts)
     MiniStatuslineFileinfo = { fg = c.silver, bg = c.surface },
     MiniStatuslineFilename = { fg = c.gray, bg = c.bg_alt },
     MiniStatuslineInactive = { fg = c.subtle, bg = ctx.solid(c.bg_dim) },
-    MiniStatuslineModeCommand = { fg = c.black, bg = c.gold, bold = true },
-    MiniStatuslineModeInsert = { fg = c.black, bg = c.green, bold = true },
-    MiniStatuslineModeNormal = { fg = c.black, bg = accent, bold = true },
-    MiniStatuslineModeOther = { fg = c.black, bg = c.teal, bold = true },
-    MiniStatuslineModeReplace = { fg = c.black, bg = c.coral, bold = true },
-    MiniStatuslineModeVisual = { fg = c.black, bg = c.pink, bold = true },
+    MiniStatuslineModeCommand = { fg = ctx.on_accent(), bg = c.gold, bold = true },
+    MiniStatuslineModeInsert = { fg = ctx.on_accent(), bg = c.green, bold = true },
+    MiniStatuslineModeNormal = { fg = ctx.on_accent(), bg = accent, bold = true },
+    MiniStatuslineModeOther = { fg = ctx.on_accent(), bg = c.teal, bold = true },
+    MiniStatuslineModeReplace = { fg = ctx.on_accent(), bg = c.coral, bold = true },
+    MiniStatuslineModeVisual = { fg = ctx.on_accent(), bg = c.pink, bold = true },
 
     -- mini.surround
     MiniSurround = { link = "IncSearch" },
@@ -143,7 +143,7 @@ function M.get(ctx, opts)
     MiniTablineModifiedCurrent = { fg = c.gold, bg = ctx.solid(c.bg), bold = true },
     MiniTablineModifiedHidden = { fg = ctx.darken(c.gold, 0.6, c.bg), bg = ctx.solid(c.bg_dim) },
     MiniTablineModifiedVisible = { fg = c.gold, bg = ctx.solid(c.bg_dim) },
-    MiniTablineTabpagesection = { fg = c.black, bg = accent, bold = true },
+    MiniTablineTabpagesection = { fg = ctx.on_accent(), bg = accent, bold = true },
     MiniTablineVisible = { fg = c.silver, bg = ctx.solid(c.bg_dim) },
 
     -- mini.test

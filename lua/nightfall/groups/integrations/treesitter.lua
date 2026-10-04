@@ -98,10 +98,10 @@ function M.get(ctx, opts)
     -- Comments
     ["@comment"] = { link = "Comment" },
     ["@comment.documentation"] = { link = "SpecialComment" },
-    ["@comment.error"] = { fg = c.black, bg = c.red, bold = true },
-    ["@comment.warning"] = { fg = c.black, bg = c.yellow, bold = true },
-    ["@comment.todo"] = { fg = c.black, bg = c.cyan, bold = true },
-    ["@comment.note"] = { fg = c.black, bg = c.cyan, bold = true },
+    ["@comment.error"] = { fg = ctx.on_accent(), bg = c.red, bold = true },
+    ["@comment.warning"] = { fg = ctx.on_accent(), bg = c.yellow, bold = true },
+    ["@comment.todo"] = { fg = ctx.on_accent(), bg = c.cyan, bold = true },
+    ["@comment.note"] = { fg = ctx.on_accent(), bg = c.cyan, bold = true },
 
     -- Markup
     ["@markup"] = { fg = c.fg },

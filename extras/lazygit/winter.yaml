@@ -15,7 +15,7 @@ gui:
     optionsTextColor:
       - "#087F9B"
     selectedLineBgColor:
-      - "#E5ECF6"
+      - "#C4D2E4"
     inactiveViewSelectedLineBgColor:
       - "#D3DCE8"
     defaultFgColor:

@@ -17,7 +17,7 @@ cursor = "#245EA8"
 
 [colors.selection]
 text = "#273548"
-background = "#E5ECF6"
+background = "#C4D2E4"
 
 [colors.search]
 matches = { foreground = "#17202D", background = "#6B5B24" }

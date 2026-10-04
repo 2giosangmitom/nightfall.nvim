@@ -15,7 +15,7 @@ function M.get(ctx)
     NeogitFold = { fg = c.border },
     NeogitFilePath = { fg = c.sky, italic = true },
     NeogitSectionHeader = { fg = accent, bold = true },
-    NeogitCommitViewHeader = { fg = c.black, bg = c.teal, bold = true },
+    NeogitCommitViewHeader = { fg = ctx.on_accent(), bg = c.teal, bold = true },
     NeogitCursorLine = { bg = c.bg_alt },
 
     NeogitHunkHeader = { fg = c.silver, bg = c.surface },

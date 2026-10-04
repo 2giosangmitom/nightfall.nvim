@@ -23,7 +23,7 @@ function M.get(ctx)
     RenderMarkdownLink = { fg = role("link"), underline = true },
     RenderMarkdownWikiLink = { fg = role("link"), underline = true },
     RenderMarkdownHtmlComment = { link = "Comment" },
-    RenderMarkdownInlineHighlight = { fg = c.black, bg = c.gold },
+    RenderMarkdownInlineHighlight = { fg = ctx.on_accent(), bg = c.gold },
 
     RenderMarkdownTableHead = { fg = ctx.accent, bold = true },
     RenderMarkdownTableRow = { fg = c.gray },

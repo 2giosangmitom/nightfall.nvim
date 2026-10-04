@@ -33,7 +33,7 @@ function M.get(ctx)
     NvimTreeModifiedFile = { fg = c.gold },
     NvimTreeIndentMarker = { fg = c.border },
     NvimTreeBookmark = { fg = c.gold },
-    NvimTreeWindowPicker = { fg = c.black, bg = accent, bold = true },
+    NvimTreeWindowPicker = { fg = ctx.on_accent(), bg = accent, bold = true },
     NvimTreeLiveFilterPrefix = { fg = accent, bold = true },
     NvimTreeLiveFilterValue = { fg = c.fg, bold = true },
 

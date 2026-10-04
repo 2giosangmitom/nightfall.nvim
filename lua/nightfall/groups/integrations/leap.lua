@@ -9,10 +9,10 @@ function M.get(ctx)
 
   return {
     LeapBackdrop = { fg = c.subtle },
-    LeapMatch = { fg = c.black, bg = ctx.vary({ nightfall = c.cyan }, c.sky), bold = true },
-    LeapLabel = { fg = c.black, bg = c.pink, bold = true },
-    LeapLabelPrimary = { fg = c.black, bg = c.pink, bold = true },
-    LeapLabelSecondary = { fg = c.black, bg = c.gold, bold = true },
+    LeapMatch = { fg = ctx.on_accent(), bg = ctx.vary({ nightfall = c.cyan }, c.sky), bold = true },
+    LeapLabel = { fg = ctx.on_accent(), bg = c.pink, bold = true },
+    LeapLabelPrimary = { fg = ctx.on_accent(), bg = c.pink, bold = true },
+    LeapLabelSecondary = { fg = ctx.on_accent(), bg = c.gold, bold = true },
   }
 end
 

@@ -29,7 +29,7 @@ function M.get(ctx)
     BufferLineOffsetSeparator = { fg = c.border, bg = fill_bg },
     BufferLineTruncMarker = { fg = c.border, bg = fill_bg },
     BufferLineTab = { fg = c.subtle, bg = plain_bg },
-    BufferLineTabSelected = { fg = c.black, bg = accent, bold = true },
+    BufferLineTabSelected = { fg = ctx.on_accent(), bg = accent, bold = true },
     BufferLineTabSeparator = { fg = c.bg_dim, bg = plain_bg },
     BufferLineTabSeparatorSelected = { fg = c.bg_dim, bg = accent },
     BufferLineTabClose = { fg = c.red, bg = fill_bg },

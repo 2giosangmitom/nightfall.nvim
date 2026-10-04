@@ -9,7 +9,7 @@ return {
   bg = "#F7F9FC",
   bg_alt = "#FAFBFD",
   surface = "#FFFFFF",
-  overlay = "#E5ECF6",
+  overlay = "#C4D2E4",
   border = "#D3DCE8",
 
   -- Foregrounds, quietest first.

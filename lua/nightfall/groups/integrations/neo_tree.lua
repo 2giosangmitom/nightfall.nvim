@@ -14,7 +14,7 @@ function M.get(ctx)
     NeoTreeEndOfBuffer = { fg = c.bg_dim },
     NeoTreeFloatTitle = { link = "FloatTitle" },
     NeoTreeFloatBorder = { link = "FloatBorder" },
-    NeoTreeTitleBar = { fg = c.black, bg = ctx.vary({ maron = c.peach }, accent), bold = true },
+    NeoTreeTitleBar = { fg = ctx.on_accent(), bg = ctx.vary({ maron = c.peach }, accent), bold = true },
 
     NeoTreeRootName = { fg = accent, bold = true },
     NeoTreeDirectoryName = { fg = c.fg },

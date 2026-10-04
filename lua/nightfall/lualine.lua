@@ -37,7 +37,7 @@ function M.get(flavor)
   local function sections(mode)
     local accent = c[MODES[mode][flavor]]
     return {
-      a = { fg = c.black, bg = accent },
+      a = { fg = ctx.on_accent(), bg = accent },
       b = { fg = accent, bg = raised },
     }
   end

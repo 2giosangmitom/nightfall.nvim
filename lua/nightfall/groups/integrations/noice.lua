@@ -40,7 +40,7 @@ function M.get(ctx)
     NoiceLspProgressTitle = { fg = c.gray },
     NoiceLspProgressClient = { fg = c.cyan, bold = true },
 
-    NoiceFormatProgressDone = { fg = c.black, bg = c.green },
+    NoiceFormatProgressDone = { fg = ctx.on_accent(), bg = c.green },
     NoiceFormatProgressTodo = { fg = c.silver, bg = c.surface },
     NoiceFormatEvent = { fg = c.gray },
     NoiceFormatKind = { fg = c.subtle },

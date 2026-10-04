@@ -24,9 +24,9 @@ function M.get(ctx, opts)
       TelescopeBorder = { fg = sunken, bg = sunken },
       TelescopePromptNormal = { fg = c.fg, bg = ctx.solid(c.surface) },
       TelescopePromptBorder = { fg = c.surface, bg = ctx.solid(c.surface) },
-      TelescopePromptTitle = { fg = c.black, bg = accent, bold = true },
-      TelescopeResultsTitle = { fg = c.black, bg = c.teal, bold = true },
-      TelescopePreviewTitle = { fg = c.black, bg = c.green, bold = true },
+      TelescopePromptTitle = { fg = ctx.on_accent(), bg = accent, bold = true },
+      TelescopeResultsTitle = { fg = ctx.on_accent(), bg = c.teal, bold = true },
+      TelescopePreviewTitle = { fg = ctx.on_accent(), bg = c.green, bold = true },
     },
   }
 
