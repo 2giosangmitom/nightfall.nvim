@@ -23,6 +23,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: extractions/setup-just@v3
+      - run: just deps
       - uses: stevearc/nvim-typecheck-action@v2
         with:
           configpath: .luarc.json
