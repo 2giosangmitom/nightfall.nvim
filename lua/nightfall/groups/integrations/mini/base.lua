@@ -1,8 +1,4 @@
---- https://github.com/nvim-mini/mini.nvim
----
---- Most of the family only needs plain colors, so those are always contributed.
---- The three modules that change how text itself looks, rather than how a
---- plugin window looks, keep their own switch under `integrations.mini`.
+--- Always-enabled mini.nvim highlights, grouped by module below.
 
 local U = require("nightfall.color")
 local palette = require("nightfall.palette")
@@ -14,13 +10,12 @@ local M = {}
 ---@param flavor NightfallFlavor
 ---@return table<string,table>
 function M.get(c, o, flavor)
-  local opts = o.integrations.mini
   local accent = palette.accent(c, flavor)
   local on_accent = palette.on_accent(c, flavor)
   local float_bg = U.background(c.bg_dim, o.transparent)
   local editor_bg = U.background(c.bg, o.transparent)
 
-  local result = {
+  return {
     -- mini.animate
     MiniAnimateCursor = { reverse = true, nocombine = true },
     MiniAnimateNormalFloat = { link = "NormalFloat" },
@@ -158,34 +153,6 @@ function M.get(c, o, flavor)
     MiniTestFail = { fg = c.red, bold = true },
     MiniTestPass = { fg = c.green, bold = true },
   }
-
-  if opts.icons then
-    result = vim.tbl_extend("error", result, {
-      MiniIconsAzure = { fg = c.sky },
-      MiniIconsBlue = { fg = c.blue },
-      MiniIconsCyan = { fg = c.cyan },
-      MiniIconsGreen = { fg = c.green },
-      MiniIconsGrey = { fg = c.silver },
-      MiniIconsOrange = { fg = c.orange },
-      MiniIconsPurple = { fg = c.purple },
-      MiniIconsRed = { fg = c.coral },
-      MiniIconsYellow = { fg = c.yellow },
-    })
-  end
-
-  if opts.trailspace then
-    result = vim.tbl_extend("error", result, { MiniTrailspace = { bg = U.blend(c.red, c.bg, 0.5) } })
-  end
-
-  if opts.indentscope then
-    result = vim.tbl_extend("error", result, {
-      MiniIndentscopePrefix = { nocombine = true },
-      MiniIndentscopeSymbol = { fg = accent },
-      MiniIndentscopeSymbolOff = { fg = c.border },
-    })
-  end
-
-  return result
 end
 
 return M
