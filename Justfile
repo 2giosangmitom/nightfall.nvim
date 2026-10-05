@@ -32,6 +32,10 @@ fmt:
 fmt-check:
     stylua --check .
 
+# Typecheck Lua with the installed Neovim runtime and development dependencies.
+typecheck:
+    VIMRUNTIME="$(nvim --headless -u NONE -c 'lua io.write(vim.env.VIMRUNTIME)' -c 'qa!')" lua-language-server --check=. --configpath=.luarc.json --checklevel=Warning --logpath="${XDG_CACHE_HOME:-$HOME/.cache}/nightfall/luals"
+
 # Regenerate everything that is committed but generated.
 generate: docs extras
 

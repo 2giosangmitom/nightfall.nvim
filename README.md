@@ -180,12 +180,15 @@ This repo uses [just](https://github.com/casey/just):
 ```sh
 just deps      # clone development dependencies
 just test      # run tests
+just typecheck # check Lua types with lua-language-server
 just fmt       # format Lua
 just generate  # regenerate docs and extras
 just ci        # run CI checks
 ```
 
 `doc/nightfall.txt` and `extras/` are generated. Change the source files and run `just generate` instead of editing generated files by hand.
+
+Typechecking requires `lua-language-server` on `PATH` and the dependencies installed by `just deps`. `.luarc.json` includes the Neovim runtime and Mini libraries; `just typecheck` resolves `$VIMRUNTIME` from the installed Neovim.
 
 ### Code layout
 
