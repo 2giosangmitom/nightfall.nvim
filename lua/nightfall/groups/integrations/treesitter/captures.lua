@@ -10,11 +10,10 @@ local palette = require("nightfall.palette")
 local M = {}
 
 ---@param c NightfallPalette
----@param o NightfallOptions
+---@param styles NightfallStyles
 ---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(c, o, flavor)
-  local opts, styles = o.integrations.treesitter, o.styles or {}
+function M.get(c, styles, flavor)
   local winter = flavor == "winter"
   local deeper = flavor == "deeper-night"
   local maron = flavor == "maron"
@@ -27,7 +26,7 @@ function M.get(c, o, flavor)
   --- Colors for the six markup heading levels.
   local headings = { winter and c.teal or c.green, c.pink, c.gold, c.lime, c.blue, c.cream }
 
-  local result = {
+  return {
     -- Variables
     ["@variable"] = { link = "Identifier" },
     ["@variable.builtin"] = {
@@ -159,18 +158,6 @@ function M.get(c, o, flavor)
     ["@tag.attribute"] = { fg = winter and c.blue or c.cyan, italic = true },
     ["@tag.delimiter"] = { fg = winter and c.blue or c.cyan },
   }
-
-  if opts.context then
-    result = vim.tbl_extend("error", result, {
-      TreesitterContext = { bg = U.background(c.bg_alt, o.transparent) },
-      TreesitterContextBottom = { sp = c.border, underline = true },
-      TreesitterContextLineNumber = { fg = c.subtle, bg = U.background(c.bg_alt, o.transparent) },
-      TreesitterContextLineNumberBottom = { sp = c.border, underline = true },
-      TreesitterContextSeparator = { fg = c.border },
-    })
-  end
-
-  return result
 end
 
 return M
