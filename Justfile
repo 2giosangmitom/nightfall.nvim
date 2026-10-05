@@ -40,4 +40,4 @@ typecheck:
 generate: docs extras
 
 # Run everything the CI runs.
-ci: fmt-check test generate
+ci: fmt-check typecheck test generate
