@@ -198,6 +198,6 @@ Matching themes for other tools are available under `extras/`.
 
 Issues and pull requests are welcome.
 
-## License
+Thanks to all the amazing [contributors](https://github.com/2giosangmitom/nightfall.nvim/graphs/contributors) 💛
 
-[MIT](LICENSE)
+[![Contributors](https://contrib.rocks/image?repo=2giosangmitom/nightfall.nvim)](https://github.com/2giosangmitom/nightfall.nvim/graphs/contributors)
