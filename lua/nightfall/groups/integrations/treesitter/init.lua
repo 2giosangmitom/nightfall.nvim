@@ -1,8 +1,11 @@
 --- Treesitter captures and optional context window highlights.
 local M = {}
 
+---@class NightfallTreesitterOptions: NightfallIntegrationOptions
+---@field context? boolean
+
 ---@param c NightfallPalette
----@param o NightfallIntegrationOptions
+---@param o NightfallTreesitterOptions
 ---@param flavor NightfallFlavor
 ---@return table<string,table>
 function M.get(c, o, flavor)

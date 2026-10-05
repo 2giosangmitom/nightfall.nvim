@@ -87,15 +87,19 @@ T["validation"]["rejects an unknown option"] = function()
 end
 
 T["validation"]["rejects an option of the wrong type"] = function()
+  -- Intentionally invalid input exercises runtime validation.
+  ---@diagnostic disable-next-line: assign-type-mismatch
   expect.error(function() config.setup({ transparent = "yes" }) end, "transparent: expected boolean")
 end
 
 T["validation"]["rejects a malformed integration"] = function()
+  ---@diagnostic disable-next-line: assign-type-mismatch
   expect.error(function() config.setup({ integrations = { flash = true } }) end, "integrations%.flash: expected table")
 end
 
 T["validation"]["rejects a malformed highlight override"] = function()
   expect.error(
+    ---@diagnostic disable-next-line: assign-type-mismatch
     function() config.setup({ highlight_overrides = { all = "Normal" } }) end,
     "highlight_overrides%.all: expected table|function"
   )

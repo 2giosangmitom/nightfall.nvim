@@ -72,7 +72,7 @@ end
 T["fingerprint"]["moves when a source file is rewritten"] = function()
   local source = "lua/nightfall/color.lua"
   local before = cache.fingerprint()
-  local stat = vim.uv.fs_stat(source)
+  local stat = assert(vim.uv.fs_stat(source))
 
   -- An hour into the future, so this file is the newest whatever the others say.
   vim.uv.fs_utime(source, stat.atime.sec, os.time() + 3600)

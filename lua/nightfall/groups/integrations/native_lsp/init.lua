@@ -1,8 +1,11 @@
 --- Neovim's built-in diagnostics and LSP support.
 local M = {}
 
+---@class NightfallNativeLspOptions: NightfallIntegrationOptions
+---@field semantic_tokens? boolean
+
 ---@param c NightfallPalette
----@param o NightfallIntegrationOptions
+---@param o NightfallNativeLspOptions
 ---@param flavor NightfallFlavor
 ---@return table<string,table>
 function M.get(c, o, flavor)

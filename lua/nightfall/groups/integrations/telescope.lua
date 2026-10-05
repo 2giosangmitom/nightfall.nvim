@@ -5,8 +5,11 @@ local palette = require("nightfall.palette")
 
 local M = {}
 
+---@class NightfallTelescopeOptions: NightfallIntegrationOptions
+---@field style? "bordered"|"borderless"
+
 ---@param c NightfallPalette
----@param o NightfallIntegrationOptions
+---@param o NightfallTelescopeOptions
 ---@param flavor NightfallFlavor
 ---@return table<string,table>
 function M.get(c, o, flavor)

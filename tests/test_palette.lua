@@ -10,6 +10,8 @@ end
 T["get"] = MiniTest.new_set()
 
 T["get"]["rejects an unknown flavor"] = function()
+  -- Intentionally invalid input exercises runtime validation.
+  ---@diagnostic disable-next-line: param-type-mismatch
   expect.error(function() palette.get("solarized") end, "unknown flavor")
 end
 

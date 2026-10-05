@@ -432,7 +432,7 @@ T["integrations"]["contribute their groups"] = function()
 end
 
 T["integrations"]["each contribute at least one group"] = function()
-  local config_defaults = require("nightfall.config").defaults.integrations
+  local config_defaults = assert(require("nightfall.config").defaults.integrations)
 
   for name in pairs(config_defaults) do
     local highlights =

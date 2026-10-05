@@ -6,8 +6,11 @@ local palette = require("nightfall.palette")
 
 local M = {}
 
+---@class NightfallDapOptions: NightfallIntegrationOptions
+---@field ui? boolean
+
 ---@param c NightfallPalette
----@param o NightfallIntegrationOptions
+---@param o NightfallDapOptions
 ---@param flavor NightfallFlavor
 ---@return table<string,table>
 function M.get(c, o, flavor)

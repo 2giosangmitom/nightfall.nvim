@@ -1,8 +1,13 @@
 --- https://github.com/nvim-mini/mini.nvim
 local M = {}
 
+---@class NightfallMiniOptions: NightfallIntegrationOptions
+---@field icons? boolean
+---@field trailspace? boolean
+---@field indentscope? boolean
+
 ---@param c NightfallPalette
----@param o NightfallIntegrationOptions
+---@param o NightfallMiniOptions
 ---@param flavor NightfallFlavor
 ---@return table<string,table>
 function M.get(c, o, flavor)

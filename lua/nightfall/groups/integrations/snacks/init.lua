@@ -1,8 +1,13 @@
 --- https://github.com/folke/snacks.nvim
 local M = {}
 
+---@class NightfallSnacksOptions: NightfallIntegrationOptions
+---@field dashboard? boolean
+---@field indent? boolean
+---@field picker? boolean
+
 ---@param c NightfallPalette
----@param o NightfallIntegrationOptions
+---@param o NightfallSnacksOptions
 ---@param flavor NightfallFlavor
 ---@return table<string,table>
 function M.get(c, o, flavor)
