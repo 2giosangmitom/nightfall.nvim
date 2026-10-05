@@ -31,4 +31,20 @@ T["feature switches"]["only remove their own groups"] = function(name, feature, 
   end
 end
 
+T["scoped settings"] = function()
+  for _, flavor in ipairs(require("nightfall").flavors) do
+    local colors = require("nightfall.palette").get(flavor)
+    for name, defaults in pairs(config.defaults.integrations) do
+      local settings = vim.tbl_extend("force", vim.deepcopy(defaults), {
+        transparent = true,
+        styles = vim.deepcopy(config.defaults.styles),
+      })
+      local before = vim.deepcopy(settings)
+      local groups = require("nightfall.groups.integrations." .. name).get(colors, settings, flavor)
+      expect.equality(vim.tbl_count(groups) > 0, true, { fail_reason = name })
+      expect.equality(settings, before, { fail_reason = name .. " mutated its settings" })
+    end
+  end
+end
+
 return T

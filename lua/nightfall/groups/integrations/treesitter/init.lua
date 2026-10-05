@@ -2,11 +2,11 @@
 local M = {}
 
 ---@param c NightfallPalette
----@param o NightfallOptions
+---@param o NightfallIntegrationOptions
 ---@param flavor NightfallFlavor
 ---@return table<string,table>
 function M.get(c, o, flavor)
-  local opts = o.integrations.treesitter
+  local opts = o
   local result = require("nightfall.groups.integrations.treesitter.captures").get(c, o.styles or {}, flavor)
   if opts.context then
     result =

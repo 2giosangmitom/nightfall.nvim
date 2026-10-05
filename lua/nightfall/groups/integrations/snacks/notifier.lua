@@ -3,7 +3,7 @@ local U = require("nightfall.color")
 local M = {}
 
 ---@param c NightfallPalette
----@param o NightfallOptions
+---@param o NightfallIntegrationOptions
 ---@return table<string,table>
 function M.get(c, o)
   local float_bg = U.background(c.bg_dim, o.transparent)

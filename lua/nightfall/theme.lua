@@ -6,6 +6,11 @@ local palette = require("nightfall.palette")
 
 local M = {}
 
+---@class NightfallIntegrationOptions: table
+---@field transparent boolean
+---@field styles NightfallStyles
+---@private
+
 ---@tag NightfallTheme
 ---@class NightfallTheme
 ---@field highlights table<string,table> Groups ready for |nvim_set_hl()|.
@@ -72,7 +77,12 @@ local function integration_highlights(colors, options, flavor)
     if opts.enabled then
       local ok, module = pcall(require, "nightfall.groups.integrations." .. name)
       if ok then
-        result = vim.tbl_extend("force", result, module.get(colors, options, flavor))
+        -- Integrations receive their own settings plus shared rendering options.
+        local settings = vim.tbl_extend("force", opts, {
+          transparent = options.transparent,
+          styles = options.styles,
+        })
+        result = vim.tbl_extend("force", result, module.get(colors, settings, flavor))
       else
         vim.notify_once(
           string.format("nightfall: no integration named %q", name),

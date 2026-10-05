@@ -2,11 +2,11 @@
 local M = {}
 
 ---@param c NightfallPalette
----@param o NightfallOptions
+---@param o NightfallIntegrationOptions
 ---@param flavor NightfallFlavor
 ---@return table<string,table>
 function M.get(c, o, flavor)
-  local opts = o.integrations.native_lsp
+  local opts = o
   local result = vim.tbl_extend(
     "error",
     require("nightfall.groups.integrations.native_lsp.diagnostics").get(c, flavor),

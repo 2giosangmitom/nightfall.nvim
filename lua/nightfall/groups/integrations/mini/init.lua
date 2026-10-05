@@ -2,11 +2,11 @@
 local M = {}
 
 ---@param c NightfallPalette
----@param o NightfallOptions
+---@param o NightfallIntegrationOptions
 ---@param flavor NightfallFlavor
 ---@return table<string,table>
 function M.get(c, o, flavor)
-  local opts = o.integrations.mini
+  local opts = o
   local result = require("nightfall.groups.integrations.mini.base").get(c, o, flavor)
 
   if opts.icons then

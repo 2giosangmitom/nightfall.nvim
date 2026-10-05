@@ -7,11 +7,11 @@ local palette = require("nightfall.palette")
 local M = {}
 
 ---@param c NightfallPalette
----@param o NightfallOptions
+---@param o NightfallIntegrationOptions
 ---@param flavor NightfallFlavor
 ---@return table<string,table>
 function M.get(c, o, flavor)
-  local opts = o.integrations.dap
+  local opts = o
   local accent = palette.accent(c, flavor)
 
   local result = {
