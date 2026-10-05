@@ -18,8 +18,8 @@
 ---
 --- `highlight_overrides` replaces highlight groups after they are built. An
 --- entry is a table of groups, or a function receiving the palette and
---- returning one, under `all` or under a flavor name. Keys a group does not
---- mention keep the value the colorscheme gave them.
+--- returning one, under `all` or under a flavor name. Groups and attributes
+--- you do not mention keep their colorscheme values.
 ---
 --- >lua
 ---   require("nightfall").setup({

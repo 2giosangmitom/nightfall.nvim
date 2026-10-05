@@ -1,7 +1,6 @@
---- Pure helpers for manipulating `#RRGGBB` color strings.
+--- Helpers for manipulating `#RRGGBB` color strings.
 ---
---- Every function here is free of side effects and of any knowledge about the
---- active flavor, which makes them safe to call from anywhere and easy to test.
+--- Pure functions with no dependency on the active flavor.
 ---@tag nightfall-color
 ---@toc_entry Colors
 

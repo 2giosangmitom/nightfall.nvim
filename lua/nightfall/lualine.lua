@@ -1,7 +1,8 @@
 --- A lualine theme matching each flavor.
 ---
---- Set it by name, as `require("lualine").setup({ options = { theme =
---- "nightfall" } })`, or read it directly through |nightfall.lualine.get()|.
+--- Set it by name with
+--- `require("lualine").setup({ options = { theme = "nightfall" } })`,
+--- or read it directly through |nightfall.lualine.get()|.
 ---@tag nightfall-lualine
 ---@toc_entry Lualine
 

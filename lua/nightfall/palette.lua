@@ -23,11 +23,11 @@ local M = {}
 ---@field border string Window separators, indent guides and float borders.
 --- Foregrounds, quietest first.
 ---@field black string Near black, for text drawn on top of a hue.
----@field subtle string Line numbers, listchars and other quiet furniture.
+---@field subtle string Line numbers, listchars and other background UI.
 ---@field gray string Comments and disabled text.
----@field silver string Muted text that still has to be read.
+---@field silver string Muted but readable text.
 ---@field fg string The default foreground.
----@field latte string Emphasised text, just above `fg`.
+---@field latte string Emphasised text, brighter than `fg`.
 ---@field white string The brightest foreground.
 --- Hues, warm to cool.
 ---@field red string

@@ -1,4 +1,4 @@
---- Assembly of a complete theme from the individual group modules.
+--- Build the full highlight set from the group modules.
 ---@tag nightfall-theme
 ---@toc_entry Themes
 

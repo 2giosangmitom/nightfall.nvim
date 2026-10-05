@@ -1,23 +1,22 @@
                                                                 *nightfall.nvim*
-A clean, eye-friendly Neovim colorscheme.
+A Dracula-inspired colorscheme for Neovim.
 
 MIT License Copyright (c) 2024 Vo Quang Chien
 
-Nightfall ships three dark flavors and one light flavor that share one palette vocabulary, so every
-flavor covers the same highlight groups and the same plugin integrations.
+Three dark flavors and one light flavor share one palette vocabulary, so
+every flavor covers the same highlight groups and plugin integrations.
 
 Flavors ~
 
-- `nightfall`: dark and vibrant, a violet-leaning take on Dracula.
-- `deeper-night`: pastels on a blue-black night, for focus.
-- `maron`: beige and dusty earth tones on a near-black background.
-- `winter`: a cold, frosted light theme with navy text and blue accents.
+- `nightfall`: dark, vibrant, violet-leaning.
+- `deeper-night`: dark, blue-black background with pastel accents.
+- `maron`: dark, near-black background with beige and earth tones.
+- `winter`: light, navy text with blue accents.
 
 Beyond Neovim ~
 
-The `extras/` directory of this repository carries matching themes for
-Alacritty, lazygit and yazi, one file per flavor, generated from the same
-palettes.
+`extras/` ships matching themes for Alacritty, lazygit and yazi, one file
+per flavor, generated from the same palettes.
 
 ------------------------------------------------------------------------------
 Table of contents
@@ -79,8 +78,8 @@ Overriding highlights ~
 
 `highlight_overrides` replaces highlight groups after they are built. An
 entry is a table of groups, or a function receiving the palette and
-returning one, under `all` or under a flavor name. Keys a group does not
-mention keep the value the colorscheme gave them.
+returning one, under `all` or under a flavor name. Groups and attributes
+you do not mention keep their colorscheme values.
 
 >lua
   require("nightfall").setup({
@@ -270,11 +269,11 @@ Fields ~
 {border} `(string)` Window separators, indent guides and float borders.
 Foregrounds, quietest first.
 {black} `(string)` Near black, for text drawn on top of a hue.
-{subtle} `(string)` Line numbers, listchars and other quiet furniture.
+{subtle} `(string)` Line numbers, listchars and other background UI.
 {gray} `(string)` Comments and disabled text.
-{silver} `(string)` Muted text that still has to be read.
+{silver} `(string)` Muted but readable text.
 {fg} `(string)` The default foreground.
-{latte} `(string)` Emphasised text, just above `fg`.
+{latte} `(string)` Emphasised text, brighter than `fg`.
 {white} `(string)` The brightest foreground.
 Hues, warm to cool.
 {red} `(string)`
@@ -348,10 +347,9 @@ Return ~
 ==============================================================================
 ------------------------------------------------------------------------------
                                                                *nightfall-color*
-Pure helpers for manipulating `#RRGGBB` color strings.
+Helpers for manipulating `#RRGGBB` color strings.
 
-Every function here is free of side effects and of any knowledge about the
-active flavor, which makes them safe to call from anywhere and easy to test.
+Pure functions with no dependency on the active flavor.
 
 ------------------------------------------------------------------------------
                                                        *nightfall.color.blend()*
@@ -403,7 +401,7 @@ Return ~
 ==============================================================================
 ------------------------------------------------------------------------------
                                                                *nightfall-theme*
-Assembly of a complete theme from the individual group modules.
+Build the full highlight set from the group modules.
 
 ------------------------------------------------------------------------------
                                                                 *NightfallTheme*
@@ -442,8 +440,9 @@ Return ~
                                                              *nightfall-lualine*
 A lualine theme matching each flavor.
 
-Set it by name, as `require("lualine").setup({ options = { theme =
-"nightfall" } })`, or read it directly through |nightfall.lualine.get()|.
+Set it by name with
+`require("lualine").setup({ options = { theme = "nightfall" } })`,
+or read it directly through |nightfall.lualine.get()|.
 
 ------------------------------------------------------------------------------
                                                        *nightfall.lualine.get()*

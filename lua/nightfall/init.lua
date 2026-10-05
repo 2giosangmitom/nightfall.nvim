@@ -1,22 +1,21 @@
---- A clean, eye-friendly Neovim colorscheme.
+--- A Dracula-inspired colorscheme for Neovim.
 ---
 --- MIT License Copyright (c) 2024 Vo Quang Chien
 ---
---- Nightfall ships three dark flavors and one light flavor that share one palette vocabulary, so every
---- flavor covers the same highlight groups and the same plugin integrations.
+--- Three dark flavors and one light flavor share one palette vocabulary, so
+--- every flavor covers the same highlight groups and plugin integrations.
 ---
 --- Flavors ~
 ---
---- - `nightfall`: dark and vibrant, a violet-leaning take on Dracula.
---- - `deeper-night`: pastels on a blue-black night, for focus.
---- - `maron`: beige and dusty earth tones on a near-black background.
---- - `winter`: a cold, frosted light theme with navy text and blue accents.
+--- - `nightfall`: dark, vibrant, violet-leaning.
+--- - `deeper-night`: dark, blue-black background with pastel accents.
+--- - `maron`: dark, near-black background with beige and earth tones.
+--- - `winter`: light, navy text with blue accents.
 ---
 --- Beyond Neovim ~
 ---
---- The `extras/` directory of this repository carries matching themes for
---- Alacritty, lazygit and yazi, one file per flavor, generated from the same
---- palettes.
+--- `extras/` ships matching themes for Alacritty, lazygit and yazi, one file
+--- per flavor, generated from the same palettes.
 ---@tag nightfall.nvim
 ---@toc_entry Introduction
 
