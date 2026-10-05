@@ -29,7 +29,8 @@ A Dracula-inspired colorscheme for Neovim.
 
 `setup()` is optional unless you want to change the defaults. If used, call it before `:colorscheme`.
 
-### lazy.nvim
+<details open>
+<summary>lazy.nvim</summary>
 
 ```lua
 {
@@ -44,7 +45,10 @@ A Dracula-inspired colorscheme for Neovim.
 }
 ```
 
-### mini.deps
+</details>
+
+<details>
+<summary>mini.deps</summary>
 
 ```lua
 local add, now = MiniDeps.add, MiniDeps.now
@@ -57,9 +61,10 @@ now(function()
 end)
 ```
 
-### vim.pack
+</details>
 
-Neovim 0.12+:
+<details>
+<summary>vim.pack (Neovim 0.12+)</summary>
 
 ```lua
 vim.pack.add({
@@ -69,6 +74,8 @@ vim.pack.add({
 require("nightfall").setup({})
 vim.cmd.colorscheme("nightfall")
 ```
+
+</details>
 
 ## Configuration
 
@@ -136,41 +143,24 @@ require("nightfall").setup({
 
 ## Overrides
 
-`color_overrides` modifies the palette before highlight groups are generated.
-
-`highlight_overrides` modifies highlight groups after generation.
-
-Both support an `all` entry and flavor-specific entries. Flavor-specific values take precedence.
-
 ```lua
 require("nightfall").setup({
+  -- Replace palette colors first.
   color_overrides = {
-    all = {
-      fg = "#ffffff",
-    },
-    nightfall = {
-      bg = "#0b0b14",
-    },
+    all = { fg = "#ffffff" }, -- every flavor
+    nightfall = { bg = "#0b0b14" }, -- one flavor only
   },
-
   highlight_overrides = {
-    all = {
-      Normal = {
-        bg = "#120809",
-      },
-    },
-
+    all = { Normal = { bg = "#120809" } }, -- static table
+    -- Function receives palette; wins over `all`.
     nightfall = function(colors)
-      return {
-        Comment = {
-          fg = colors.teal,
-          italic = false,
-        },
-      }
+      return { Comment = { fg = colors.teal, italic = false } }
     end,
   },
 })
 ```
+
+See `:h nightfall-config` for details.
 
 ## lualine
 
