@@ -191,9 +191,16 @@ just ci        # run CI checks
 
 - `palette.lua` reads flavor palettes and applies color overrides.
 - `groups/` defines highlights directly from palette fields. Group modules receive `(colors, options, flavor)`; flavor-specific choices stay beside their highlights.
+- `groups/syntax.lua` lists flavor-specific palette keys in `FLAVOR_COLORS`, keeping color selection separate from highlight attributes.
+- `groups/integrations/` keeps small plugins in one file. `mini/`, `snacks/`, `native_lsp/`, and `treesitter/` use an `init.lua` to combine feature modules and honor their switches. `mini/base.lua` holds its always-enabled groups.
+- Integration options contain only that plugin's settings plus shared `transparent` and `styles` values, not the complete configuration. Feature modules take only the inputs they need.
 - `theme.lua` combines groups, integrations, styles, and highlight overrides.
 - `cache.lua` caches the built theme; `init.lua` applies it to Neovim.
 - `lualine.lua` and `scripts/extras/` reuse the same palettes.
+
+To add an integration, create `groups/integrations/<name>.lua` with a `get(colors, options, flavor)` function returning highlight groups, then add its defaults in `config.lua`. Keep plugin-specific switches in its aggregator rather than inside individual feature modules. Use palette fields instead of literal colors so user overrides continue to work.
+
+`tests/test_integrations.lua` checks feature switches and scoped settings across every flavor. Run `just ci` before committing; generated docs and extras should remain unchanged for a structural-only refactor.
 
 ## 📜 License
 
