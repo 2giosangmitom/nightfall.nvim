@@ -5,64 +5,161 @@ local palette = require("nightfall.palette")
 
 local M = {}
 
+-- Palette keys for the syntax groups whose colors differ between flavors.
+local FLAVOR_COLORS = {
+  nightfall = {
+    Constant = "purple",
+    String = "yellow",
+    Character = "peach",
+    Number = "lavender",
+    Boolean = "lavender",
+    Identifier = "latte",
+    Function = "teal",
+    Statement = "pink",
+    Conditional = "pink",
+    Repeat = "green",
+    Operator = "silver",
+    Keyword = "pink",
+    Exception = "coral",
+    PreProc = "sky",
+    Include = "pink",
+    Type = "blue",
+    StorageClass = "cyan",
+    Special = "cyan",
+    SpecialChar = "coral",
+    Tag = "magenta",
+    Delimiter = "silver",
+  },
+  ["deeper-night"] = {
+    Constant = "cream",
+    String = "yellow",
+    Character = "purple",
+    Number = "teal",
+    Boolean = "pink",
+    Identifier = "yellow",
+    Function = "green",
+    Statement = "purple",
+    Conditional = "purple",
+    Repeat = "cyan",
+    Operator = "yellow",
+    Keyword = "coral",
+    Exception = "blue",
+    PreProc = "pink",
+    Include = "cyan",
+    Type = "cyan",
+    StorageClass = "cyan",
+    Special = "sky",
+    SpecialChar = "coral",
+    Tag = "magenta",
+    Delimiter = "lavender",
+  },
+  maron = {
+    Constant = "coral",
+    String = "sand",
+    Character = "cyan",
+    Number = "teal",
+    Boolean = "sky",
+    Identifier = "peach",
+    Function = "lime",
+    Statement = "green",
+    Conditional = "pink",
+    Repeat = "cyan",
+    Operator = "yellow",
+    Keyword = "orange",
+    Exception = "blue",
+    PreProc = "pink",
+    Include = "cyan",
+    Type = "cyan",
+    StorageClass = "cyan",
+    Special = "lavender",
+    SpecialChar = "coral",
+    Tag = "magenta",
+    Delimiter = "lavender",
+  },
+  winter = {
+    Constant = "purple",
+    String = "green",
+    Character = "cyan",
+    Number = "orange",
+    Boolean = "magenta",
+    Identifier = "fg",
+    Function = "teal",
+    Statement = "magenta",
+    Conditional = "purple",
+    Repeat = "teal",
+    Operator = "silver",
+    Keyword = "purple",
+    Exception = "red",
+    PreProc = "blue",
+    Include = "cyan",
+    Type = "blue",
+    StorageClass = "purple",
+    Special = "cyan",
+    SpecialChar = "orange",
+    Tag = "rose",
+    Delimiter = "silver",
+  },
+}
+
 ---@param c NightfallPalette
 ---@param o NightfallOptions
 ---@param flavor NightfallFlavor
 ---@return table<string,table>
 function M.get(c, o, flavor)
   local styles = o.styles or {}
-  local deeper = flavor == "deeper-night"
-  local maron = flavor == "maron"
-  local winter = flavor == "winter"
-  local type_fg = (deeper or maron) and c.cyan or c.blue
+  local keys = FLAVOR_COLORS[flavor]
+  local fg = {}
+  for group, key in pairs(keys) do
+    fg[group] = c[key]
+  end
 
   return {
     Comment = { fg = c.gray, style = styles.comments },
     SpecialComment = { fg = U.lighten(c.gray, 0.7, c.silver), style = styles.comments },
 
-    Constant = { fg = deeper and c.cream or maron and c.coral or c.purple, style = styles.constants },
-    String = { fg = maron and c.sand or winter and c.green or c.yellow, style = styles.strings },
-    Character = { fg = flavor == "nightfall" and c.peach or deeper and c.purple or c.cyan, style = styles.characters },
-    Number = { fg = flavor == "nightfall" and c.lavender or winter and c.orange or c.teal, style = styles.numbers },
+    Constant = { fg = fg.Constant, style = styles.constants },
+    String = { fg = fg.String, style = styles.strings },
+    Character = { fg = fg.Character, style = styles.characters },
+    Number = { fg = fg.Number, style = styles.numbers },
     Float = { link = "Number" },
     Boolean = {
-      fg = deeper and c.pink or maron and c.sky or winter and c.magenta or c.lavender,
+      fg = fg.Boolean,
       style = styles.booleans,
     },
 
     Identifier = {
-      fg = deeper and c.yellow or maron and c.peach or winter and c.fg or c.latte,
+      fg = fg.Identifier,
       style = styles.variables,
     },
-    Function = { fg = deeper and c.green or maron and c.lime or c.teal, style = styles.functions },
+    Function = { fg = fg.Function, style = styles.functions },
 
-    Statement = { fg = deeper and c.purple or maron and c.green or winter and c.magenta or c.pink },
-    Conditional = { fg = (deeper or winter) and c.purple or c.pink, style = styles.conditionals },
-    Repeat = { fg = flavor == "nightfall" and c.green or winter and c.teal or c.cyan, style = styles.loops },
+    Statement = { fg = fg.Statement },
+    Conditional = { fg = fg.Conditional, style = styles.conditionals },
+    Repeat = { fg = fg.Repeat, style = styles.loops },
     Label = { fg = c.coral },
-    Operator = { fg = (deeper or maron) and c.yellow or c.silver, style = styles.operators },
+    Operator = { fg = fg.Operator, style = styles.operators },
     Keyword = {
-      fg = deeper and c.coral or maron and c.orange or winter and c.purple or c.pink,
+      fg = fg.Keyword,
       style = styles.keywords,
     },
-    Exception = { fg = flavor == "nightfall" and c.coral or winter and c.red or c.blue, style = styles.exceptions },
+    Exception = { fg = fg.Exception, style = styles.exceptions },
 
-    PreProc = { fg = flavor == "nightfall" and c.sky or winter and c.blue or c.pink },
-    Include = { fg = flavor == "nightfall" and c.pink or c.cyan },
+    PreProc = { fg = fg.PreProc },
+    Include = { fg = fg.Include },
     Define = { link = "PreProc" },
     Macro = { link = "PreProc" },
     PreCondit = { link = "PreProc" },
 
-    Type = { fg = type_fg, style = styles.types },
-    StorageClass = { fg = winter and c.purple or c.cyan },
-    Structure = { fg = type_fg },
+    Type = { fg = fg.Type, style = styles.types },
+    StorageClass = { fg = fg.StorageClass },
+    Structure = { fg = fg.Type },
     Typedef = { link = "Type" },
 
-    Special = { fg = deeper and c.sky or maron and c.lavender or c.cyan },
-    SpecialChar = { fg = winter and c.orange or c.coral },
-    Tag = { fg = winter and c.rose or c.magenta },
-    Delimiter = { fg = (deeper or maron) and c.lavender or c.silver },
-    Debug = { fg = winter and c.magenta or c.purple },
+    Special = { fg = fg.Special },
+    SpecialChar = { fg = fg.SpecialChar },
+    Tag = { fg = fg.Tag },
+    Delimiter = { fg = fg.Delimiter },
+    Debug = { fg = flavor == "winter" and c.magenta or c.purple },
 
     Underlined = { fg = palette.accent(c, flavor), underline = true },
     Ignore = { fg = c.subtle },
