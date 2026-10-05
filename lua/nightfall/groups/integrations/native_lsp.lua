@@ -4,23 +4,28 @@
 --- in Neovim 0.11, the reference, inlay hint and code lens groups, and
 --- `:h lsp-semantic-highlight`.
 
+local U = require("nightfall.color")
+local palette = require("nightfall.palette")
+
 local M = {}
 
 --- The five diagnostic severities, in the order Neovim lists them.
 ---@private
 local SEVERITIES = { "Error", "Warn", "Info", "Hint", "Ok" }
 
----@param ctx NightfallCtx
----@param opts table Integration options: `semantic_tokens`.
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx, opts)
-  local c = ctx.c
+function M.get(c, o, flavor)
+  local opts = o.integrations.native_lsp
+  local accent = palette.accent(c, flavor)
 
   --- The color of each severity.
   local severity = {
     Error = c.red,
     Warn = c.yellow,
-    Info = ctx.vary({ maron = c.purple }, c.sky),
+    Info = flavor == "maron" and c.purple or c.sky,
     Hint = c.cyan,
     Ok = c.green,
   }
@@ -33,10 +38,10 @@ function M.get(ctx, opts)
     LspReferenceTarget = { bg = c.overlay },
 
     -- Inline annotations the server contributes
-    LspInlayHint = { fg = c.subtle, bg = ctx.blend(c.subtle, c.bg, 0.12), italic = true },
+    LspInlayHint = { fg = c.subtle, bg = U.blend(c.subtle, c.bg, 0.12), italic = true },
     LspCodeLens = { fg = c.gray, italic = true },
     LspCodeLensSeparator = { fg = c.border },
-    LspSignatureActiveParameter = { fg = ctx.accent, bg = ctx.blend(ctx.accent, c.bg, 0.16), bold = true },
+    LspSignatureActiveParameter = { fg = accent, bg = U.blend(accent, c.bg, 0.16), bold = true },
     LspInfoBorder = { link = "FloatBorder" },
 
     -- Severity-independent diagnostic decorations
@@ -46,7 +51,7 @@ function M.get(ctx, opts)
 
   for _, name in ipairs(SEVERITIES) do
     local fg = severity[name]
-    local wash = ctx.blend(fg, c.bg, 0.14)
+    local wash = U.blend(fg, c.bg, 0.14)
 
     result["Diagnostic" .. name] = { fg = fg }
     result["DiagnosticSign" .. name] = { fg = fg }
@@ -62,12 +67,18 @@ function M.get(ctx, opts)
       -- their more specific captures, which the server does not distinguish.
       ["@lsp.type.variable"] = {},
 
-      ["@lsp.type.decorator"] = { fg = ctx.role("attribute") },
-      ["@lsp.type.enumMember"] = { fg = ctx.role("constant") },
-      ["@lsp.type.modifier"] = { fg = ctx.role("storage") },
-      ["@lsp.type.typeParameter"] = { fg = ctx.role("type_builtin") },
-      ["@lsp.typemod.function.defaultLibrary"] = { fg = ctx.role("func_builtin") },
-      ["@lsp.typemod.variable.defaultLibrary"] = { fg = ctx.role("variable_builtin") },
+      ["@lsp.type.decorator"] = { fg = c.magenta },
+      ["@lsp.type.enumMember"] = {
+        fg = flavor == "deeper-night" and c.cream or flavor == "maron" and c.coral or c.purple,
+      },
+      ["@lsp.type.modifier"] = { fg = flavor == "winter" and c.purple or c.cyan },
+      ["@lsp.type.typeParameter"] = { fg = (flavor == "deeper-night" or flavor == "maron") and c.cyan or c.sky },
+      ["@lsp.typemod.function.defaultLibrary"] = {
+        fg = (flavor == "deeper-night" or flavor == "maron") and c.cream or c.cyan,
+      },
+      ["@lsp.typemod.variable.defaultLibrary"] = {
+        fg = flavor == "nightfall" and c.pink or flavor == "winter" and c.rose or c.peach,
+      },
       ["@lsp.mod.deprecated"] = { sp = c.gray, strikethrough = true },
     })
   end

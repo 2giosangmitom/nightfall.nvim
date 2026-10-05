@@ -4,6 +4,7 @@
 --- built-in terminal uses, so `:terminal` and the terminal running Neovim agree.
 
 local color = require("nightfall.color")
+local palette = require("nightfall.palette")
 local terminal = require("nightfall.groups.terminal")
 local toml = require("extras.toml")
 
@@ -30,10 +31,11 @@ local function ansi_table(ansi, name, from, faded)
   return toml.section("colors." .. name, entries)
 end
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param flavor NightfallFlavor
 ---@return string[]
-return function(ctx)
-  local c, accent = ctx.c, ctx.accent
+return function(c, flavor)
+  local accent = palette.accent(c, flavor)
   local ansi = terminal.ansi(c)
 
   local lines = toml.sections({

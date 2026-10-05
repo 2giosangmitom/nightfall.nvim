@@ -3,11 +3,10 @@
 --- edit the generated files by hand.
 ---
 --- Each target owns one module under `scripts/extras/`, exporting a function
---- that turns a build context into the lines of one file. Adding a tool means
+--- that turns a palette and flavor into the lines of one file. Adding a tool means
 --- writing that module and listing it in `M.targets`.
 
 local config = require("nightfall.config")
-local context = require("nightfall.context")
 local output = require("extras.output")
 local palette = require("nightfall.palette")
 
@@ -18,7 +17,7 @@ local M = {}
 ---@field dir string Directory under `extras/` the files are written to.
 ---@field extension string Extension of the generated files.
 ---@field comment string The format's line comment marker, for the banner.
----@field render fun(ctx: NightfallCtx): string[] The body of one file.
+---@field render fun(colors: NightfallPalette, flavor: NightfallFlavor): string[] The body of one file.
 
 ---@type NightfallExtraTarget[]
 M.targets = {
@@ -30,13 +29,13 @@ M.targets = {
 --- Write every target's file for every flavor, and report what was written.
 function M.generate()
   for _, flavor in ipairs(palette.flavors) do
-    local ctx = context.new(flavor, config.get())
+    local colors = palette.resolve(flavor, config.get())
 
     for _, target in ipairs(M.targets) do
       local path = string.format("extras/%s/%s.%s", target.dir, flavor, target.extension)
       local lines = output.header(target.comment, flavor)
 
-      vim.list_extend(lines, target.render(ctx))
+      vim.list_extend(lines, target.render(colors, flavor))
       output.write(path, lines)
       print("wrote " .. path)
     end

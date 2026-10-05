@@ -1,20 +1,27 @@
 --- https://github.com/nvim-neo-tree/neo-tree.nvim
 
+local U = require("nightfall.color")
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c, accent = ctx.c, ctx.accent
+function M.get(c, o, flavor)
+  local accent = palette.accent(c, flavor)
+  local panel_bg = U.background(c.bg_dim, o.transparent)
+  local editor_bg = U.background(c.bg, o.transparent)
 
   return {
-    NeoTreeNormal = { fg = c.fg, bg = ctx.solid(c.bg_dim) },
-    NeoTreeNormalNC = { fg = c.fg, bg = ctx.solid(c.bg_dim) },
-    NeoTreeWinSeparator = { fg = c.border, bg = ctx.solid(c.bg_dim) },
+    NeoTreeNormal = { fg = c.fg, bg = panel_bg },
+    NeoTreeNormalNC = { fg = c.fg, bg = panel_bg },
+    NeoTreeWinSeparator = { fg = c.border, bg = panel_bg },
     NeoTreeEndOfBuffer = { fg = c.bg_dim },
     NeoTreeFloatTitle = { link = "FloatTitle" },
     NeoTreeFloatBorder = { link = "FloatBorder" },
-    NeoTreeTitleBar = { fg = ctx.on_accent(), bg = ctx.vary({ maron = c.peach }, accent), bold = true },
+    NeoTreeTitleBar = { fg = palette.on_accent(c, flavor), bg = flavor == "maron" and c.peach or accent, bold = true },
 
     NeoTreeRootName = { fg = accent, bold = true },
     NeoTreeDirectoryName = { fg = c.fg },
@@ -44,10 +51,10 @@ function M.get(ctx)
     NeoTreeGitUntracked = { fg = c.lavender },
 
     NeoTreeFilterTerm = { fg = accent, bold = true },
-    NeoTreeTabActive = { fg = accent, bg = ctx.solid(c.bg_dim), bold = true },
-    NeoTreeTabInactive = { fg = c.gray, bg = ctx.solid(c.bg) },
-    NeoTreeTabSeparatorActive = { fg = accent, bg = ctx.solid(c.bg_dim) },
-    NeoTreeTabSeparatorInactive = { fg = c.bg, bg = ctx.solid(c.bg) },
+    NeoTreeTabActive = { fg = accent, bg = panel_bg, bold = true },
+    NeoTreeTabInactive = { fg = c.gray, bg = editor_bg },
+    NeoTreeTabSeparatorActive = { fg = accent, bg = panel_bg },
+    NeoTreeTabSeparatorInactive = { fg = c.bg, bg = editor_bg },
   }
 end
 

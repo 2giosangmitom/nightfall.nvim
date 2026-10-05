@@ -13,17 +13,6 @@ Flavors ~
 - `maron`: beige and dusty earth tones on a near-black background.
 - `winter`: a cold, frosted light theme with navy text and blue accents.
 
-Getting started ~
-
-Install the plugin, then pick a flavor with `:colorscheme`. Calling
-|nightfall.setup()| is optional and only needed to change the defaults.
-
->lua
-  require("nightfall").setup({ transparent = true })
-  vim.cmd.colorscheme("nightfall")
-<
-`setup()` must run before `:colorscheme` for its options to take effect.
-
 Beyond Neovim ~
 
 The `extras/` directory of this repository carries matching themes for
@@ -325,35 +314,35 @@ Parameters ~
 Return ~
 `(NightfallPalette)`
 
-
-==============================================================================
 ------------------------------------------------------------------------------
-                                                               *nightfall-roles*
-Which palette color each flavor gives to each syntax role.
-
-Flavors differ in what they paint a string or a keyword, not in which
-highlight groups they cover, so the difference is collected here rather than
-spread across the group modules. Each entry names one role and the palette
-color every flavor uses for it, which makes a flavor easy to retune by
-reading down a single column.
-
-------------------------------------------------------------------------------
-                                                         *nightfall.roles.roles*
-                            `nightfall.roles.roles`
-Palette color per flavor, keyed by role name.
-Type ~
-`(table<string, table<NightfallFlavor, string>>)`
-
-------------------------------------------------------------------------------
-                                                         *nightfall.roles.get()*
-               `nightfall.roles.get`({colors}, {flavor}, {name})
-The color a flavor gives to one role.
+                                                   *nightfall.palette.resolve()*
+                 `nightfall.palette.resolve`({flavor}, {opts})
+Read a palette with global and flavor-specific user overrides applied.
 Parameters ~
-{colors} `(NightfallPalette)` Palette to read the color from.
-{flavor} `(NightfallFlavor)` Flavor to read the role of.
-{name} `(string)` Role name, as listed in |nightfall-roles|.
+{flavor} `(NightfallFlavor)`
+{opts} `(NightfallOptions)`
 Return ~
-`(string)` A `#RRGGBB` color string.
+`(NightfallPalette)`
+
+------------------------------------------------------------------------------
+                                                    *nightfall.palette.accent()*
+                 `nightfall.palette.accent`({colors}, {flavor})
+The flavor's accent, read from the supplied palette.
+Parameters ~
+{colors} `(NightfallPalette)`
+{flavor} `(NightfallFlavor)`
+Return ~
+`(string)`
+
+------------------------------------------------------------------------------
+                                                 *nightfall.palette.on_accent()*
+               `nightfall.palette.on_accent`({colors}, {flavor})
+Foreground readable on this flavor's accent-colored backgrounds.
+Parameters ~
+{colors} `(NightfallPalette)`
+{flavor} `(NightfallFlavor)`
+Return ~
+`(string)`
 
 
 ==============================================================================
@@ -400,6 +389,16 @@ Parameters ~
 Return ~
 `(string)` The lightened color as `#RRGGBB`.
 
+------------------------------------------------------------------------------
+                                                  *nightfall.color.background()*
+               `nightfall.color.background`({hex}, {transparent})
+Omit a background when transparency is enabled.
+Parameters ~
+{hex} `(string)`
+{transparent} `(optional)` `(boolean)`
+Return ~
+`(string)`
+
 
 ==============================================================================
 ------------------------------------------------------------------------------
@@ -416,21 +415,24 @@ Fields ~
 
 ------------------------------------------------------------------------------
                                                    *nightfall.theme.overrides()*
-                       `nightfall.theme.overrides`({ctx})
+            `nightfall.theme.overrides`({colors}, {opts}, {flavor})
 The highlight overrides that apply to this flavor.
 
 Entries under the flavor's own key win over entries under `all`.
 Parameters ~
-{ctx} `(NightfallCtx)`
+{colors} `(NightfallPalette)`
+{opts} `(NightfallOptions)`
+{flavor} `(NightfallFlavor)`
 Return ~
 `(table<string,table>)`
 
 ------------------------------------------------------------------------------
                                                        *nightfall.theme.build()*
-                         `nightfall.theme.build`({ctx})
+                   `nightfall.theme.build`({flavor}, {opts})
 Build every highlight for one flavor.
 Parameters ~
-{ctx} `(NightfallCtx)` Context to build for.
+{flavor} `(NightfallFlavor)` Flavor to build.
+{opts} `(NightfallOptions)` Resolved user options.
 Return ~
 `(NightfallTheme)`
 

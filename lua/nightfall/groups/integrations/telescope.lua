@@ -1,13 +1,20 @@
 --- https://github.com/nvim-telescope/telescope.nvim
 
+local U = require("nightfall.color")
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
----@param opts table Integration options. `style` is `"bordered"` or `"borderless"`.
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx, opts)
-  local c, accent = ctx.c, ctx.accent
-  local sunken = ctx.solid(c.bg_dim)
+function M.get(c, o, flavor)
+  local opts = o.integrations.telescope
+  local accent = palette.accent(c, flavor)
+  local on_accent = palette.on_accent(c, flavor)
+  local sunken = U.background(c.bg_dim, o.transparent)
+  local prompt_bg = U.background(c.surface, o.transparent)
 
   local styles = {
     bordered = {
@@ -22,11 +29,11 @@ function M.get(ctx, opts)
     borderless = {
       TelescopeNormal = { fg = c.fg, bg = sunken },
       TelescopeBorder = { fg = sunken, bg = sunken },
-      TelescopePromptNormal = { fg = c.fg, bg = ctx.solid(c.surface) },
-      TelescopePromptBorder = { fg = c.surface, bg = ctx.solid(c.surface) },
-      TelescopePromptTitle = { fg = ctx.on_accent(), bg = accent, bold = true },
-      TelescopeResultsTitle = { fg = ctx.on_accent(), bg = c.teal, bold = true },
-      TelescopePreviewTitle = { fg = ctx.on_accent(), bg = c.green, bold = true },
+      TelescopePromptNormal = { fg = c.fg, bg = prompt_bg },
+      TelescopePromptBorder = { fg = c.surface, bg = prompt_bg },
+      TelescopePromptTitle = { fg = on_accent, bg = accent, bold = true },
+      TelescopeResultsTitle = { fg = on_accent, bg = c.teal, bold = true },
+      TelescopePreviewTitle = { fg = on_accent, bg = c.green, bold = true },
     },
   }
 

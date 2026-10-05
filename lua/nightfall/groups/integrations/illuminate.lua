@@ -2,11 +2,11 @@
 
 local M = {}
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c = ctx.c
-
+function M.get(c, o, flavor)
   return {
     IlluminatedWordText = { bg = c.overlay },
     IlluminatedWordRead = { bg = c.overlay },

@@ -4,14 +4,20 @@
 --- keep their own switch under `integrations.snacks`; the windows and notifiers
 --- are always contributed.
 
+local U = require("nightfall.color")
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
----@param opts table Integration options: `dashboard`, `indent`, `picker`.
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx, opts)
-  local c, accent = ctx.c, ctx.accent
-  local float_bg = ctx.solid(c.bg_dim)
+function M.get(c, o, flavor)
+  local opts = o.integrations.snacks
+  local accent = palette.accent(c, flavor)
+  local on_accent = palette.on_accent(c, flavor)
+  local float_bg = U.background(c.bg_dim, o.transparent)
 
   --- A notification level, drawn as a tinted border and title.
   ---@param level string
@@ -50,7 +56,7 @@ function M.get(ctx, opts)
     SnacksScratchDesc = { fg = c.gray },
     SnacksScratchKey = { fg = c.gold, bold = true },
     SnacksZenIcon = { fg = accent },
-    SnacksProfilerBadge = { fg = ctx.on_accent(), bg = accent },
+    SnacksProfilerBadge = { fg = on_accent, bg = accent },
     SnacksProfilerIcon = { fg = accent },
     SnacksProfilerPath = { fg = c.gray },
     SnacksProfilerTotal = { fg = c.gold, bold = true },
@@ -67,11 +73,14 @@ function M.get(ctx, opts)
 
   if opts.dashboard then
     result = vim.tbl_extend("error", result, {
-      SnacksDashboardNormal = { fg = c.fg, bg = ctx.solid(c.bg) },
-      SnacksDashboardHeader = { fg = ctx.vary({ ["deeper-night"] = c.blue, maron = c.peach }, accent), bold = true },
+      SnacksDashboardNormal = { fg = c.fg, bg = U.background(c.bg, o.transparent) },
+      SnacksDashboardHeader = {
+        fg = flavor == "deeper-night" and c.blue or flavor == "maron" and c.peach or accent,
+        bold = true,
+      },
       SnacksDashboardTitle = { fg = c.teal, bold = true },
       SnacksDashboardIcon = { fg = c.pink },
-      SnacksDashboardKey = { fg = ctx.vary({ ["deeper-night"] = c.pink, maron = c.cyan }, c.blue) },
+      SnacksDashboardKey = { fg = flavor == "deeper-night" and c.pink or flavor == "maron" and c.cyan or c.blue },
       SnacksDashboardDesc = { fg = c.fg },
       SnacksDashboardFile = { fg = c.sky },
       SnacksDashboardDir = { fg = c.gray },
@@ -83,8 +92,8 @@ function M.get(ctx, opts)
 
   if opts.indent then
     result = vim.tbl_extend("error", result, {
-      SnacksIndent = { fg = ctx.blend(c.border, c.bg, 0.6) },
-      SnacksIndentBlank = { fg = ctx.blend(c.border, c.bg, 0.6) },
+      SnacksIndent = { fg = U.blend(c.border, c.bg, 0.6) },
+      SnacksIndentBlank = { fg = U.blend(c.border, c.bg, 0.6) },
       SnacksIndentScope = { fg = accent },
       SnacksIndentChunk = { fg = accent },
     })
@@ -102,7 +111,7 @@ function M.get(ctx, opts)
       SnacksPickerMatch = { fg = accent, bold = true },
       SnacksPickerSelected = { fg = c.teal },
       SnacksPickerIdx = { fg = c.subtle },
-      SnacksPickerToggle = { fg = ctx.on_accent(), bg = c.teal },
+      SnacksPickerToggle = { fg = on_accent, bg = c.teal },
       SnacksPickerDir = { fg = c.gray },
       SnacksPickerFile = { fg = c.fg },
       SnacksPickerPathHidden = { fg = c.subtle },

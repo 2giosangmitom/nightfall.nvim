@@ -22,39 +22,6 @@ local SOURCE_DIR = vim.fn.fnamemodify(
   ":p"
 )
 
---- Hash a string with a variant of djb2, as an eight digit hexadecimal value.
----@param str string
----@return string
----@private
-local function hash_string(str)
-  local band, lshift = bit.band, bit.lshift
-  local hash = 5381
-
-  for i = 1, #str do
-    hash = band(lshift(hash, 5) + hash + str:byte(i), 0xffffffff)
-  end
-
-  return string.format("%08x", hash)
-end
-
---- Hash any plain value, visiting table keys in a stable order.
----@param value any Anything but a function.
----@return string
----@private
-local function hash(value)
-  if type(value) ~= "table" then return hash_string(tostring(value)) end
-
-  local keys = vim.tbl_keys(value)
-  table.sort(keys, function(a, b) return tostring(a) < tostring(b) end)
-
-  local parts = {}
-  for _, key in ipairs(keys) do
-    parts[#parts + 1] = tostring(key) .. hash(value[key])
-  end
-
-  return hash_string(table.concat(parts))
-end
-
 --- A fingerprint of this plugin's own sources.
 ---
 --- The plugin is not versioned and users track its latest commit, so the cache
@@ -77,20 +44,22 @@ function M.fingerprint()
   return string.format("%.9f", newest)
 end
 
---- The cache key for a context.
+--- The cache key for a flavor and its options.
 ---
 --- Overrides are resolved to plain tables first, so a `highlight_overrides`
 --- function is compared by what it returns rather than by its identity, which
 --- changes on every reload.
----@param ctx NightfallCtx
+---@param flavor NightfallFlavor
+---@param options NightfallOptions
 ---@param sources? string Source fingerprint. Defaults to |nightfall.cache.fingerprint()|.
 ---@return string
-function M.key(ctx, sources)
-  local opts = vim.tbl_extend("force", ctx.o, {
-    highlight_overrides = require("nightfall.theme").overrides(ctx),
+function M.key(flavor, options, sources)
+  local colors = require("nightfall.palette").resolve(flavor, options)
+  local opts = vim.tbl_extend("force", options, {
+    highlight_overrides = require("nightfall.theme").overrides(colors, options, flavor),
   })
 
-  return hash({ flavor = ctx.flavor, sources = sources or M.fingerprint(), options = opts })
+  return vim.fn.sha256(vim.inspect({ flavor = flavor, sources = sources or M.fingerprint(), options = opts }))
 end
 
 --- Path of the compiled file for one flavor.
@@ -136,20 +105,21 @@ local function write(flavor, key, theme)
   file:close()
 end
 
---- The theme for a context, built only when the cache cannot supply it.
----@param ctx NightfallCtx
+--- The theme for a flavor, built only when the cache cannot supply it.
+---@param flavor NightfallFlavor
+---@param opts NightfallOptions
 ---@return NightfallTheme
-function M.get(ctx)
+function M.get(flavor, opts)
   local enabled = not vim.g.nightfall_no_cache
-  local key = M.key(ctx)
+  local key = M.key(flavor, opts)
 
   if enabled then
-    local cached = read(ctx.flavor, key)
+    local cached = read(flavor, key)
     if cached then return cached end
   end
 
-  local theme = require("nightfall.theme").build(ctx)
-  if enabled then pcall(write, ctx.flavor, key, theme) end
+  local theme = require("nightfall.theme").build(flavor, opts)
+  if enabled then pcall(write, flavor, key, theme) end
 
   return theme
 end

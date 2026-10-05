@@ -1,11 +1,15 @@
 --- https://github.com/stevearc/oil.nvim
 
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c, accent = ctx.c, ctx.accent
+function M.get(c, o, flavor)
+  local accent = palette.accent(c, flavor)
 
   return {
     OilDir = { fg = accent, bold = true },

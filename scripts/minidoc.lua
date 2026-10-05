@@ -10,7 +10,6 @@ local input = {
   { path = "lua/nightfall/init.lua", module = "nightfall" },
   { path = "lua/nightfall/config.lua", module = "nightfall.config" },
   { path = "lua/nightfall/palette.lua", module = "nightfall.palette" },
-  { path = "lua/nightfall/roles.lua", module = "nightfall.roles" },
   { path = "lua/nightfall/color.lua", module = "nightfall.color" },
   { path = "lua/nightfall/theme.lua", module = "nightfall.theme" },
   { path = "lua/nightfall/lualine.lua", module = "nightfall.lualine" },

@@ -36,11 +36,11 @@ function M.ansi(colors)
   }
 end
 
----@param ctx NightfallCtx
+---@param colors NightfallPalette
 ---@return table<string,string> `terminal_color_*` globals and their values.
-function M.get(ctx)
+function M.get(colors)
   local result = {}
-  for index, hex in ipairs(M.ansi(ctx.c)) do
+  for index, hex in ipairs(M.ansi(colors)) do
     result["terminal_color_" .. (index - 1)] = hex
   end
   return result

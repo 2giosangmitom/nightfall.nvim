@@ -39,4 +39,13 @@ T["lighten"]["blends towards a given color"] = function()
   expect.equality(color.lighten("#000000", 0, "#123456"), "#123456")
 end
 
+T["background"] = MiniTest.new_set()
+
+T["background"]["keeps opaque backgrounds"] = function()
+  expect.equality(color.background("#123456", false), "#123456")
+  expect.equality(color.background("#123456"), "#123456")
+end
+
+T["background"]["omits transparent backgrounds"] = function() expect.equality(color.background("#123456", true), "NONE") end
+
 return T

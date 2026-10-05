@@ -1,6 +1,5 @@
 local expect = MiniTest.expect
 local config = require("nightfall.config")
-local context = require("nightfall.context")
 local theme = require("nightfall.theme")
 
 --- Build the theme for a flavor under the given user options.
@@ -9,7 +8,7 @@ local theme = require("nightfall.theme")
 ---@return table
 local function build(flavor, opts)
   config.setup(opts or {})
-  return theme.build(context.new(flavor, config.get()))
+  return theme.build(flavor, config.get())
 end
 
 local T = MiniTest.new_set({
@@ -23,6 +22,48 @@ T["flavor"] = MiniTest.new_set({
 
 T["flavor"]["builds without error"] = function(flavor)
   expect.no_error(function() build(flavor) end)
+end
+
+T["flavor"]["preserves each flavor's syntax colors"] = function(flavor)
+  local colors = require("nightfall.palette").get(flavor)
+  local highlights = build(flavor).highlights
+  local expected = {
+    nightfall = { String = colors.yellow, Function = colors.teal, Keyword = colors.pink, Type = colors.blue },
+    ["deeper-night"] = { String = colors.yellow, Function = colors.green, Keyword = colors.coral, Type = colors.cyan },
+    maron = { String = colors.sand, Function = colors.lime, Keyword = colors.orange, Type = colors.cyan },
+    winter = { String = colors.green, Function = colors.teal, Keyword = colors.purple, Type = colors.blue },
+  }
+  for group, fg in pairs(expected[flavor]) do
+    expect.equality(highlights[group].fg, fg, { fail_reason = flavor .. "." .. group })
+  end
+end
+
+T["flavor"]["uses palette overrides throughout syntax and integrations"] = function(flavor)
+  local overrides = {}
+  local keys = vim.tbl_keys(require("nightfall.palette").get(flavor))
+  table.sort(keys)
+  for index, key in ipairs(keys) do
+    overrides[key] = string.format("#%06x", index)
+  end
+  local highlights = build(flavor, { color_overrides = { all = overrides } }).highlights
+  local samples = {
+    "String",
+    "Function",
+    "@variable.builtin",
+    "@module",
+    "@constructor",
+    "DapUIType",
+    "NeotestNamespace",
+    "RenderMarkdownCodeInline",
+    "CmpItemKindFunction",
+  }
+  local allowed = {}
+  for _, hex in pairs(overrides) do
+    allowed[hex] = true
+  end
+  for _, group in ipairs(samples) do
+    expect.equality(allowed[highlights[group].fg], true, { fail_reason = flavor .. "." .. group })
+  end
 end
 
 T["flavor"]["produces the same groups as nightfall"] = function(flavor)
@@ -475,6 +516,13 @@ end
 T["overrides"]["replace palette colors"] = function()
   local highlights = build("nightfall", { color_overrides = { all = { bg = "#010203" } } }).highlights
   expect.equality(highlights.Normal.bg, "#010203")
+end
+
+T["overrides"]["do not mutate the configured highlight tables"] = function()
+  local opts = { highlight_overrides = { all = { Comment = { style = { bold = true } } } } }
+  local before = vim.deepcopy(opts)
+  build("nightfall", opts)
+  expect.equality(opts, before)
 end
 
 return T

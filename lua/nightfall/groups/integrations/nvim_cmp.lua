@@ -2,22 +2,26 @@
 
 local kinds = require("nightfall.groups.kinds")
 
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c = ctx.c
+function M.get(c, o, flavor)
+  local accent = palette.accent(c, flavor)
 
   return vim.tbl_extend("error", {
     CmpItemAbbr = { fg = c.silver },
     CmpItemAbbrDeprecated = { fg = c.gray, strikethrough = true },
-    CmpItemAbbrMatch = { fg = ctx.accent, bold = true },
-    CmpItemAbbrMatchFuzzy = { fg = ctx.accent },
+    CmpItemAbbrMatch = { fg = accent, bold = true },
+    CmpItemAbbrMatchFuzzy = { fg = accent },
     CmpItemMenu = { fg = c.subtle, italic = true },
-    CmpItemKindDefault = { fg = ctx.accent },
+    CmpItemKindDefault = { fg = accent },
     CmpGhostText = { fg = c.subtle, italic = true },
-  }, kinds.groups(ctx, "CmpItemKind"))
+  }, kinds.groups(c, flavor, "CmpItemKind"))
 end
 
 return M

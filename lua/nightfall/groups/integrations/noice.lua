@@ -1,14 +1,20 @@
 --- https://github.com/folke/noice.nvim
 
+local U = require("nightfall.color")
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c, accent = ctx.c, ctx.accent
+function M.get(c, o, flavor)
+  local accent = palette.accent(c, flavor)
+  local float_bg = U.background(c.bg_dim, o.transparent)
 
   return {
-    NoiceCmdline = { fg = c.fg, bg = ctx.solid(c.bg_dim) },
+    NoiceCmdline = { fg = c.fg, bg = float_bg },
     NoiceCmdlineIcon = { fg = accent },
     NoiceCmdlineIconSearch = { fg = c.gold },
     NoiceCmdlineIconFilter = { fg = c.teal },
@@ -29,7 +35,7 @@ function M.get(ctx)
 
     NoiceConfirm = { link = "NormalFloat" },
     NoiceConfirmBorder = { link = "FloatBorder" },
-    NoiceMini = { fg = c.gray, bg = ctx.solid(c.bg_dim) },
+    NoiceMini = { fg = c.gray, bg = float_bg },
     NoiceScrollbar = { bg = c.surface },
     NoiceScrollbarThumb = { bg = c.border },
     NoiceSplit = { link = "NormalFloat" },
@@ -40,7 +46,7 @@ function M.get(ctx)
     NoiceLspProgressTitle = { fg = c.gray },
     NoiceLspProgressClient = { fg = c.cyan, bold = true },
 
-    NoiceFormatProgressDone = { fg = ctx.on_accent(), bg = c.green },
+    NoiceFormatProgressDone = { fg = palette.on_accent(c, flavor), bg = c.green },
     NoiceFormatProgressTodo = { fg = c.silver, bg = c.surface },
     NoiceFormatEvent = { fg = c.gray },
     NoiceFormatKind = { fg = c.subtle },

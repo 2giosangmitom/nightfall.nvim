@@ -1,11 +1,15 @@
 --- https://github.com/nvim-neotest/neotest
 
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c, accent = ctx.c, ctx.accent
+function M.get(c, o, flavor)
+  local accent = palette.accent(c, flavor)
 
   return {
     NeotestPassed = { fg = c.green },
@@ -15,7 +19,7 @@ function M.get(ctx)
     NeotestUnknown = { fg = c.subtle },
     NeotestWatching = { fg = c.orange },
     NeotestTest = { fg = c.fg },
-    NeotestNamespace = { fg = ctx.role("module") },
+    NeotestNamespace = { fg = flavor == "winter" and c.teal or c.cream },
     NeotestFile = { fg = c.cyan },
     NeotestDir = { link = "Directory" },
     NeotestFocused = { fg = accent, bold = true, underline = true },

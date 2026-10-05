@@ -203,7 +203,7 @@ function M.setup(user)
   validate(user)
   user = user or {}
 
-  local base = vim.tbl_deep_extend("force", {}, M.defaults)
+  local base = vim.deepcopy(M.defaults)
   if user.default_integrations == false then base.integrations = {} end
 
   options = vim.tbl_deep_extend("force", base, user)

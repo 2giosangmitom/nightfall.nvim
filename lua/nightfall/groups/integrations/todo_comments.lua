@@ -3,6 +3,8 @@
 --- Each keyword gets three groups: a filled block for the sign and the label,
 --- a plain foreground for the rest of the comment, and one for the sign column.
 
+local palette = require("nightfall.palette")
+
 local M = {}
 
 --- Palette color per keyword.
@@ -17,16 +19,18 @@ local KEYWORDS = {
   TEST = "magenta",
 }
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c = ctx.c
+function M.get(c, o, flavor)
+  local on_accent = palette.on_accent(c, flavor)
   local result = {}
 
   for keyword, name in pairs(KEYWORDS) do
     local fg = c[name]
 
-    result["TodoBg" .. keyword] = { fg = ctx.on_accent(), bg = fg, bold = true }
+    result["TodoBg" .. keyword] = { fg = on_accent, bg = fg, bold = true }
     result["TodoFg" .. keyword] = { fg = fg }
     result["TodoSign" .. keyword] = { fg = fg }
   end

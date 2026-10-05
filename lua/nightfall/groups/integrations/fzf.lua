@@ -1,13 +1,19 @@
 --- https://github.com/ibhagwan/fzf-lua
 
+local U = require("nightfall.color")
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
----@param opts table Integration options. `style` is `"bordered"` or `"borderless"`.
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx, opts)
-  local c, accent = ctx.c, ctx.accent
-  local sunken = ctx.solid(c.bg_dim)
+function M.get(c, o, flavor)
+  local opts = o.integrations.fzf
+  local accent = palette.accent(c, flavor)
+  local on_accent = palette.on_accent(c, flavor)
+  local sunken = U.background(c.bg_dim, o.transparent)
 
   local styles = {
     bordered = {
@@ -21,10 +27,10 @@ function M.get(ctx, opts)
     borderless = {
       FzfLuaNormal = { fg = c.fg, bg = sunken },
       FzfLuaBorder = { fg = sunken, bg = sunken },
-      FzfLuaTitle = { fg = ctx.on_accent(), bg = accent, bold = true },
+      FzfLuaTitle = { fg = on_accent, bg = accent, bold = true },
       FzfLuaPreviewNormal = { fg = c.fg, bg = sunken },
       FzfLuaPreviewBorder = { fg = sunken, bg = sunken },
-      FzfLuaPreviewTitle = { fg = ctx.on_accent(), bg = c.green, bold = true },
+      FzfLuaPreviewTitle = { fg = on_accent, bg = c.green, bold = true },
     },
   }
 
@@ -38,7 +44,7 @@ function M.get(ctx, opts)
     FzfLuaCursor = { fg = c.bg, bg = c.fg },
     FzfLuaCursorLine = { bg = c.overlay },
     FzfLuaCursorLineNr = { fg = accent, bg = c.overlay, bold = true },
-    FzfLuaSearch = { fg = ctx.on_accent(), bg = c.gold, bold = true },
+    FzfLuaSearch = { fg = on_accent, bg = c.gold, bold = true },
     FzfLuaScrollBorderEmpty = { fg = c.border },
     FzfLuaScrollBorderFull = { fg = accent },
     FzfLuaScrollFloatEmpty = { bg = c.bg_alt },
@@ -68,7 +74,7 @@ function M.get(ctx, opts)
     FzfLuaFzfInfo = { fg = c.gray },
     FzfLuaFzfCursorLine = { bg = c.overlay },
     FzfLuaFzfHeader = { fg = c.sky },
-    FzfLuaFzfGutter = { bg = ctx.solid(c.bg_dim) },
+    FzfLuaFzfGutter = { bg = sunken },
     FzfLuaFzfSeparator = { fg = c.border },
     FzfLuaFzfScrollbar = { fg = c.border },
   }, style)

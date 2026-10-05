@@ -1,12 +1,17 @@
 --- https://github.com/nvim-tree/nvim-tree.lua
 
+local U = require("nightfall.color")
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c, accent = ctx.c, ctx.accent
-  local panel_bg = ctx.solid(c.bg_dim)
+function M.get(c, o, flavor)
+  local accent = palette.accent(c, flavor)
+  local panel_bg = U.background(c.bg_dim, o.transparent)
 
   return {
     NvimTreeNormal = { fg = c.fg, bg = panel_bg },
@@ -33,7 +38,7 @@ function M.get(ctx)
     NvimTreeModifiedFile = { fg = c.gold },
     NvimTreeIndentMarker = { fg = c.border },
     NvimTreeBookmark = { fg = c.gold },
-    NvimTreeWindowPicker = { fg = ctx.on_accent(), bg = accent, bold = true },
+    NvimTreeWindowPicker = { fg = palette.on_accent(c, flavor), bg = accent, bold = true },
     NvimTreeLiveFilterPrefix = { fg = accent, bold = true },
     NvimTreeLiveFilterValue = { fg = c.fg, bold = true },
 

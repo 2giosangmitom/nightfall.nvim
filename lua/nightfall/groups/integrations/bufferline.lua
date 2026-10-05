@@ -1,15 +1,20 @@
 --- https://github.com/akinsho/bufferline.nvim
 
+local U = require("nightfall.color")
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c, accent = ctx.c, ctx.accent
+function M.get(c, o, flavor)
+  local accent = palette.accent(c, flavor)
 
-  local fill_bg = ctx.solid(c.bg_dim)
-  local plain_bg = ctx.solid(c.bg_alt)
-  local current_bg = ctx.solid(c.bg)
+  local fill_bg = U.background(c.bg_dim, o.transparent)
+  local plain_bg = U.background(c.bg_alt, o.transparent)
+  local current_bg = U.background(c.bg, o.transparent)
 
   --- The three states a buffer entry can be in.
   local states = {
@@ -29,7 +34,7 @@ function M.get(ctx)
     BufferLineOffsetSeparator = { fg = c.border, bg = fill_bg },
     BufferLineTruncMarker = { fg = c.border, bg = fill_bg },
     BufferLineTab = { fg = c.subtle, bg = plain_bg },
-    BufferLineTabSelected = { fg = ctx.on_accent(), bg = accent, bold = true },
+    BufferLineTabSelected = { fg = palette.on_accent(c, flavor), bg = accent, bold = true },
     BufferLineTabSeparator = { fg = c.bg_dim, bg = plain_bg },
     BufferLineTabSeparatorSelected = { fg = c.bg_dim, bg = accent },
     BufferLineTabClose = { fg = c.red, bg = fill_bg },

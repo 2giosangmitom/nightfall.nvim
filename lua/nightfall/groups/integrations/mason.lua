@@ -1,23 +1,28 @@
 --- https://github.com/mason-org/mason.nvim
 
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c, accent = ctx.c, ctx.accent
+function M.get(c, o, flavor)
+  local accent = palette.accent(c, flavor)
+  local on_accent = palette.on_accent(c, flavor)
 
   return {
     MasonNormal = { link = "NormalFloat" },
-    MasonHeader = { fg = ctx.on_accent(), bg = accent, bold = true },
-    MasonHeaderSecondary = { fg = ctx.on_accent(), bg = c.teal, bold = true },
+    MasonHeader = { fg = on_accent, bg = accent, bold = true },
+    MasonHeaderSecondary = { fg = on_accent, bg = c.teal, bold = true },
     MasonHeading = { fg = c.latte, bold = true },
     MasonHighlight = { fg = accent },
-    MasonHighlightBlock = { fg = ctx.on_accent(), bg = accent },
-    MasonHighlightBlockBold = { fg = ctx.on_accent(), bg = accent, bold = true },
+    MasonHighlightBlock = { fg = on_accent, bg = accent },
+    MasonHighlightBlockBold = { fg = on_accent, bg = accent, bold = true },
     MasonHighlightSecondary = { fg = c.teal },
-    MasonHighlightBlockSecondary = { fg = ctx.on_accent(), bg = c.teal },
-    MasonHighlightBlockBoldSecondary = { fg = ctx.on_accent(), bg = c.teal, bold = true },
+    MasonHighlightBlockSecondary = { fg = on_accent, bg = c.teal },
+    MasonHighlightBlockBoldSecondary = { fg = on_accent, bg = c.teal, bold = true },
     MasonLink = { fg = c.sky, underline = true },
     MasonMuted = { fg = c.gray },
     MasonMutedBlock = { fg = c.gray, bg = c.surface },

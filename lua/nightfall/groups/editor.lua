@@ -4,26 +4,31 @@
 --- added in 0.11 for the completion popup and in 0.12 for the message kinds and
 --- the popup menu border.
 
+local U = require("nightfall.color")
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c, o = ctx.c, ctx.o
-  local accent = ctx.accent
+function M.get(c, o, flavor)
+  local accent = palette.accent(c, flavor)
+  local on_accent = palette.on_accent(c, flavor)
 
   -- Surfaces the editor draws its own furniture on.
-  local float_bg = ctx.solid(c.bg_dim)
-  local bar_bg = ctx.solid(c.bg_dim)
-  local menu_bg = ctx.solid(c.surface)
-  local inactive_bg = ctx.solid(o.dim_inactive and c.bg_dim or c.bg)
-  local inactive_fg = o.dim_inactive and ctx.darken(c.fg, 0.75, c.bg) or c.fg
+  local float_bg = U.background(c.bg_dim, o.transparent)
+  local bar_bg = float_bg
+  local menu_bg = U.background(c.surface, o.transparent)
+  local inactive_bg = U.background(o.dim_inactive and c.bg_dim or c.bg, o.transparent)
+  local inactive_fg = o.dim_inactive and U.darken(c.fg, 0.75, c.bg) or c.fg
 
   --- A hue laid over the editor background, for diffs and other tints.
   ---@param hex string
   ---@param amount number How much of the hue to keep.
   ---@return string
-  local function wash(hex, amount) return ctx.blend(hex, c.bg, amount) end
+  local function wash(hex, amount) return U.blend(hex, c.bg, amount) end
 
   return {
     -- Text area
@@ -36,7 +41,7 @@ function M.get(ctx)
     CursorColumn = { bg = c.bg_alt },
     CursorLine = { bg = c.bg_alt },
     EndOfBuffer = { fg = c.border },
-    Normal = { fg = c.fg, bg = ctx.solid(c.bg) },
+    Normal = { fg = c.fg, bg = U.background(c.bg, o.transparent) },
     NormalNC = { fg = inactive_fg, bg = inactive_bg },
     NonText = { fg = c.subtle },
     SpecialKey = { fg = c.border },
@@ -46,7 +51,7 @@ function M.get(ctx)
     Visual = { bg = c.overlay },
     VisualNOS = { bg = c.overlay },
     MatchParen = {
-      fg = ctx.vary({ nightfall = c.gold, ["deeper-night"] = c.magenta, maron = c.gold }, c.lime),
+      fg = flavor == "deeper-night" and c.magenta or flavor == "winter" and c.lime or c.gold,
       bg = c.overlay,
       bold = true,
     },
@@ -55,25 +60,25 @@ function M.get(ctx)
     LineNr = { fg = c.subtle },
     LineNrAbove = { link = "LineNr" },
     LineNrBelow = { link = "LineNr" },
-    CursorLineNr = { fg = ctx.vary({ maron = c.yellow }, c.latte), bold = true },
-    SignColumn = { fg = c.border, bg = ctx.solid(c.bg) },
+    CursorLineNr = { fg = flavor == "maron" and c.yellow or c.latte, bold = true },
+    SignColumn = { fg = c.border, bg = U.background(c.bg, o.transparent) },
     CursorLineSign = { link = "SignColumn" },
-    FoldColumn = { fg = c.border, bg = ctx.solid(c.bg) },
+    FoldColumn = { fg = c.border, bg = U.background(c.bg, o.transparent) },
     CursorLineFold = { link = "FoldColumn" },
     Folded = { fg = accent, bg = c.bg_alt },
 
     -- Search and substitution
     Search = {
-      fg = ctx.on_accent(),
-      bg = ctx.vary({ maron = c.lime }, c.cream),
+      fg = on_accent,
+      bg = flavor == "maron" and c.lime or c.cream,
     },
     CurSearch = {
-      fg = ctx.on_accent(),
-      bg = ctx.vary({ nightfall = c.pink, ["deeper-night"] = c.coral, maron = c.gold }, c.coral),
+      fg = on_accent,
+      bg = flavor == "nightfall" and c.pink or flavor == "maron" and c.gold or c.coral,
       bold = true,
     },
-    IncSearch = { fg = ctx.on_accent(), bg = c.peach, bold = true },
-    Substitute = { fg = ctx.on_accent(), bg = accent, bold = true },
+    IncSearch = { fg = on_accent, bg = c.peach, bold = true },
+    Substitute = { fg = on_accent, bg = accent, bold = true },
     QuickFixLine = { bg = c.overlay, bold = true },
 
     -- Diffs
@@ -137,11 +142,11 @@ function M.get(ctx)
     StatusLine = { fg = c.silver, bg = bar_bg },
     StatusLineNC = { fg = c.subtle, bg = bar_bg },
     StatusLineTerm = { fg = c.green, bg = bar_bg },
-    StatusLineTermNC = { fg = ctx.darken(c.green, 0.6, c.bg), bg = bar_bg },
+    StatusLineTermNC = { fg = U.darken(c.green, 0.6, c.bg), bg = bar_bg },
     TabLine = { fg = c.gray, bg = bar_bg },
     TabLineFill = { bg = bar_bg },
-    TabLineSel = { fg = accent, bg = ctx.solid(c.bg), bold = true },
-    WinBar = { fg = c.latte, bg = ctx.solid(c.bg), bold = true },
+    TabLineSel = { fg = accent, bg = U.background(c.bg, o.transparent), bold = true },
+    WinBar = { fg = c.latte, bg = U.background(c.bg, o.transparent), bold = true },
     WinBarNC = { fg = c.subtle, bg = inactive_bg },
     WinSeparator = { fg = c.border },
     VertSplit = { link = "WinSeparator" },

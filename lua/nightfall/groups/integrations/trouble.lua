@@ -1,15 +1,21 @@
 --- https://github.com/folke/trouble.nvim
 
+local U = require("nightfall.color")
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c, accent = ctx.c, ctx.accent
+function M.get(c, o, flavor)
+  local accent = palette.accent(c, flavor)
+  local bg = U.background(c.bg_dim, o.transparent)
 
   return {
-    TroubleNormal = { fg = c.fg, bg = ctx.solid(c.bg_dim) },
-    TroubleNormalNC = { fg = c.fg, bg = ctx.solid(c.bg_dim) },
+    TroubleNormal = { fg = c.fg, bg = bg },
+    TroubleNormalNC = { fg = c.fg, bg = bg },
     TroubleText = { fg = c.fg },
     TroubleCount = { fg = accent, bg = c.surface, bold = true },
     TroubleSource = { fg = c.subtle, italic = true },

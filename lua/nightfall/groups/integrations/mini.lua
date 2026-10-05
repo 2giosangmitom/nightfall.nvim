@@ -4,14 +4,21 @@
 --- The three modules that change how text itself looks, rather than how a
 --- plugin window looks, keep their own switch under `integrations.mini`.
 
+local U = require("nightfall.color")
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
----@param opts table Integration options: `icons`, `trailspace`, `indentscope`.
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx, opts)
-  local c, accent = ctx.c, ctx.accent
-  local float_bg = ctx.solid(c.bg_dim)
+function M.get(c, o, flavor)
+  local opts = o.integrations.mini
+  local accent = palette.accent(c, flavor)
+  local on_accent = palette.on_accent(c, flavor)
+  local float_bg = U.background(c.bg_dim, o.transparent)
+  local editor_bg = U.background(c.bg, o.transparent)
 
   local result = {
     -- mini.animate
@@ -43,20 +50,20 @@ function M.get(ctx, opts)
     MiniDepsMsgBreaking = { fg = c.orange, bold = true },
     MiniDepsPlaceholder = { fg = c.subtle },
     MiniDepsTitle = { fg = accent, bold = true },
-    MiniDepsTitleError = { fg = ctx.on_accent(), bg = c.red, bold = true },
-    MiniDepsTitleSame = { fg = ctx.on_accent(), bg = c.teal, bold = true },
-    MiniDepsTitleUpdate = { fg = ctx.on_accent(), bg = c.green, bold = true },
+    MiniDepsTitleError = { fg = on_accent, bg = c.red, bold = true },
+    MiniDepsTitleSame = { fg = on_accent, bg = c.teal, bold = true },
+    MiniDepsTitleUpdate = { fg = on_accent, bg = c.green, bold = true },
 
     -- mini.diff
     MiniDiffSignAdd = { fg = c.green },
     MiniDiffSignChange = { fg = c.yellow },
     MiniDiffSignDelete = { fg = c.red },
-    MiniDiffOverAdd = { bg = ctx.blend(c.green, c.bg, 0.16) },
-    MiniDiffOverChange = { bg = ctx.blend(c.yellow, c.bg, 0.16) },
-    MiniDiffOverChangeBuf = { bg = ctx.blend(c.yellow, c.bg, 0.3) },
+    MiniDiffOverAdd = { bg = U.blend(c.green, c.bg, 0.16) },
+    MiniDiffOverChange = { bg = U.blend(c.yellow, c.bg, 0.16) },
+    MiniDiffOverChangeBuf = { bg = U.blend(c.yellow, c.bg, 0.3) },
     MiniDiffOverContext = { bg = c.bg_alt },
     MiniDiffOverContextBuf = { bg = c.surface },
-    MiniDiffOverDelete = { bg = ctx.blend(c.red, c.bg, 0.16) },
+    MiniDiffOverDelete = { bg = U.blend(c.red, c.bg, 0.16) },
 
     -- mini.files
     MiniFilesBorder = { link = "FloatBorder" },
@@ -69,13 +76,13 @@ function M.get(ctx, opts)
     MiniFilesTitleFocused = { fg = accent, bg = float_bg, bold = true },
 
     -- mini.hipatterns
-    MiniHipatternsFixme = { fg = ctx.on_accent(), bg = c.red, bold = true },
-    MiniHipatternsHack = { fg = ctx.on_accent(), bg = c.yellow, bold = true },
-    MiniHipatternsNote = { fg = ctx.on_accent(), bg = c.teal, bold = true },
-    MiniHipatternsTodo = { fg = ctx.on_accent(), bg = c.sky, bold = true },
+    MiniHipatternsFixme = { fg = on_accent, bg = c.red, bold = true },
+    MiniHipatternsHack = { fg = on_accent, bg = c.yellow, bold = true },
+    MiniHipatternsNote = { fg = on_accent, bg = c.teal, bold = true },
+    MiniHipatternsTodo = { fg = on_accent, bg = c.sky, bold = true },
 
     -- mini.jump and mini.jump2d
-    MiniJump = { fg = ctx.on_accent(), bg = c.gold, bold = true },
+    MiniJump = { fg = on_accent, bg = c.gold, bold = true },
     MiniJump2dDim = { fg = c.subtle },
     MiniJump2dSpot = { fg = c.pink, bold = true, nocombine = true },
     MiniJump2dSpotAhead = { fg = c.cyan, bg = float_bg, nocombine = true },
@@ -125,26 +132,26 @@ function M.get(ctx, opts)
     MiniStatuslineDevinfo = { fg = c.silver, bg = c.surface },
     MiniStatuslineFileinfo = { fg = c.silver, bg = c.surface },
     MiniStatuslineFilename = { fg = c.gray, bg = c.bg_alt },
-    MiniStatuslineInactive = { fg = c.subtle, bg = ctx.solid(c.bg_dim) },
-    MiniStatuslineModeCommand = { fg = ctx.on_accent(), bg = c.gold, bold = true },
-    MiniStatuslineModeInsert = { fg = ctx.on_accent(), bg = c.green, bold = true },
-    MiniStatuslineModeNormal = { fg = ctx.on_accent(), bg = accent, bold = true },
-    MiniStatuslineModeOther = { fg = ctx.on_accent(), bg = c.teal, bold = true },
-    MiniStatuslineModeReplace = { fg = ctx.on_accent(), bg = c.coral, bold = true },
-    MiniStatuslineModeVisual = { fg = ctx.on_accent(), bg = c.pink, bold = true },
+    MiniStatuslineInactive = { fg = c.subtle, bg = float_bg },
+    MiniStatuslineModeCommand = { fg = on_accent, bg = c.gold, bold = true },
+    MiniStatuslineModeInsert = { fg = on_accent, bg = c.green, bold = true },
+    MiniStatuslineModeNormal = { fg = on_accent, bg = accent, bold = true },
+    MiniStatuslineModeOther = { fg = on_accent, bg = c.teal, bold = true },
+    MiniStatuslineModeReplace = { fg = on_accent, bg = c.coral, bold = true },
+    MiniStatuslineModeVisual = { fg = on_accent, bg = c.pink, bold = true },
 
     -- mini.surround
     MiniSurround = { link = "IncSearch" },
 
     -- mini.tabline
-    MiniTablineCurrent = { fg = accent, bg = ctx.solid(c.bg), bold = true },
-    MiniTablineFill = { bg = ctx.solid(c.bg_dim) },
-    MiniTablineHidden = { fg = c.subtle, bg = ctx.solid(c.bg_dim) },
-    MiniTablineModifiedCurrent = { fg = c.gold, bg = ctx.solid(c.bg), bold = true },
-    MiniTablineModifiedHidden = { fg = ctx.darken(c.gold, 0.6, c.bg), bg = ctx.solid(c.bg_dim) },
-    MiniTablineModifiedVisible = { fg = c.gold, bg = ctx.solid(c.bg_dim) },
-    MiniTablineTabpagesection = { fg = ctx.on_accent(), bg = accent, bold = true },
-    MiniTablineVisible = { fg = c.silver, bg = ctx.solid(c.bg_dim) },
+    MiniTablineCurrent = { fg = accent, bg = editor_bg, bold = true },
+    MiniTablineFill = { bg = float_bg },
+    MiniTablineHidden = { fg = c.subtle, bg = float_bg },
+    MiniTablineModifiedCurrent = { fg = c.gold, bg = editor_bg, bold = true },
+    MiniTablineModifiedHidden = { fg = U.darken(c.gold, 0.6, c.bg), bg = float_bg },
+    MiniTablineModifiedVisible = { fg = c.gold, bg = float_bg },
+    MiniTablineTabpagesection = { fg = on_accent, bg = accent, bold = true },
+    MiniTablineVisible = { fg = c.silver, bg = float_bg },
 
     -- mini.test
     MiniTestEmphasis = { bold = true },
@@ -167,7 +174,7 @@ function M.get(ctx, opts)
   end
 
   if opts.trailspace then
-    result = vim.tbl_extend("error", result, { MiniTrailspace = { bg = ctx.blend(c.red, c.bg, 0.5) } })
+    result = vim.tbl_extend("error", result, { MiniTrailspace = { bg = U.blend(c.red, c.bg, 0.5) } })
   end
 
   if opts.indentscope then

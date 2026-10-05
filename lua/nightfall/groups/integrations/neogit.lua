@@ -1,11 +1,16 @@
 --- https://github.com/NeogitOrg/neogit
 
+local U = require("nightfall.color")
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c, accent = ctx.c, ctx.accent
+function M.get(c, o, flavor)
+  local accent = palette.accent(c, flavor)
 
   return {
     NeogitBranch = { fg = c.magenta, bold = true },
@@ -15,17 +20,17 @@ function M.get(ctx)
     NeogitFold = { fg = c.border },
     NeogitFilePath = { fg = c.sky, italic = true },
     NeogitSectionHeader = { fg = accent, bold = true },
-    NeogitCommitViewHeader = { fg = ctx.on_accent(), bg = c.teal, bold = true },
+    NeogitCommitViewHeader = { fg = palette.on_accent(c, flavor), bg = c.teal, bold = true },
     NeogitCursorLine = { bg = c.bg_alt },
 
     NeogitHunkHeader = { fg = c.silver, bg = c.surface },
     NeogitHunkHeaderHighlight = { fg = accent, bg = c.overlay, bold = true },
-    NeogitDiffContext = { bg = ctx.solid(c.bg) },
+    NeogitDiffContext = { bg = U.background(c.bg, o.transparent) },
     NeogitDiffContextHighlight = { bg = c.bg_alt },
-    NeogitDiffAdd = { fg = c.green, bg = ctx.blend(c.green, c.bg, 0.1) },
-    NeogitDiffAddHighlight = { fg = c.green, bg = ctx.blend(c.green, c.bg, 0.2) },
-    NeogitDiffDelete = { fg = c.red, bg = ctx.blend(c.red, c.bg, 0.1) },
-    NeogitDiffDeleteHighlight = { fg = c.red, bg = ctx.blend(c.red, c.bg, 0.2) },
+    NeogitDiffAdd = { fg = c.green, bg = U.blend(c.green, c.bg, 0.1) },
+    NeogitDiffAddHighlight = { fg = c.green, bg = U.blend(c.green, c.bg, 0.2) },
+    NeogitDiffDelete = { fg = c.red, bg = U.blend(c.red, c.bg, 0.1) },
+    NeogitDiffDeleteHighlight = { fg = c.red, bg = U.blend(c.red, c.bg, 0.2) },
 
     NeogitChangeAdded = { fg = c.green, bold = true },
     NeogitChangeModified = { fg = c.yellow, bold = true },

@@ -12,17 +12,6 @@
 --- - `maron`: beige and dusty earth tones on a near-black background.
 --- - `winter`: a cold, frosted light theme with navy text and blue accents.
 ---
---- Getting started ~
----
---- Install the plugin, then pick a flavor with `:colorscheme`. Calling
---- |nightfall.setup()| is optional and only needed to change the defaults.
----
---- >lua
----   require("nightfall").setup({ transparent = true })
----   vim.cmd.colorscheme("nightfall")
---- <
---- `setup()` must run before `:colorscheme` for its options to take effect.
----
 --- Beyond Neovim ~
 ---
 --- The `extras/` directory of this repository carries matching themes for
@@ -36,12 +25,9 @@
 
 local cache = require("nightfall.cache")
 local config = require("nightfall.config")
-local context = require("nightfall.context")
 local palette = require("nightfall.palette")
 
 local M = {}
-
----@alias NightfallFlavor "nightfall"|"deeper-night"|"maron"|"winter"
 
 --- Names of every flavor, in the order they appear in the documentation.
 ---@type NightfallFlavor[]
@@ -63,7 +49,7 @@ function M.load(flavor)
   flavor = flavor or "nightfall"
 
   local opts = config.get()
-  local theme = cache.get(context.new(flavor, opts))
+  local theme = cache.get(flavor, opts)
 
   if vim.g.colors_name then vim.cmd("highlight clear") end
   vim.g.colors_name = flavor

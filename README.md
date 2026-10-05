@@ -187,6 +187,14 @@ just ci        # run CI checks
 
 `doc/nightfall.txt` and `extras/` are generated. Change the source files and run `just generate` instead of editing generated files by hand.
 
+### Code layout
+
+- `palette.lua` reads flavor palettes and applies color overrides.
+- `groups/` defines highlights directly from palette fields. Group modules receive `(colors, options, flavor)`; flavor-specific choices stay beside their highlights.
+- `theme.lua` combines groups, integrations, styles, and highlight overrides.
+- `cache.lua` caches the built theme; `init.lua` applies it to Neovim.
+- `lualine.lua` and `scripts/extras/` reuse the same palettes.
+
 ## 📜 License
 
 [MIT](LICENSE)

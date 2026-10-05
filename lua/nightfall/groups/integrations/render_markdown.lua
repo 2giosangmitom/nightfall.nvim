@@ -1,31 +1,41 @@
 --- https://github.com/MeanderingProgrammer/render-markdown.nvim
 
+local U = require("nightfall.color")
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c, role = ctx.c, ctx.role
+function M.get(c, o, flavor)
+  local accent = palette.accent(c, flavor)
+  local code_bg = U.background(c.bg_alt, o.transparent)
+  local link = flavor == "winter" and c.blue or c.cyan
 
   --- Colors for the six heading levels, matching `@markup.heading.N`.
-  local headings = { role("heading"), c.pink, c.gold, c.lime, c.blue, c.cream }
+  local headings = { flavor == "winter" and c.teal or c.green, c.pink, c.gold, c.lime, c.blue, c.cream }
 
   local result = {
-    RenderMarkdownCode = { bg = ctx.solid(c.bg_alt) },
-    RenderMarkdownCodeInline = { fg = role("raw"), bg = c.surface },
-    RenderMarkdownCodeBorder = { fg = c.border, bg = ctx.solid(c.bg_alt) },
-    RenderMarkdownBullet = { fg = ctx.accent },
+    RenderMarkdownCode = { bg = code_bg },
+    RenderMarkdownCodeInline = { fg = flavor == "winter" and c.green or c.cream, bg = c.surface },
+    RenderMarkdownCodeBorder = { fg = c.border, bg = code_bg },
+    RenderMarkdownBullet = { fg = accent },
     RenderMarkdownDash = { fg = c.border },
     RenderMarkdownQuote = { fg = c.gray },
     RenderMarkdownIndent = { fg = c.border },
     RenderMarkdownSign = { fg = c.border },
-    RenderMarkdownMath = { fg = role("number"), italic = true },
-    RenderMarkdownLink = { fg = role("link"), underline = true },
-    RenderMarkdownWikiLink = { fg = role("link"), underline = true },
+    RenderMarkdownMath = {
+      fg = flavor == "nightfall" and c.lavender or flavor == "winter" and c.orange or c.teal,
+      italic = true,
+    },
+    RenderMarkdownLink = { fg = link, underline = true },
+    RenderMarkdownWikiLink = { fg = link, underline = true },
     RenderMarkdownHtmlComment = { link = "Comment" },
-    RenderMarkdownInlineHighlight = { fg = ctx.on_accent(), bg = c.gold },
+    RenderMarkdownInlineHighlight = { fg = palette.on_accent(c, flavor), bg = c.gold },
 
-    RenderMarkdownTableHead = { fg = ctx.accent, bold = true },
+    RenderMarkdownTableHead = { fg = accent, bold = true },
     RenderMarkdownTableRow = { fg = c.gray },
     RenderMarkdownTableFill = { fg = c.border },
 
@@ -42,7 +52,7 @@ function M.get(ctx)
 
   for level, fg in ipairs(headings) do
     result["RenderMarkdownH" .. level] = { fg = fg, bold = true }
-    result["RenderMarkdownH" .. level .. "Bg"] = { fg = fg, bg = ctx.blend(fg, c.bg, 0.14), bold = true }
+    result["RenderMarkdownH" .. level .. "Bg"] = { fg = fg, bg = U.blend(fg, c.bg, 0.14), bold = true }
   end
 
   return result

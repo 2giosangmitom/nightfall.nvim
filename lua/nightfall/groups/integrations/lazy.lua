@@ -1,22 +1,25 @@
 --- https://github.com/folke/lazy.nvim
 
 local U = require("nightfall.color")
+local palette = require("nightfall.palette")
 local M = {}
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c, accent = ctx.c, ctx.accent
+function M.get(c, o, flavor)
+  local accent = palette.accent(c, flavor)
 
   return {
     LazyNormal = { link = "NormalFloat" },
     LazyButton = { fg = c.silver, bg = c.surface },
     LazyButtonActive = {
-      fg = ctx.vary({ winter = c.fg }, c.silver),
-      bg = ctx.vary({ winter = c.overlay }, U.lighten(c.surface, 0.875)),
+      fg = flavor == "winter" and c.fg or c.silver,
+      bg = flavor == "winter" and c.overlay or U.lighten(c.surface, 0.875),
       bold = true,
     },
-    LazyH1 = { fg = ctx.on_accent(), bg = ctx.vary({ maron = c.yellow }, accent), bold = true },
+    LazyH1 = { fg = palette.on_accent(c, flavor), bg = flavor == "maron" and c.yellow or accent, bold = true },
     LazyH2 = { fg = accent, bold = true },
     LazyComment = { link = "Comment" },
     LazyProp = { fg = c.gray },

@@ -10,6 +10,8 @@
 
 local M = {}
 
+---@alias NightfallFlavor "nightfall"|"deeper-night"|"maron"|"winter"
+
 ---@tag NightfallPalette
 ---@class NightfallPalette
 --- Surfaces, deepest first.
@@ -65,5 +67,31 @@ function M.get(flavor, overrides)
   local palette = require("nightfall.palettes." .. flavor)
   return vim.tbl_extend("force", palette, overrides or {})
 end
+
+--- Read a palette with global and flavor-specific user overrides applied.
+---@param flavor NightfallFlavor
+---@param opts NightfallOptions
+---@return NightfallPalette
+function M.resolve(flavor, opts)
+  local overrides = opts.color_overrides or {}
+  return M.get(flavor, vim.tbl_extend("force", overrides.all or {}, overrides[flavor] or {}))
+end
+
+--- The flavor's accent, read from the supplied palette.
+---@param colors NightfallPalette
+---@param flavor NightfallFlavor
+---@return string
+function M.accent(colors, flavor)
+  if flavor == "nightfall" then return colors.purple end
+  if flavor == "maron" then return colors.lavender end
+  if flavor == "winter" then return colors.blue end
+  return colors.sky
+end
+
+--- Foreground readable on this flavor's accent-colored backgrounds.
+---@param colors NightfallPalette
+---@param flavor NightfallFlavor
+---@return string
+function M.on_accent(colors, flavor) return flavor == "winter" and colors.bg or colors.black end
 
 return M

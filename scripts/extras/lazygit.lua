@@ -2,6 +2,8 @@
 --- values. The extra values are attributes such as `bold`, which lazygit reads
 --- from the same list as the color itself.
 
+local palette = require("nightfall.palette")
+
 --- A `name:` key and its values, indented to sit under `gui.theme`.
 ---@param name string
 ---@param values string[] A color, optionally followed by attributes.
@@ -17,10 +19,11 @@ local function entry(name, values)
   return lines
 end
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param flavor NightfallFlavor
 ---@return string[]
-return function(ctx)
-  local c, accent = ctx.c, ctx.accent
+return function(c, flavor)
+  local accent = palette.accent(c, flavor)
 
   local lines = { "gui:", '  nerdFontsVersion: "3"', "  border: rounded", "  theme:" }
 

@@ -9,6 +9,7 @@
 --- `name`.
 
 local toml = require("extras.toml")
+local palette = require("nightfall.palette")
 
 --- The `[filetype]` table, whose one key is a list of rules. Each rule matches
 --- on a path glob under `url` or a mime glob under `mime`, optionally narrowed
@@ -33,10 +34,11 @@ local function filetype(rules)
   return lines
 end
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param flavor NightfallFlavor
 ---@return string[]
-return function(ctx)
-  local c, accent = ctx.c, ctx.accent
+return function(c, flavor)
+  local accent = palette.accent(c, flavor)
 
   local lines = toml.sections({
     {

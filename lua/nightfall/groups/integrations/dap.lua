@@ -1,13 +1,18 @@
 --- https://github.com/mfussenegger/nvim-dap and
 --- https://github.com/rcarriga/nvim-dap-ui
 
+local U = require("nightfall.color")
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
----@param opts table Integration options: `ui` for nvim-dap-ui.
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx, opts)
-  local c, accent = ctx.c, ctx.accent
+function M.get(c, o, flavor)
+  local opts = o.integrations.dap
+  local accent = palette.accent(c, flavor)
 
   local result = {
     DapBreakpoint = { fg = c.red },
@@ -15,7 +20,7 @@ function M.get(ctx, opts)
     DapBreakpointRejected = { fg = c.subtle },
     DapLogPoint = { fg = c.sky },
     DapStopped = { fg = c.gold },
-    DapStoppedLine = { bg = ctx.blend(c.gold, c.bg, 0.18) },
+    DapStoppedLine = { bg = U.blend(c.gold, c.bg, 0.18) },
   }
 
   if opts.ui then
@@ -26,7 +31,7 @@ function M.get(ctx, opts)
       DapUIEndofBuffer = { fg = c.bg_dim },
       DapUIWinSelect = { fg = accent, bold = true },
       DapUIScope = { fg = c.cyan },
-      DapUIType = { fg = ctx.role("type") },
+      DapUIType = { fg = (flavor == "nightfall" or flavor == "winter") and c.blue or c.cyan },
       DapUIVariable = { fg = c.fg },
       DapUIValue = { fg = c.silver },
       DapUIModifiedValue = { fg = c.gold, bold = true },

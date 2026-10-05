@@ -60,4 +60,10 @@ function M.darken(hex, amount, bg) return M.blend(hex, bg or BLACK, amount) end
 ---@return string The lightened color as `#RRGGBB`.
 function M.lighten(hex, amount, fg) return M.blend(hex, fg or WHITE, amount) end
 
+--- Omit a background when transparency is enabled.
+---@param hex string
+---@param transparent? boolean
+---@return string
+function M.background(hex, transparent) return transparent and "NONE" or hex end
+
 return M

@@ -121,4 +121,43 @@ T["flavor"]["has a colors file and a lualine theme"] = function(flavor)
   expect.equality(vim.fn.filereadable("lua/lualine/themes/" .. flavor .. ".lua"), 1)
 end
 
+T["resolve"] = MiniTest.new_set()
+
+T["resolve"]["works without overrides"] = function()
+  expect.equality(palette.resolve("nightfall", {}), palette.get("nightfall"))
+end
+
+T["resolve"]["lets flavor overrides win over global ones"] = function()
+  local opts = {
+    color_overrides = {
+      all = { fg = "#010203", bg = "#040506" },
+      winter = { bg = "#070809" },
+    },
+  }
+  local before = vim.deepcopy(opts)
+  expect.equality(palette.resolve("winter", opts).fg, "#010203")
+  expect.equality(palette.resolve("winter", opts).bg, "#070809")
+  expect.equality(palette.resolve("maron", opts).bg, "#040506")
+  expect.equality(opts, before)
+end
+
+T["flavor"]["reads its accent and foreground from the supplied palette"] = function(flavor)
+  local colors = palette.get(flavor, {
+    purple = "#010203",
+    sky = "#040506",
+    lavender = "#070809",
+    blue = "#101112",
+    black = "#131415",
+    bg = "#161718",
+  })
+  local accents = {
+    nightfall = "#010203",
+    ["deeper-night"] = "#040506",
+    maron = "#070809",
+    winter = "#101112",
+  }
+  expect.equality(palette.accent(colors, flavor), accents[flavor])
+  expect.equality(palette.on_accent(colors, flavor), flavor == "winter" and "#161718" or "#131415")
+end
+
 return T

@@ -6,58 +6,45 @@
 ---@toc_entry Lualine
 
 local config = require("nightfall.config")
-local context = require("nightfall.context")
+local color = require("nightfall.color")
+local palette = require("nightfall.palette")
 
 local M = {}
-
---- The accent each editor mode uses, per flavor.
----@private
-local MODES = {
-  normal = { nightfall = "purple", ["deeper-night"] = "sky", maron = "lavender", winter = "blue" },
-  insert = { nightfall = "green", ["deeper-night"] = "teal", maron = "green", winter = "teal" },
-  visual = { nightfall = "pink", ["deeper-night"] = "magenta", maron = "magenta", winter = "lavender" },
-  command = { nightfall = "gold", ["deeper-night"] = "gold", maron = "gold", winter = "purple" },
-  terminal = { nightfall = "cyan", ["deeper-night"] = "cyan", maron = "cyan", winter = "cyan" },
-  replace = { nightfall = "coral", ["deeper-night"] = "coral", maron = "coral", winter = "coral" },
-}
 
 --- Build the lualine theme for a flavor.
 ---@param flavor NightfallFlavor
 ---@return table A table of lualine mode sections.
 function M.get(flavor)
-  local ctx = context.new(flavor, config.get())
-  local c, o = ctx.c, ctx.o
-
-  local raised = c.surface
+  local o = config.get()
+  local c = palette.resolve(flavor, o)
+  local fg = palette.on_accent(c, flavor)
+  local bg = color.background(c.bg_dim, o.transparent)
   local inactive_fg = o.dim_inactive and c.subtle or c.gray
-
-  --- Sections `a` and `b` for one mode, both built from that mode's accent.
-  ---@param mode string
-  ---@return table
-  local function sections(mode)
-    local accent = c[MODES[mode][flavor]]
-    return {
-      a = { fg = ctx.on_accent(), bg = accent },
-      b = { fg = accent, bg = raised },
-    }
-  end
-
+  local modes = {
+    normal = palette.accent(c, flavor),
+    insert = (flavor == "deeper-night" or flavor == "winter") and c.teal or c.green,
+    visual = flavor == "nightfall" and c.pink or flavor == "winter" and c.lavender or c.magenta,
+    command = flavor == "winter" and c.purple or c.gold,
+    terminal = c.cyan,
+    replace = c.coral,
+  }
   local theme = {
-    normal = sections("normal"),
-    insert = sections("insert"),
-    visual = sections("visual"),
-    command = sections("command"),
-    terminal = sections("terminal"),
-    replace = sections("replace"),
     inactive = {
-      a = { fg = inactive_fg, bg = ctx.solid(c.bg_dim) },
-      b = { fg = inactive_fg, bg = ctx.solid(c.bg_dim) },
-      c = { fg = inactive_fg, bg = ctx.solid(c.bg_dim) },
+      a = { fg = inactive_fg, bg = bg },
+      b = { fg = inactive_fg, bg = bg },
+      c = { fg = inactive_fg, bg = bg },
     },
   }
 
+  for mode, accent in pairs(modes) do
+    theme[mode] = {
+      a = { fg = fg, bg = accent },
+      b = { fg = accent, bg = c.surface },
+    }
+  end
+
   -- Only normal mode defines section `c`; lualine reuses it for every mode.
-  theme.normal.c = { fg = c.silver, bg = ctx.solid(c.bg_dim) }
+  theme.normal.c = { fg = c.silver, bg = bg }
 
   return theme
 end

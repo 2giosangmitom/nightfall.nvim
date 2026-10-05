@@ -4,15 +4,15 @@ local kinds = require("nightfall.groups.kinds")
 
 local M = {}
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c = ctx.c
-
+function M.get(c, o, flavor)
   return vim.tbl_extend("error", {
     NavicText = { fg = c.fg },
     NavicSeparator = { fg = c.border },
-  }, kinds.groups(ctx, "NavicIcons"))
+  }, kinds.groups(c, flavor, "NavicIcons"))
 end
 
 return M

@@ -1,17 +1,21 @@
 --- https://github.com/goolord/alpha-nvim
 
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c, accent = ctx.c, ctx.accent
+function M.get(c, o, flavor)
+  local accent = palette.accent(c, flavor)
 
   return {
     AlphaHeader = { fg = accent, bold = true },
     AlphaHeaderLabel = { fg = c.gold },
     AlphaButtons = { fg = c.fg },
-    AlphaShortcut = { fg = ctx.vary({ ["deeper-night"] = c.pink, maron = c.cyan }, c.yellow) },
+    AlphaShortcut = { fg = flavor == "deeper-night" and c.pink or flavor == "maron" and c.cyan or c.yellow },
     AlphaFooter = { fg = c.gray, italic = true },
   }
 end

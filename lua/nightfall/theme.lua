@@ -2,6 +2,8 @@
 ---@tag nightfall-theme
 ---@toc_entry Themes
 
+local palette = require("nightfall.palette")
+
 local M = {}
 
 ---@tag NightfallTheme
@@ -24,13 +26,16 @@ end
 --- The highlight overrides that apply to this flavor.
 ---
 --- Entries under the flavor's own key win over entries under `all`.
----@param ctx NightfallCtx
+---@param colors NightfallPalette
+---@param opts NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.overrides(ctx)
-  local all = as_groups(ctx.o.highlight_overrides.all, ctx.c)
-  local flavor = as_groups(ctx.o.highlight_overrides[ctx.flavor], ctx.c)
+function M.overrides(colors, opts, flavor)
+  local entries = opts.highlight_overrides or {}
+  local all = as_groups(entries.all, colors)
+  local specific = as_groups(entries[flavor], colors)
 
-  return vim.tbl_deep_extend("force", vim.deepcopy(all), flavor)
+  return vim.tbl_deep_extend("force", vim.deepcopy(all), specific)
 end
 
 --- Fold each spec's `style` sub-table into the spec itself.
@@ -55,17 +60,19 @@ local function flatten_styles(highlights)
 end
 
 --- Highlights contributed by every enabled integration.
----@param ctx NightfallCtx
+---@param colors NightfallPalette
+---@param options NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
 ---@private
-local function integration_highlights(ctx)
+local function integration_highlights(colors, options, flavor)
   local result = {}
 
-  for name, opts in pairs(ctx.o.integrations) do
+  for name, opts in pairs(options.integrations) do
     if opts.enabled then
       local ok, module = pcall(require, "nightfall.groups.integrations." .. name)
       if ok then
-        result = vim.tbl_extend("force", result, module.get(ctx, opts))
+        result = vim.tbl_extend("force", result, module.get(colors, options, flavor))
       else
         vim.notify_once(
           string.format("nightfall: no integration named %q", name),
@@ -80,17 +87,22 @@ local function integration_highlights(ctx)
 end
 
 --- Build every highlight for one flavor.
----@param ctx NightfallCtx Context to build for.
+---@param flavor NightfallFlavor Flavor to build.
+---@param opts NightfallOptions Resolved user options.
 ---@return NightfallTheme
-function M.build(ctx)
-  local highlights =
-    vim.tbl_extend("error", require("nightfall.groups.editor").get(ctx), require("nightfall.groups.syntax").get(ctx))
-  highlights = vim.tbl_extend("force", highlights, integration_highlights(ctx))
-  highlights = vim.tbl_deep_extend("force", highlights, M.overrides(ctx))
+function M.build(flavor, opts)
+  local colors = palette.resolve(flavor, opts)
+  local highlights = vim.tbl_extend(
+    "error",
+    require("nightfall.groups.editor").get(colors, opts, flavor),
+    require("nightfall.groups.syntax").get(colors, opts, flavor)
+  )
+  highlights = vim.tbl_extend("force", highlights, integration_highlights(colors, opts, flavor))
+  highlights = vim.tbl_deep_extend("force", highlights, M.overrides(colors, opts, flavor))
 
   return {
     highlights = flatten_styles(highlights),
-    terminal = ctx.o.terminal_colors and require("nightfall.groups.terminal").get(ctx) or {},
+    terminal = opts.terminal_colors and require("nightfall.groups.terminal").get(colors) or {},
   }
 end
 

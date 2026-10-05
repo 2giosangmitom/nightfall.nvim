@@ -1,12 +1,8 @@
 local expect = MiniTest.expect
 local cache = require("nightfall.cache")
 local config = require("nightfall.config")
-local context = require("nightfall.context")
-
---- A context built from the current options.
----@param flavor? string
----@return table
-local function ctx(flavor) return context.new(flavor or "nightfall", config.get()) end
+local function key(flavor, sources) return cache.key(flavor or "nightfall", config.get(), sources) end
+local function get() return cache.get("nightfall", config.get()) end
 
 --- Path of the compiled file for a flavor.
 ---@param flavor string
@@ -28,35 +24,43 @@ local T = MiniTest.new_set({
 
 T["key"] = MiniTest.new_set()
 
-T["key"]["is stable for the same options"] = function() expect.equality(cache.key(ctx()), cache.key(ctx())) end
+T["key"]["is stable for the same options"] = function() expect.equality(key(), key()) end
 
-T["key"]["changes with the flavor"] = function()
-  expect.no_equality(cache.key(ctx("nightfall"), "s"), cache.key(ctx("maron"), "s"))
+T["key"]["ignores table insertion order"] = function()
+  config.setup({ color_overrides = { all = { bg = "#010203", fg = "#040506" } } })
+  local before = key(nil, "s")
+  local overrides = {}
+  overrides.fg = "#040506"
+  overrides.bg = "#010203"
+  config.setup({ color_overrides = { all = overrides } })
+  expect.equality(key(nil, "s"), before)
 end
 
-T["key"]["changes with the sources"] = function() expect.no_equality(cache.key(ctx(), "a"), cache.key(ctx(), "b")) end
+T["key"]["changes with the flavor"] = function() expect.no_equality(key("nightfall", "s"), key("maron", "s")) end
+
+T["key"]["changes with the sources"] = function() expect.no_equality(key(nil, "a"), key(nil, "b")) end
 
 T["key"]["changes with the options"] = function()
-  local before = cache.key(ctx(), "s")
+  local before = key(nil, "s")
   config.setup({ transparent = true })
 
-  expect.no_equality(cache.key(ctx(), "s"), before)
+  expect.no_equality(key(nil, "s"), before)
 end
 
 T["key"]["follows what an override function returns"] = function()
   config.setup({ highlight_overrides = { all = function() return { Normal = { bg = "#010203" } } end } })
-  local before = cache.key(ctx(), "s")
+  local before = key(nil, "s")
 
   config.setup({ highlight_overrides = { all = function() return { Normal = { bg = "#040506" } } end } })
-  expect.no_equality(cache.key(ctx(), "s"), before)
+  expect.no_equality(key(nil, "s"), before)
 end
 
 T["key"]["ignores the identity of an override function"] = function()
   config.setup({ highlight_overrides = { all = function() return { Normal = { bg = "#010203" } } end } })
-  local before = cache.key(ctx(), "s")
+  local before = key(nil, "s")
 
   config.setup({ highlight_overrides = { all = function() return { Normal = { bg = "#010203" } } end } })
-  expect.equality(cache.key(ctx(), "s"), before)
+  expect.equality(key(nil, "s"), before)
 end
 
 T["fingerprint"] = MiniTest.new_set()
@@ -82,29 +86,29 @@ end
 T["get"] = MiniTest.new_set()
 
 T["get"]["writes a compiled file"] = function()
-  cache.get(ctx())
+  get()
   expect.equality(vim.fn.filereadable(cache_file("nightfall")), 1)
 end
 
 T["get"]["returns the same theme from the cache"] = function()
-  local built = cache.get(ctx())
-  local reloaded = cache.get(ctx())
+  local built = get()
+  local reloaded = get()
 
   expect.equality(reloaded, built)
 end
 
 T["get"]["rebuilds when the options change"] = function()
-  local plain = cache.get(ctx())
+  local plain = get()
 
   config.setup({ transparent = true })
-  expect.no_equality(cache.get(ctx()).highlights.Normal, plain.highlights.Normal)
+  expect.no_equality(get().highlights.Normal, plain.highlights.Normal)
 end
 
 T["get"]["survives a corrupt cache file"] = function()
-  cache.get(ctx())
+  get()
   vim.fn.writefile({ "this is not lua bytecode" }, cache_file("nightfall"))
 
-  local theme = cache.get(ctx())
+  local theme = get()
   expect.equality(theme.highlights.Normal ~= nil, true)
 end
 
@@ -112,13 +116,13 @@ T["get"]["caches an override that reuses one table"] = function()
   local shared = { fg = "#010203" }
   config.setup({ highlight_overrides = { all = function() return { Normal = shared, Visual = shared } end } })
 
-  cache.get(ctx())
+  get()
   expect.equality(vim.fn.filereadable(cache_file("nightfall")), 1)
 end
 
 T["get"]["skips the cache when asked to"] = function()
   vim.g.nightfall_no_cache = true
-  cache.get(ctx())
+  get()
   vim.g.nightfall_no_cache = nil
 
   expect.equality(vim.fn.filereadable(cache_file("nightfall")), 0)

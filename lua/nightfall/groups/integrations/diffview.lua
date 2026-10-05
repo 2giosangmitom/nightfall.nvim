@@ -1,16 +1,21 @@
 --- https://github.com/sindrets/diffview.nvim
 
+local U = require("nightfall.color")
+local palette = require("nightfall.palette")
+
 local M = {}
 
----@param ctx NightfallCtx
+---@param c NightfallPalette
+---@param o NightfallOptions
+---@param flavor NightfallFlavor
 ---@return table<string,table>
-function M.get(ctx)
-  local c, accent = ctx.c, ctx.accent
+function M.get(c, o, flavor)
+  local accent = palette.accent(c, flavor)
 
   return {
-    DiffviewNormal = { fg = c.fg, bg = ctx.solid(c.bg_dim) },
+    DiffviewNormal = { fg = c.fg, bg = U.background(c.bg_dim, o.transparent) },
     DiffviewCursorLine = { bg = c.overlay },
-    DiffviewWinSeparator = { fg = c.border, bg = ctx.solid(c.bg_dim) },
+    DiffviewWinSeparator = { fg = c.border, bg = U.background(c.bg_dim, o.transparent) },
     DiffviewNonText = { fg = c.subtle },
     DiffviewDim1 = { fg = c.subtle },
     DiffviewReference = { fg = c.magenta, bold = true },
