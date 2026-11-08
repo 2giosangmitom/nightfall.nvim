@@ -20,7 +20,7 @@ function M.get(c, o, flavor)
   -- Surfaces the editor draws its own furniture on.
   local float_bg = U.background(c.bg_dim, o.transparent)
   local bar_bg = float_bg
-  local menu_bg = U.background(c.surface, o.transparent)
+  local menu_bg = U.background(c.bg_dim, o.transparent)
   local inactive_bg = U.background(o.dim_inactive and c.bg_dim or c.bg, o.transparent)
   local inactive_fg = o.dim_inactive and U.darken(c.fg, 0.75, c.bg) or c.fg
 
@@ -110,13 +110,13 @@ function M.get(c, o, flavor)
 
     -- Completion popup
     Pmenu = { fg = c.silver, bg = menu_bg },
-    PmenuSel = { fg = c.latte, bg = c.overlay, bold = true },
+    PmenuSel = { fg = on_accent, bg = accent, bold = true },
     PmenuKind = { fg = accent, bg = menu_bg },
-    PmenuKindSel = { fg = accent, bg = c.overlay, bold = true },
+    PmenuKindSel = { fg = on_accent, bg = accent, bold = true },
     PmenuExtra = { fg = c.gray, bg = menu_bg },
-    PmenuExtraSel = { fg = c.silver, bg = c.overlay },
+    PmenuExtraSel = { fg = on_accent, bg = accent },
     PmenuMatch = { fg = c.sky, bg = menu_bg, bold = true },
-    PmenuMatchSel = { fg = c.cyan, bg = c.overlay, bold = true },
+    PmenuMatchSel = { fg = c.sky, bg = accent, bold = true },
     PmenuSbar = { bg = c.bg_alt },
     PmenuThumb = { bg = c.border },
     PmenuBorder = { fg = c.border, bg = menu_bg },

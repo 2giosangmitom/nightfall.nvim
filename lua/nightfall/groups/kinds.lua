@@ -57,8 +57,8 @@ end
 function M.groups(c, flavor, prefix)
   local result = {}
 
-  for name, fg in pairs(M.colors(c, flavor)) do
-    result[prefix .. name] = { fg = fg }
+  for name, color in pairs(M.colors(c, flavor)) do
+    result[prefix .. name] = { fg = color }
   end
 
   return result

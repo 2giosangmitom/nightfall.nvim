@@ -13,20 +13,21 @@ local M = {}
 ---@return table<string,table>
 function M.get(c, o, flavor)
   local accent = palette.accent(c, flavor)
+  local on_accent = palette.on_accent(c, flavor)
   local menu_bg = U.background(c.bg_dim, o.transparent)
 
   return vim.tbl_extend("error", {
     -- Menu
     BlinkCmpMenu = { fg = c.silver, bg = menu_bg },
     BlinkCmpMenuBorder = { fg = c.border, bg = menu_bg },
-    BlinkCmpMenuSelection = { fg = c.latte, bg = c.overlay, bold = true },
+    BlinkCmpMenuSelection = { fg = on_accent, bg = accent, bold = true },
     BlinkCmpScrollBarThumb = { bg = c.border },
     BlinkCmpScrollBarGutter = { bg = c.bg_alt },
 
     -- Entries
     BlinkCmpLabel = { fg = c.silver },
     BlinkCmpLabelDeprecated = { fg = c.gray, strikethrough = true },
-    BlinkCmpLabelMatch = { fg = accent, bold = true },
+    BlinkCmpLabelMatch = { fg = c.sky, bold = true },
     BlinkCmpLabelDetail = { fg = c.gray },
     BlinkCmpLabelDescription = { fg = c.gray },
     BlinkCmpKind = { fg = accent },
@@ -34,9 +35,9 @@ function M.get(c, o, flavor)
     BlinkCmpGhostText = { fg = c.subtle, italic = true },
 
     -- Documentation
-    BlinkCmpDoc = { fg = c.fg, bg = menu_bg },
-    BlinkCmpDocBorder = { fg = c.border, bg = menu_bg },
-    BlinkCmpDocSeparator = { fg = c.border, bg = menu_bg },
+    BlinkCmpDoc = { fg = c.fg, bg = c.bg_dim },
+    BlinkCmpDocBorder = { fg = c.border, bg = c.bg_dim },
+    BlinkCmpDocSeparator = { fg = c.border, bg = c.bg_dim },
     BlinkCmpDocCursorLine = { bg = c.bg_alt },
 
     -- Signature help
